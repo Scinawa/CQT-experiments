@@ -5,11 +5,12 @@ import subprocess
 subfolders = [
     # "GHZ",
     # "mermin5q",
-    "grover2q",
+    # "grover2q",
     # "tomography",
     # "reuploading",
     # "universal_approximant",
     # "process_tomography",
+    "reuploading_classifier",
 ]
 
 # Base path to the scripts directory
