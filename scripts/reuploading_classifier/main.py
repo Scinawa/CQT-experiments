@@ -31,7 +31,7 @@ from qiboml.interfaces.pytorch import QuantumModel
 from qiboml.operations.differentiation import PSR
 from qiboml import ndarray
 
-# from src.plots import plot_reuploading_classifier
+# from plots import plot_reuploading_classifier
 
 os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path(
     "/mnt/scratch/qibolab_platforms_nqch"
@@ -240,7 +240,7 @@ class TrainedLinearEncoder(nn.Module):
 
 
 def main(
-    backend,
+    device,
     qubit_id,
     nlayers,
     lr,
@@ -253,20 +253,22 @@ def main(
     load_and_test,
 ):
     nqubits = 1
-    device = torch.device("cpu")
+    torch_device = torch.device("cpu")
     script_directory = os.path.dirname(__file__)
 
-    # Set up backend
-    if backend == "numpy":
-        backend = construct_backend(backend)
-    elif backend == "qibolab":
+    # Set up device (backend)
+    if device == "numpy":
+        backend = construct_backend("numpy")
+    elif device == "nqch-sim":
+        backend = construct_backend("numpy") # placeholder
+    elif device == "sinq20":
         backend = construct_backend("qibolab", platform="sinq-20")
-    elif backend == "qiboml":
+    elif device == "qiboml":
         backend = construct_backend("qiboml", platform="pytorch")
         set_backend(backend="qiboml", platform="pytorch")
         if gpu:
-            device = torch.device(f"cuda:{gpu}")
-    torch.set_default_device(device)
+            torch_device = torch.device(f"cuda:{gpu}")
+    torch.set_default_device(torch_device)
 
     # Generate training data
     training_set = create_dataset(grid=grid)
@@ -289,7 +291,7 @@ def main(
 
     # Set up directories
     backend_name = backend.name.lower().replace(" ", "_")
-    output_dir = os.path.join("data", f"reuploading_classifier/")
+    output_dir = os.path.join("data", f"reuploading_classifier/{device}/")
     params_dir = os.path.join(output_dir, "params")
     os.makedirs(params_dir, exist_ok=True)
 
@@ -420,22 +422,19 @@ def main(
     }
 
     with open(
-        os.path.join(output_dir, f"results_reuploading_classifier.json"), "w"
+        os.path.join(output_dir, f"results.json"), "w"
     ) as file:
         json.dump(report_data, file, indent=4)
     with open(
-        os.path.join(output_dir, f"data_reuploading_classifier.json"), "w"
+        os.path.join(output_dir, f"settings.json"), "w"
     ) as file:
         json.dump(static_meta_data, file, indent=4)
 
+    '''
     # Load from results.json and generate plots
-    with open(
-        os.path.join(output_dir, f"results_reuploading_classifier.json"), "r"
-    ) as file:
-        loaded_report_data = json.load(file)
-
-    # plot_reuploading_classifier(loaded_report_data, output_path=output_dir)
-
+    raw_data = os.path.join(output_dir, f"results.json")
+    plot_reuploading_classifier(raw_data, output_path=output_dir)
+    '''
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -443,7 +442,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--device",
-        choices=["numpy", "nqch-sim", "sinq20"],
+        choices=["numpy", "nqch-sim", "sinq20", "qiboml"],
         default="numpy",
         help="Device to use (default: numpy)",
     )
@@ -492,7 +491,7 @@ if __name__ == "__main__":
         help="Option to run job on GPU when backend is qiboml. Enter GPU cuda ID (default: None)",
     )
     parser.add_argument(
-        # "--load_and_test", type=bool, default=False, help="Option to load trained weights into model (nlayers=10 only) instead of training (default: False)"
+        # "--load_and_test", type=bool, default=False, help="Option to load trained weights into model (nlayers=10 only) instead of training (default: False)", # training mode (long duration)
         "--load_and_test",
         type=bool,
         default=True,
