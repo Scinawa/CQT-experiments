@@ -7,6 +7,7 @@ from matplotlib.ticker import MaxNLocator
 from pathlib import Path
 import json
 import os
+import ast
 
 
 def prepare_grid_coupler(
@@ -289,13 +290,16 @@ def plot_t1_decay(qubit_number, data_dir, output_path="build/", suffix=""):
     return full_path
 
 
-def mermin_plot_5q(raw_data, output_path="build/"):
+def mermin_plot(raw_data, output_path="build/"):
     with open(raw_data) as r:
         raw = json.load(r)
 
     # Support both list and dict formats
     x_raw = raw.get("x", {})
     y_raw = raw.get("y", {})
+
+    number_of_qubits_ = [k for k in x_raw.keys()][0]
+    number_of_qubits = len(ast.literal_eval(number_of_qubits_))
 
     series = []
     if isinstance(x_raw, dict) and isinstance(y_raw, dict):
@@ -331,20 +335,26 @@ def mermin_plot_5q(raw_data, output_path="build/"):
         if global_max is None or np.abs(candidate) > np.abs(global_max):
             global_max = candidate
 
-    plt.axhline(4, color="k", linestyle="dashed", label="Local Realism Bound")
-    plt.axhline(-4, color="k", linestyle="dashed")
-    plt.axhline(16, color="red", linestyle="dashed", label="Quantum Bound")
-    plt.axhline(-16, color="red", linestyle="dashed")
+    classical_bound = 2 ** (number_of_qubits // 2)
+
+    quantum_bound = 2 ** ((number_of_qubits - 1) / 2) * (2 ** (number_of_qubits // 2))
+
+    plt.axhline(
+        classical_bound, color="k", linestyle="dashed", label="Local Realism Bound"
+    )
+    plt.axhline(-classical_bound, color="k", linestyle="dashed")
+    plt.axhline(quantum_bound, color="red", linestyle="dashed", label="Quantum Bound")
+    plt.axhline(-quantum_bound, color="red", linestyle="dashed")
 
     plt.xlabel(r"$\theta$ [degrees]")
     plt.ylabel("Result")
     plt.grid()
     if len(series) > 1:
         plt.legend()
-    plt.title(f"Mermin Inequality [5Q]\nMax: {global_max}")
+    plt.title(f"Mermin Inequality [{number_of_qubits} qubits]\nMax: {global_max}")
     plt.tight_layout()
 
-    filename = "mermin_5q.png"
+    filename = "mermin.png"
     full_path = os.path.join(output_path, filename)
     plt.savefig(full_path)
     plt.close()

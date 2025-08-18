@@ -8,7 +8,13 @@ EXPERIMENT_DIR ?= rb-1306
 build: clean
 	@mkdir -p build
 	@echo "Building latex report..."
-	python src/main.py --experiment-left $(EXPERIMENT_DIR) --experiment-right BASELINE --no-process-tomography-plot --no-tomography-plot --data-left sinq20 --data-right numpy 
+	python src/main.py \
+		--experiment-left $(EXPERIMENT_DIR) \
+		--experiment-right BASELINE \
+		--no-process-tomography-plot \
+		--no-tomography-plot \
+		--data-left sinq20 \
+		--data-right numpy
 
 pdf-only: 
 	@mkdir -p build

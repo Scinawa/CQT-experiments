@@ -250,11 +250,11 @@ def prepare_template_context(cfg):
     ######### MERMIN PLOTS
     if cfg.mermin_5_plot == True:
         context["mermin_5_plot_is_set"] = True
-        context["plot_mermin"] = pl.mermin_plot_5q(
+        context["plot_mermin"] = pl.mermin_plot(
             raw_data=os.path.join("data", "mermin", cfg.data_left, "results.json"),
             output_path="build/",
         )
-        context["plot_mermin_baseline"] = mermin_5_plot_baseline = pl.mermin_plot_5q(
+        context["plot_mermin_baseline"] = mermin_5_plot_baseline = pl.mermin_plot(
             raw_data=os.path.join("data", "mermin", cfg.data_right, "results.json"),
             output_path="build/",
         )
