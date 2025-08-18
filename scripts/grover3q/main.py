@@ -55,11 +55,12 @@ def grover_3q(qubits, target):
     c.add([gates.H(i) for i in qubits])
 
     c.add(gates.M(*qubits, register_name=f"m{qubits+a}"))
+    print(c.draw())
     return c
 
 
 def main(qubit_groups, device, nshots):
-    if device == "nqch":
+    if device != "numpy":
         settings = Dynaconf(
             settings_files=[".secrets.toml"], environments=True, env="default"
         )
@@ -81,7 +82,7 @@ def main(qubit_groups, device, nshots):
 
     for qubits in qubit_groups:
         c = grover_3q(qubits, target)
-        if device == "nqch":
+        if device != "numpy":
             job = client.run_circuit(c, device=device, nshots=nshots)
             r = job.result(verbose=True)
             freq = r.frequencies()
@@ -122,7 +123,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--device",
-        choices=["numpy", "nqch", "sinq20"],
+        choices=["numpy", "nqch-sim", "sinq20"],
         default="numpy",
         type=str,
         help="Device to use (e.g., 'nqch' or 'numpy' for local simulation)",
