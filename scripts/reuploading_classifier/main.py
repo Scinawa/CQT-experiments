@@ -240,7 +240,7 @@ class TrainedLinearEncoder(nn.Module):
 
 
 def main(
-    backend,
+    device,
     qubit_id,
     nlayers,
     lr,
@@ -257,12 +257,12 @@ def main(
     script_directory = os.path.dirname(__file__)
 
     # Set up backend
-    if backend == "numpy":
-        backend = construct_backend(backend)
-    elif backend == "qibolab":
-        backend = construct_backend("qibolab", platform="sinq-20")
-    elif backend == "qiboml":
-        backend = construct_backend("qiboml", platform="pytorch")
+    if device == "numpy":
+        device = construct_backend(device)
+    elif device == "qibolab":
+        device = construct_backend("qibolab", platform="sinq-20")
+    elif device == "qiboml":
+        device = construct_backend("qiboml", platform="pytorch")
         set_backend(backend="qiboml", platform="pytorch")
         if gpu:
             device = torch.device(f"cuda:{gpu}")
@@ -288,7 +288,7 @@ def main(
     transpiler = custom_pipeline
 
     # Set up directories
-    backend_name = backend.name.lower().replace(" ", "_")
+    backend_name = device.name.lower().replace(" ", "_")
     output_dir = os.path.join("data", f"reuploading_classifier/")
     params_dir = os.path.join(output_dir, "params")
     os.makedirs(params_dir, exist_ok=True)
@@ -324,7 +324,7 @@ def main(
         nqubits=nqubits,
         observable=observable,
         nshots=nshots,
-        backend=backend,
+        backend=device,
         transpiler=transpiler,
         mitigation_config=None,
         noise_model=None,
