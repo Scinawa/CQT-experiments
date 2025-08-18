@@ -518,3 +518,49 @@ def plot_reuploading_classifier(raw_data, output_path="build/"):
         dpi=300,
     )
     plt.close(fig)
+    return os.path.join(output_path, "reuploading_classifier_results.pdf")
+
+
+def do_plot_reuploading(raw_data, output_path="build/"):
+    """
+    Generate reuploading plots for each epoch and a final summary plot using data from the results JSON file.
+
+    Args:
+        results_file (str): Path to the JSON file containing reuploading results.
+    """
+    with open(raw_data, "r") as f:
+        results = json.load(f)
+
+    output_dir = output_path
+
+    # Generate a plot for each epoch
+    for epoch_data in results["epoch_data"]:
+        epoch = epoch_data["epoch"]
+        x_train = np.array(epoch_data["x_train"])
+        y_train = np.array(epoch_data["y_train"])
+        predictions = np.array(epoch_data["predictions"])
+
+        plot_reuploading(
+            x=x_train,
+            target=y_train,
+            predictions=predictions,
+            title=f"epoch_{epoch:03d}",
+            outdir=output_dir,
+        )
+
+    # Generate the final summary plot
+    x_train = np.array(results["epoch_data"][-1]["x_train"])
+    y_train = np.array(results["epoch_data"][-1]["y_train"])
+    median_pred = np.array(results["median_predictions"])
+    mad_pred = np.array(results["mad_predictions"])
+
+    plot_reuploading(
+        x=x_train,
+        target=y_train,
+        predictions=median_pred,
+        err=mad_pred,
+        title="final_plot",
+        outdir=output_dir,
+    )
+
+    return os.path.join(output_dir, "final_plot.pdf")

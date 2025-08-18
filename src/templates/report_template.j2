@@ -277,6 +277,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{multicols}
 
 
+{% if reuploading_plot_is_set %}
 
 \section{Data reuploading}
 \begin{multicols}{2}
@@ -291,9 +292,14 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_baseline }} }
 \end{center}
 \end{multicols}
+{% endif %}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grover state preparation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
+{% if grover_plot_is_set %}
 \section{2 Qubit Grover}
 \begin{multicols}{2}
 
@@ -307,8 +313,16 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \includegraphics[width=0.95\linewidth]{ {{ plot_grover2q_baseline }} }
 \end{center}
 \end{multicols}
+{% endif %}
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% GHZ state preparation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{% if ghz_plot_is_set %}
 \section{GHZ state preparation}
 \begin{multicols}{2}
 
@@ -322,9 +336,80 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \includegraphics[width=0.95\linewidth]{ {{ plot_ghz_baseline }} }
 \end{center}
 \end{multicols}
+{% endif %}
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tomography state preparation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{% if tomography_plot_is_set %}
+\section{Tomography state preparation}
+\begin{multicols}{2}
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{ {{ plot_tomography }} }
+\end{center}
+
+\columnbreak
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{ {{ plot_tomography_baseline }} }
+\end{center}
+\end{multicols}
+{% endif %}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Process tomography state preparation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{% if process_tomography_plot_is_set %}
+\section{Process Tomography state preparation}
+\begin{multicols}{2}
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{ {{ plot_process_tomography }} }
+\end{center}
+
+\columnbreak
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{ {{ plot_process_tomography_baseline }} }
+\end{center}
+\end{multicols}
+{% endif %}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ruploading classifier 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{% if reuploading_classifier_is_set %}
+\section{Reuploading Classifier}
+\begin{multicols}{2}
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_classifier }} }
+\end{center}
+
+\columnbreak
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_classifier_baseline }} }
+\end{center}
+\end{multicols}
+{% endif %}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \newpage
