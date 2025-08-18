@@ -697,6 +697,8 @@ def compute_noisy_and_noiseless_PTM(gjk=None, O_tilde=None, O_gate=None):
     return np.array(O_hat), np.array(O_exact_PTM)
 
 
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -762,7 +764,7 @@ if __name__ == "__main__":
         empty_2qb_timings.append(timings)
 
     ### GST 1 QUBIT GATE ###
-    gate_set_1qb = [(gates.GPI2, [np.pi / 4]), (gates.GPI2, [np.pi / 3])]
+    gate_set_1qb = [(gates.GPI2, [0]), (gates.GPI2, [np.pi / 2]), (gates.GPI2, [np.pi / 3]), (gates.GPI2, [np.pi / 4])]
     gates_1qb_matrices = []
     gates_1qb_timings = []
     for idx in single_qubit_indices:
@@ -907,6 +909,7 @@ if __name__ == "__main__":
             f"{gate_name}({pair[0]}, {pair[1]}, {params})"
         ]["time (s)"] = gates_2qb_timings[ii][0]
 
+
     # SAVE JSON under data/<scriptname>/<device>/results.json
     out_dir = config.output_dir_for(__file__) / args.device
     os.makedirs(out_dir, exist_ok=True)
@@ -932,8 +935,8 @@ if __name__ == "__main__":
             ),
             empty_2qb_matrices[ii],
         )
-    for ii in range(0, len(gates_1qb_matrices)):
-        for jj in range(0, len(gates_1qb_matrices[0])):
+    for ii in range(0, len(noisyPTM_1qb)):
+        for jj in range(0, len(noisyPTM_1qb[0])):
             qubit = single_qubit_indices[ii]
             gate = gate_set_1qb[jj]
             if isinstance(gate_set_1qb[jj], tuple):
@@ -948,7 +951,7 @@ if __name__ == "__main__":
                     matrices_dir,
                     f"gate_{gate_name}_{np.around(params,4)}_qubit{qubit}.npy",
                 ),
-                gates_1qb_matrices[ii][jj],
+                noisyPTM_1qb[ii][jj],
             )
     for ii in range(0, len(empty_2qb_matrices)):
         pair = two_qubit_pairs[ii]
@@ -965,5 +968,5 @@ if __name__ == "__main__":
                 matrices_dir,
                 f"gate_{gate_name}_{np.around(params,4)}_qubits{pair[0]}_{pair[1]}.npy",
             ),
-            gates_2qb_matrices[ii],
+            noisyPTM_2qb[ii],
         )
