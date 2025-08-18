@@ -31,7 +31,7 @@ def grover_2q(qubits, target):
 
 
 def main(qubit_pairs, device, nshots):
-    if device == "nqch":
+    if device == "nqch-sim" or device == "sinq20":
         settings = Dynaconf(
             settings_files=[".secrets.toml"], environments=True, env="default"
         )
@@ -53,7 +53,7 @@ def main(qubit_pairs, device, nshots):
 
     for qubits in qubit_pairs:
         c = grover_2q(qubits, target)
-        if device == "nqch":
+        if device == "nqch-sim" or device == "sinq20":
             job = client.run_circuit(c, device=device, nshots=nshots)
             r = job.result(verbose=True)
             freq = r.frequencies()
