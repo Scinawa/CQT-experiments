@@ -5,6 +5,7 @@ This project organizes experiments as subfolders under `scripts/<experiment>/mai
 
 ## Rules
 
+- if you add a new package to the project, add it to pyproject.toml (dependencies), e.g. torch, quiboml, quibocal, ...
 - Directory: `scripts/<experiment>/`
 - Entrypoint: `scripts/<experiment>/main.py`
 - Data output: `data/<experiment>/<device>/results.json`
