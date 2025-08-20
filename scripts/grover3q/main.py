@@ -1,7 +1,5 @@
 import argparse
 from qibo import Circuit, gates, set_backend
-import qibo_client
-from dynaconf import Dynaconf
 import json
 from pathlib import Path
 import sys
@@ -55,17 +53,15 @@ def grover_3q(qubits, target):
     c.add([gates.H(i) for i in qubits])
 
     c.add(gates.M(*qubits, register_name=f"m{qubits+a}"))
-    print(c.draw())
+    # print(c.draw())  # Optional: comment out or remove for production
     return c
 
 
 def main(qubit_groups, device, nshots):
-    if device != "numpy":
-        settings = Dynaconf(
-            settings_files=[".secrets.toml"], environments=True, env="default"
-        )
-        key = settings.key
-        client = qibo_client.Client(token=key)
+    if device == "numpy":
+        set_backend("numpy")
+    else:
+        set_backend("qibolab", platform=device)
 
     results = dict()
     data = dict()
@@ -82,21 +78,14 @@ def main(qubit_groups, device, nshots):
 
     for qubits in qubit_groups:
         c = grover_3q(qubits, target)
-        if device != "numpy":
-            job = client.run_circuit(c, device=device, nshots=nshots)
-            r = job.result(verbose=True)
-            freq = r.frequencies()
-        elif device == "numpy":
-            # Support local simulation via numpy backend
-            set_backend("numpy")
-            r = c(nshots=nshots)
-            freq = r.frequencies()
+        r = c(nshots=nshots)
+        freq = r.frequencies()
 
         target_freq = freq.get(target, 0)
         results["success_rate"][f"{qubits}"] = target_freq / nshots
 
         # Make probabilities a dict keyed by all possible bitstrings
-        num_bits = len(qubits)-1
+        num_bits = len(qubits) - 1  # Only measure main qubits, not ancilla
         all_bitstrings = [format(i, f"0{num_bits}b") for i in range(2**num_bits)]
         prob_dict = {bs: (freq.get(bs, 0) / nshots) for bs in all_bitstrings}
         results["plotparameters"]["frequencies"][f"{qubits}"] = prob_dict
@@ -123,10 +112,10 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--device",
-        choices=["numpy", "nqch-sim", "sinq20"],
+        choices=["numpy", "sinq20"],
         default="numpy",
         type=str,
-        help="Device to use (e.g., 'nqch' or 'numpy' for local simulation)",
+        help="Device to use (e.g., 'sinq20' or 'numpy' for local simulation)",
     )
     parser.add_argument(
         "--nshots",

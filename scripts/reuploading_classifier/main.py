@@ -262,7 +262,7 @@ def main(
     elif device == "nqch-sim":
         backend = construct_backend("numpy") # placeholder
     elif device == "sinq20":
-        backend = construct_backend("qibolab", platform="sinq-20")
+        backend = construct_backend("qibolab", platform="sinq20")
     elif device == "qiboml":
         backend = construct_backend("qiboml", platform="pytorch")
         set_backend(backend="qiboml", platform="pytorch")

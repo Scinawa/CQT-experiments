@@ -701,7 +701,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--device",
-        choices=["numpy", "nqch-sim", "sinq-20"],
+        choices=["numpy", "sinq20"],
         default="numpy",
         help="Execution device",
     )
