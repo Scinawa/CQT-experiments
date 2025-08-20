@@ -260,7 +260,7 @@ def main(
     if device == "numpy":
         backend = construct_backend("numpy")
     elif device == "nqch-sim":
-        backend = construct_backend("numpy") # placeholder
+        backend = construct_backend("numpy")  # placeholder
     elif device == "sinq20":
         backend = construct_backend("qibolab", platform="sinq20")
     elif device == "qiboml":
@@ -421,20 +421,16 @@ def main(
         "load_and_test": load_and_test,
     }
 
-    with open(
-        os.path.join(output_dir, f"results.json"), "w"
-    ) as file:
+    with open(os.path.join(output_dir, f"results.json"), "w") as file:
         json.dump(report_data, file, indent=4)
-    with open(
-        os.path.join(output_dir, f"settings.json"), "w"
-    ) as file:
+    with open(os.path.join(output_dir, f"settings.json"), "w") as file:
         json.dump(static_meta_data, file, indent=4)
 
-    '''
+    """
     # Load from results.json and generate plots
     raw_data = os.path.join(output_dir, f"results.json")
     plot_reuploading_classifier(raw_data, output_path=output_dir)
-    '''
+    """
 
 
 if __name__ == "__main__":

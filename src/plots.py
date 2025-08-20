@@ -574,3 +574,7 @@ def do_plot_reuploading(raw_data, output_path="build/"):
     )
 
     return os.path.join(output_dir, "final_plot.pdf")
+
+
+def plot_process_tomography(raw_data, expname, output_path="build/"):
+    return "placeholder.png"

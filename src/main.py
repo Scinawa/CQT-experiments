@@ -335,27 +335,31 @@ def prepare_template_context(cfg):
         )
         logging.info("Added GHZ plots to context")
     else:
+        logging.info("GHZ plot is not set, skipping...")
         context["ghz_plot_is_set"] = False
         pass
 
     ######### PROCESS TOMOGRAPHY PLOTS
     if cfg.process_tomography_plot == True:
-        context["process_tomography_is_set"] = True
+        context["process_tomography_plot_is_set"] = True
         context["plot_process_tomography"] = pl.plot_process_tomography(
             raw_data=os.path.join(
                 "data", "process_tomography", cfg.data_left, "results.json"
             ),
+            expname=f"process_tomography_{cfg.data_left}",
             output_path=os.path.join("build", "process_tomography", cfg.data_left),
         )
         context["plot_process_tomography_baseline"] = pl.plot_process_tomography(
             raw_data=os.path.join(
                 "data", "process_tomography", cfg.data_right, "results.json"
             ),
+            expname=f"process_tomography_{cfg.data_right}",
             output_path=os.path.join("build", "process_tomography", cfg.data_right),
         )
         logging.info("Added Process Tomography plots to context")
     else:
-        context["process_tomography_is_set"] = False
+        logging.info("Process Tomography plot is not set, skipping...")
+        context["process_tomography_plot_is_set"] = False
         pass
 
     ######### TOMOGRAPHY PLOTS
@@ -371,6 +375,7 @@ def prepare_template_context(cfg):
         )
         logging.info("Added Tomography plots to context")
     else:
+        logging.info("Tomography plot is not set, skipping...")
         context["tomography_is_set"] = False
         pass
 
@@ -395,6 +400,7 @@ def prepare_template_context(cfg):
         )
         logging.info("Added Reuploading Classifier plots to context")
     else:
+        logging.info("Reuploading Classifier plot is not set, skipping...")
         context["reuploading_classifier_is_set"] = False
         pass
 

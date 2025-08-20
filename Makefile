@@ -11,7 +11,6 @@ build: clean
 	python src/main.py \
 		--experiment-left $(EXPERIMENT_DIR) \
 		--experiment-right BASELINE \
-		--no-process-tomography-plot \
 		--no-tomography-plot \
 		--data-left sinq20 \
 		--data-right numpy
