@@ -7,6 +7,7 @@ EXPERIMENT_DIR ?= rb-1306
 
 build: clean
 	@mkdir -p build
+	@cp src/templates/placeholder.png build/placeholder.png
 	@echo "Building latex report..."
 	python src/main.py \
 		--experiment-left $(EXPERIMENT_DIR) \
@@ -16,7 +17,6 @@ build: clean
 		--data-right numpy
 
 pdf-only: 
-	@mkdir -p build
 	@echo "Compiling LaTeX report in pdf..."
 	pdflatex -output-directory=build report.tex > build/pdflatex.log
 	@cp build/report.pdf .

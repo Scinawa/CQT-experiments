@@ -578,3 +578,48 @@ def do_plot_reuploading(raw_data, output_path="build/"):
 
 def plot_process_tomography(raw_data, expname, output_path="build/"):
     return "placeholder.png"
+
+
+def plot_qft(raw_data, expname, output_path="build/"):
+    """
+    Plot the results of a Quantum Fourier Transform (QFT) experiment as a histogram.
+
+    Args:
+        raw_data (str): Path to the JSON file containing the QFT results.
+        expname (str): Experiment name to include in the output filename.
+        output_path (str): Directory to save the output plot.
+
+    Returns:
+        str: Path to the saved plot file.
+    """
+    with open(raw_data, "r") as f:
+        data = json.load(f)
+
+    dataplot = data["plotparameters"]["frequencies"]
+    n_shots = data.get("n_shots", 1000)
+    qubits_list = data.get("qubits_list", [])
+    n_qubits = len(qubits_list)
+
+    os.makedirs(output_path, exist_ok=True)
+
+    with plt.style.context("fivethirtyeight"):
+        plt.bar(dataplot.keys(), dataplot.values())
+        plt.title("QFT")
+        plt.xlabel("States")
+        plt.xticks(rotation=90)
+        plt.ylabel("Counts")
+        plt.axhline(
+            n_shots / 2**n_qubits,
+            color="k",
+            linestyle="dashed",
+            label="Target Frequency",
+        )
+        plt.legend()
+        plt.tight_layout()
+
+        filename = f"{expname}_QFT_on_{qubits_list}_{n_shots}shots.pdf"
+        full_path = os.path.join(output_path, filename)
+        plt.savefig(full_path)
+
+    plt.close()
+    return full_path

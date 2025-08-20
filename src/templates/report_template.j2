@@ -426,6 +426,25 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 {% endif %}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ruploading classifier 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{% if qft_plot_is_set %}
+\section{QFT Plots}
+\begin{multicols}{2}
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{ {{ plot_qft }} }
+\end{center}
+
+\columnbreak
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{ {{ plot_qft_baseline }} }
+\end{center}
+\end{multicols}
+{% endif %}
 
 
 

@@ -69,6 +69,11 @@ def setup_argument_parser():
         action="store_false",
     )
     parser.add_argument(
+        "--no-qft-plot",
+        dest="qft_plot",
+        action="store_false",
+    )
+    parser.add_argument(
         "--no-tomography-plot", dest="tomography_plot", action="store_false"
     )
     parser.add_argument(
@@ -402,6 +407,25 @@ def prepare_template_context(cfg):
     else:
         logging.info("Reuploading Classifier plot is not set, skipping...")
         context["reuploading_classifier_is_set"] = False
+        pass
+
+    ######### QFT PLOTS
+    if cfg.qft_plot == True:
+        context["qft_plot_is_set"] = True
+        context["plot_qft"] = pl.plot_qft(
+            raw_data=os.path.join("data", "qft", cfg.data_left, "results.json"),
+            expname=f"qft_{cfg.data_left}",
+            output_path=os.path.join("build", "qft", cfg.data_left),
+        )
+        context["plot_qft_baseline"] = pl.plot_qft(
+            raw_data=os.path.join("data", "qft", cfg.data_right, "results.json"),
+            expname=f"qft_{cfg.data_right}",
+            output_path=os.path.join("build", "qft", cfg.data_right),
+        )
+        logging.info("Added QFT plots to context")
+    else:
+        logging.info("QFT plot is not set, skipping...")
+        context["qft_plot_is_set"] = False
         pass
 
     return context
