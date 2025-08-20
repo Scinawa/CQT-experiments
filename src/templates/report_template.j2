@@ -295,11 +295,11 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 {% endif %}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Grover state preparation
+% Grover 2Q state preparation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-{% if grover_plot_is_set %}
+{% if grover2q_plot_is_set %}
 \section{2 Qubit Grover}
 \begin{multicols}{2}
 
@@ -311,6 +311,28 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_grover2q_baseline }} }
+\end{center}
+\end{multicols}
+{% endif %}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grover 3Q state preparation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+{% if grover3q_plot_is_set %}
+\section{3 Qubit Grover}
+\begin{multicols}{2}
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{ {{ plot_grover3q }} }
+\end{center}
+
+\columnbreak
+
+\begin{center}
+\includegraphics[width=0.95\linewidth]{ {{ plot_grover3q_baseline }} }
 \end{center}
 \end{multicols}
 {% endif %}

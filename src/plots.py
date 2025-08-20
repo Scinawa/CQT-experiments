@@ -290,7 +290,7 @@ def plot_t1_decay(qubit_number, data_dir, output_path="build/", suffix=""):
     return full_path
 
 
-def mermin_plot(raw_data, output_path="build/"):
+def mermin_plot(raw_data, expname, output_path="build/"):
     with open(raw_data) as r:
         raw = json.load(r)
 
@@ -354,7 +354,7 @@ def mermin_plot(raw_data, output_path="build/"):
     plt.title(f"Mermin Inequality [{number_of_qubits} qubits]\nMax: {global_max}")
     plt.tight_layout()
 
-    filename = "mermin.png"
+    filename = f"{expname}_mermin.png"
     full_path = os.path.join(output_path, filename)
     plt.savefig(full_path)
     plt.close()
@@ -408,7 +408,7 @@ def plot_reuploading(x, target, predictions=None, err=None, title="plot", outdir
     return os.path.join(outdir, f"{title}.pdf")
 
 
-def plot_grover(raw_data, output_path="build/"):
+def plot_grover(raw_data, expname, output_path="build/"):
     """
     Plot Grover's algorithm results as a histogram of measured bitstrings.
     """
@@ -432,7 +432,7 @@ def plot_grover(raw_data, output_path="build/"):
     plt.tight_layout()
 
     os.makedirs(output_path, exist_ok=True)
-    out_file = os.path.join(output_path, "grover_results.pdf")
+    out_file = os.path.join(output_path, f"{expname}_results.pdf")
     plt.savefig(out_file)
     plt.close()
     return out_file

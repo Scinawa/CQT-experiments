@@ -55,7 +55,13 @@ def setup_argument_parser():
     parser.add_argument(
         "--no-reuploading-plot", dest="reuploading_plot", action="store_false"
     )
-    parser.add_argument("--no-grover-plot", dest="grover_plot", action="store_false")
+    parser.add_argument(
+        "--no-grover2q-plot", dest="grover2q_plot", action="store_false"
+    )
+    parser.add_argument(
+        "--no-grover3q-plot", dest="grover3q_plot", action="store_false"
+    )
+
     parser.add_argument("--no-ghz-plot", dest="ghz_plot", action="store_false")
     parser.add_argument(
         "--no-process-tomography-plot",
@@ -252,10 +258,12 @@ def prepare_template_context(cfg):
         context["mermin_5_plot_is_set"] = True
         context["plot_mermin"] = pl.mermin_plot(
             raw_data=os.path.join("data", "mermin", cfg.data_left, "results.json"),
+            expname=f"mermin_{cfg.data_left}",
             output_path="build/",
         )
         context["plot_mermin_baseline"] = mermin_5_plot_baseline = pl.mermin_plot(
             raw_data=os.path.join("data", "mermin", cfg.data_right, "results.json"),
+            expname=f"mermin_{cfg.data_right}",
             output_path="build/",
         )
         logging.info("Added Mermin 5Q plots to context")
@@ -278,20 +286,40 @@ def prepare_template_context(cfg):
     #     context["reuploading_plot_is_set"] = False
     #     pass
 
-    ######### GROVER PLOTS
-    if cfg.grover_plot == True:
-        context["grover_plot_is_set"] = True
+    ######### GROVER 2q PLOTS
+    if cfg.grover2q_plot == True:
+        context["grover2q_plot_is_set"] = True
         context["plot_grover2q"] = pl.plot_grover(
             raw_data=os.path.join("data", "grover2q", cfg.data_left, "results.json"),
+            expname=f"grover2q_{cfg.data_left}",
             output_path="build/",
         )
         context["plot_grover2q_baseline"] = pl.plot_grover(
             raw_data=os.path.join("data", "grover2q", cfg.data_right, "results.json"),
+            expname=f"grover2q_{cfg.data_right}",
             output_path="build/",
         )
         logging.info("Added Grover 2Q plots to context")
     else:
-        context["grover_plot_is_set"] = False
+        context["grover2q_plot_is_set"] = False
+        pass
+
+    ######### GROVER 3q PLOTS
+    if cfg.grover3q_plot == True:
+        context["grover3q_plot_is_set"] = True
+        context["plot_grover3q"] = pl.plot_grover(
+            raw_data=os.path.join("data", "grover3q", cfg.data_left, "results.json"),
+            expname=f"grover3q_{cfg.data_left}",
+            output_path="build/",
+        )
+        context["plot_grover3q_baseline"] = pl.plot_grover(
+            raw_data=os.path.join("data", "grover3q", cfg.data_right, "results.json"),
+            expname=f"grover3q_{cfg.data_right}",
+            output_path="build/",
+        )
+        logging.info("Added Grover 3Q plots to context")
+    else:
+        context["grover3q_plot_is_set"] = False
         pass
 
     ######### GHZ PLOTS
