@@ -2,13 +2,12 @@ import pathlib
 import os
 import json
 import argparse
-import qibo_client
-from dynaconf import Dynaconf
+# from dynaconf import Dynaconf
 
 # os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path("/mnt/scratch/qibolab_platforms_nqch").as_posix()
 import numpy as np
 import matplotlib.pyplot as plt
-from qibo import Circuit, gates, set_transpiler, set_backend
+from qibo import Circuit, gates, set_backend
 from qibo.transpiler import NativeGates, Passes, Unroller
 from utils import (
     get_mermin_coefficients,
@@ -47,15 +46,6 @@ def create_mermin_circuits(qubits: list[int], readout_basis: list[str]):
 
 
 def main(nqubits, qubit_list, device, nshots, via_client):
-    if via_client or device == "nqch":
-        # Load credentials from .secrets.toml
-        settings = Dynaconf(
-            settings_files=[".secrets.toml"], environments=True, env="default"
-        )
-        print("Loaded settings:", settings.as_dict())
-        key = settings.key
-        client = qibo_client.Client(token=key)
-
     results = dict()
     data = dict()
 
@@ -72,7 +62,7 @@ def main(nqubits, qubit_list, device, nshots, via_client):
     custom_pipeline = Passes(custom_passes)
 
     set_backend("numpy")  # , platform="sinq-20") # , platform=device)
-    set_transpiler(custom_pipeline)
+    # set_transpiler(custom_pipeline)
 
     poly = get_mermin_polynomial(nqubits)
     coeff = get_mermin_coefficients(poly)

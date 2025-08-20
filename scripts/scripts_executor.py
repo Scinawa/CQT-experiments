@@ -6,11 +6,17 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 
+
+
+# Base path to the scripts directory (run from project root)
+base_path = "scripts/"
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Run all experiment scripts.")
     parser.add_argument(
         "--device",
-        choices=["numpy", "nqch-sim", "sinq20"],
+        choices=["numpy", "sinq20"],
         default="numpy",
         help="Execution device to pass to each experiment script.",
     )
@@ -24,6 +30,21 @@ def parse_args():
         default="INFO",
         choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
         help="Logging level.",
+    )
+    parser.add_argument(
+        "--experiments",
+        nargs="+",
+        default=[
+            "GHZ",
+            "mermin",
+            "grover2q",
+            "tomography",
+            "grover3q",
+            "universal_approximant",
+            "reuploading_classifier",
+            "QFT"
+        ],
+        help="List of experiment subfolders to run (space-separated).",
     )
     return parser.parse_args()
 
@@ -63,19 +84,6 @@ def setup_logger(log_file: str, level_name: str) -> logging.Logger:
     return logger
 
 
-# List of subfolders containing main.py
-subfolders = [
-"GHZ",
-"mermin",
-"grover2q",
-"tomography",
-"grover3q",
-"universal_approximant", 
-"reuploading_classifier",
-]
-
-# Base path to the scripts directory (run from project root)
-base_path = "scripts/"
 
 
 def run_script(logger: logging.Logger, script_path: str, device: str, tag: str) -> int:
@@ -112,7 +120,7 @@ def main():
     logger = setup_logger(args.log_file, args.log_level)
 
     overall_rc = 0
-    for subfolder in subfolders:
+    for subfolder in args.experiments:
         script_path = os.path.join(base_path, subfolder, "main.py")
         print("\n\n\n")
         rc = run_script(logger, script_path, args.device, subfolder)
