@@ -65,14 +65,14 @@ def prepare_grid_chevron_swap_coupler(
 
 
 def plot_fidelity_graph(
-    experiment_name, connectivity, pos, output_path="build/", demo_data="data/DEMODATA/"
+    experiment_name, connectivity, pos, output_path="build/", demo_data="data/BASELINE/"
 ):
     """
     Generates a fidelity graph for the given experiment.
     """
 
     # temporary fix for demo data
-    results_demo_json_path = Path(demo_data) / f"fidelity2qb_{experiment_name}.json"
+    results_demo_json_path = Path(demo_data) / f"fidelity2qb.json"
     with open(results_demo_json_path, "r") as f:
         results_tmp = json.load(f)
     # this will be changed because of MLK - beware of stringescape issues

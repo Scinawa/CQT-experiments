@@ -185,17 +185,17 @@ def prepare_template_context(cfg):
             cfg.experiment_right, config.connectivity, config.pos
         ),
         #
-        "plot_chevron_swap_0": pl.plot_chevron_swap_coupler(
-            qubit_number=0,
-            data_dir="data/DEMODATA/",
-            output_path="build/",
-        ),
-        #
-        "plot_swap_coupler": pl.plot_swap_coupler(
-            qubit_number=0,
-            data_dir="data/DEMODATA/",
-            output_path="build/",
-        ),
+        # "plot_chevron_swap_0": pl.plot_chevron_swap_coupler(
+        #     qubit_number=0,
+        #     data_dir="data/DEMODATA/",
+        #     output_path="build/",
+        # ),
+        # #
+        # "plot_swap_coupler": pl.plot_swap_coupler(
+        #     qubit_number=0,
+        #     data_dir="data/DEMODATA/",
+        #     output_path="build/",
+        # ),
     }
     logging.info("Basic context dictionary prepared")
 
@@ -263,20 +263,20 @@ def prepare_template_context(cfg):
         context["mermin_5_plot_is_set"] = False
         pass
 
-    ######### REUPLOADING PLOTS
-    if cfg.reuploading_plot == True:
-        context["reuploading_plot_is_set"] = True
-        context["plot_reuploading"] = pl.do_plot_reuploading(
-            raw_data=os.path.join("data", "reuploading", cfg.data_left, "results.json")
-        )
-        context["plot_reuploading_baseline"] = pl.do_plot_reuploading(
-            raw_data=os.path.join("data", "reuploading", cfg.data_right, "results.json")
-        )
-        logging.info("Added reuploading plots to context")
-    else:
-        print("Reuploading plot is not set, skipping...")
-        context["reuploading_plot_is_set"] = False
-        pass
+    # ######### REUPLOADING PLOTS
+    # if cfg.reuploading_plot == True:
+    #     context["reuploading_plot_is_set"] = True
+    #     context["plot_reuploading"] = pl.do_plot_reuploading(
+    #         raw_data=os.path.join("data", "reuploading", cfg.data_left, "results.json")
+    #     )
+    #     context["plot_reuploading_baseline"] = pl.do_plot_reuploading(
+    #         raw_data=os.path.join("data", "reuploading", cfg.data_right, "results.json")
+    #     )
+    #     logging.info("Added reuploading plots to context")
+    # else:
+    #     print("Reuploading plot is not set, skipping...")
+    #     context["reuploading_plot_is_set"] = False
+    #     pass
 
     ######### GROVER PLOTS
     if cfg.grover_plot == True:
@@ -298,12 +298,12 @@ def prepare_template_context(cfg):
     if cfg.ghz_plot == True:
         context["ghz_plot_is_set"] = True
         context["plot_ghz"] = pl.plot_ghz(
-            raw_data=os.path.join("data", "ghz", cfg.data_left, "results.json"),
-            output_path=os.path.join("build", "ghz", cfg.data_left),
+            raw_data=os.path.join("data", "GHZ", cfg.data_left, "results.json"),
+            output_path=os.path.join("build", "GHZ", cfg.data_left),
         )
         context["plot_ghz_baseline"] = pl.plot_ghz(
-            raw_data=os.path.join("data", "ghz", cfg.data_right, "results.json"),
-            output_path=os.path.join("build", "ghz", cfg.data_right),
+            raw_data=os.path.join("data", "GHZ", cfg.data_right, "results.json"),
+            output_path=os.path.join("build", "GHZ", cfg.data_right),
         )
         logging.info("Added GHZ plots to context")
     else:

@@ -31,14 +31,14 @@ clean:
 	@rm -rf build/*
 
 
-runscripts-numpy:
+batch-runscripts-numpy:
 	@echo "Running scripts with device=numpy..."
 	sbatch scripts/runscripts_numpy.sh
 
 
 # Run scripts with device=nqch (add this target)
-runscripts-sinq20:
+batch-runscripts-sinq20:
 	@echo "Running scripts with device=sinq20..."
 	sbatch scripts/runscripts_sinq20.sh
 
-all: runscripts-numpy runscripts-sinq20 build pdf
+all: batch-runscripts-numpy batch-runscripts-sinq20 build pdf
