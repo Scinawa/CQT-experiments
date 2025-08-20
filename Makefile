@@ -30,20 +30,15 @@ clean:
 	@echo "Cleaning build directory..."
 	@rm -rf build/*
 
-runscripts:
-	@echo "Running scripts..."
-	python3 scripts/runscripts.py
 
-
-runscripts-sinq20:
-	@echo "Running scripts with device=sinq20..."
-	python3 scripts/runscripts.py --device sinq20
+runscripts-numpy:
+	@echo "Running scripts with device=numpy..."
+	sbatch scripts/runscripts_numpy.sh
 
 
 # Run scripts with device=nqch (add this target)
-runscripts-nqch-sim:
-	@echo "Running scripts with device=nqch-sim..."
-	python3 scripts/runscripts.py --device nqch-sim
+runscripts-sinq20:
+	@echo "Running scripts with device=sinq20..."
+	sbatch scripts/runscripts_sinq20.sh
 
-
-all: runscripts runscripts-nqch-sim runscripts-sinq20 build pdf
+all: runscripts-numpy runscripts-sinq20 build pdf

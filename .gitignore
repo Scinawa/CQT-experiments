@@ -27,3 +27,4 @@ data/reuploading_classifier/params/*
 data/process_tomography/numpy/matrices/*
 data/process_tomography/nqch-sim/matrices/*
 data/process_tomography/sinq20/matrices/*
+data_old/*
