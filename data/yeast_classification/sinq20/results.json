@@ -1,97 +1,9 @@
 {
-  "accuracy": 0.52,
-  "noiseless_accuracy": 0.52,
+  "accuracy": 0.47798066595059074,
+  "noiseless_accuracy": 0.4758324382384533,
   "details": [
     {
       "data_point_idx": "0",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.62,
-      "correct": false
-    },
-    {
-      "data_point_idx": "1",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.48,
-      "correct": true
-    },
-    {
-      "data_point_idx": "2",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.5,
-      "correct": true
-    },
-    {
-      "data_point_idx": "3",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.36,
-      "correct": true
-    },
-    {
-      "data_point_idx": "4",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.24,
-      "correct": true
-    },
-    {
-      "data_point_idx": "5",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.4,
-      "correct": true
-    },
-    {
-      "data_point_idx": "6",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.3,
-      "correct": true
-    },
-    {
-      "data_point_idx": "7",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.42,
-      "correct": true
-    },
-    {
-      "data_point_idx": "8",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.32,
-      "correct": true
-    },
-    {
-      "data_point_idx": "9",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.34,
-      "correct": true
-    },
-    {
-      "data_point_idx": "10",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.3,
-      "correct": true
-    },
-    {
-      "data_point_idx": "11",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 1,
@@ -99,103 +11,15 @@
       "correct": false
     },
     {
-      "data_point_idx": "12",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.66,
-      "correct": false
-    },
-    {
-      "data_point_idx": "13",
+      "data_point_idx": "1",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.5,
+      "prediction_probability": 0.38,
       "correct": true
     },
     {
-      "data_point_idx": "14",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.26,
-      "correct": true
-    },
-    {
-      "data_point_idx": "15",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.34,
-      "correct": true
-    },
-    {
-      "data_point_idx": "16",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.68,
-      "correct": false
-    },
-    {
-      "data_point_idx": "17",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.24,
-      "correct": true
-    },
-    {
-      "data_point_idx": "18",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.4,
-      "correct": true
-    },
-    {
-      "data_point_idx": "19",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.3,
-      "correct": true
-    },
-    {
-      "data_point_idx": "20",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.34,
-      "correct": true
-    },
-    {
-      "data_point_idx": "21",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.74,
-      "correct": false
-    },
-    {
-      "data_point_idx": "22",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.68,
-      "correct": false
-    },
-    {
-      "data_point_idx": "23",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.56,
-      "correct": false
-    },
-    {
-      "data_point_idx": "24",
+      "data_point_idx": "2",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 1,
@@ -203,15 +27,39 @@
       "correct": false
     },
     {
-      "data_point_idx": "25",
+      "data_point_idx": "3",
       "true_label": 0,
       "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.7,
-      "correct": false
+      "predicted_label": 0,
+      "prediction_probability": 0.22,
+      "correct": true
     },
     {
-      "data_point_idx": "26",
+      "data_point_idx": "4",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "5",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "6",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "7",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 1,
@@ -219,20 +67,172 @@
       "correct": false
     },
     {
-      "data_point_idx": "27",
+      "data_point_idx": "8",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "9",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "10",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "11",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 1,
-      "prediction_probability": 0.72,
+      "prediction_probability": 0.58,
       "correct": false
+    },
+    {
+      "data_point_idx": "12",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "13",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "14",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "15",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "16",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": true
+    },
+    {
+      "data_point_idx": "17",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "18",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "19",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.22,
+      "correct": true
+    },
+    {
+      "data_point_idx": "20",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "21",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "22",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "23",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "24",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "25",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "26",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "27",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
     },
     {
       "data_point_idx": "28",
       "true_label": 0,
       "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.36,
-      "correct": true
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
     },
     {
       "data_point_idx": "29",
@@ -246,16 +246,16 @@
       "data_point_idx": "30",
       "true_label": 0,
       "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.56,
-      "correct": false
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
     },
     {
       "data_point_idx": "31",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 1,
-      "prediction_probability": 0.88,
+      "prediction_probability": 0.96,
       "correct": false
     },
     {
@@ -263,7 +263,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 1,
-      "prediction_probability": 0.72,
+      "prediction_probability": 0.84,
       "correct": false
     },
     {
@@ -278,32 +278,32 @@
       "data_point_idx": "34",
       "true_label": 0,
       "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.42,
-      "correct": true
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
     },
     {
       "data_point_idx": "35",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.48,
+      "prediction_probability": 0.38,
       "correct": true
     },
     {
       "data_point_idx": "36",
       "true_label": 0,
       "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.86,
-      "correct": false
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
     },
     {
       "data_point_idx": "37",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.46,
+      "prediction_probability": 0.3,
       "correct": true
     },
     {
@@ -311,51 +311,19 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.48,
+      "prediction_probability": 0.38,
       "correct": true
     },
     {
       "data_point_idx": "39",
       "true_label": 0,
       "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.4,
-      "correct": true
+      "predicted_label": 1,
+      "prediction_probability": 0.8,
+      "correct": false
     },
     {
       "data_point_idx": "40",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.42,
-      "correct": true
-    },
-    {
-      "data_point_idx": "41",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.54,
-      "correct": false
-    },
-    {
-      "data_point_idx": "42",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.56,
-      "correct": false
-    },
-    {
-      "data_point_idx": "43",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.66,
-      "correct": false
-    },
-    {
-      "data_point_idx": "44",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 1,
@@ -363,27 +331,59 @@
       "correct": false
     },
     {
-      "data_point_idx": "45",
+      "data_point_idx": "41",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.48,
+      "prediction_probability": 0.42,
       "correct": true
+    },
+    {
+      "data_point_idx": "42",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "43",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "44",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "45",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
     },
     {
       "data_point_idx": "46",
       "true_label": 0,
       "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.76,
-      "correct": false
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
     },
     {
       "data_point_idx": "47",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.36,
+      "prediction_probability": 0.18,
       "correct": true
     },
     {
@@ -391,7 +391,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 1,
-      "prediction_probability": 0.58,
+      "prediction_probability": 0.68,
       "correct": false
     },
     {
@@ -399,7 +399,7055 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "50",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "51",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "52",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "53",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "54",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.76,
+      "correct": false
+    },
+    {
+      "data_point_idx": "55",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
       "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "56",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "57",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "58",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "59",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "60",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.84,
+      "correct": false
+    },
+    {
+      "data_point_idx": "61",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.82,
+      "correct": false
+    },
+    {
+      "data_point_idx": "62",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.8,
+      "correct": false
+    },
+    {
+      "data_point_idx": "63",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "64",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "65",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "66",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "67",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "68",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.84,
+      "correct": false
+    },
+    {
+      "data_point_idx": "69",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": false
+    },
+    {
+      "data_point_idx": "70",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.74,
+      "correct": false
+    },
+    {
+      "data_point_idx": "71",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "72",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "73",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "74",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "75",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "76",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "77",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "78",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "79",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "80",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "81",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "82",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "83",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.84,
+      "correct": false
+    },
+    {
+      "data_point_idx": "84",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "85",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "86",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": false
+    },
+    {
+      "data_point_idx": "87",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "88",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "89",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.2,
+      "correct": true
+    },
+    {
+      "data_point_idx": "90",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "91",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "92",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": false
+    },
+    {
+      "data_point_idx": "93",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "94",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "95",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "96",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.24,
+      "correct": true
+    },
+    {
+      "data_point_idx": "97",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "98",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "99",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "100",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "101",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.72,
+      "correct": false
+    },
+    {
+      "data_point_idx": "102",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.72,
+      "correct": false
+    },
+    {
+      "data_point_idx": "103",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "104",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "105",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "106",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "107",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "108",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "109",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "110",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "111",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "112",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "113",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.24,
+      "correct": true
+    },
+    {
+      "data_point_idx": "114",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "115",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": false
+    },
+    {
+      "data_point_idx": "116",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "117",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "118",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": true
+    },
+    {
+      "data_point_idx": "119",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "120",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "121",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": false
+    },
+    {
+      "data_point_idx": "122",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.72,
+      "correct": false
+    },
+    {
+      "data_point_idx": "123",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "124",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "125",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": false
+    },
+    {
+      "data_point_idx": "126",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "127",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "128",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "129",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "130",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "131",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "132",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.72,
+      "correct": false
+    },
+    {
+      "data_point_idx": "133",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "134",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "135",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "136",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "137",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "138",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "139",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "140",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "141",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "142",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": true
+    },
+    {
+      "data_point_idx": "143",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.24,
+      "correct": true
+    },
+    {
+      "data_point_idx": "144",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "145",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "146",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "147",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "148",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "149",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "150",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": false
+    },
+    {
+      "data_point_idx": "151",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "152",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "153",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "154",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "155",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "156",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "157",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "158",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "159",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "160",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "161",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": false
+    },
+    {
+      "data_point_idx": "162",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "163",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "164",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "165",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "166",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "167",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "168",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "169",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.14,
+      "correct": true
+    },
+    {
+      "data_point_idx": "170",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "171",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "172",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.74,
+      "correct": false
+    },
+    {
+      "data_point_idx": "173",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "174",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "175",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "176",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "177",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.22,
+      "correct": true
+    },
+    {
+      "data_point_idx": "178",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "179",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "180",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "181",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "182",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "183",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "184",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "185",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "186",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "187",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": false
+    },
+    {
+      "data_point_idx": "188",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "189",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "190",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": false
+    },
+    {
+      "data_point_idx": "191",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "192",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "193",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "194",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "195",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "196",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "197",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "198",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "199",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "200",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "201",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.72,
+      "correct": false
+    },
+    {
+      "data_point_idx": "202",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "203",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "204",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "205",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": false
+    },
+    {
+      "data_point_idx": "206",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "207",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "208",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.22,
+      "correct": true
+    },
+    {
+      "data_point_idx": "209",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "210",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "211",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "212",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "213",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": false
+    },
+    {
+      "data_point_idx": "214",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "215",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "216",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": true
+    },
+    {
+      "data_point_idx": "217",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "218",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": false
+    },
+    {
+      "data_point_idx": "219",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "220",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.16,
+      "correct": true
+    },
+    {
+      "data_point_idx": "221",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": true
+    },
+    {
+      "data_point_idx": "222",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "223",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": true
+    },
+    {
+      "data_point_idx": "224",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "225",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "226",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": true
+    },
+    {
+      "data_point_idx": "227",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "228",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "229",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "230",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "231",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "232",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.22,
+      "correct": true
+    },
+    {
+      "data_point_idx": "233",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "234",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "235",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "236",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "237",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "238",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "239",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "240",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "241",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "242",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "243",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": false
+    },
+    {
+      "data_point_idx": "244",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "245",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "246",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "247",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "248",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": false
+    },
+    {
+      "data_point_idx": "249",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "250",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "251",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "252",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": false
+    },
+    {
+      "data_point_idx": "253",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.18,
+      "correct": false
+    },
+    {
+      "data_point_idx": "254",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "255",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "256",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "257",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "258",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.24,
+      "correct": true
+    },
+    {
+      "data_point_idx": "259",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "260",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "261",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "262",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "263",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": true
+    },
+    {
+      "data_point_idx": "264",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "265",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "266",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "267",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "268",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "269",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "270",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "271",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "272",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "273",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "274",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "275",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "276",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.24,
+      "correct": true
+    },
+    {
+      "data_point_idx": "277",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "278",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "279",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "280",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "281",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "282",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "283",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "284",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "285",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.24,
+      "correct": true
+    },
+    {
+      "data_point_idx": "286",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "287",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "288",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": true
+    },
+    {
+      "data_point_idx": "289",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "290",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "291",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.72,
+      "correct": false
+    },
+    {
+      "data_point_idx": "292",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "293",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "294",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": true
+    },
+    {
+      "data_point_idx": "295",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "296",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "297",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "298",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.86,
+      "correct": false
+    },
+    {
+      "data_point_idx": "299",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.82,
+      "correct": false
+    },
+    {
+      "data_point_idx": "300",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "301",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "302",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "303",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "304",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "305",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "306",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "307",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": false
+    },
+    {
+      "data_point_idx": "308",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "309",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "310",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "311",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "312",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "313",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "314",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.86,
+      "correct": false
+    },
+    {
+      "data_point_idx": "315",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.84,
+      "correct": false
+    },
+    {
+      "data_point_idx": "316",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "317",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "318",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.16,
+      "correct": true
+    },
+    {
+      "data_point_idx": "319",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "320",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "321",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "322",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": false
+    },
+    {
+      "data_point_idx": "323",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": true
+    },
+    {
+      "data_point_idx": "324",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "325",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "326",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "327",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "328",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": true
+    },
+    {
+      "data_point_idx": "329",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "330",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "331",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "332",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "333",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "334",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "335",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "336",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "337",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": false
+    },
+    {
+      "data_point_idx": "338",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "339",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "340",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.74,
+      "correct": false
+    },
+    {
+      "data_point_idx": "341",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.74,
+      "correct": false
+    },
+    {
+      "data_point_idx": "342",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "343",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": true
+    },
+    {
+      "data_point_idx": "344",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.14,
+      "correct": true
+    },
+    {
+      "data_point_idx": "345",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "346",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "347",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "348",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "349",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "350",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": true
+    },
+    {
+      "data_point_idx": "351",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "352",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "353",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "354",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.78,
+      "correct": false
+    },
+    {
+      "data_point_idx": "355",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.8,
+      "correct": false
+    },
+    {
+      "data_point_idx": "356",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "357",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "358",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "359",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "360",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "361",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "362",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "363",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "364",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.78,
+      "correct": false
+    },
+    {
+      "data_point_idx": "365",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "366",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": true
+    },
+    {
+      "data_point_idx": "367",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.72,
+      "correct": false
+    },
+    {
+      "data_point_idx": "368",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "369",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "370",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.86,
+      "correct": false
+    },
+    {
+      "data_point_idx": "371",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "372",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.76,
+      "correct": true
+    },
+    {
+      "data_point_idx": "373",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.84,
+      "correct": true
+    },
+    {
+      "data_point_idx": "374",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "375",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "376",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "377",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "378",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "379",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "380",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": false
+    },
+    {
+      "data_point_idx": "381",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "382",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "383",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "384",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "385",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "386",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "387",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.2,
+      "correct": false
+    },
+    {
+      "data_point_idx": "388",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "389",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "390",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "391",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "392",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "393",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.12,
+      "correct": true
+    },
+    {
+      "data_point_idx": "394",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.76,
+      "correct": false
+    },
+    {
+      "data_point_idx": "395",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": true
+    },
+    {
+      "data_point_idx": "396",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "397",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "398",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.24,
+      "correct": false
+    },
+    {
+      "data_point_idx": "399",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "400",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "401",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "402",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": false
+    },
+    {
+      "data_point_idx": "403",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "404",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": true
+    },
+    {
+      "data_point_idx": "405",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.2,
+      "correct": true
+    },
+    {
+      "data_point_idx": "406",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "407",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "408",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "409",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.22,
+      "correct": true
+    },
+    {
+      "data_point_idx": "410",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "411",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "412",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "413",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "414",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "415",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "416",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "417",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": true
+    },
+    {
+      "data_point_idx": "418",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "419",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.22,
+      "correct": true
+    },
+    {
+      "data_point_idx": "420",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "421",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "422",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "423",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "424",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "425",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "426",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "427",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "428",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "429",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "430",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "431",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "432",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "433",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "434",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "435",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "436",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": true
+    },
+    {
+      "data_point_idx": "437",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "438",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "439",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": false
+    },
+    {
+      "data_point_idx": "440",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "441",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "442",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.76,
+      "correct": false
+    },
+    {
+      "data_point_idx": "443",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "444",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "445",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "446",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "447",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "448",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "449",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "450",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "451",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": false
+    },
+    {
+      "data_point_idx": "452",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "453",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "454",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "455",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "456",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "457",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.2,
+      "correct": false
+    },
+    {
+      "data_point_idx": "458",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.1,
+      "correct": false
+    },
+    {
+      "data_point_idx": "459",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "460",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "461",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "462",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": false
+    },
+    {
+      "data_point_idx": "463",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.74,
+      "correct": false
+    },
+    {
+      "data_point_idx": "464",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": false
+    },
+    {
+      "data_point_idx": "465",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "466",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "467",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "468",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.82,
+      "correct": true
+    },
+    {
+      "data_point_idx": "469",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "470",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "471",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "472",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "473",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.24,
+      "correct": true
+    },
+    {
+      "data_point_idx": "474",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "475",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "476",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": false
+    },
+    {
+      "data_point_idx": "477",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "478",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "479",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "480",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": false
+    },
+    {
+      "data_point_idx": "481",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "482",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "483",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "484",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "485",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "486",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "487",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "488",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "489",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "490",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "491",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "492",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "493",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": false
+    },
+    {
+      "data_point_idx": "494",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.24,
+      "correct": false
+    },
+    {
+      "data_point_idx": "495",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "496",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "497",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "498",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "499",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "500",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "501",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.18,
+      "correct": false
+    },
+    {
+      "data_point_idx": "502",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "503",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "504",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "505",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": true
+    },
+    {
+      "data_point_idx": "506",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "507",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "508",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.24,
+      "correct": false
+    },
+    {
+      "data_point_idx": "509",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "510",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": true
+    },
+    {
+      "data_point_idx": "511",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.82,
+      "correct": true
+    },
+    {
+      "data_point_idx": "512",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.92,
+      "correct": true
+    },
+    {
+      "data_point_idx": "513",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "514",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "515",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "516",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "517",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "518",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.24,
+      "correct": false
+    },
+    {
+      "data_point_idx": "519",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "520",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "521",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "522",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": true
+    },
+    {
+      "data_point_idx": "523",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "524",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "525",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "526",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "527",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "528",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": true
+    },
+    {
+      "data_point_idx": "529",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "530",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "531",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "532",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "533",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "534",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "535",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "536",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "537",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "538",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": false
+    },
+    {
+      "data_point_idx": "539",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "540",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "541",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "542",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "543",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "544",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": true
+    },
+    {
+      "data_point_idx": "545",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "546",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "547",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "548",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.8,
+      "correct": true
+    },
+    {
+      "data_point_idx": "549",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "550",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "551",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "552",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": true
+    },
+    {
+      "data_point_idx": "553",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "554",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "555",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "556",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": true
+    },
+    {
+      "data_point_idx": "557",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "558",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.8,
+      "correct": false
+    },
+    {
+      "data_point_idx": "559",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "560",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "561",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.18,
+      "correct": true
+    },
+    {
+      "data_point_idx": "562",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "563",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": false
+    },
+    {
+      "data_point_idx": "564",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "565",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "566",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "567",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.8,
+      "correct": true
+    },
+    {
+      "data_point_idx": "568",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.86,
+      "correct": true
+    },
+    {
+      "data_point_idx": "569",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "570",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "571",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.74,
+      "correct": true
+    },
+    {
+      "data_point_idx": "572",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "573",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "574",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.82,
+      "correct": true
+    },
+    {
+      "data_point_idx": "575",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "576",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "577",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "578",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "579",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.22,
+      "correct": false
+    },
+    {
+      "data_point_idx": "580",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "581",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "582",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "583",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": true
+    },
+    {
+      "data_point_idx": "584",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "585",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "586",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": true
+    },
+    {
+      "data_point_idx": "587",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "588",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "589",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "590",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.72,
+      "correct": true
+    },
+    {
+      "data_point_idx": "591",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "592",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "593",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "594",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "595",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": false
+    },
+    {
+      "data_point_idx": "596",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "597",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "598",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": false
+    },
+    {
+      "data_point_idx": "599",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": false
+    },
+    {
+      "data_point_idx": "600",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "601",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "602",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.76,
+      "correct": false
+    },
+    {
+      "data_point_idx": "603",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "604",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "605",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "606",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": false
+    },
+    {
+      "data_point_idx": "607",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.8,
+      "correct": false
+    },
+    {
+      "data_point_idx": "608",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": true
+    },
+    {
+      "data_point_idx": "609",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": false
+    },
+    {
+      "data_point_idx": "610",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": true
+    },
+    {
+      "data_point_idx": "611",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "612",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.82,
+      "correct": true
+    },
+    {
+      "data_point_idx": "613",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "614",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "615",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "616",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "617",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.8,
+      "correct": true
+    },
+    {
+      "data_point_idx": "618",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "619",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "620",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "621",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "622",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "623",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "624",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": true
+    },
+    {
+      "data_point_idx": "625",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "626",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": false
+    },
+    {
+      "data_point_idx": "627",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "628",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.74,
+      "correct": false
+    },
+    {
+      "data_point_idx": "629",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "630",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.78,
+      "correct": false
+    },
+    {
+      "data_point_idx": "631",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": false
+    },
+    {
+      "data_point_idx": "632",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "633",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "634",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": true
+    },
+    {
+      "data_point_idx": "635",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.76,
+      "correct": true
+    },
+    {
+      "data_point_idx": "636",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "637",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.76,
+      "correct": true
+    },
+    {
+      "data_point_idx": "638",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": true
+    },
+    {
+      "data_point_idx": "639",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "640",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "641",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "642",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": true
+    },
+    {
+      "data_point_idx": "643",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "644",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "645",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "646",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "647",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "648",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "649",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "650",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.14,
+      "correct": true
+    },
+    {
+      "data_point_idx": "651",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.8,
+      "correct": false
+    },
+    {
+      "data_point_idx": "652",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "653",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": false
+    },
+    {
+      "data_point_idx": "654",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "655",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "656",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "657",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "658",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "659",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "660",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "661",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": true
+    },
+    {
+      "data_point_idx": "662",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "663",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "664",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "665",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "666",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "667",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "668",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "669",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "670",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "671",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": true
+    },
+    {
+      "data_point_idx": "672",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "673",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.78,
+      "correct": true
+    },
+    {
+      "data_point_idx": "674",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "675",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "676",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "677",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "678",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.74,
+      "correct": true
+    },
+    {
+      "data_point_idx": "679",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "680",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "681",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.14,
+      "correct": true
+    },
+    {
+      "data_point_idx": "682",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "683",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "684",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": false
+    },
+    {
+      "data_point_idx": "685",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.78,
+      "correct": true
+    },
+    {
+      "data_point_idx": "686",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "687",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "688",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "689",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "690",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "691",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "692",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "693",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "694",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": false
+    },
+    {
+      "data_point_idx": "695",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "696",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": true
+    },
+    {
+      "data_point_idx": "697",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "698",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "699",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "700",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "701",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "702",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "703",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "704",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "705",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.22,
+      "correct": false
+    },
+    {
+      "data_point_idx": "706",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.74,
+      "correct": true
+    },
+    {
+      "data_point_idx": "707",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "708",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": false
+    },
+    {
+      "data_point_idx": "709",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.14,
+      "correct": true
+    },
+    {
+      "data_point_idx": "710",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": true
+    },
+    {
+      "data_point_idx": "711",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": true
+    },
+    {
+      "data_point_idx": "712",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "713",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "714",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "715",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "716",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "717",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "718",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "719",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "720",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "721",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "722",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "723",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.72,
+      "correct": true
+    },
+    {
+      "data_point_idx": "724",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "725",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": true
+    },
+    {
+      "data_point_idx": "726",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "727",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.88,
+      "correct": true
+    },
+    {
+      "data_point_idx": "728",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": false
+    },
+    {
+      "data_point_idx": "729",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "730",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "731",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "732",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "733",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "734",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "735",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "736",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "737",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "738",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "739",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "740",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "741",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": false
+    },
+    {
+      "data_point_idx": "742",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "743",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.72,
+      "correct": true
+    },
+    {
+      "data_point_idx": "744",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "745",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": true
+    },
+    {
+      "data_point_idx": "746",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "747",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "748",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "749",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "750",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "751",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "752",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "753",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "754",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "755",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "756",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "757",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.64,
+      "correct": true
+    },
+    {
+      "data_point_idx": "758",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "759",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "760",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "761",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "762",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.74,
+      "correct": true
+    },
+    {
+      "data_point_idx": "763",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "764",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "765",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "766",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": false
+    },
+    {
+      "data_point_idx": "767",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "768",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "769",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "770",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "771",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "772",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "773",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "774",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "775",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.22,
+      "correct": false
+    },
+    {
+      "data_point_idx": "776",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.2,
+      "correct": true
+    },
+    {
+      "data_point_idx": "777",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "778",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "779",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "780",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "781",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "782",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": false
+    },
+    {
+      "data_point_idx": "783",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "784",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "785",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "786",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.18,
+      "correct": false
+    },
+    {
+      "data_point_idx": "787",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "788",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "789",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "790",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": false
+    },
+    {
+      "data_point_idx": "791",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "792",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "793",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": true
+    },
+    {
+      "data_point_idx": "794",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "795",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "796",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "797",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "798",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "799",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "800",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "801",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "802",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "803",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "804",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "805",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "806",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.76,
+      "correct": true
+    },
+    {
+      "data_point_idx": "807",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "808",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": true
+    },
+    {
+      "data_point_idx": "809",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "810",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "811",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "812",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "813",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "814",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "815",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "816",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "817",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": true
+    },
+    {
+      "data_point_idx": "818",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "819",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": false
+    },
+    {
+      "data_point_idx": "820",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "821",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "822",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "823",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "824",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.22,
+      "correct": true
+    },
+    {
+      "data_point_idx": "825",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "826",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "827",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "828",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.74,
+      "correct": true
+    },
+    {
+      "data_point_idx": "829",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "830",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": true
+    },
+    {
+      "data_point_idx": "831",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "832",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "833",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "834",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": false
+    },
+    {
+      "data_point_idx": "835",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "836",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "837",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "838",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.14,
+      "correct": false
+    },
+    {
+      "data_point_idx": "839",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "840",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "841",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "842",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "843",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "844",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "845",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "846",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "847",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "848",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "849",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "850",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "851",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "852",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "853",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": false
+    },
+    {
+      "data_point_idx": "854",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "855",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "856",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "857",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "858",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.22,
+      "correct": false
+    },
+    {
+      "data_point_idx": "859",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": true
+    },
+    {
+      "data_point_idx": "860",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "861",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "862",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "863",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": false
+    },
+    {
+      "data_point_idx": "864",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "865",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "866",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.78,
+      "correct": true
+    },
+    {
+      "data_point_idx": "867",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "868",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "869",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "870",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.12,
+      "correct": false
+    },
+    {
+      "data_point_idx": "871",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "872",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "873",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "874",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "875",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "876",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "877",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "878",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "879",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.72,
+      "correct": true
+    },
+    {
+      "data_point_idx": "880",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "881",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "882",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "883",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "884",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "885",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": false
+    },
+    {
+      "data_point_idx": "886",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6,
+      "correct": true
+    },
+    {
+      "data_point_idx": "887",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "888",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "889",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "890",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "891",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "892",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "893",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "894",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "895",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "896",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.42,
+      "correct": false
+    },
+    {
+      "data_point_idx": "897",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": true
+    },
+    {
+      "data_point_idx": "898",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48,
+      "correct": false
+    },
+    {
+      "data_point_idx": "899",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "900",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4,
+      "correct": false
+    },
+    {
+      "data_point_idx": "901",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "902",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "903",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.36,
+      "correct": false
+    },
+    {
+      "data_point_idx": "904",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "905",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "906",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "907",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.74,
+      "correct": true
+    },
+    {
+      "data_point_idx": "908",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.68,
+      "correct": true
+    },
+    {
+      "data_point_idx": "909",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.1,
+      "correct": false
+    },
+    {
+      "data_point_idx": "910",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "911",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.26,
+      "correct": false
+    },
+    {
+      "data_point_idx": "912",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.28,
+      "correct": false
+    },
+    {
+      "data_point_idx": "913",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.24,
+      "correct": false
+    },
+    {
+      "data_point_idx": "914",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.3,
+      "correct": false
+    },
+    {
+      "data_point_idx": "915",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.7,
+      "correct": true
+    },
+    {
+      "data_point_idx": "916",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52,
+      "correct": true
+    },
+    {
+      "data_point_idx": "917",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.62,
+      "correct": true
+    },
+    {
+      "data_point_idx": "918",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
+      "correct": false
+    },
+    {
+      "data_point_idx": "919",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.38,
+      "correct": false
+    },
+    {
+      "data_point_idx": "920",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "921",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.56,
+      "correct": true
+    },
+    {
+      "data_point_idx": "922",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "923",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.66,
+      "correct": true
+    },
+    {
+      "data_point_idx": "924",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.46,
+      "correct": false
+    },
+    {
+      "data_point_idx": "925",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.58,
+      "correct": true
+    },
+    {
+      "data_point_idx": "926",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.54,
+      "correct": true
+    },
+    {
+      "data_point_idx": "927",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.78,
+      "correct": true
+    },
+    {
+      "data_point_idx": "928",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.44,
+      "correct": false
+    },
+    {
+      "data_point_idx": "929",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.32,
+      "correct": false
+    },
+    {
+      "data_point_idx": "930",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.34,
       "correct": false
     }
   ]
