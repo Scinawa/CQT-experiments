@@ -9,3 +9,8 @@ def output_dir_for(script_file: str | Path) -> Path:
     """Return data/<script-dir-name>/ for the given script file."""
     script_path = Path(script_file).resolve()
     return DATA_DIR / script_path.parent.name
+
+def input_dir_for(script_file: str | Path) -> Path:
+    """Return data/<script-dir-name>/ for the given script file."""
+    script_path = Path(script_file).resolve()
+    return DATA_DIR / script_path.parent.name
