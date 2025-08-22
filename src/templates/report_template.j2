@@ -445,7 +445,34 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{center}
 \end{multicols}
 {% endif %}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Yeast classifier 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+{% if yeast_classification_is_set %}
+\section{Yeast classification — Confusion Matrices}
+\begin{multicols}{2}
+
+\begin{center}
+\begin{tauenvmine}
+\centering
+\includegraphics[width=0.95\linewidth]{ {{ plot_yeast }} }
+\captionof{figure}{True vs Predicted (experiment)}
+\end{tauenvmine}
+\end{center}
+
+\columnbreak
+
+\begin{center}
+\begin{tauenvmine}
+\centering
+\includegraphics[width=0.95\linewidth]{ {{ plot_yeast_baseline }} }
+\captionof{figure}{True vs Noiseless / Baseline}
+\end{tauenvmine}
+\end{center}
+
+\end{multicols}
+{% endif %}
 
 
 

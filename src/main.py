@@ -81,7 +81,8 @@ def setup_argument_parser():
         dest="reuploading_classifier_plot",
         action="store_false",
     )
-
+    # Yeast classification plot toggle (default: True). Use --no-yeast-plot to disable.
+    parser.add_argument("--no-yeast-plot", dest="yeast_plot", action="store_false")
     return parser
 
 
@@ -426,6 +427,29 @@ def prepare_template_context(cfg):
     else:
         logging.info("QFT plot is not set, skipping...")
         context["qft_plot_is_set"] = False
+        pass
+
+    ######### YEAST CLASSIFICATION PLOTS
+    if cfg.yeast_plot == True:
+        context["yeast_classification_is_set"] = True
+        context["plot_yeast"] = pl.plot_yeast(
+            raw_data=os.path.join(
+                "data", "yeast_classification", cfg.data_left, "results.json"
+            ),
+            expname=f"yeast_{cfg.data_left}",
+            output_path=os.path.join("build", "yeast", cfg.data_left),
+        )
+        context["plot_yeast_baseline"] = pl.plot_yeast(
+            raw_data=os.path.join(
+                "data", "yeast_classification", cfg.data_right, "results.json"
+            ),
+            expname=f"yeast_{cfg.data_right}",
+            output_path=os.path.join("build", "yeast", cfg.data_right),
+        )
+        logging.info("Added Yeast classification plots to context")
+    else:
+        logging.info("Yeast classification plot is not set, skipping...")
+        context["yeast_classification_is_set"] = False
         pass
 
     return context

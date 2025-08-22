@@ -623,3 +623,83 @@ def plot_qft(raw_data, expname, output_path="build/"):
 
     plt.close()
     return full_path
+
+
+def plot_yeast(raw_data, expname, output_path="build/"):
+    """
+    Plot two confusion matrices for the yeast_classification experiment:
+      - left: true_label vs predicted_label
+      - right: true_label vs noiseless_label
+
+    raw_data: path to results.json
+    expname: used to build output filename
+    output_path: directory to save the plot (folder will be created)
+    """
+    with open(raw_data, "r") as f:
+        data = json.load(f)
+
+    details = data.get("details", [])
+    # Safely collect labels (default to 0 if missing)
+    true = np.array([int(d.get("true_label", 0)) for d in details], dtype=int)
+    pred = np.array([int(d.get("predicted_label", 0)) for d in details], dtype=int)
+    noiseless = np.array([int(d.get("noiseless_label", 0)) for d in details], dtype=int)
+
+    # Build 2x2 confusion matrices: rows=true (0,1), cols=other (0,1)
+    def confusion_matrix(true_arr, other_arr):
+        cm = np.zeros((2, 2), dtype=int)
+        for t, o in zip(true_arr, other_arr):
+            if t in (0, 1) and o in (0, 1):
+                cm[t, o] += 1
+        return cm
+
+    cm_pred = confusion_matrix(true, pred)
+    cm_noiseless = confusion_matrix(true, noiseless)
+
+    # Percentages per true-class row for annotation
+    def cm_percentages(cm):
+        with np.errstate(divide="ignore", invalid="ignore"):
+            row_sums = cm.sum(axis=1, keepdims=True)
+            pct = np.where(row_sums > 0, cm / row_sums * 100.0, 0.0)
+        return pct
+
+    pct_pred = cm_percentages(cm_pred)
+    pct_noiseless = cm_percentages(cm_noiseless)
+
+    # Plot side-by-side
+    os.makedirs(output_path, exist_ok=True)
+    fig, axes = plt.subplots(1, 2, figsize=(8, 4), constrained_layout=True)
+
+    for ax, cm, pct, title in zip(
+        axes,
+        (cm_pred, cm_noiseless),
+        (pct_pred, pct_noiseless),
+        ("True vs Predicted", "True vs Noiseless"),
+    ):
+        im = ax.imshow(cm, cmap="Blues", interpolation="nearest", vmin=0)
+        ax.set_xlabel("Predicted")
+        ax.set_ylabel("True")
+        ax.set_xticks([0, 1])
+        ax.set_yticks([0, 1])
+        ax.set_xticklabels([0, 1])
+        ax.set_yticklabels([0, 1])
+        ax.set_title(title)
+        # annotate counts and percentages
+        for i in range(2):
+            for j in range(2):
+                ax.text(
+                    j,
+                    i,
+                    f"{cm[i, j]}\n{pct[i, j]:.1f}%",
+                    ha="center",
+                    va="center",
+                    color="black",
+                    fontsize=9,
+                )
+
+    cbar = fig.colorbar(im, ax=axes.ravel().tolist(), shrink=0.8)
+    cbar.set_label("Counts")
+    filename = f"{expname}_yeast_confusion.pdf"
+    full_path = os.path.join(output_path, filename)
+    fig.savefig(full_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+    return full_path
