@@ -650,9 +650,9 @@ def plot_qft(raw_data, expname, output_path="build/"):
     return full_path
 
 
-def plot_yeast(raw_data, expname, output_path="build/"):
+def plot_qml(raw_data, expname, output_path="build/"):
     """
-    Plot two confusion matrices for the yeast_classification experiment:
+    Plot two confusion matrices for the qml_classification experiment:
       - left: true_label vs predicted_label
       - right: true_label vs noiseless_label
 
@@ -694,13 +694,18 @@ def plot_yeast(raw_data, expname, output_path="build/"):
     os.makedirs(output_path, exist_ok=True)
     fig, axes = plt.subplots(1, 2, figsize=(8, 4), constrained_layout=True)
 
+    # Ensure the figure and axes have a white background and allow saving as transparent
+    fig.patch.set_facecolor("white")
+    for a in np.atleast_1d(axes):
+        a.set_facecolor("white")
+
     for ax, cm, pct, title in zip(
         axes,
         (cm_pred, cm_noiseless),
         (pct_pred, pct_noiseless),
         ("True vs Predicted", "True vs Noiseless"),
     ):
-        im = ax.imshow(cm, cmap="Blues", interpolation="nearest", vmin=0)
+        im = ax.imshow(cm, cmap="YlOrBr", interpolation="nearest", vmin=0)
         ax.set_xlabel("Predicted")
         ax.set_ylabel("True")
         ax.set_xticks([0, 1])
@@ -718,13 +723,14 @@ def plot_yeast(raw_data, expname, output_path="build/"):
                     ha="center",
                     va="center",
                     color="black",
-                    fontsize=9,
+                    fontsize=15,
                 )
 
     cbar = fig.colorbar(im, ax=axes.ravel().tolist(), shrink=0.8)
     cbar.set_label("Counts")
-    filename = f"{expname}_yeast_confusion.pdf"
+    filename = f"{expname}_confusion.pdf"
     full_path = os.path.join(output_path, filename)
-    fig.savefig(full_path, dpi=200, bbox_inches="tight")
+    # Save with transparent=True so the PDF page background is transparent (viewers will show white by default).
+    fig.savefig(full_path, dpi=200, bbox_inches="tight", transparent=True)
     plt.close(fig)
     return full_path
