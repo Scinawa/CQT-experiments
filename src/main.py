@@ -82,7 +82,19 @@ def setup_argument_parser():
         action="store_false",
     )
     # Yeast classification plot toggle (default: True). Use --no-yeast-plot to disable.
-    parser.add_argument("--no-yeast-plot", dest="yeast_plot", action="store_false")
+    parser.add_argument(
+        "--no-yeast-plot_4q", dest="yeast_plot_4q", action="store_false"
+    )
+    parser.add_argument(
+        "--no-yeast-plot_3q", dest="yeast_plot_3q", action="store_false"
+    )
+    parser.add_argument(
+        "--no-statlog-plot_4q", dest="statlog_plot_4q", action="store_false"
+    )
+    parser.add_argument(
+        "--no-statlog-plot_3q", dest="statlog_plot_3q", action="store_false"
+    )
+
     return parser
 
 
@@ -429,27 +441,96 @@ def prepare_template_context(cfg):
         context["qft_plot_is_set"] = False
         pass
 
-    ######### YEAST CLASSIFICATION PLOTS
-    if cfg.yeast_plot == True:
-        context["yeast_classification_is_set"] = True
-        context["plot_yeast"] = pl.plot_yeast(
+    ######### YEAST CLASSIFICATION PLOTS 4Q
+    if cfg.yeast_plot_4q == True:
+        context["yeast_classification_4q_is_set"] = True
+        context["plot_yeast_4q"] = pl.plot_qml(
             raw_data=os.path.join(
-                "data", "yeast_classification", cfg.data_left, "results.json"
+                "data", "qml_yeast_class_4q", cfg.data_left, "results.json"
             ),
-            expname=f"yeast_{cfg.data_left}",
+            expname=f"4q_yeast_{cfg.data_left}",
             output_path=os.path.join("build", "yeast", cfg.data_left),
         )
-        context["plot_yeast_baseline"] = pl.plot_yeast(
+        context["plot_yeast_4q_baseline"] = pl.plot_qml(
             raw_data=os.path.join(
-                "data", "yeast_classification", cfg.data_right, "results.json"
+                "data", "qml_yeast_class_4q", cfg.data_right, "results.json"
             ),
-            expname=f"yeast_{cfg.data_right}",
+            expname=f"4q_yeast_{cfg.data_right}",
             output_path=os.path.join("build", "yeast", cfg.data_right),
         )
-        logging.info("Added Yeast classification plots to context")
+        logging.info("Added Yeast classification 4q plots to context")
     else:
-        logging.info("Yeast classification plot is not set, skipping...")
-        context["yeast_classification_is_set"] = False
+        logging.info("Yeast classification 4q plot is not set, skipping...")
+        context["yeast_classification_4q_is_set"] = False
+        pass
+
+    ######### YEAST CLASSIFICATION PLOTS 3Q
+    if cfg.yeast_plot_3q == True:
+        context["yeast_classification_3q_is_set"] = True
+        context["plot_yeast_3q"] = pl.plot_qml(
+            raw_data=os.path.join(
+                "data", "qml_yeast_class_3q", cfg.data_left, "results.json"
+            ),
+            expname=f"3q_yeast_{cfg.data_left}",
+            output_path=os.path.join("build", "yeast", cfg.data_left),
+        )
+        context["plot_yeast_3q_baseline"] = pl.plot_qml(
+            raw_data=os.path.join(
+                "data", "qml_yeast_class_3q", cfg.data_right, "results.json"
+            ),
+            expname=f"3q_yeast_{cfg.data_right}",
+            output_path=os.path.join("build", "yeast", cfg.data_right),
+        )
+        logging.info("Added Yeast classification 3q plots to context")
+    else:
+        logging.info("Yeast classification 3q plot is not set, skipping...")
+        context["yeast_classification_3q_is_set"] = False
+        pass
+
+    ######### STATLOG CLASSIFICATION PLOTS 4Q
+    if cfg.statlog_plot_4q == True:
+        context["statlog_classification_4q_is_set"] = True
+        context["plot_statlog_4q"] = pl.plot_qml(
+            raw_data=os.path.join(
+                "data", "qml_statlog_class_4q", cfg.data_left, "results.json"
+            ),
+            expname=f"4q_statlog_{cfg.data_left}",
+            output_path=os.path.join("build", "statlog", cfg.data_left),
+        )
+        context["plot_statlog_4q_baseline"] = pl.plot_qml(
+            raw_data=os.path.join(
+                "data", "qml_statlog_class_4q", cfg.data_right, "results.json"
+            ),
+            expname=f"4q_statlog_{cfg.data_right}",
+            output_path=os.path.join("build", "statlog", cfg.data_right),
+        )
+        logging.info("Added StatLog classification 4q plots to context")
+    else:
+        logging.info("StatLog classification 4q plot is not set, skipping...")
+        context["statlog_classification_4q_is_set"] = False
+        pass
+
+    ######### STATLOG CLASSIFICATION PLOTS 3Q
+    if cfg.statlog_plot_3q == True:
+        context["statlog_classification_3q_is_set"] = True
+        context["plot_statlog_3q"] = pl.plot_qml(
+            raw_data=os.path.join(
+                "data", "qml_statlog_class_3q", cfg.data_left, "results.json"
+            ),
+            expname=f"3q_statlog_{cfg.data_left}",
+            output_path=os.path.join("build", "statlog", cfg.data_left),
+        )
+        context["plot_statlog_3q_baseline"] = pl.plot_qml(
+            raw_data=os.path.join(
+                "data", "qml_statlog_class_3q", cfg.data_right, "results.json"
+            ),
+            expname=f"3q_statlog_{cfg.data_right}",
+            output_path=os.path.join("build", "statlog", cfg.data_right),
+        )
+        logging.info("Added StatLog classification 3q plots to context")
+    else:
+        logging.info("StatLog classification 3q plot is not set, skipping...")
+        context["statlog_classification_3q_is_set"] = False
         pass
 
     return context
