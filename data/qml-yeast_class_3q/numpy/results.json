@@ -1,0 +1,1438 @@
+{
+  "accuracy": 0.6033519553072626,
+  "noiseless_accuracy": 0.9720670391061452,
+  "details": [
+    {
+      "data_point_idx": "0",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4850044983805899,
+      "correct": false
+    },
+    {
+      "data_point_idx": "1",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5216531151169002,
+      "correct": false
+    },
+    {
+      "data_point_idx": "2",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5233164098038501,
+      "correct": false
+    },
+    {
+      "data_point_idx": "3",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.5,
+      "correct": true
+    },
+    {
+      "data_point_idx": "4",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6034832498647263,
+      "correct": true
+    },
+    {
+      "data_point_idx": "5",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5465316309986,
+      "correct": true
+    },
+    {
+      "data_point_idx": "6",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.569546223939229,
+      "correct": true
+    },
+    {
+      "data_point_idx": "7",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5465316309986,
+      "correct": false
+    },
+    {
+      "data_point_idx": "8",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5646362918030292,
+      "correct": false
+    },
+    {
+      "data_point_idx": "9",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4766835901961499,
+      "correct": true
+    },
+    {
+      "data_point_idx": "10",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4716969549241712,
+      "correct": true
+    },
+    {
+      "data_point_idx": "11",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6456563062257954,
+      "correct": true
+    },
+    {
+      "data_point_idx": "12",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6856801139382539,
+      "correct": false
+    },
+    {
+      "data_point_idx": "13",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6827993860934125,
+      "correct": false
+    },
+    {
+      "data_point_idx": "14",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5646362918030292,
+      "correct": true
+    },
+    {
+      "data_point_idx": "15",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5382584045560131,
+      "correct": false
+    },
+    {
+      "data_point_idx": "16",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5629967770624005,
+      "correct": false
+    },
+    {
+      "data_point_idx": "17",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5448788923735801,
+      "correct": false
+    },
+    {
+      "data_point_idx": "18",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5099986668799655,
+      "correct": false
+    },
+    {
+      "data_point_idx": "19",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5825702064623147,
+      "correct": true
+    },
+    {
+      "data_point_idx": "20",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.45842951678320015,
+      "correct": true
+    },
+    {
+      "data_point_idx": "21",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5580701058739532,
+      "correct": true
+    },
+    {
+      "data_point_idx": "22",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5016666604938546,
+      "correct": false
+    },
+    {
+      "data_point_idx": "23",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6018868796800566,
+      "correct": true
+    },
+    {
+      "data_point_idx": "24",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4174297935376853,
+      "correct": true
+    },
+    {
+      "data_point_idx": "25",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42718800842998617,
+      "correct": true
+    },
+    {
+      "data_point_idx": "26",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6364525402815664,
+      "correct": true
+    },
+    {
+      "data_point_idx": "27",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5283030450758288,
+      "correct": false
+    },
+    {
+      "data_point_idx": "28",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5016666604938546,
+      "correct": false
+    },
+    {
+      "data_point_idx": "29",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5613558846263439,
+      "correct": false
+    },
+    {
+      "data_point_idx": "30",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5415704832167999,
+      "correct": true
+    },
+    {
+      "data_point_idx": "31",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.43700322293759947,
+      "correct": false
+    },
+    {
+      "data_point_idx": "32",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4435747105505899,
+      "correct": false
+    },
+    {
+      "data_point_idx": "33",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5841905229354074,
+      "correct": false
+    },
+    {
+      "data_point_idx": "34",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5233164098038501,
+      "correct": false
+    },
+    {
+      "data_point_idx": "35",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.49333372836697054,
+      "correct": false
+    },
+    {
+      "data_point_idx": "36",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4534683690013999,
+      "correct": true
+    },
+    {
+      "data_point_idx": "37",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5183251216999564,
+      "correct": false
+    },
+    {
+      "data_point_idx": "38",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.473358588549516,
+      "correct": true
+    },
+    {
+      "data_point_idx": "39",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4567748355181423,
+      "correct": false
+    },
+    {
+      "data_point_idx": "40",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6224593312018546,
+      "correct": true
+    },
+    {
+      "data_point_idx": "41",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6547534606063192,
+      "correct": true
+    },
+    {
+      "data_point_idx": "42",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4650570548417855,
+      "correct": true
+    },
+    {
+      "data_point_idx": "43",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5366010793535907,
+      "correct": false
+    },
+    {
+      "data_point_idx": "44",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5858090215649849,
+      "correct": false
+    },
+    {
+      "data_point_idx": "45",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6002883393736858,
+      "correct": true
+    },
+    {
+      "data_point_idx": "46",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6410674063348171,
+      "correct": true
+    },
+    {
+      "data_point_idx": "47",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5199893401555818,
+      "correct": true
+    },
+    {
+      "data_point_idx": "48",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5299640517645717,
+      "correct": true
+    },
+    {
+      "data_point_idx": "49",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5662743941954392,
+      "correct": true
+    },
+    {
+      "data_point_idx": "50",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.549833997312478,
+      "correct": false
+    },
+    {
+      "data_point_idx": "51",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5099986668799655,
+      "correct": true
+    },
+    {
+      "data_point_idx": "52",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5382584045560131,
+      "correct": true
+    },
+    {
+      "data_point_idx": "53",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5233164098038501,
+      "correct": false
+    },
+    {
+      "data_point_idx": "54",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.47502081252106,
+      "correct": true
+    },
+    {
+      "data_point_idx": "55",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6161724076316778,
+      "correct": true
+    },
+    {
+      "data_point_idx": "56",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.5016666604938546,
+      "correct": false
+    },
+    {
+      "data_point_idx": "57",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42067574785125056,
+      "correct": true
+    },
+    {
+      "data_point_idx": "58",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5711798826082736,
+      "correct": false
+    },
+    {
+      "data_point_idx": "59",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6018868796800566,
+      "correct": true
+    },
+    {
+      "data_point_idx": "60",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5531319780689512,
+      "correct": true
+    },
+    {
+      "data_point_idx": "61",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5662743941954392,
+      "correct": true
+    },
+    {
+      "data_point_idx": "62",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5216531151169002,
+      "correct": false
+    },
+    {
+      "data_point_idx": "63",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6066693561082114,
+      "correct": true
+    },
+    {
+      "data_point_idx": "64",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.5116645498437119,
+      "correct": false
+    },
+    {
+      "data_point_idx": "65",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4534683690013999,
+      "correct": true
+    },
+    {
+      "data_point_idx": "66",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5099986668799655,
+      "correct": false
+    },
+    {
+      "data_point_idx": "67",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5597136492671929,
+      "correct": true
+    },
+    {
+      "data_point_idx": "68",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52497918747894,
+      "correct": true
+    },
+    {
+      "data_point_idx": "69",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4966667160485049,
+      "correct": false
+    },
+    {
+      "data_point_idx": "70",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.52497918747894,
+      "correct": false
+    },
+    {
+      "data_point_idx": "71",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5776986807676787,
+      "correct": true
+    },
+    {
+      "data_point_idx": "72",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42718800842998617,
+      "correct": true
+    },
+    {
+      "data_point_idx": "73",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6066693561082114,
+      "correct": false
+    },
+    {
+      "data_point_idx": "74",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5890404340586651,
+      "correct": true
+    },
+    {
+      "data_point_idx": "75",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5349429451582145,
+      "correct": true
+    },
+    {
+      "data_point_idx": "76",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.45512110762641994,
+      "correct": true
+    },
+    {
+      "data_point_idx": "77",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4816748783000437,
+      "correct": true
+    },
+    {
+      "data_point_idx": "78",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5166604965694114,
+      "correct": false
+    },
+    {
+      "data_point_idx": "79",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5841905229354074,
+      "correct": false
+    },
+    {
+      "data_point_idx": "80",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5283030450758288,
+      "correct": true
+    },
+    {
+      "data_point_idx": "81",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5514835536611825,
+      "correct": true
+    },
+    {
+      "data_point_idx": "82",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6784519491420181,
+      "correct": true
+    },
+    {
+      "data_point_idx": "83",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6208913655142569,
+      "correct": true
+    },
+    {
+      "data_point_idx": "84",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6471800492334971,
+      "correct": true
+    },
+    {
+      "data_point_idx": "85",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6018868796800566,
+      "correct": true
+    },
+    {
+      "data_point_idx": "86",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5332840382511314,
+      "correct": false
+    },
+    {
+      "data_point_idx": "87",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5349429451582145,
+      "correct": false
+    },
+    {
+      "data_point_idx": "88",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.49333372836697054,
+      "correct": true
+    },
+    {
+      "data_point_idx": "89",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5547792351072148,
+      "correct": true
+    },
+    {
+      "data_point_idx": "90",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.549833997312478,
+      "correct": false
+    },
+    {
+      "data_point_idx": "91",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5564252894494102,
+      "correct": true
+    },
+    {
+      "data_point_idx": "92",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5728119915700138,
+      "correct": true
+    },
+    {
+      "data_point_idx": "93",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.569546223939229,
+      "correct": false
+    },
+    {
+      "data_point_idx": "94",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5283030450758288,
+      "correct": false
+    },
+    {
+      "data_point_idx": "95",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5514835536611825,
+      "correct": true
+    },
+    {
+      "data_point_idx": "96",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.44851644633881743,
+      "correct": true
+    },
+    {
+      "data_point_idx": "97",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5938731029341427,
+      "correct": true
+    },
+    {
+      "data_point_idx": "98",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6681877721681662,
+      "correct": true
+    },
+    {
+      "data_point_idx": "99",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5531319780689512,
+      "correct": false
+    },
+    {
+      "data_point_idx": "100",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5183251216999564,
+      "correct": true
+    },
+    {
+      "data_point_idx": "101",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6755363229894543,
+      "correct": true
+    },
+    {
+      "data_point_idx": "102",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5711798826082736,
+      "correct": true
+    },
+    {
+      "data_point_idx": "103",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6034832498647263,
+      "correct": true
+    },
+    {
+      "data_point_idx": "104",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.569546223939229,
+      "correct": false
+    },
+    {
+      "data_point_idx": "105",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5016666604938546,
+      "correct": false
+    },
+    {
+      "data_point_idx": "106",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5547792351072148,
+      "correct": true
+    },
+    {
+      "data_point_idx": "107",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5099986668799655,
+      "correct": false
+    },
+    {
+      "data_point_idx": "108",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.43372560580456077,
+      "correct": true
+    },
+    {
+      "data_point_idx": "109",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5728119915700138,
+      "correct": true
+    },
+    {
+      "data_point_idx": "110",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 1,
+      "prediction_probability": 0.5049998333399998,
+      "correct": false
+    },
+    {
+      "data_point_idx": "111",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4435747105505899,
+      "correct": true
+    },
+    {
+      "data_point_idx": "112",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.42882011739172643,
+      "correct": true
+    },
+    {
+      "data_point_idx": "113",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6622491460133603,
+      "correct": true
+    },
+    {
+      "data_point_idx": "114",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5183251216999564,
+      "correct": true
+    },
+    {
+      "data_point_idx": "115",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6145944982675495,
+      "correct": false
+    },
+    {
+      "data_point_idx": "116",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5514835536611825,
+      "correct": true
+    },
+    {
+      "data_point_idx": "117",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5514835536611825,
+      "correct": true
+    },
+    {
+      "data_point_idx": "118",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5841905229354074,
+      "correct": false
+    },
+    {
+      "data_point_idx": "119",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.41419097843501507,
+      "correct": true
+    },
+    {
+      "data_point_idx": "120",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5216531151169002,
+      "correct": false
+    },
+    {
+      "data_point_idx": "121",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6066693561082114,
+      "correct": true
+    },
+    {
+      "data_point_idx": "122",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5711798826082736,
+      "correct": false
+    },
+    {
+      "data_point_idx": "123",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5938731029341427,
+      "correct": true
+    },
+    {
+      "data_point_idx": "124",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6410674063348171,
+      "correct": false
+    },
+    {
+      "data_point_idx": "125",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5728119915700138,
+      "correct": true
+    },
+    {
+      "data_point_idx": "126",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5679110497092322,
+      "correct": true
+    },
+    {
+      "data_point_idx": "127",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.548183344550421,
+      "correct": true
+    },
+    {
+      "data_point_idx": "128",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4700359482354282,
+      "correct": true
+    },
+    {
+      "data_point_idx": "129",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5432251644818576,
+      "correct": true
+    },
+    {
+      "data_point_idx": "130",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5299640517645717,
+      "correct": true
+    },
+    {
+      "data_point_idx": "131",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5233164098038501,
+      "correct": false
+    },
+    {
+      "data_point_idx": "132",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5099986668799655,
+      "correct": false
+    },
+    {
+      "data_point_idx": "133",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5465316309986,
+      "correct": true
+    },
+    {
+      "data_point_idx": "134",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46174159544398685,
+      "correct": true
+    },
+    {
+      "data_point_idx": "135",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.51499550161941,
+      "correct": false
+    },
+    {
+      "data_point_idx": "136",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5299640517645717,
+      "correct": true
+    },
+    {
+      "data_point_idx": "137",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5083325618141193,
+      "correct": true
+    },
+    {
+      "data_point_idx": "138",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4353637081969708,
+      "correct": true
+    },
+    {
+      "data_point_idx": "139",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.48001065984441826,
+      "correct": false
+    },
+    {
+      "data_point_idx": "140",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5033332839514952,
+      "correct": true
+    },
+    {
+      "data_point_idx": "141",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5299640517645717,
+      "correct": false
+    },
+    {
+      "data_point_idx": "142",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5564252894494102,
+      "correct": false
+    },
+    {
+      "data_point_idx": "143",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5514835536611825,
+      "correct": false
+    },
+    {
+      "data_point_idx": "144",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5299640517645717,
+      "correct": true
+    },
+    {
+      "data_point_idx": "145",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5679110497092322,
+      "correct": false
+    },
+    {
+      "data_point_idx": "146",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5116645498437119,
+      "correct": false
+    },
+    {
+      "data_point_idx": "147",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4950001666600003,
+      "correct": true
+    },
+    {
+      "data_point_idx": "148",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46837560501823133,
+      "correct": true
+    },
+    {
+      "data_point_idx": "149",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5432251644818576,
+      "correct": true
+    },
+    {
+      "data_point_idx": "150",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5564252894494102,
+      "correct": true
+    },
+    {
+      "data_point_idx": "151",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5432251644818576,
+      "correct": true
+    },
+    {
+      "data_point_idx": "152",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5183251216999564,
+      "correct": false
+    },
+    {
+      "data_point_idx": "153",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6425999592827029,
+      "correct": true
+    },
+    {
+      "data_point_idx": "154",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5283030450758288,
+      "correct": false
+    },
+    {
+      "data_point_idx": "155",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.33477499960941975,
+      "correct": true
+    },
+    {
+      "data_point_idx": "156",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4650570548417855,
+      "correct": true
+    },
+    {
+      "data_point_idx": "157",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6302602229177513,
+      "correct": true
+    },
+    {
+      "data_point_idx": "158",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5448788923735801,
+      "correct": true
+    },
+    {
+      "data_point_idx": "159",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5825702064623147,
+      "correct": true
+    },
+    {
+      "data_point_idx": "160",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6208913655142569,
+      "correct": false
+    },
+    {
+      "data_point_idx": "161",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.549833997312478,
+      "correct": false
+    },
+    {
+      "data_point_idx": "162",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5299640517645717,
+      "correct": true
+    },
+    {
+      "data_point_idx": "163",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5547792351072148,
+      "correct": false
+    },
+    {
+      "data_point_idx": "164",
+      "true_label": 1,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4850044983805899,
+      "correct": false
+    },
+    {
+      "data_point_idx": "165",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5448788923735801,
+      "correct": true
+    },
+    {
+      "data_point_idx": "166",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4650570548417855,
+      "correct": true
+    },
+    {
+      "data_point_idx": "167",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5597136492671929,
+      "correct": true
+    },
+    {
+      "data_point_idx": "168",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5399148845555657,
+      "correct": false
+    },
+    {
+      "data_point_idx": "169",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5809481051484585,
+      "correct": true
+    },
+    {
+      "data_point_idx": "170",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5016666604938546,
+      "correct": false
+    },
+    {
+      "data_point_idx": "171",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6240247388269247,
+      "correct": true
+    },
+    {
+      "data_point_idx": "172",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.51499550161941,
+      "correct": true
+    },
+    {
+      "data_point_idx": "173",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5166604965694114,
+      "correct": false
+    },
+    {
+      "data_point_idx": "174",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6208913655142569,
+      "correct": true
+    },
+    {
+      "data_point_idx": "175",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5564252894494102,
+      "correct": false
+    },
+    {
+      "data_point_idx": "176",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4983333395061454,
+      "correct": true
+    },
+    {
+      "data_point_idx": "177",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5531319780689512,
+      "correct": false
+    },
+    {
+      "data_point_idx": "178",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6622491460133603,
+      "correct": true
+    }
+  ]
+}
