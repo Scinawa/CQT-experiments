@@ -1,13 +1,13 @@
 {
-  "accuracy": 0.6033519553072626,
-  "noiseless_accuracy": 0.9720670391061452,
+  "accuracy": 0.6256983240223464,
+  "noiseless_accuracy": 0.9385474860335196,
   "details": [
     {
       "data_point_idx": "0",
       "true_label": 1,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.4850044983805899,
+      "prediction_probability": 0.45512110762641994,
       "correct": false
     },
     {
@@ -15,31 +15,31 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5216531151169002,
+      "prediction_probability": 0.5299640517645717,
       "correct": false
     },
     {
       "data_point_idx": "2",
       "true_label": 0,
       "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5233164098038501,
-      "correct": false
+      "predicted_label": 0,
+      "prediction_probability": 0.48001065984441826,
+      "correct": true
     },
     {
       "data_point_idx": "3",
       "true_label": 0,
       "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.5,
-      "correct": true
+      "predicted_label": 1,
+      "prediction_probability": 0.5066662716330296,
+      "correct": false
     },
     {
       "data_point_idx": "4",
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6034832498647263,
+      "prediction_probability": 0.5874256695030062,
       "correct": true
     },
     {
@@ -47,7 +47,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5465316309986,
+      "prediction_probability": 0.5547792351072148,
       "correct": true
     },
     {
@@ -55,7 +55,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.569546223939229,
+      "prediction_probability": 0.5711798826082736,
       "correct": true
     },
     {
@@ -63,7 +63,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5465316309986,
+      "prediction_probability": 0.548183344550421,
       "correct": false
     },
     {
@@ -71,7 +71,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5646362918030292,
+      "prediction_probability": 0.5760714244567121,
       "correct": false
     },
     {
@@ -79,7 +79,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.4766835901961499,
+      "prediction_probability": 0.49166743818588077,
       "correct": true
     },
     {
@@ -87,7 +87,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.4716969549241712,
+      "prediction_probability": 0.49166743818588077,
       "correct": true
     },
     {
@@ -95,7 +95,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6456563062257954,
+      "prediction_probability": 0.6502185485738271,
       "correct": true
     },
     {
@@ -103,7 +103,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6856801139382539,
+      "prediction_probability": 0.669664197077775,
       "correct": false
     },
     {
@@ -111,7 +111,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6827993860934125,
+      "prediction_probability": 0.6652250003905803,
       "correct": false
     },
     {
@@ -119,7 +119,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5646362918030292,
+      "prediction_probability": 0.5415704832167999,
       "correct": true
     },
     {
@@ -127,7 +127,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5382584045560131,
+      "prediction_probability": 0.548183344550421,
       "correct": false
     },
     {
@@ -135,7 +135,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5629967770624005,
+      "prediction_probability": 0.5776986807676787,
       "correct": false
     },
     {
@@ -143,7 +143,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5448788923735801,
+      "prediction_probability": 0.5432251644818576,
       "correct": false
     },
     {
@@ -151,7 +151,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5099986668799655,
+      "prediction_probability": 0.5083325618141193,
       "correct": false
     },
     {
@@ -159,7 +159,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5825702064623147,
+      "prediction_probability": 0.5793242521487495,
       "correct": true
     },
     {
@@ -167,7 +167,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.45842951678320015,
+      "prediction_probability": 0.44686802193104874,
       "correct": true
     },
     {
@@ -175,7 +175,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5580701058739532,
+      "prediction_probability": 0.5366010793535907,
       "correct": true
     },
     {
@@ -183,7 +183,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5016666604938546,
+      "prediction_probability": 0.5349429451582145,
       "correct": false
     },
     {
@@ -191,7 +191,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6018868796800566,
+      "prediction_probability": 0.574442516811659,
       "correct": true
     },
     {
@@ -199,7 +199,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.4174297935376853,
+      "prediction_probability": 0.41419097843501507,
       "correct": true
     },
     {
@@ -207,7 +207,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.42718800842998617,
+      "prediction_probability": 0.4386441153736561,
       "correct": true
     },
     {
@@ -215,7 +215,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6364525402815664,
+      "prediction_probability": 0.6130141761393355,
       "correct": true
     },
     {
@@ -223,23 +223,23 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5283030450758288,
+      "prediction_probability": 0.5332840382511314,
       "correct": false
     },
     {
       "data_point_idx": "28",
       "true_label": 0,
       "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5016666604938546,
-      "correct": false
+      "predicted_label": 0,
+      "prediction_probability": 0.48666982626176764,
+      "correct": true
     },
     {
       "data_point_idx": "29",
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5613558846263439,
+      "prediction_probability": 0.5922641830607915,
       "correct": false
     },
     {
@@ -247,7 +247,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5415704832167999,
+      "prediction_probability": 0.5662743941954392,
       "correct": true
     },
     {
@@ -255,7 +255,7 @@
       "true_label": 1,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.43700322293759947,
+      "prediction_probability": 0.401312339887548,
       "correct": false
     },
     {
@@ -263,7 +263,7 @@
       "true_label": 1,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.4435747105505899,
+      "prediction_probability": 0.39811312031994345,
       "correct": false
     },
     {
@@ -271,7 +271,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5841905229354074,
+      "prediction_probability": 0.5825702064623147,
       "correct": false
     },
     {
@@ -279,7 +279,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5233164098038501,
+      "prediction_probability": 0.5399148845555657,
       "correct": false
     },
     {
@@ -287,7 +287,7 @@
       "true_label": 1,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.49333372836697054,
+      "prediction_probability": 0.4816748783000437,
       "correct": false
     },
     {
@@ -303,7 +303,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5183251216999564,
+      "prediction_probability": 0.5233164098038501,
       "correct": false
     },
     {
@@ -311,7 +311,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.473358588549516,
+      "prediction_probability": 0.49166743818588077,
       "correct": true
     },
     {
@@ -319,7 +319,7 @@
       "true_label": 1,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.4567748355181423,
+      "prediction_probability": 0.45016600268752216,
       "correct": false
     },
     {
@@ -327,7 +327,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6224593312018546,
+      "prediction_probability": 0.6333618869789539,
       "correct": true
     },
     {
@@ -335,7 +335,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6547534606063192,
+      "prediction_probability": 0.6287053299097083,
       "correct": true
     },
     {
@@ -343,7 +343,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.4650570548417855,
+      "prediction_probability": 0.4883354501562881,
       "correct": true
     },
     {
@@ -351,7 +351,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5366010793535907,
+      "prediction_probability": 0.5266414114504839,
       "correct": false
     },
     {
@@ -359,7 +359,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5858090215649849,
+      "prediction_probability": 0.574442516811659,
       "correct": false
     },
     {
@@ -367,7 +367,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6002883393736858,
+      "prediction_probability": 0.6066693561082114,
       "correct": true
     },
     {
@@ -375,7 +375,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6410674063348171,
+      "prediction_probability": 0.6456563062257954,
       "correct": true
     },
     {
@@ -383,7 +383,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5199893401555818,
+      "prediction_probability": 0.5116645498437119,
       "correct": true
     },
     {
@@ -391,7 +391,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5299640517645717,
+      "prediction_probability": 0.5166604965694114,
       "correct": true
     },
     {
@@ -399,7 +399,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5662743941954392,
+      "prediction_probability": 0.5564252894494102,
       "correct": true
     },
     {
@@ -407,39 +407,39 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.549833997312478,
+      "prediction_probability": 0.5399148845555657,
       "correct": false
     },
     {
       "data_point_idx": "51",
       "true_label": 1,
       "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5099986668799655,
-      "correct": true
+      "predicted_label": 0,
+      "prediction_probability": 0.4716969549241712,
+      "correct": false
     },
     {
       "data_point_idx": "52",
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5382584045560131,
+      "prediction_probability": 0.5679110497092322,
       "correct": true
     },
     {
       "data_point_idx": "53",
       "true_label": 0,
       "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5233164098038501,
-      "correct": false
+      "predicted_label": 0,
+      "prediction_probability": 0.49333372836697054,
+      "correct": true
     },
     {
       "data_point_idx": "54",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.47502081252106,
+      "prediction_probability": 0.48333950343058857,
       "correct": true
     },
     {
@@ -447,23 +447,23 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6161724076316778,
+      "prediction_probability": 0.6271477663131956,
       "correct": true
     },
     {
       "data_point_idx": "56",
       "true_label": 0,
       "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.5016666604938546,
-      "correct": false
+      "predicted_label": 0,
+      "prediction_probability": 0.4950001666600003,
+      "correct": true
     },
     {
       "data_point_idx": "57",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.42067574785125056,
+      "prediction_probability": 0.4223013192323213,
       "correct": true
     },
     {
@@ -471,7 +471,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5711798826082736,
+      "prediction_probability": 0.5382584045560131,
       "correct": false
     },
     {
@@ -479,7 +479,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6018868796800566,
+      "prediction_probability": 0.5970848732418456,
       "correct": true
     },
     {
@@ -487,7 +487,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5531319780689512,
+      "prediction_probability": 0.5448788923735801,
       "correct": true
     },
     {
@@ -495,7 +495,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5662743941954392,
+      "prediction_probability": 0.5432251644818576,
       "correct": true
     },
     {
@@ -503,7 +503,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5216531151169002,
+      "prediction_probability": 0.5116645498437119,
       "correct": false
     },
     {
@@ -511,267 +511,19 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6066693561082114,
+      "prediction_probability": 0.6114314709070727,
       "correct": true
     },
     {
       "data_point_idx": "64",
       "true_label": 0,
       "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.5116645498437119,
-      "correct": false
+      "predicted_label": 0,
+      "prediction_probability": 0.4716969549241712,
+      "correct": true
     },
     {
       "data_point_idx": "65",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.4534683690013999,
-      "correct": true
-    },
-    {
-      "data_point_idx": "66",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5099986668799655,
-      "correct": false
-    },
-    {
-      "data_point_idx": "67",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5597136492671929,
-      "correct": true
-    },
-    {
-      "data_point_idx": "68",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.52497918747894,
-      "correct": true
-    },
-    {
-      "data_point_idx": "69",
-      "true_label": 1,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.4966667160485049,
-      "correct": false
-    },
-    {
-      "data_point_idx": "70",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.52497918747894,
-      "correct": false
-    },
-    {
-      "data_point_idx": "71",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5776986807676787,
-      "correct": true
-    },
-    {
-      "data_point_idx": "72",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.42718800842998617,
-      "correct": true
-    },
-    {
-      "data_point_idx": "73",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.6066693561082114,
-      "correct": false
-    },
-    {
-      "data_point_idx": "74",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5890404340586651,
-      "correct": true
-    },
-    {
-      "data_point_idx": "75",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5349429451582145,
-      "correct": true
-    },
-    {
-      "data_point_idx": "76",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.45512110762641994,
-      "correct": true
-    },
-    {
-      "data_point_idx": "77",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.4816748783000437,
-      "correct": true
-    },
-    {
-      "data_point_idx": "78",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5166604965694114,
-      "correct": false
-    },
-    {
-      "data_point_idx": "79",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5841905229354074,
-      "correct": false
-    },
-    {
-      "data_point_idx": "80",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5283030450758288,
-      "correct": true
-    },
-    {
-      "data_point_idx": "81",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5514835536611825,
-      "correct": true
-    },
-    {
-      "data_point_idx": "82",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.6784519491420181,
-      "correct": true
-    },
-    {
-      "data_point_idx": "83",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.6208913655142569,
-      "correct": true
-    },
-    {
-      "data_point_idx": "84",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.6471800492334971,
-      "correct": true
-    },
-    {
-      "data_point_idx": "85",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.6018868796800566,
-      "correct": true
-    },
-    {
-      "data_point_idx": "86",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5332840382511314,
-      "correct": false
-    },
-    {
-      "data_point_idx": "87",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5349429451582145,
-      "correct": false
-    },
-    {
-      "data_point_idx": "88",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.49333372836697054,
-      "correct": true
-    },
-    {
-      "data_point_idx": "89",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5547792351072148,
-      "correct": true
-    },
-    {
-      "data_point_idx": "90",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.549833997312478,
-      "correct": false
-    },
-    {
-      "data_point_idx": "91",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5564252894494102,
-      "correct": true
-    },
-    {
-      "data_point_idx": "92",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5728119915700138,
-      "correct": true
-    },
-    {
-      "data_point_idx": "93",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.569546223939229,
-      "correct": false
-    },
-    {
-      "data_point_idx": "94",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5283030450758288,
-      "correct": false
-    },
-    {
-      "data_point_idx": "95",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5514835536611825,
-      "correct": true
-    },
-    {
-      "data_point_idx": "96",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
@@ -779,295 +531,79 @@
       "correct": true
     },
     {
-      "data_point_idx": "97",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5938731029341427,
-      "correct": true
-    },
-    {
-      "data_point_idx": "98",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.6681877721681662,
-      "correct": true
-    },
-    {
-      "data_point_idx": "99",
+      "data_point_idx": "66",
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5531319780689512,
+      "prediction_probability": 0.5283030450758288,
       "correct": false
     },
     {
-      "data_point_idx": "100",
+      "data_point_idx": "67",
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5183251216999564,
+      "prediction_probability": 0.5613558846263439,
       "correct": true
     },
     {
-      "data_point_idx": "101",
+      "data_point_idx": "68",
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6755363229894543,
+      "prediction_probability": 0.5316243949817686,
       "correct": true
     },
     {
-      "data_point_idx": "102",
+      "data_point_idx": "69",
       "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5711798826082736,
-      "correct": true
-    },
-    {
-      "data_point_idx": "103",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.6034832498647263,
-      "correct": true
-    },
-    {
-      "data_point_idx": "104",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.569546223939229,
-      "correct": false
-    },
-    {
-      "data_point_idx": "105",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5016666604938546,
-      "correct": false
-    },
-    {
-      "data_point_idx": "106",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5547792351072148,
-      "correct": true
-    },
-    {
-      "data_point_idx": "107",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5099986668799655,
-      "correct": false
-    },
-    {
-      "data_point_idx": "108",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.43372560580456077,
-      "correct": true
-    },
-    {
-      "data_point_idx": "109",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5728119915700138,
-      "correct": true
-    },
-    {
-      "data_point_idx": "110",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 1,
-      "prediction_probability": 0.5049998333399998,
-      "correct": false
-    },
-    {
-      "data_point_idx": "111",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.4435747105505899,
-      "correct": true
-    },
-    {
-      "data_point_idx": "112",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.42882011739172643,
-      "correct": true
-    },
-    {
-      "data_point_idx": "113",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.6622491460133603,
-      "correct": true
-    },
-    {
-      "data_point_idx": "114",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5183251216999564,
-      "correct": true
-    },
-    {
-      "data_point_idx": "115",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.6145944982675495,
-      "correct": false
-    },
-    {
-      "data_point_idx": "116",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5514835536611825,
-      "correct": true
-    },
-    {
-      "data_point_idx": "117",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5514835536611825,
-      "correct": true
-    },
-    {
-      "data_point_idx": "118",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5841905229354074,
-      "correct": false
-    },
-    {
-      "data_point_idx": "119",
-      "true_label": 0,
-      "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.41419097843501507,
-      "correct": true
-    },
-    {
-      "data_point_idx": "120",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5216531151169002,
-      "correct": false
-    },
-    {
-      "data_point_idx": "121",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.6066693561082114,
-      "correct": true
-    },
-    {
-      "data_point_idx": "122",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5711798826082736,
-      "correct": false
-    },
-    {
-      "data_point_idx": "123",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5938731029341427,
-      "correct": true
-    },
-    {
-      "data_point_idx": "124",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.6410674063348171,
-      "correct": false
-    },
-    {
-      "data_point_idx": "125",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5728119915700138,
-      "correct": true
-    },
-    {
-      "data_point_idx": "126",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5679110497092322,
-      "correct": true
-    },
-    {
-      "data_point_idx": "127",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.548183344550421,
-      "correct": true
-    },
-    {
-      "data_point_idx": "128",
-      "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
       "prediction_probability": 0.4700359482354282,
-      "correct": true
-    },
-    {
-      "data_point_idx": "129",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5432251644818576,
-      "correct": true
-    },
-    {
-      "data_point_idx": "130",
-      "true_label": 1,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5299640517645717,
-      "correct": true
-    },
-    {
-      "data_point_idx": "131",
-      "true_label": 0,
-      "noiseless_label": 1,
-      "predicted_label": 1,
-      "prediction_probability": 0.5233164098038501,
       "correct": false
     },
     {
-      "data_point_idx": "132",
+      "data_point_idx": "70",
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5099986668799655,
+      "prediction_probability": 0.5316243949817686,
       "correct": false
     },
     {
-      "data_point_idx": "133",
+      "data_point_idx": "71",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6018868796800566,
+      "correct": true
+    },
+    {
+      "data_point_idx": "72",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.40451998971625175,
+      "correct": true
+    },
+    {
+      "data_point_idx": "73",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5954800102837483,
+      "correct": false
+    },
+    {
+      "data_point_idx": "74",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5613558846263439,
+      "correct": true
+    },
+    {
+      "data_point_idx": "75",
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
@@ -1075,39 +611,167 @@
       "correct": true
     },
     {
-      "data_point_idx": "134",
+      "data_point_idx": "76",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.46174159544398685,
+      "prediction_probability": 0.42718800842998617,
       "correct": true
     },
     {
-      "data_point_idx": "135",
+      "data_point_idx": "77",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.49166743818588077,
+      "correct": true
+    },
+    {
+      "data_point_idx": "78",
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.51499550161941,
+      "prediction_probability": 0.5366010793535907,
       "correct": false
     },
     {
-      "data_point_idx": "136",
+      "data_point_idx": "79",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6034832498647263,
+      "correct": false
+    },
+    {
+      "data_point_idx": "80",
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5299640517645717,
+      "prediction_probability": 0.5216531151169002,
       "correct": true
     },
     {
-      "data_point_idx": "137",
+      "data_point_idx": "81",
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5083325618141193,
+      "prediction_probability": 0.549833997312478,
       "correct": true
     },
     {
-      "data_point_idx": "138",
+      "data_point_idx": "82",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6726070170677604,
+      "correct": true
+    },
+    {
+      "data_point_idx": "83",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5906532827008858,
+      "correct": true
+    },
+    {
+      "data_point_idx": "84",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6726070170677604,
+      "correct": true
+    },
+    {
+      "data_point_idx": "85",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6050774189417375,
+      "correct": true
+    },
+    {
+      "data_point_idx": "86",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5382584045560131,
+      "correct": false
+    },
+    {
+      "data_point_idx": "87",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4966667160485049,
+      "correct": true
+    },
+    {
+      "data_point_idx": "88",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4816748783000437,
+      "correct": true
+    },
+    {
+      "data_point_idx": "89",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5646362918030292,
+      "correct": true
+    },
+    {
+      "data_point_idx": "90",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5580701058739532,
+      "correct": false
+    },
+    {
+      "data_point_idx": "91",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5760714244567121,
+      "correct": true
+    },
+    {
+      "data_point_idx": "92",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5679110497092322,
+      "correct": true
+    },
+    {
+      "data_point_idx": "93",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5646362918030292,
+      "correct": false
+    },
+    {
+      "data_point_idx": "94",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5316243949817686,
+      "correct": false
+    },
+    {
+      "data_point_idx": "95",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5825702064623147,
+      "correct": true
+    },
+    {
+      "data_point_idx": "96",
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
@@ -1115,11 +779,347 @@
       "correct": true
     },
     {
+      "data_point_idx": "97",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5970848732418456,
+      "correct": true
+    },
+    {
+      "data_point_idx": "98",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6637386974043528,
+      "correct": true
+    },
+    {
+      "data_point_idx": "99",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5728119915700138,
+      "correct": false
+    },
+    {
+      "data_point_idx": "100",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5099986668799655,
+      "correct": true
+    },
+    {
+      "data_point_idx": "101",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6970592839654074,
+      "correct": true
+    },
+    {
+      "data_point_idx": "102",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5874256695030062,
+      "correct": true
+    },
+    {
+      "data_point_idx": "103",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.574442516811659,
+      "correct": true
+    },
+    {
+      "data_point_idx": "104",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5728119915700138,
+      "correct": false
+    },
+    {
+      "data_point_idx": "105",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5216531151169002,
+      "correct": false
+    },
+    {
+      "data_point_idx": "106",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5465316309986,
+      "correct": true
+    },
+    {
+      "data_point_idx": "107",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.48333950343058857,
+      "correct": true
+    },
+    {
+      "data_point_idx": "108",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4700359482354282,
+      "correct": true
+    },
+    {
+      "data_point_idx": "109",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5233164098038501,
+      "correct": true
+    },
+    {
+      "data_point_idx": "110",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4966667160485049,
+      "correct": true
+    },
+    {
+      "data_point_idx": "111",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.45181665544957894,
+      "correct": true
+    },
+    {
+      "data_point_idx": "112",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4567748355181423,
+      "correct": true
+    },
+    {
+      "data_point_idx": "113",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6681877721681662,
+      "correct": true
+    },
+    {
+      "data_point_idx": "114",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5216531151169002,
+      "correct": true
+    },
+    {
+      "data_point_idx": "115",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6098464124263923,
+      "correct": false
+    },
+    {
+      "data_point_idx": "116",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5233164098038501,
+      "correct": true
+    },
+    {
+      "data_point_idx": "117",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.51499550161941,
+      "correct": true
+    },
+    {
+      "data_point_idx": "118",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5760714244567121,
+      "correct": false
+    },
+    {
+      "data_point_idx": "119",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.401312339887548,
+      "correct": true
+    },
+    {
+      "data_point_idx": "120",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5760714244567121,
+      "correct": false
+    },
+    {
+      "data_point_idx": "121",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5858090215649849,
+      "correct": true
+    },
+    {
+      "data_point_idx": "122",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5890404340586651,
+      "correct": false
+    },
+    {
+      "data_point_idx": "123",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5874256695030062,
+      "correct": true
+    },
+    {
+      "data_point_idx": "124",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.6471800492334971,
+      "correct": false
+    },
+    {
+      "data_point_idx": "125",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.574442516811659,
+      "correct": true
+    },
+    {
+      "data_point_idx": "126",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5662743941954392,
+      "correct": true
+    },
+    {
+      "data_point_idx": "127",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5316243949817686,
+      "correct": true
+    },
+    {
+      "data_point_idx": "128",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4650570548417855,
+      "correct": true
+    },
+    {
+      "data_point_idx": "129",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5399148845555657,
+      "correct": true
+    },
+    {
+      "data_point_idx": "130",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.4950001666600003,
+      "correct": false
+    },
+    {
+      "data_point_idx": "131",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5415704832167999,
+      "correct": false
+    },
+    {
+      "data_point_idx": "132",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5283030450758288,
+      "correct": false
+    },
+    {
+      "data_point_idx": "133",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5776986807676787,
+      "correct": true
+    },
+    {
+      "data_point_idx": "134",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.46008511544443426,
+      "correct": true
+    },
+    {
+      "data_point_idx": "135",
+      "true_label": 0,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5382584045560131,
+      "correct": false
+    },
+    {
+      "data_point_idx": "136",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 1,
+      "prediction_probability": 0.5216531151169002,
+      "correct": true
+    },
+    {
+      "data_point_idx": "137",
+      "true_label": 1,
+      "noiseless_label": 1,
+      "predicted_label": 0,
+      "prediction_probability": 0.49333372836697054,
+      "correct": false
+    },
+    {
+      "data_point_idx": "138",
+      "true_label": 0,
+      "noiseless_label": 0,
+      "predicted_label": 0,
+      "prediction_probability": 0.4435747105505899,
+      "correct": true
+    },
+    {
       "data_point_idx": "139",
       "true_label": 1,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.48001065984441826,
+      "prediction_probability": 0.48666982626176764,
       "correct": false
     },
     {
@@ -1127,7 +1127,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5033332839514952,
+      "prediction_probability": 0.5166604965694114,
       "correct": true
     },
     {
@@ -1135,7 +1135,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5299640517645717,
+      "prediction_probability": 0.5133301737382324,
       "correct": false
     },
     {
@@ -1143,7 +1143,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5564252894494102,
+      "prediction_probability": 0.5349429451582145,
       "correct": false
     },
     {
@@ -1151,7 +1151,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5514835536611825,
+      "prediction_probability": 0.5283030450758288,
       "correct": false
     },
     {
@@ -1159,7 +1159,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5299640517645717,
+      "prediction_probability": 0.5216531151169002,
       "correct": true
     },
     {
@@ -1167,7 +1167,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5679110497092322,
+      "prediction_probability": 0.5465316309986,
       "correct": false
     },
     {
@@ -1175,7 +1175,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5116645498437119,
+      "prediction_probability": 0.52497918747894,
       "correct": false
     },
     {
@@ -1191,7 +1191,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.46837560501823133,
+      "prediction_probability": 0.45016600268752216,
       "correct": true
     },
     {
@@ -1199,7 +1199,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5432251644818576,
+      "prediction_probability": 0.5531319780689512,
       "correct": true
     },
     {
@@ -1207,7 +1207,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5564252894494102,
+      "prediction_probability": 0.5547792351072148,
       "correct": true
     },
     {
@@ -1215,7 +1215,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5432251644818576,
+      "prediction_probability": 0.5448788923735801,
       "correct": true
     },
     {
@@ -1223,7 +1223,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5183251216999564,
+      "prediction_probability": 0.5349429451582145,
       "correct": false
     },
     {
@@ -1231,7 +1231,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6425999592827029,
+      "prediction_probability": 0.6456563062257954,
       "correct": true
     },
     {
@@ -1239,7 +1239,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5283030450758288,
+      "prediction_probability": 0.5316243949817686,
       "correct": false
     },
     {
@@ -1247,7 +1247,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.33477499960941975,
+      "prediction_probability": 0.3437410890175861,
       "correct": true
     },
     {
@@ -1255,7 +1255,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.4650570548417855,
+      "prediction_probability": 0.43208895029076777,
       "correct": true
     },
     {
@@ -1263,7 +1263,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6302602229177513,
+      "prediction_probability": 0.6425999592827029,
       "correct": true
     },
     {
@@ -1279,7 +1279,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5825702064623147,
+      "prediction_probability": 0.5922641830607915,
       "correct": true
     },
     {
@@ -1287,7 +1287,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6208913655142569,
+      "prediction_probability": 0.5922641830607915,
       "correct": false
     },
     {
@@ -1295,7 +1295,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.549833997312478,
+      "prediction_probability": 0.5399148845555657,
       "correct": false
     },
     {
@@ -1303,7 +1303,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5299640517645717,
+      "prediction_probability": 0.5465316309986,
       "correct": true
     },
     {
@@ -1311,23 +1311,23 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5547792351072148,
+      "prediction_probability": 0.5316243949817686,
       "correct": false
     },
     {
       "data_point_idx": "164",
       "true_label": 1,
       "noiseless_label": 0,
-      "predicted_label": 0,
-      "prediction_probability": 0.4850044983805899,
-      "correct": false
+      "predicted_label": 1,
+      "prediction_probability": 0.5066662716330296,
+      "correct": true
     },
     {
       "data_point_idx": "165",
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5448788923735801,
+      "prediction_probability": 0.5199893401555818,
       "correct": true
     },
     {
@@ -1335,7 +1335,7 @@
       "true_label": 0,
       "noiseless_label": 0,
       "predicted_label": 0,
-      "prediction_probability": 0.4650570548417855,
+      "prediction_probability": 0.4766835901961499,
       "correct": true
     },
     {
@@ -1343,7 +1343,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5597136492671929,
+      "prediction_probability": 0.549833997312478,
       "correct": true
     },
     {
@@ -1351,7 +1351,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5399148845555657,
+      "prediction_probability": 0.548183344550421,
       "correct": false
     },
     {
@@ -1367,7 +1367,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5016666604938546,
+      "prediction_probability": 0.5083325618141193,
       "correct": false
     },
     {
@@ -1375,7 +1375,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6240247388269247,
+      "prediction_probability": 0.6208913655142569,
       "correct": true
     },
     {
@@ -1383,7 +1383,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.51499550161941,
+      "prediction_probability": 0.5033332839514952,
       "correct": true
     },
     {
@@ -1391,7 +1391,7 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5166604965694114,
+      "prediction_probability": 0.5366010793535907,
       "correct": false
     },
     {
@@ -1399,7 +1399,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6208913655142569,
+      "prediction_probability": 0.6050774189417375,
       "correct": true
     },
     {
@@ -1407,16 +1407,16 @@
       "true_label": 0,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.5564252894494102,
+      "prediction_probability": 0.5415704832167999,
       "correct": false
     },
     {
       "data_point_idx": "176",
       "true_label": 0,
       "noiseless_label": 1,
-      "predicted_label": 0,
-      "prediction_probability": 0.4983333395061454,
-      "correct": true
+      "predicted_label": 1,
+      "prediction_probability": 0.5183251216999564,
+      "correct": false
     },
     {
       "data_point_idx": "177",
@@ -1431,7 +1431,7 @@
       "true_label": 1,
       "noiseless_label": 1,
       "predicted_label": 1,
-      "prediction_probability": 0.6622491460133603,
+      "prediction_probability": 0.669664197077775,
       "correct": true
     }
   ]
