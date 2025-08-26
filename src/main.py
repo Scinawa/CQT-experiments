@@ -429,7 +429,7 @@ def prepare_template_context(cfg):
         context["qft_plot_is_set"] = False
         pass
 
-    ######### YEAST CLASSIFICATION PLOTS
+    ######### YEAST CLASSIFICATION 4Q PLOTS
     if cfg.yeast_plot == True:
         context["yeast_classification_is_set"] = True
         context["plot_yeast"] = pl.plot_yeast(
