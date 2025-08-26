@@ -35,16 +35,20 @@ def parse_args():
         "--experiments",
         nargs="+",
         default=[
-            "GHZ",
-            "mermin",
-            "grover2q",
-            "tomography",
-            "grover3q",
-            "universal_approximant",
-            "reuploading_classifier",
-            "QFT"
+            # "GHZ",
+            # "mermin",
+            # "grover2q",
+            # "tomography",
+            # "grover3q",
+            # "universal_approximant",
+            # "reuploading_classifier",
+            # "QFT"
+            # "qml-yeast_class_4q",
+            "qml-yeast_class_3q",
+            # "qml-statlog_class_4q",
+            "qml-statlog_class_3q",
         ],
-        help="List of experiment subfolders to run (space-separated).",
+        help="List of experiment subfolders to run.",
     )
     return parser.parse_args()
 
