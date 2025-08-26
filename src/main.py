@@ -81,18 +81,17 @@ def setup_argument_parser():
         dest="reuploading_classifier_plot",
         action="store_false",
     )
-    # Yeast classification plot toggle (default: True). Use --no-yeast-plot to disable.
     parser.add_argument(
-        "--no-yeast-plot_4q", dest="yeast_plot_4q", action="store_false"
+        "--no-yeast-plot-4q", dest="yeast_plot_4q", action="store_false"
     )
     parser.add_argument(
-        "--no-yeast-plot_3q", dest="yeast_plot_3q", action="store_false"
+        "--no-yeast-plot-3q", dest="yeast_plot_3q", action="store_false"
     )
     parser.add_argument(
-        "--no-statlog-plot_4q", dest="statlog_plot_4q", action="store_false"
+        "--no-statlog-plot-4q", dest="statlog_plot_4q", action="store_false"
     )
     parser.add_argument(
-        "--no-statlog-plot_3q", dest="statlog_plot_3q", action="store_false"
+        "--no-statlog-plot-3q", dest="statlog_plot_3q", action="store_false"
     )
 
     return parser
