@@ -25,7 +25,7 @@ quantum-benchmark-reporter
 
 ## Installation
 
-To set up the project, you will need to create a virtual environment and install the required dependencies. You can do this using the following commands:
+To set up the project, create a virtual environment and install the required dependencies:
 
 ```bash
 # Create a virtual environment
@@ -43,34 +43,30 @@ uv sync
 If you encounter an error with `uv.lock`, delete the file and regenerate it:
 
 ```bash
-# Remove the corrupted lock file
 rm uv.lock
-
-# Regenerate dependencies
 uv sync
 ```
 
 ## Usage
 
-1. **Prepare your benchmark data**: Place your JSON benchmark data in the `data` directory. You can use the provided `sample_benchmark.json` as a template.
+1. **Run experiments and prepare your benchmark data**: This can be done buy 
+ - `sbatch scripts/runscripts_sinq20.sh` to run code on the quantum computer
+ - `sbatch scripts/runscripts_numpy.sh` to run code on the numpy simulator.
 
-2. **Generate the report**: Run the `report_generator.py` script to generate the LaTeX file populated with your benchmark data.
 
-   ```bash
-   python src/report_generator.py
-   ```
-
-3. **Build the PDF report**: Use the Makefile to compile the LaTeX file into a PDF.
+2. **Generate the report**: Run the `make pdf` script to generate the LaTeX file populated with your benchmark data.
+Alternatively, you can build the pdf directly with the python script.
 
    ```bash
-   make
+   python src/main.py
    ```
 
-The generated PDF report will be available in the `output` directory.
+
+The generated PDF report will be available in the **current** directory.
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any enhancements or bug fixes.
+Contributions are welcome! Please submit a pull request or open an issue for enhancements or bug fixes. See `CONTRIBUTING.md` for experiment integration guidelines.
 
 ## License
 
