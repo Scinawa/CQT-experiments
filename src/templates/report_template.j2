@@ -61,7 +61,7 @@
 
 % Report of changes
 \section{Report of Changes}
-\taustart{T}\textcolor{blue}{his section details the reasons for the new benchmarking suite and summarizes the key changes. This section details the reasons for the new benchmarking suite and summarizes the key changes. This section details the reasons for the new benchmarking suite and summarizes the key changes (from template)}. {{ report_of_changes }}
+\taustart{T}This report presents a benchmarking study of a quantum computer based on superconducting qubits, procured from IQM Machines and integrated with Keysight Technologies measurement solutions. Our objective is to evaluate device performance across key metrics (T1, T2, fidelity) but also showcasing the performances of simple application of quantum computers. {{ report_of_changes }}
 
 
 \begin{multicols}{2}
@@ -276,10 +276,13 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{center}
 \end{multicols}
 
+\newpage 
+
+
 
 {% if reuploading_plot_is_set %}
 
-\section{Data reuploading}
+\section{Data reuploading classifier}
 \begin{multicols}{2}
 
 \begin{center}
@@ -300,14 +303,24 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 
 {% if grover2q_plot_is_set %}
-\section{2 Qubit Grover}
+\section{Grover - 2 qubits}
 \begin{multicols}{2}
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_grover2q }} }
 \end{center}
 
 \columnbreak
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_grover2q_baseline }} }
@@ -322,15 +335,22 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 
 {% if grover3q_plot_is_set %}
-\section{3 Qubit Grover}
+\section{Grover - 3 qubits}
 \begin{multicols}{2}
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_grover3q }} }
 \end{center}
 
 \columnbreak
-
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_grover3q_baseline }} }
 \end{center}
@@ -345,8 +365,14 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 {% if ghz_plot_is_set %}
+\newpage
 \section{GHZ state preparation}
 \begin{multicols}{2}
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_ghz }} }
@@ -354,10 +380,16 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \columnbreak
 
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
+
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_ghz_baseline }} }
 \end{center}
 \end{multicols}
+
 {% endif %}
 
 
@@ -370,11 +402,21 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \section{Tomography state preparation}
 \begin{multicols}{2}
 
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
+
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_tomography }} }
 \end{center}
 
 \columnbreak
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_tomography_baseline }} }
@@ -391,11 +433,21 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \section{Process Tomography state preparation}
 \begin{multicols}{2}
 
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
+
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_process_tomography }} }
 \end{center}
 
 \columnbreak
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_process_tomography_baseline }} }
@@ -409,15 +461,26 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 % Ruploading classifier 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-{% if reuploading_classifier_is_set %}
+{% if reuploading_classifier_plot_is_set %}
 \section{Reuploading Classifier}
 \begin{multicols}{2}
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
+
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_classifier }} }
 \end{center}
 
 \columnbreak
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_classifier_baseline }} }
@@ -427,18 +490,28 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Ruploading classifier 
+% QFT PLOT  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 {% if qft_plot_is_set %}
 \section{QFT Plots}
 \begin{multicols}{2}
 
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
+
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_qft }} }
 \end{center}
 
 \columnbreak
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_qft_baseline }} }
@@ -448,12 +521,102 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Yeast classifier 3q
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{% if yeast_classification_3q_plot_is_set %}
+\section{QML: Yeast dataset (3 qubits)}
+\begin{multicols}{2}
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\item \textbf{Accuracy:} {{ yeast_3q_accuracy_left }}
+\end{itemize}
+
+\begin{center}
+%\begin{tauenvmine}
+\centering
+\includegraphics[width=0.95\linewidth]{ {{ plot_yeast_3q }} }
+%\end{tauenvmine}
+\end{center}
+
+\columnbreak
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\item \textbf{Accuracy:} {{ yeast_3q_accuracy_right }}
+
+\end{itemize}
+
+\begin{center}
+\centering
+\includegraphics[width=0.95\linewidth]{ {{ plot_yeast_3q_baseline }} }
+%\end{tauenvmine}
+\end{center}
+
+\end{multicols}
+{% endif %}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Statlog classifier 3q
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{% if statlog_classification_3q_plot_is_set %}
+\section{QML: Statlog-Satellite dataset (3 qubits)}
+
+\begin{multicols}{2}
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\item \textbf{Accuracy:} {{ statlog_3q_accuracy_left }}
+\end{itemize}
+
+\begin{center}
+%\begin{tauenvmine}
+\centering
+\includegraphics[width=0.95\linewidth]{ {{ plot_statlog_3q }} }
+%\end{tauenvmine}
+\end{center}
+
+\columnbreak
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\item \textbf{Accuracy:} {{ statlog_3q_accuracy_right }}
+
+\end{itemize}
+
+\begin{center}
+%\begin{tauenvmine}
+\centering
+\includegraphics[width=0.95\linewidth]{ {{ plot_statlog_3q_baseline }} }
+%\end{tauenvmine}
+\end{center}
+
+\end{multicols}
+{% endif %}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Yeast classifier 4q
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-{% if yeast_classification_4q_is_set %}
-\section{4 qubits yeast classification}
+{% if yeast_classification_4q_plot_is_set %}
+
+\section{QML: Yeast dataset (4 qubits)}
+
 \begin{multicols}{2}
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
 
 \begin{center}
 %\begin{tauenvmine}
@@ -463,6 +626,12 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{center}
 
 \columnbreak
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
+
 
 \begin{center}
 %\begin{tauenvmine}
@@ -475,41 +644,22 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 {% endif %}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Yeast classifier 3q
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-{% if yeast_classification_3q_is_set %}
-\section{3 qubits yeast classification}
-\begin{multicols}{2}
-
-\begin{center}
-%\begin{tauenvmine}
-\centering
-\includegraphics[width=0.95\linewidth]{ {{ plot_yeast_3q }} }
-%\end{tauenvmine}
-\end{center}
-
-\columnbreak
-
-\begin{center}
-%\begin{tauenvmine}
-\centering
-\includegraphics[width=0.95\linewidth]{ {{ plot_yeast_3q_baseline }} }
-%\end{tauenvmine}
-\end{center}
-
-\end{multicols}
-{% endif %}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Statlog classifier 4q
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-{% if statlog_classification_4q_is_set %}
-\section{4 qubits Statlog classification}
+{% if statlog_classification_4q_plot_is_set %}
+\section{QML: Statlog-Satellite dataset (4 qubits)}
+
 \begin{multicols}{2}
+
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
+
 
 \begin{center}
 %\begin{tauenvmine}
@@ -520,6 +670,11 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \columnbreak
 
+\begin{itemize}
+\item \textbf{Description:} -
+\item \textbf{Duration:} - 
+\end{itemize}
+
 \begin{center}
 %\begin{tauenvmine}
 \centering
@@ -529,35 +684,6 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \end{multicols}
 {% endif %}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Statlog classifier 3q
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-{% if statlog_classification_3q_is_set %}
-\section{3 qubits Statlog classification}
-\begin{multicols}{2}
-
-\begin{center}
-%\begin{tauenvmine}
-\centering
-\includegraphics[width=0.95\linewidth]{ {{ plot_statlog_3q }} }
-%\end{tauenvmine}
-\end{center}
-
-\columnbreak
-
-\begin{center}
-%\begin{tauenvmine}
-\centering
-\includegraphics[width=0.95\linewidth]{ {{ plot_statlog_3q_baseline }} }
-%\end{tauenvmine}
-\end{center}
-
-\end{multicols}
-{% endif %}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

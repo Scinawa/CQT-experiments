@@ -9,6 +9,8 @@ import json
 import os
 import ast
 
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
 
 def prepare_grid_coupler(
     max_number,
@@ -450,7 +452,9 @@ def plot_QFT(raw_data, expname, output_path="build/"):
     frequencies = data["plotparameters"]["frequencies"]
 
     plt.figure()
-    plt.bar(frequencies.keys(), frequencies.values(), color="skyblue", edgecolor="black")
+    plt.bar(
+        frequencies.keys(), frequencies.values(), color="skyblue", edgecolor="black"
+    )
     plt.xlabel("Bitstring")
     plt.ylabel("Counts")
     plt.title("QFT's Algorithm Measurement Histogram")
@@ -605,6 +609,10 @@ def plot_process_tomography(raw_data, expname, output_path="build/"):
     return "placeholder.png"
 
 
+def plot_tomography(raw_data, expname, output_path="build/"):
+    return "placeholder.png"
+
+
 def plot_qft(raw_data, expname, output_path="build/"):
     """
     Plot the results of a Quantum Fourier Transform (QFT) experiment as a histogram.
@@ -650,87 +658,121 @@ def plot_qft(raw_data, expname, output_path="build/"):
     return full_path
 
 
-def plot_qml(raw_data, expname, output_path="build/"):
-    """
-    Plot two confusion matrices for the qml_classification experiment:
-      - left: true_label vs predicted_label
-      - right: true_label vs noiseless_label
+# def plot_qml(raw_data, expname, output_path="build/"):
+#     """
+#     Plot two confusion matrices for the qml_classification experiment:
+#       - left: true_label vs predicted_label
+#       - right: true_label vs noiseless_label
 
-    raw_data: path to results.json
-    expname: used to build output filename
-    output_path: directory to save the plot (folder will be created)
-    """
+#     raw_data: path to results.json
+#     expname: used to build output filename
+#     output_path: directory to save the plot (folder will be created)
+#     """
+#     with open(raw_data, "r") as f:
+#         data = json.load(f)
+
+#     details = data.get("details", [])
+#     # Safely collect labels (default to 0 if missing)
+#     true = np.array([int(d.get("true_label", 0)) for d in details], dtype=int)
+#     pred = np.array([int(d.get("predicted_label", 0)) for d in details], dtype=int)
+#     noiseless = np.array([int(d.get("noiseless_label", 0)) for d in details], dtype=int)
+
+#     # Build 2x2 confusion matrices: rows=true (0,1), cols=other (0,1)
+#     def confusion_matrix(true_arr, other_arr):
+#         cm = np.zeros((2, 2), dtype=int)
+#         for t, o in zip(true_arr, other_arr):
+#             if t in (0, 1) and o in (0, 1):
+#                 cm[t, o] += 1
+#         return cm
+
+#     cm_pred = confusion_matrix(true, pred)
+#     cm_noiseless = confusion_matrix(true, noiseless)
+
+#     # Percentages per true-class row for annotation
+#     def cm_percentages(cm):
+#         with np.errstate(divide="ignore", invalid="ignore"):
+#             row_sums = cm.sum(axis=1, keepdims=True)
+#             pct = np.where(row_sums > 0, cm / row_sums * 100.0, 0.0)
+#         return pct
+
+#     pct_pred = cm_percentages(cm_pred)
+#     pct_noiseless = cm_percentages(cm_noiseless)
+
+#     # Plot side-by-side
+#     os.makedirs(output_path, exist_ok=True)
+#     fig, axes = plt.subplots(1, 2, figsize=(8, 4), constrained_layout=True)
+
+#     # Ensure the figure and axes have a white background and allow saving as transparent
+#     fig.patch.set_facecolor("white")
+#     for a in np.atleast_1d(axes):
+#         a.set_facecolor("white")
+
+#     for ax, cm, pct, title in zip(
+#         axes,
+#         (cm_pred, cm_noiseless),
+#         (pct_pred, pct_noiseless),
+#         ("True vs Predicted", "True vs Noiseless"),
+#     ):
+#         im = ax.imshow(cm, cmap="YlOrBr", interpolation="nearest", vmin=0)
+#         ax.set_xlabel("Predicted")
+#         ax.set_ylabel("True")
+#         ax.set_xticks([0, 1])
+#         ax.set_yticks([0, 1])
+#         ax.set_xticklabels([0, 1])
+#         ax.set_yticklabels([0, 1])
+#         ax.set_title(title)
+#         # annotate counts and percentages
+#         for i in range(2):
+#             for j in range(2):
+#                 ax.text(
+#                     j,
+#                     i,
+#                     f"{cm[i, j]}\n{pct[i, j]:.1f}%",
+#                     ha="center",
+#                     va="center",
+#                     color="black",
+#                     fontsize=15,
+#                 )
+
+#     cbar = fig.colorbar(im, ax=axes.ravel().tolist(), shrink=0.8)
+#     cbar.set_label("Counts")
+#     filename = f"{expname}_confusion.pdf"
+#     full_path = os.path.join(output_path, filename)
+#     # Save with transparent=True so the PDF page background is transparent (viewers will show white by default).
+#     fig.savefig(full_path, dpi=200, bbox_inches="tight", transparent=True)
+#     plt.close(fig)
+#     return full_path
+
+
+def plot_qml(raw_data, expname, output_path="build/"):
     with open(raw_data, "r") as f:
         data = json.load(f)
 
     details = data.get("details", [])
-    # Safely collect labels (default to 0 if missing)
     true = np.array([int(d.get("true_label", 0)) for d in details], dtype=int)
     pred = np.array([int(d.get("predicted_label", 0)) for d in details], dtype=int)
     noiseless = np.array([int(d.get("noiseless_label", 0)) for d in details], dtype=int)
 
-    # Build 2x2 confusion matrices: rows=true (0,1), cols=other (0,1)
-    def confusion_matrix(true_arr, other_arr):
-        cm = np.zeros((2, 2), dtype=int)
-        for t, o in zip(true_arr, other_arr):
-            if t in (0, 1) and o in (0, 1):
-                cm[t, o] += 1
-        return cm
+    # Build confusion matrices (force both classes to appear: 0,1)
+    labels = [0, 1]
+    cm_pred = confusion_matrix(true, pred, labels=labels)
+    cm_noiseless = confusion_matrix(true, noiseless, labels=labels)
 
-    cm_pred = confusion_matrix(true, pred)
-    cm_noiseless = confusion_matrix(true, noiseless)
-
-    # Percentages per true-class row for annotation
-    def cm_percentages(cm):
-        with np.errstate(divide="ignore", invalid="ignore"):
-            row_sums = cm.sum(axis=1, keepdims=True)
-            pct = np.where(row_sums > 0, cm / row_sums * 100.0, 0.0)
-        return pct
-
-    pct_pred = cm_percentages(cm_pred)
-    pct_noiseless = cm_percentages(cm_noiseless)
-
-    # Plot side-by-side
     os.makedirs(output_path, exist_ok=True)
-    fig, axes = plt.subplots(1, 2, figsize=(8, 4), constrained_layout=True)
 
-    # Ensure the figure and axes have a white background and allow saving as transparent
-    fig.patch.set_facecolor("white")
-    for a in np.atleast_1d(axes):
-        a.set_facecolor("white")
+    fig, axes = plt.subplots(1, 2, figsize=(8, 4))
+    disp1 = ConfusionMatrixDisplay(confusion_matrix=cm_pred, display_labels=labels)
+    disp1.plot(cmap="Blues", ax=axes[0], colorbar=False)
+    axes[0].set_title("True vs Predicted")
 
-    for ax, cm, pct, title in zip(
-        axes,
-        (cm_pred, cm_noiseless),
-        (pct_pred, pct_noiseless),
-        ("True vs Predicted", "True vs Noiseless"),
-    ):
-        im = ax.imshow(cm, cmap="YlOrBr", interpolation="nearest", vmin=0)
-        ax.set_xlabel("Predicted")
-        ax.set_ylabel("True")
-        ax.set_xticks([0, 1])
-        ax.set_yticks([0, 1])
-        ax.set_xticklabels([0, 1])
-        ax.set_yticklabels([0, 1])
-        ax.set_title(title)
-        # annotate counts and percentages
-        for i in range(2):
-            for j in range(2):
-                ax.text(
-                    j,
-                    i,
-                    f"{cm[i, j]}\n{pct[i, j]:.1f}%",
-                    ha="center",
-                    va="center",
-                    color="black",
-                    fontsize=15,
-                )
+    disp2 = ConfusionMatrixDisplay(confusion_matrix=cm_noiseless, display_labels=labels)
+    disp2.plot(cmap="Greens", ax=axes[1], colorbar=False)
+    axes[1].set_title("True vs Noiseless")
 
-    cbar = fig.colorbar(im, ax=axes.ravel().tolist(), shrink=0.8)
-    cbar.set_label("Counts")
-    filename = f"{expname}_confusion.pdf"
-    full_path = os.path.join(output_path, filename)
-    # Save with transparent=True so the PDF page background is transparent (viewers will show white by default).
-    fig.savefig(full_path, dpi=200, bbox_inches="tight", transparent=True)
+    fig.suptitle(f"QML Confusion Matrices - {expname}", fontsize=14)
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
+
+    out_file = os.path.join(output_path, f"{expname}_qml_confusion_matrices.pdf")
+    fig.savefig(out_file, dpi=300, bbox_inches="tight")
     plt.close(fig)
-    return full_path
+    return out_file

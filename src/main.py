@@ -181,7 +181,7 @@ def prepare_template_context(cfg):
         "start_time": meta_data.get("start-time", "Unknown Start Time"),
         "end_time": meta_data.get("start-time", "Unknown Start Time"),
         #
-        "report_of_changes": "\\textcolor{green}{More report of changes (from software).}",
+        "report_of_changes": "\\textcolor{green}{Additional data of changes (from software).}",
         #
         "stat_fidelity": stat_fidelity_with_improvement,
         "stat_fidelity_baseline": stat_fidelity_baseline,
@@ -381,24 +381,26 @@ def prepare_template_context(cfg):
 
     ######### TOMOGRAPHY PLOTS
     if cfg.tomography_plot == True:
-        context["tomography_is_set"] = True
+        context["tomography_plot_is_set"] = True
         context["plot_tomography"] = pl.plot_tomography(
             raw_data=os.path.join("data", "tomography", cfg.data_left, "results.json"),
+            expname=f"tomography_{cfg.data_left}",
             output_path=os.path.join("build", "tomography", cfg.data_left),
         )
         context["plot_tomography_baseline"] = pl.plot_tomography(
             raw_data=os.path.join("data", "tomography", cfg.data_right, "results.json"),
+            expname=f"tomography_{cfg.data_right}",
             output_path=os.path.join("build", "tomography", cfg.data_right),
         )
         logging.info("Added Tomography plots to context")
     else:
         logging.info("Tomography plot is not set, skipping...")
-        context["tomography_is_set"] = False
+        context["tomography_plot_is_set"] = False
         pass
 
     ######### REUPLOADING CLASSIFIER PLOTS
     if cfg.reuploading_classifier_plot == True:
-        context["reuploading_classifier_is_set"] = True
+        context["reuploading_classifier_plot_is_set"] = True
         context["plot_reuploading_classifier"] = pl.plot_reuploading_classifier(
             raw_data=os.path.join(
                 "data", "reuploading_classifier", cfg.data_left, "results.json"
@@ -418,7 +420,7 @@ def prepare_template_context(cfg):
         logging.info("Added Reuploading Classifier plots to context")
     else:
         logging.info("Reuploading Classifier plot is not set, skipping...")
-        context["reuploading_classifier_is_set"] = False
+        context["reuploading_classifier_plot_is_set"] = False
         pass
 
     ######### QFT PLOTS
@@ -442,7 +444,7 @@ def prepare_template_context(cfg):
 
     ######### YEAST CLASSIFICATION PLOTS 4Q
     if cfg.yeast_plot_4q == True:
-        context["yeast_classification_4q_is_set"] = True
+        context["yeast_classification_4q_plot_is_set"] = True
         context["plot_yeast_4q"] = pl.plot_qml(
             raw_data=os.path.join(
                 "data", "qml_yeast_class_4q", cfg.data_left, "results.json"
@@ -460,12 +462,18 @@ def prepare_template_context(cfg):
         logging.info("Added Yeast classification 4q plots to context")
     else:
         logging.info("Yeast classification 4q plot is not set, skipping...")
-        context["yeast_classification_4q_is_set"] = False
+        context["yeast_classification_4q_plot_is_set"] = False
         pass
 
     ######### YEAST CLASSIFICATION PLOTS 3Q
     if cfg.yeast_plot_3q == True:
-        context["yeast_classification_3q_is_set"] = True
+        context["yeast_classification_3q_plot_is_set"] = True
+        context["yeast_3q_accuracy_right"] = fl.get_qml_accuracy(
+            os.path.join("data", "qml_yeast_class_3q", cfg.data_left, "results.json")
+        )
+        context["yeast_3q_accuracy_left"] = fl.get_qml_accuracy(
+            os.path.join("data", "qml_yeast_class_3q", cfg.data_left, "results.json")
+        )
         context["plot_yeast_3q"] = pl.plot_qml(
             raw_data=os.path.join(
                 "data", "qml_yeast_class_3q", cfg.data_left, "results.json"
@@ -483,7 +491,7 @@ def prepare_template_context(cfg):
         logging.info("Added Yeast classification 3q plots to context")
     else:
         logging.info("Yeast classification 3q plot is not set, skipping...")
-        context["yeast_classification_3q_is_set"] = False
+        context["yeast_classification_3q_plot_is_set"] = False
         pass
 
     ######### STATLOG CLASSIFICATION PLOTS 4Q
@@ -506,12 +514,18 @@ def prepare_template_context(cfg):
         logging.info("Added StatLog classification 4q plots to context")
     else:
         logging.info("StatLog classification 4q plot is not set, skipping...")
-        context["statlog_classification_4q_is_set"] = False
+        context["statlog_classification_4q_plot_is_set"] = False
         pass
 
     ######### STATLOG CLASSIFICATION PLOTS 3Q
     if cfg.statlog_plot_3q == True:
-        context["statlog_classification_3q_is_set"] = True
+        context["statlog_classification_3q_plot_is_set"] = True
+        context["statlog_3q_accuracy_right"] = fl.get_qml_accuracy(
+            os.path.join("data", "qml_statlog_class_3q", cfg.data_left, "results.json")
+        )
+        context["statlog_3q_accuracy_left"] = fl.get_qml_accuracy(
+            os.path.join("data", "qml_statlog_class_3q", cfg.data_left, "results.json")
+        )
         context["plot_statlog_3q"] = pl.plot_qml(
             raw_data=os.path.join(
                 "data", "qml_statlog_class_3q", cfg.data_left, "results.json"
@@ -529,7 +543,7 @@ def prepare_template_context(cfg):
         logging.info("Added StatLog classification 3q plots to context")
     else:
         logging.info("StatLog classification 3q plot is not set, skipping...")
-        context["statlog_classification_3q_is_set"] = False
+        context["statlog_classification_3q_plot_is_set"] = False
         pass
 
     return context

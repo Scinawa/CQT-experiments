@@ -12,9 +12,12 @@ build: clean
 	python src/main.py \
 		--experiment-left $(EXPERIMENT_DIR) \
 		--experiment-right BASELINE \
-		--no-tomography-plot \
 		--data-left sinq20 \
-		--data-right numpy
+		--data-right numpy \
+		--no-yeast-plot-4q \
+		--no-statlog-plot-4q
+
+
 
 pdf-only: 
 	@echo "Compiling LaTeX report in pdf..."
