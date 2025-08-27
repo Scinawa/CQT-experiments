@@ -764,7 +764,8 @@ if __name__ == "__main__":
         empty_2qb_timings.append(timings)
 
     ### GST 1 QUBIT GATE ###
-    gate_set_1qb = [(gates.GPI2, [0]), (gates.GPI2, [np.pi / 2]), (gates.GPI2, [np.pi / 3]), (gates.GPI2, [np.pi / 4])]
+    # gate_set_1qb = [(gates.GPI2, [0]), (gates.GPI2, [np.pi / 2]), (gates.GPI2, [np.pi / 3]), (gates.GPI2, [np.pi / 4])]
+    gate_set_1qb = [gates.I, gates.X, gates.Y, gates.Z]
     gates_1qb_matrices = []
     gates_1qb_timings = []
     for idx in single_qubit_indices:
