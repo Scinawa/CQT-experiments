@@ -29,24 +29,6 @@ def QFT(qubits_list, device, nshosts, via_client, client):
     # Add measurement
     for q in qubits_list:
         circuit.add(qibo.gates.M(q))
-            
-    # QFT on remote QPU
-    # if via_client:
-    #     total_qubits = 20
-
-    # # QFT
-    # circuit = qibo.Circuit(total_qubits)
-    # for k in range(n_qubits):
-    #     qk = qubits_list[k]
-    #     # circuit.add(qibo.gates.H(qk))
-    #     for j in range(k + 1, n_qubits):
-    #         qj = qubits_list[j]
-    #         theta = np.pi / (2 ** (j - k))
-    #         circuit.add(qibo.gates.CU1(qk, qj, theta))
-
-    # # Run on local sim
-    # if not via_client:
-    #     result = circuit(nshots=nshosts)
     
     # Run locally
     if not via_client:
@@ -54,7 +36,7 @@ def QFT(qubits_list, device, nshosts, via_client, client):
     
     # Run on remote QPU
     if via_client:
-        job = client.run_circuit(circuit, device=device, project="personal", nshots=nshosts)
+        job = client.run_circuit(circuit, device=device, project="nqch-team", nshots=nshosts)
         result = job.result(verbose=True)
     
     return result
@@ -81,14 +63,9 @@ def main(qubits_list, device, nshots, via_client):
     data["nshots"] = nshots
     data["device"] = device
 
-    # total_qubits = int(np.max(qubits_list) + 1)
-
     # On local simulator
     if not via_client:    
         qibo.set_backend(backend=device)
-    # on QPU
-    # if via_client:
-    #     total_qubits = 20
 
     result = QFT(qubits_list, device, nshots, via_client, client)    
 
@@ -120,7 +97,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--qubits_list",
-        default=[0, 1, 2, 3, 4],
+        default=[0, 1, 4],
         type=int,
         nargs='+',
         help="List of qubits exploited in the device",
