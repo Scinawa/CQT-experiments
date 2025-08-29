@@ -8,7 +8,7 @@ from pathlib import Path
 import json
 import os
 import ast
-
+import itertools
 
 def prepare_grid_coupler(
     max_number,
@@ -601,8 +601,61 @@ def do_plot_reuploading(raw_data, output_path="build/"):
     return os.path.join(output_dir, "final_plot.pdf")
 
 
-def plot_process_tomography(raw_data, expname, output_path="build/"):
-    return "placeholder.png"
+def plot_process_tomography(expname, output_path="build/"):
+    """
+    Plot process tomography matrices for a given experiment/expname.
+
+    Args:
+        expname (str): Experiment name to include in the output filename.
+        output_path (str): Directory to save the output plot.
+    Returns:
+        str: Path to saved PDF file.
+    """
+
+    repo_root = os.path.dirname(os.path.dirname(__file__))  # ../ from src/
+    folder_path = os.path.join(repo_root, "data", "process_tomography", expname, "matrices")
+    npy_files = np.sort([f for f in os.listdir(folder_path) if f.endswith(".npy")])
+
+    fig, ax = plt.subplots(len(npy_files), 1, figsize=[len(npy_files)*5, 15], dpi=300)
+
+    # If only one subplot, wrap it in a list for consistency
+    if len(npy_files) == 1:
+        ax = [ax]
+
+    for idx, file_name in enumerate(npy_files):
+        full_path = os.path.join(folder_path, file_name)
+        arr = np.load(full_path)
+
+        # Define labels depending on matrix shape
+        if arr.shape == (4, 4):
+            labels = ["I", "X", "Y", "Z"]
+            fontsize = 10
+        elif arr.shape == (16, 16):
+            single_labels = ["I", "X", "Y", "Z"]
+            labels = [a + b for a, b in itertools.product(single_labels, repeat=2)]
+            fontsize = 8
+        else:
+            labels = []
+            fontsize = 10
+
+        ax[idx].imshow(np.real(arr), cmap="coolwarm", vmin=-1, vmax=1)
+        ax[idx].set_xticks(range(len(labels)))
+        ax[idx].set_yticks(range(len(labels)))
+        ax[idx].set_xticklabels(labels, fontsize=fontsize)
+        ax[idx].set_yticklabels(labels, fontsize=fontsize)
+        title = file_name.removeprefix("gate_").replace(".npy", f"_{expname}")
+        ax[idx].set_title(title)
+
+    plt.tight_layout()
+
+    os.makedirs(output_path, exist_ok=True)
+    out_file = os.path.join(output_path, f"process_tomography_{expname}_matrices.pdf")
+    plt.savefig(out_file, format="pdf", bbox_inches="tight")
+    plt.close()
+
+    # return "placeholder.png"
+    return out_file
+
 
 
 def plot_qft(raw_data, expname, output_path="build/"):
