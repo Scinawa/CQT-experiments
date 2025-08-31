@@ -1224,6 +1224,6 @@
     "final_RZ_angle_check": [
         0.0
     ],
-    "predict_train_duration": 0.5622992515563965,
-    "predict_test_duration": 0.45540928840637207
+    "predict_train_duration": 0.29906511306762695,
+    "predict_test_duration": 0.14028143882751465
 }

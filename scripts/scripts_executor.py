@@ -10,6 +10,25 @@ from logging.handlers import RotatingFileHandler
 
 # Base path to the scripts directory (run from project root)
 base_path = "scripts/"
+experiment_list = [
+    #"GHZ",
+    # "mermin",
+    # "grover2q",
+    # # "tomography", BORKEN on numpy 
+    # #"process_tomography", BROKEN on numpy 
+    # "grover3q",
+    # "universal_approximant",
+    # "reuploading_classifier",
+    # "QFT",
+    # "qml-yeast_class_3q",
+    # "qml-statlog_class_3q",
+    # "qml-statlog_class_4q", TODO
+    # "qml-yeast_class_4q", TODO 
+    #"qml_3Q_yeast",
+    "qml_4Q_yeast",
+    "qml_3Q_statlog",
+    "qml_4Q_statlog"
+]
 
 
 def parse_args():
@@ -34,20 +53,7 @@ def parse_args():
     parser.add_argument(
         "--experiments",
         nargs="+",
-        default=[
-            # "GHZ",
-            # "mermin",
-            # "grover2q",
-            # "tomography",
-            # "grover3q",
-            # "universal_approximant",
-            # "reuploading_classifier",
-            # "QFT"
-            # "qml-yeast_class_4q",
-            "qml-yeast_class_3q",
-            # "qml-statlog_class_4q",
-            "qml-statlog_class_3q",
-        ],
+        default=experiment_list,
         help="List of experiment subfolders to run.",
     )
     return parser.parse_args()

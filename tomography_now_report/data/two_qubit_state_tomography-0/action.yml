@@ -1,0 +1,8 @@
+id: two_qubit_state_tomography
+operation: two_qubit_state_tomography
+parameters:
+  circuit: tomography_now_report/data/two_qubit_state_tomography-0/circuit.json
+targets:
+- - 13
+  - 8
+update: true

@@ -1,7 +1,7 @@
 {
     "final_loss": null,
     "train_accuracy": 1.0,
-    "test_accuracy": 0.96,
+    "test_accuracy": 0.94,
     "duration": null,
     "x_train": [
         [
@@ -1099,10 +1099,10 @@
         1.0,
         1.0,
         1.0,
+        0.0,
         1.0,
         1.0,
-        1.0,
-        1.0,
+        0.0,
         1.0,
         1.0,
         0.0,
@@ -1224,6 +1224,6 @@
     "final_RZ_angle_check": [
         0.0
     ],
-    "predict_train_duration": 0.5622992515563965,
-    "predict_test_duration": 0.45540928840637207
+    "predict_train_duration": 83.85603833198547,
+    "predict_test_duration": 63.55480599403381
 }
