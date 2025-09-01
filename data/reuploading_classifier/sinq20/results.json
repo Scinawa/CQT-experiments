@@ -1,4 +1,7 @@
 {
+    "number_of_gates": 20,
+    "depth": 20,
+    "nshots": 500,
     "final_loss": null,
     "train_accuracy": 1.0,
     "test_accuracy": 0.94,
