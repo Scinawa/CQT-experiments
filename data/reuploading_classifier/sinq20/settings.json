@@ -1,5 +1,5 @@
 {
-    "backend": "numpy",
+    "backend": "qibolab",
     "qubit_id": 9,
     "nlayers": 10,
     "lr": null,

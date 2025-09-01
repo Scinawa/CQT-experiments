@@ -1,0 +1,25 @@
+{
+    "title": "tomography_now_report",
+    "backend": "qibolab",
+    "platform": "sinq20",
+    "start_time": "2025-08-27 07:20:54.792041+00:00",
+    "end_time": "2025-08-27 07:21:08.452526+00:00",
+    "stats": {
+        "two_qubit_state_tomography-0": {
+            "acquisition": 13.173944981768727,
+            "fit": 0.0013990141451358795
+        }
+    },
+    "author": null,
+    "tag": null,
+    "targets": null,
+    "versions": {
+        "qibo": "0.2.19",
+        "numpy": "2.2.6",
+        "qibolab": "0.2.9",
+        "qibocal": "0.2.3"
+    },
+    "date": "2025-08-27",
+    "start-time": "07:20:54",
+    "end-time": "07:21:08"
+}
