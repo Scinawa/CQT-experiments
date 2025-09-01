@@ -509,8 +509,12 @@ def plot_reuploading_classifier(raw_data, output_path="build/"):
     test_y = np.array(data_json["test_predictions"])
     loss_history = data_json["loss_history"]
 
-    fig = plt.figure(figsize=(8, 6), dpi=120)
-    gs = fig.add_gridspec(2, 2, height_ratios=[2, 1])  # 2 rows, 2 columns
+    if loss_history:
+        fig = plt.figure(figsize=(8, 6), dpi=120)
+        gs = fig.add_gridspec(2, 2, height_ratios=[2, 1])  # 2 rows, 2 columns
+    else:
+        fig = plt.figure(figsize=(8, 4), dpi=120)
+        gs = fig.add_gridspec(1, 2)  # 1 row, 2 columns
 
     # Train plot (top-left)
     ax_train = fig.add_subplot(gs[0, 0])
@@ -538,12 +542,13 @@ def plot_reuploading_classifier(raw_data, output_path="build/"):
     )
     ax_test.add_patch(circle_test)
 
-    # Loss plot (bottom row spanning both columns)
-    ax_loss = fig.add_subplot(gs[1, :])
-    ax_loss.plot(loss_history)
-    ax_loss.set_title("Loss plot")
-    ax_loss.set_xlabel(r"$Iteration$")
-    ax_loss.set_ylabel(r"$Loss$")
+    if loss_history:
+        # Loss plot (bottom row spanning both columns)
+        ax_loss = fig.add_subplot(gs[1, :])
+        ax_loss.plot(loss_history)
+        ax_loss.set_title("Loss plot")
+        ax_loss.set_xlabel(r"$Iteration$")
+        ax_loss.set_ylabel(r"$Loss$")
 
     plt.tight_layout()
     os.makedirs(output_path, exist_ok=True)
