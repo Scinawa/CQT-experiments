@@ -360,17 +360,17 @@ def prepare_template_context(cfg):
     if cfg.process_tomography_plot == True:
         context["process_tomography_plot_is_set"] = True
         context["plot_process_tomography"] = pl.plot_process_tomography(
-            raw_data=os.path.join(
-                "data", "process_tomography", cfg.data_left, "results.json"
-            ),
-            expname=f"process_tomography_{cfg.data_left}",
+            # raw_data=os.path.join(
+            #     "data", "process_tomography", cfg.data_left, "results.json"
+            # ),
+            expname=f"{cfg.data_left}",
             output_path=os.path.join("build", "process_tomography", cfg.data_left),
         )
         context["plot_process_tomography_baseline"] = pl.plot_process_tomography(
-            raw_data=os.path.join(
-                "data", "process_tomography", cfg.data_right, "results.json"
-            ),
-            expname=f"process_tomography_{cfg.data_right}",
+            # raw_data=os.path.join(
+            #     "data", "process_tomography", cfg.data_right, "results.json"
+            # ),
+            expname=f"{cfg.data_right}",
             output_path=os.path.join("build", "process_tomography", cfg.data_right),
         )
         logging.info("Added Process Tomography plots to context")
