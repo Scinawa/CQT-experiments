@@ -438,7 +438,7 @@ def plot_grover(raw_data, expname, output_path="build/"):
     return out_file
 
 
-def plot_QFT(raw_data, expname, output_path="build/"):
+def plot_qft(raw_data, expname, output_path="build/"):
     """
     Plot QFT algorithm results as a histogram of measured bitstrings.
     """

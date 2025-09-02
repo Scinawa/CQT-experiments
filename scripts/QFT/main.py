@@ -79,7 +79,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--qubits_list",
-        default=[0, 1, 2, 3, 4],
+        default=[0, 1, 5],
         type=int,
         nargs='+',
         help="List of qubits exploited in the device",
