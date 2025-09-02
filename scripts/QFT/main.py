@@ -1,58 +1,45 @@
 import numpy as np
 import qibo
-import qibo_client
 import os
 import json
-from dynaconf import Dynaconf
+import sys
+from pathlib import Path as _P
 
-def QFT(qubits_list, device, nshosts, via_client, client):                      
-    
-    result = None
+
+sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+import config  # scripts/config.py
+
+
+
+def QFT(qubits_list, device, nshots):
     n_qubits = len(qubits_list)
     total_qubits = int(np.max(qubits_list) + 1)
-    
-    # QFT on local sim
-    if not via_client:
-        circuit = qibo.Circuit(total_qubits)
-    # QFT remotely on QPU
-    if via_client:
-        circuit = qibo.Circuit(20)
-    
-    ## Circuit Definition
+
+    circuit = qibo.Circuit(total_qubits)
+
     # Add Hadamard at the beginning
     for q in qubits_list:
-        circuit.add(qibo.gates.H(q)) 
+        circuit.add(qibo.gates.H(q))
     # QFT
     qft_circuit = qibo.models.QFT(n_qubits, with_swaps=False)
     circuit.add(qft_circuit.on_qubits(*qubits_list))
-    
+
     # Add measurement
     for q in qubits_list:
         circuit.add(qibo.gates.M(q))
-    
-    # Run locally
-    if not via_client:
-        result = circuit(nshosts=nshosts)
-    
-    # Run on remote QPU
-    if via_client:
-        job = client.run_circuit(circuit, device=device, project="nqch-team", nshots=nshosts)
-        result = job.result(verbose=True)
-    
+
+    result = circuit(nshots=nshots)
     return result
 
 
-def main(qubits_list, device, nshots, via_client):
-    client = None
-    if via_client:
-        # Load credentials from .secrets.toml
-        settings = Dynaconf(
-            settings_files=[".secrets.toml"], environments=True, env="default"
-        )
-        print("Loaded key")
-        key = settings.key
-        client = qibo_client.Client(token=key)
-        
+def main(qubits_list, device, nshots):
+    # Remove all qibo_client usage and via_client logic
+    # Set backend as in template/main.py, GHZ/main.py, mermin/main.py
+    if device == "numpy":
+        qibo.set_backend("numpy")
+    else:
+        qibo.set_backend("qibolab", platform=device)
+
     results = dict()
     data = dict()
 
@@ -63,15 +50,10 @@ def main(qubits_list, device, nshots, via_client):
     data["nshots"] = nshots
     data["device"] = device
 
-    # On local simulator
-    if not via_client:    
-        qibo.set_backend(backend=device)
-
-    result = QFT(qubits_list, device, nshots, via_client, client)    
+    result = QFT(qubits_list, device, nshots)
 
     n_qubits = len(qubits_list)
-
-    success_keys = ["0" * n_qubits, "1" * n_qubits ]
+    success_keys = ["0" * n_qubits, "1" * n_qubits]
     total_success = sum(result.frequencies().get(k, 0) for k in success_keys)
     success_rate = total_success / nshots if nshots else 0.0
 
@@ -79,25 +61,25 @@ def main(qubits_list, device, nshots, via_client):
     freq_dict = {bitstr: result.frequencies().get(bitstr, 0) for bitstr in all_bitstrings}
 
     results = {
-            "success_rate": success_rate,
-            "plotparameters": {"frequencies": freq_dict},
-        }
+        "success_rate": success_rate,
+        "plotparameters": {"frequencies": freq_dict},
+    }
 
-    output_dir = f"../../data/QFT/{device}"
-    os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, f"results.json")
+    out_dir = config.output_dir_for(__file__) / device
+    out_dir.mkdir(parents=True, exist_ok=True)
+    output_path = os.path.join(out_dir, f"results.json")
 
     with open(output_path, "w") as f:
         json.dump(results, f)
         print(f'File saved on {output_path}')
-    
+
 import argparse
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--qubits_list",
-        default=[0, 1, 4],
+        default=[0, 1, 5],
         type=int,
         nargs='+',
         help="List of qubits exploited in the device",
@@ -114,8 +96,5 @@ if __name__ == "__main__":
         type=int,
         help="Number of shots for each circuit",
     )
-    parser.add_argument(
-        "--via_client", default=False, type=bool, help="Use qibo client or direct"
-    )
     args = vars(parser.parse_args())
-    main(**args)
+    main(args["qubits_list"], args["device"], args["nshots"])
