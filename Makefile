@@ -6,25 +6,38 @@ TARGET = report.pdf
 EXPERIMENT_DIR ?= rb-1306
 
 build: clean
-	@echo "Building latex report..."
-	python src/main.py --experiment-left $(EXPERIMENT_DIR) --experiment-right BASELINE
-
-pdf: build
 	@mkdir -p build
+	@cp src/templates/placeholder.png build/placeholder.png
+	@echo "Building latex report..."
+	python src/main.py \
+		--experiment-left $(EXPERIMENT_DIR) \
+		--experiment-right BASELINE \
+		--no-tomography-plot \
+		--data-left sinq20 \
+		--data-right numpy
+
+pdf-only: 
 	@echo "Compiling LaTeX report in pdf..."
 	pdflatex -output-directory=build report.tex > build/pdflatex.log
 	@cp build/report.pdf .
 
+pdf: build pdf-only
+	@echo "PDF report generated"
+
+
 clean:
 	@echo "Cleaning build directory..."
-	@rm -f build/*
+	@rm -rf build/*
 
-runscripts:
-	@echo "Running scripts..."
-	python3 scripts/runscripts.py
 
-runscripts-device:
-	@echo "Running scripts with device=nqch..."
-	python3 scripts/runscripts.py --device nqch
+batch-runscripts-numpy:
+	@echo "Running scripts with device=numpy..."
+	sbatch scripts/runscripts_numpy.sh
 
-all: pdf
+
+# Run scripts with device=nqch (add this target)
+batch-runscripts-sinq20:
+	@echo "Running scripts with device=sinq20..."
+	sbatch scripts/runscripts_sinq20.sh
+
+all: batch-runscripts-numpy batch-runscripts-sinq20 build pdf

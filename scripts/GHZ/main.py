@@ -37,13 +37,15 @@ if __name__ == "__main__":
     parser.add_argument("--nqubits", type=int, default=5)
     parser.add_argument("--nshots", type=int, default=1000)
     parser.add_argument(
-        "--device", choices=["numpy", "nqch-sim", "sinq20"], default="numpy"
+        "--device", choices=["numpy", "sinq20"], default="numpy"
     )
     args = parser.parse_args()
 
     if args.device == "numpy":
         set_backend("numpy")
-    # else: keep default behavior; simulation only
+    elif args.device == "sinq20":
+        set_backend("qibolab", platform=args.device)
+
 
     circuit = create_ghz_circuit(args.nqubits)
     result = circuit(nshots=args.nshots)

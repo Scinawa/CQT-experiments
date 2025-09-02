@@ -7,7 +7,8 @@ from matplotlib.ticker import MaxNLocator
 from pathlib import Path
 import json
 import os
-
+import ast
+import itertools
 
 def prepare_grid_coupler(
     max_number,
@@ -64,14 +65,14 @@ def prepare_grid_chevron_swap_coupler(
 
 
 def plot_fidelity_graph(
-    experiment_name, connectivity, pos, output_path="build/", demo_data="data/DEMODATA/"
+    experiment_name, connectivity, pos, output_path="build/", demo_data="data/BASELINE/"
 ):
     """
     Generates a fidelity graph for the given experiment.
     """
 
     # temporary fix for demo data
-    results_demo_json_path = Path(demo_data) / f"fidelity2qb_{experiment_name}.json"
+    results_demo_json_path = Path(demo_data) / f"fidelity2qb.json"
     with open(results_demo_json_path, "r") as f:
         results_tmp = json.load(f)
     # this will be changed because of MLK - beware of stringescape issues
@@ -289,13 +290,16 @@ def plot_t1_decay(qubit_number, data_dir, output_path="build/", suffix=""):
     return full_path
 
 
-def mermin_plot_5q(raw_data, output_path="build/"):
+def mermin_plot(raw_data, expname, output_path="build/"):
     with open(raw_data) as r:
         raw = json.load(r)
 
     # Support both list and dict formats
     x_raw = raw.get("x", {})
     y_raw = raw.get("y", {})
+
+    number_of_qubits_ = [k for k in x_raw.keys()][0]
+    number_of_qubits = len(ast.literal_eval(number_of_qubits_))
 
     series = []
     if isinstance(x_raw, dict) and isinstance(y_raw, dict):
@@ -331,20 +335,26 @@ def mermin_plot_5q(raw_data, output_path="build/"):
         if global_max is None or np.abs(candidate) > np.abs(global_max):
             global_max = candidate
 
-    plt.axhline(4, color="k", linestyle="dashed", label="Local Realism Bound")
-    plt.axhline(-4, color="k", linestyle="dashed")
-    plt.axhline(16, color="red", linestyle="dashed", label="Quantum Bound")
-    plt.axhline(-16, color="red", linestyle="dashed")
+    classical_bound = 2 ** (number_of_qubits // 2)
+
+    quantum_bound = 2 ** ((number_of_qubits - 1) / 2) * (2 ** (number_of_qubits // 2))
+
+    plt.axhline(
+        classical_bound, color="k", linestyle="dashed", label="Local Realism Bound"
+    )
+    plt.axhline(-classical_bound, color="k", linestyle="dashed")
+    plt.axhline(quantum_bound, color="red", linestyle="dashed", label="Quantum Bound")
+    plt.axhline(-quantum_bound, color="red", linestyle="dashed")
 
     plt.xlabel(r"$\theta$ [degrees]")
     plt.ylabel("Result")
     plt.grid()
     if len(series) > 1:
         plt.legend()
-    plt.title(f"Mermin Inequality [5Q]\nMax: {global_max}")
+    plt.title(f"Mermin Inequality [{number_of_qubits} qubits]\nMax: {global_max}")
     plt.tight_layout()
 
-    filename = "mermin_5q.png"
+    filename = f"{expname}_mermin.png"
     full_path = os.path.join(output_path, filename)
     plt.savefig(full_path)
     plt.close()
@@ -398,7 +408,7 @@ def plot_reuploading(x, target, predictions=None, err=None, title="plot", outdir
     return os.path.join(outdir, f"{title}.pdf")
 
 
-def plot_grover(raw_data, output_path="build/"):
+def plot_grover(raw_data, expname, output_path="build/"):
     """
     Plot Grover's algorithm results as a histogram of measured bitstrings.
     """
@@ -422,7 +432,7 @@ def plot_grover(raw_data, output_path="build/"):
     plt.tight_layout()
 
     os.makedirs(output_path, exist_ok=True)
-    out_file = os.path.join(output_path, "grover_results.pdf")
+    out_file = os.path.join(output_path, f"{expname}_results.pdf")
     plt.savefig(out_file)
     plt.close()
     return out_file
@@ -499,8 +509,12 @@ def plot_reuploading_classifier(raw_data, output_path="build/"):
     test_y = np.array(data_json["test_predictions"])
     loss_history = data_json["loss_history"]
 
-    fig = plt.figure(figsize=(8, 6), dpi=120)
-    gs = fig.add_gridspec(2, 2, height_ratios=[2, 1])  # 2 rows, 2 columns
+    if loss_history:
+        fig = plt.figure(figsize=(8, 6), dpi=120)
+        gs = fig.add_gridspec(2, 2, height_ratios=[2, 1])  # 2 rows, 2 columns
+    else:
+        fig = plt.figure(figsize=(8, 4), dpi=120)
+        gs = fig.add_gridspec(1, 2)  # 1 row, 2 columns
 
     # Train plot (top-left)
     ax_train = fig.add_subplot(gs[0, 0])
@@ -528,12 +542,13 @@ def plot_reuploading_classifier(raw_data, output_path="build/"):
     )
     ax_test.add_patch(circle_test)
 
-    # Loss plot (bottom row spanning both columns)
-    ax_loss = fig.add_subplot(gs[1, :])
-    ax_loss.plot(loss_history)
-    ax_loss.set_title("Loss plot")
-    ax_loss.set_xlabel(r"$Iteration$")
-    ax_loss.set_ylabel(r"$Loss$")
+    if loss_history:
+        # Loss plot (bottom row spanning both columns)
+        ax_loss = fig.add_subplot(gs[1, :])
+        ax_loss.plot(loss_history)
+        ax_loss.set_title("Loss plot")
+        ax_loss.set_xlabel(r"$Iteration$")
+        ax_loss.set_ylabel(r"$Loss$")
 
     plt.tight_layout()
     os.makedirs(output_path, exist_ok=True)
@@ -543,3 +558,237 @@ def plot_reuploading_classifier(raw_data, output_path="build/"):
         dpi=300,
     )
     plt.close(fig)
+    return os.path.join(output_path, "reuploading_classifier_results.pdf")
+
+
+def do_plot_reuploading(raw_data, output_path="build/"):
+    """
+    Generate reuploading plots for each epoch and a final summary plot using data from the results JSON file.
+
+    Args:
+        results_file (str): Path to the JSON file containing reuploading results.
+    """
+    with open(raw_data, "r") as f:
+        results = json.load(f)
+
+    output_dir = output_path
+
+    # Generate a plot for each epoch
+    for epoch_data in results["epoch_data"]:
+        epoch = epoch_data["epoch"]
+        x_train = np.array(epoch_data["x_train"])
+        y_train = np.array(epoch_data["y_train"])
+        predictions = np.array(epoch_data["predictions"])
+
+        plot_reuploading(
+            x=x_train,
+            target=y_train,
+            predictions=predictions,
+            title=f"epoch_{epoch:03d}",
+            outdir=output_dir,
+        )
+
+    # Generate the final summary plot
+    x_train = np.array(results["epoch_data"][-1]["x_train"])
+    y_train = np.array(results["epoch_data"][-1]["y_train"])
+    median_pred = np.array(results["median_predictions"])
+    mad_pred = np.array(results["mad_predictions"])
+
+    plot_reuploading(
+        x=x_train,
+        target=y_train,
+        predictions=median_pred,
+        err=mad_pred,
+        title="final_plot",
+        outdir=output_dir,
+    )
+
+    return os.path.join(output_dir, "final_plot.pdf")
+
+
+def plot_process_tomography(expname, output_path="build/"):
+    """
+    Plot process tomography matrices for a given experiment/expname.
+
+    Args:
+        expname (str): Experiment name to include in the output filename.
+        output_path (str): Directory to save the output plot.
+    Returns:
+        str: Path to saved PDF file.
+    """
+
+    repo_root = os.path.dirname(os.path.dirname(__file__))  # ../ from src/
+    folder_path = os.path.join(repo_root, "data", "process_tomography", expname, "matrices")
+    npy_files = np.sort([f for f in os.listdir(folder_path) if f.endswith(".npy")])
+
+    fig, ax = plt.subplots(len(npy_files), 1, figsize=[len(npy_files)*5, 15], dpi=300)
+
+    # If only one subplot, wrap it in a list for consistency
+    if len(npy_files) == 1:
+        ax = [ax]
+
+    for idx, file_name in enumerate(npy_files):
+        full_path = os.path.join(folder_path, file_name)
+        arr = np.load(full_path)
+
+        # Define labels depending on matrix shape
+        if arr.shape == (4, 4):
+            labels = ["I", "X", "Y", "Z"]
+            fontsize = 10
+        elif arr.shape == (16, 16):
+            single_labels = ["I", "X", "Y", "Z"]
+            labels = [a + b for a, b in itertools.product(single_labels, repeat=2)]
+            fontsize = 8
+        else:
+            labels = []
+            fontsize = 10
+
+        ax[idx].imshow(np.real(arr), cmap="coolwarm", vmin=-1, vmax=1)
+        ax[idx].set_xticks(range(len(labels)))
+        ax[idx].set_yticks(range(len(labels)))
+        ax[idx].set_xticklabels(labels, fontsize=fontsize)
+        ax[idx].set_yticklabels(labels, fontsize=fontsize)
+        title = file_name.removeprefix("gate_").replace(".npy", f"_{expname}")
+        ax[idx].set_title(title)
+
+    plt.tight_layout()
+
+    os.makedirs(output_path, exist_ok=True)
+    out_file = os.path.join(output_path, f"process_tomography_{expname}_matrices.pdf")
+    plt.savefig(out_file, format="pdf", bbox_inches="tight")
+    plt.close()
+
+    # return "placeholder.png"
+    return out_file
+
+
+
+def plot_qft(raw_data, expname, output_path="build/"):
+    """
+    Plot the results of a Quantum Fourier Transform (QFT) experiment as a histogram.
+
+    Args:
+        raw_data (str): Path to the JSON file containing the QFT results.
+        expname (str): Experiment name to include in the output filename.
+        output_path (str): Directory to save the output plot.
+
+    Returns:
+        str: Path to the saved plot file.
+    """
+    with open(raw_data, "r") as f:
+        data = json.load(f)
+
+    dataplot = data["plotparameters"]["frequencies"]
+    n_shots = data.get("n_shots", 1000)
+    qubits_list = data.get("qubits_list", [])
+    n_qubits = len(qubits_list)
+
+    os.makedirs(output_path, exist_ok=True)
+
+    with plt.style.context("fivethirtyeight"):
+        plt.bar(dataplot.keys(), dataplot.values())
+        plt.title("QFT")
+        plt.xlabel("States")
+        plt.xticks(rotation=90)
+        plt.ylabel("Counts")
+        plt.axhline(
+            n_shots / 2**n_qubits,
+            color="k",
+            linestyle="dashed",
+            label="Target Frequency",
+        )
+        plt.legend()
+        plt.tight_layout()
+
+        filename = f"{expname}_QFT_on_{qubits_list}_{n_shots}shots.pdf"
+        full_path = os.path.join(output_path, filename)
+        plt.savefig(full_path)
+
+    plt.close()
+    return full_path
+
+
+def plot_qml(raw_data, expname, output_path="build/"):
+    """
+    Plot two confusion matrices for the qml_classification experiment:
+      - left: true_label vs predicted_label
+      - right: true_label vs noiseless_label
+
+    raw_data: path to results.json
+    expname: used to build output filename
+    output_path: directory to save the plot (folder will be created)
+    """
+    with open(raw_data, "r") as f:
+        data = json.load(f)
+
+    details = data.get("details", [])
+    # Safely collect labels (default to 0 if missing)
+    true = np.array([int(d.get("true_label", 0)) for d in details], dtype=int)
+    pred = np.array([int(d.get("predicted_label", 0)) for d in details], dtype=int)
+    noiseless = np.array([int(d.get("noiseless_label", 0)) for d in details], dtype=int)
+
+    # Build 2x2 confusion matrices: rows=true (0,1), cols=other (0,1)
+    def confusion_matrix(true_arr, other_arr):
+        cm = np.zeros((2, 2), dtype=int)
+        for t, o in zip(true_arr, other_arr):
+            if t in (0, 1) and o in (0, 1):
+                cm[t, o] += 1
+        return cm
+
+    cm_pred = confusion_matrix(true, pred)
+    cm_noiseless = confusion_matrix(true, noiseless)
+
+    # Percentages per true-class row for annotation
+    def cm_percentages(cm):
+        with np.errstate(divide="ignore", invalid="ignore"):
+            row_sums = cm.sum(axis=1, keepdims=True)
+            pct = np.where(row_sums > 0, cm / row_sums * 100.0, 0.0)
+        return pct
+
+    pct_pred = cm_percentages(cm_pred)
+    pct_noiseless = cm_percentages(cm_noiseless)
+
+    # Plot side-by-side
+    os.makedirs(output_path, exist_ok=True)
+    fig, axes = plt.subplots(1, 2, figsize=(8, 4), constrained_layout=True)
+
+    # Ensure the figure and axes have a white background and allow saving as transparent
+    fig.patch.set_facecolor("white")
+    for a in np.atleast_1d(axes):
+        a.set_facecolor("white")
+
+    for ax, cm, pct, title in zip(
+        axes,
+        (cm_pred, cm_noiseless),
+        (pct_pred, pct_noiseless),
+        ("True vs Predicted", "True vs Noiseless"),
+    ):
+        im = ax.imshow(cm, cmap="YlOrBr", interpolation="nearest", vmin=0)
+        ax.set_xlabel("Predicted")
+        ax.set_ylabel("True")
+        ax.set_xticks([0, 1])
+        ax.set_yticks([0, 1])
+        ax.set_xticklabels([0, 1])
+        ax.set_yticklabels([0, 1])
+        ax.set_title(title)
+        # annotate counts and percentages
+        for i in range(2):
+            for j in range(2):
+                ax.text(
+                    j,
+                    i,
+                    f"{cm[i, j]}\n{pct[i, j]:.1f}%",
+                    ha="center",
+                    va="center",
+                    color="black",
+                    fontsize=15,
+                )
+
+    cbar = fig.colorbar(im, ax=axes.ravel().tolist(), shrink=0.8)
+    cbar.set_label("Counts")
+    filename = f"{expname}_confusion.pdf"
+    full_path = os.path.join(output_path, filename)
+    # Save with transparent=True so the PDF page background is transparent (viewers will show white by default).
+    fig.savefig(full_path, dpi=200, bbox_inches="tight", transparent=True)
+    plt.close(fig)
+    return full_path

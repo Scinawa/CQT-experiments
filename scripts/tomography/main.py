@@ -1,6 +1,7 @@
 import os
 import pathlib
 import argparse
+from qibo import set_backend
 import json
 import sys
 
@@ -16,7 +17,7 @@ import numpy as np
 
 targets = (13, 8)
 root_path = "tomography_now_report"
-platform = "sinq-20"
+platform = "sinq20"
 
 with Executor.open(
     "myexec",

@@ -19,7 +19,15 @@ dependencies = [
     "jwt",
     "pyjwt",
     "requests",
-    "dynaconf"
+    "dynaconf",
+    "sympy",
+    "qibo",
+    "qibo_client",
+    "qibocal",
+    "git",
+    "torch",
+    "torchvision",
+    "qiboml",
 ]
 
 [build-system]
