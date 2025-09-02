@@ -10,7 +10,7 @@ sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
 
-def QFT(qubits_list, nshots):
+def QFT(qubits_list, device, nshots):
     n_qubits = len(qubits_list)
     total_qubits = int(np.max(qubits_list) + 1)
 
