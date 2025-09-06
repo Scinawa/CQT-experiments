@@ -422,23 +422,20 @@ def plot_grover(raw_data, expname, output_path="build/"):
     key = next(iter(frequencies))
     freq_dict = frequencies[key]
 
-    # Convert bitstrings to integers for plotting to avoid matplotlib categorical warning
-    try:
-        bitstrings = [int(bs) for bs in freq_dict]
-        x_tick_labels = [str(bs) for bs in freq_dict]
-    except Exception:
-        # fallback: use as string
-        bitstrings = list(range(len(freq_dict)))
-        x_tick_labels = [str(bs) for bs in freq_dict]
-
-    counts = [freq_dict[bs] for bs in freq_dict]
+    # Use evenly spaced numeric positions and set bitstrings as tick labels to avoid gaps/warnings
+    labels = list(freq_dict.keys())
+    if all(isinstance(k, str) and set(k) <= {"0", "1"} for k in labels):
+        labels = sorted(labels, key=lambda s: int(s, 2))
+    x = np.arange(len(labels))
+    counts = [freq_dict[k] for k in labels]
+    tick_labels = [str(k) for k in labels]
 
     plt.figure()
-    plt.bar(bitstrings, counts, color="skyblue", edgecolor="black")
+    plt.bar(x, counts, color="skyblue", edgecolor="black")
     plt.xlabel("Bitstring")
     plt.ylabel("Counts")
     plt.title("Grover's Algorithm Measurement Histogram")
-    plt.xticks(bitstrings, x_tick_labels, rotation=45, ha="right")
+    plt.xticks(x, tick_labels, rotation=45, ha="right")
     plt.tight_layout()
 
     os.makedirs(output_path, exist_ok=True)
@@ -760,101 +757,31 @@ def plot_qft(raw_data, expname, output_path="build/"):
     plt.close()
     return full_path
 
-
-# def plot_qml(raw_data, expname, output_path="build/"):
-#     """
-#     Plot two confusion matrices for the qml_classification experiment:
-#       - left: true_label vs predicted_label
-#       - right: true_label vs noiseless_label
-
-#     raw_data: path to results.json
-#     expname: used to build output filename
-#     output_path: directory to save the plot (folder will be created)
-#     """
-#     with open(raw_data, "r") as f:
-#         data = json.load(f)
-
-#     details = data.get("details", [])
-#     # Safely collect labels (default to 0 if missing)
-#     true = np.array([int(d.get("true_label", 0)) for d in details], dtype=int)
-#     pred = np.array([int(d.get("predicted_label", 0)) for d in details], dtype=int)
-#     noiseless = np.array([int(d.get("noiseless_label", 0)) for d in details], dtype=int)
-
-#     # Build 2x2 confusion matrices: rows=true (0,1), cols=other (0,1)
-#     def confusion_matrix(true_arr, other_arr):
-#         cm = np.zeros((2, 2), dtype=int)
-#         for t, o in zip(true_arr, other_arr):
-#             if t in (0, 1) and o in (0, 1):
-#                 cm[t, o] += 1
-#         return cm
-
-#     cm_pred = confusion_matrix(true, pred)
-#     cm_noiseless = confusion_matrix(true, noiseless)
-
-#     # Percentages per true-class row for annotation
-#     def cm_percentages(cm):
-#         with np.errstate(divide="ignore", invalid="ignore"):
-#             row_sums = cm.sum(axis=1, keepdims=True)
-#             pct = np.where(row_sums > 0, cm / row_sums * 100.0, 0.0)
-#         return pct
-
-#     pct_pred = cm_percentages(cm_pred)
-#     pct_noiseless = cm_percentages(cm_noiseless)
-
-#     # Plot side-by-side
-#     os.makedirs(output_path, exist_ok=True)
-#     fig, axes = plt.subplots(1, 2, figsize=(8, 4), constrained_layout=True)
-
-#     # Ensure the figure and axes have a white background and allow saving as transparent
-#     fig.patch.set_facecolor("white")
-#     for a in np.atleast_1d(axes):
-#         a.set_facecolor("white")
-
-#     for ax, cm, pct, title in zip(
-#         axes,
-#         (cm_pred, cm_noiseless),
-#         (pct_pred, pct_noiseless),
-#         ("True vs Predicted", "True vs Noiseless"),
-#     ):
-#         im = ax.imshow(cm, cmap="YlOrBr", interpolation="nearest", vmin=0)
-#         ax.set_xlabel("Predicted")
-#         ax.set_ylabel("True")
-#         ax.set_xticks([0, 1])
-#         ax.set_yticks([0, 1])
-#         ax.set_xticklabels([0, 1])
-#         ax.set_yticklabels([0, 1])
-#         ax.set_title(title)
-#         # annotate counts and percentages
-#         for i in range(2):
-#             for j in range(2):
-#                 ax.text(
-#                     j,
-#                     i,
-#                     f"{cm[i, j]}\n{pct[i, j]:.1f}%",
-#                     ha="center",
-#                     va="center",
-#                     color="black",
-#                     fontsize=15,
-#                 )
-
-#     cbar = fig.colorbar(im, ax=axes.ravel().tolist(), shrink=0.8)
-#     cbar.set_label("Counts")
-#     filename = f"{expname}_confusion.pdf"
-#     full_path = os.path.join(output_path, filename)
-#     # Save with transparent=True so the PDF page background is transparent (viewers will show white by default).
-#     fig.savefig(full_path, dpi=200, bbox_inches="tight", transparent=True)
-#     plt.close(fig)
-#     return full_path
-
-
 def plot_qml(raw_data, expname, output_path="build/"):
+    import numpy as np
+    from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+    import matplotlib.pyplot as plt
+    import os
+    import json
+
     with open(raw_data, "r") as f:
         data = json.load(f)
 
-    details = data.get("details", [])
-    true = np.array([int(d.get("true_label", 0)) for d in details], dtype=int)
-    pred = np.array([int(d.get("predicted_label", 0)) for d in details], dtype=int)
-    noiseless = np.array([int(d.get("noiseless_label", 0)) for d in details], dtype=int)
+    qc_configurations = data.get("qc_configurations", {})
+
+    # Extract true and predicted labels from the dict values
+    true = []
+    pred = []
+    noiseless = []
+
+    for sample in qc_configurations.values():
+        true.append(int(sample.get("label", 0)))
+        pred.append(int(sample.get("qibo_predicted_label", 0)))
+        noiseless.append(int(sample.get("noiseless_label", 0)))
+
+    true = np.array(true, dtype=int)
+    pred = np.array(pred, dtype=int)
+    noiseless = np.array(noiseless, dtype=int)
 
     # Build confusion matrices (force both classes to appear: 0,1)
     labels = [0, 1]
