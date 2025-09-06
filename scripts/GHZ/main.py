@@ -5,6 +5,7 @@ import os
 import argparse
 import sys
 from pathlib import Path as _P
+import time
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
@@ -48,11 +49,22 @@ if __name__ == "__main__":
 
 
     circuit = create_ghz_circuit(args.nqubits)
+    
+
+    start_time = time.time()
     result = circuit(nshots=args.nshots)
+    end_time = time.time()
+    runtime_seconds = end_time - start_time
+
+
+
     frequencies = result.frequencies()
     results = prepare_ghz_results(frequencies, args.nshots, args.nqubits, circuit)
     out_dir = config.output_dir_for(__file__, args.device)
-    
+
+    results['runtime']= f"{runtime_seconds:.5f} seconds."
+    results['description']= f"GHZ circuit with {args.nqubits} qubits executed on {args.device} backend with {args.nshots} shots. \n We measure the success rate of obtaining the GHZ state (all 0s or all 1s)."
+
 
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, "results.json"), "w") as f:

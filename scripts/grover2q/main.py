@@ -47,9 +47,17 @@ def main(qubit_pairs, device, nshots):
     data["device"] = device
     data["target"] = target
 
+    _tmp_runtimes = []
+
     for qubits in qubit_pairs:
         c = grover_2q(qubits, target)
+
+        start_time = time.time()
         r = c(nshots=nshots)
+        end_time = time.time()
+        _tmp_runtimes.append(end_time - start_time)
+
+
         freq = r.frequencies()
 
         target_freq = freq.get(target, 0)
@@ -60,6 +68,11 @@ def main(qubit_pairs, device, nshots):
         all_bitstrings = [format(i, f"0{num_bits}b") for i in range(2**num_bits)]
         prob_dict = {bs: (freq.get(bs, 0) / nshots) for bs in all_bitstrings}
         results["plotparameters"]["frequencies"][f"{qubits}"] = prob_dict
+
+
+    runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
+    results['runtime']= f"{runtime_seconds:.5f} seconds."
+    results['description']= f"Grover's algorithm for 2 qubits executed on {device} backend with {nshots} shots per circuit. \n We measure the success rate of finding the target state '{target}' for each pair of qubits in {qubit_pairs}."
 
     # Write to data/<scriptname>/<device>/results.json
     out_dir = config.output_dir_for(__file__, device)
