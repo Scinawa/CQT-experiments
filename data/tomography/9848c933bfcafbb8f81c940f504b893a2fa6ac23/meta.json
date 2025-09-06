@@ -1,0 +1,20 @@
+{
+    "title": "9848c933bfcafbb8f81c940f504b893a2fa6ac23",
+    "backend": "qibolab",
+    "platform": "sinq20",
+    "start_time": "2025-09-06 21:15:18.107978+00:00",
+    "end_time": "2025-09-06 21:15:31.146884+00:00",
+    "stats": {},
+    "author": null,
+    "tag": null,
+    "targets": null,
+    "versions": {
+        "qibo": "0.2.19",
+        "numpy": "2.2.6",
+        "qibolab": "0.2.9",
+        "qibocal": "0.2.3"
+    },
+    "date": "2025-09-06",
+    "start-time": "21:15:18",
+    "end-time": "21:15:31"
+}

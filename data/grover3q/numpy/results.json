@@ -1,19 +1,21 @@
 {
     "success_rate": {
-        "[0, 1, 3, 4]": 0.782
+        "[0, 1, 3, 4]": 0.795
     },
     "plotparameters": {
         "frequencies": {
             "[0, 1, 3, 4]": {
-                "000": 0.037,
-                "001": 0.03,
-                "010": 0.028,
-                "011": 0.028,
-                "100": 0.036,
-                "101": 0.036,
-                "110": 0.023,
-                "111": 0.782
+                "000": 0.025,
+                "001": 0.02,
+                "010": 0.032,
+                "011": 0.038,
+                "100": 0.028,
+                "101": 0.03,
+                "110": 0.032,
+                "111": 0.795
             }
         }
-    }
+    },
+    "runtime": "0.49315 seconds.",
+    "description": "Grover's algorithm for 3 qubits executed on numpy backend with 1000 shots per circuit. \n We measure the success rate of finding the target state '111' for each pair of qubits in [[0, 1, 3, 4]]."
 }

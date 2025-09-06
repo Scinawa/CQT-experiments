@@ -2,7 +2,7 @@
     "success_rate": 1.0,
     "plotparameters": {
         "frequencies": {
-            "00000": 505,
+            "00000": 509,
             "00001": 0,
             "00010": 0,
             "00011": 0,
@@ -33,7 +33,9 @@
             "11100": 0,
             "11101": 0,
             "11110": 0,
-            "11111": 495
+            "11111": 491
         }
-    }
+    },
+    "runtime": "0.13852 seconds.",
+    "description": "GHZ circuit with 5 qubits executed on numpy backend with 1000 shots. \n We measure the success rate of obtaining the GHZ state (all 0s or all 1s)."
 }

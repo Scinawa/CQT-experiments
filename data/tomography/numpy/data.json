@@ -1,0 +1,8 @@
+{
+    "targets": [
+        13,
+        8
+    ],
+    "nshots": 1000,
+    "device": "numpy"
+}

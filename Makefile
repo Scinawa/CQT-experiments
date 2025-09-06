@@ -17,7 +17,7 @@ build: clean
 
 pdf-only: 
 	@echo "Compiling LaTeX report in pdf..."
-	pdflatex -output-directory=build report.tex > build/pdflatex.log
+	pdflatex -output-directory=build report.tex > logs/pdflatex.log
 	@cp build/report.pdf .
 
 pdf: build pdf-only
