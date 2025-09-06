@@ -70,9 +70,9 @@
 \begin{tauenvmine}
 %\vspace{-0.2.cm}
 \centering
-{\Large \textbf{ {{ new_version.runcard | replace('_', '\\_') }} }} \\
-%\textbf{Runcard:} \href{ {{ new_version.runcard_link }} }{ {{ new_version.runcard | replace('_', '\\_') }} }
-\href{ {{ new_version.runcard_link }} }{ Link to Runcard }
+{\Large \textbf{ {{ version.runcard | replace('_', '\\_') }} }} \\
+%\textbf{Runcard:} \href{ {{ version.runcard_link }} }{ {{ version.runcard | replace('_', '\\_') }} }
+\href{ {{ version.runcard_link }} }{ Link to Runcard }
 %\vspace{0.15cm}
 \end{tauenvmine}
 \end{center}
@@ -83,9 +83,9 @@
 \begin{tauenvmine}
 %\vspace{-0.2cm}
 \centering
-{\Large \textbf{ {{ control_version.runcard | replace('_', '\\_') }} }} \\
-%\textbf{Runcard:} \href{ {{ control_version.runcard_link }} }{ {{ control_version.runcard | replace('_', '\\_') }} }
-\href{ {{ control_version.runcard_link }} }{ Link to Runcard }
+{\Large \textbf{ {{ version_baseline.runcard | replace('_', '\\_') }} }} \\
+%\textbf{Runcard:} \href{ {{ version_baseline.runcard_link }} }{ {{ version_baseline.runcard | replace('_', '\\_') }} }
+\href{ {{ version_baseline.runcard_link }} }{ Link to Runcard }
 %\vspace{0.15cm}
 \end{tauenvmine}
 \end{center}
@@ -103,7 +103,7 @@
 \begin{tabular}{@{}ll|ll@{}}
 \toprule
 \textbf{Library} & \textbf{Version} & \textbf{Library} & \textbf{Version} \\ \midrule
-{% set items = new_version.versions.items()|list %}
+{% set items = version.versions.items()|list %}
 {% for i in range(0, items|length, 2) %}
     {{ items[i][0] | replace('_', '\\_') }} & {{ items[i][1] | replace('_', '\\_') }} 
     {% if i + 1 < items|length %}
@@ -129,7 +129,7 @@
 \begin{tabular}{@{}ll|ll@{}}
 \toprule
 \textbf{Library} & \textbf{Version} & \textbf{Library} & \textbf{Version} \\ \midrule
-{% set items = control_version.versions.items()|list %}
+{% set items = version_baseline.versions.items()|list %}
 {% for i in range(0, items|length, 2) %}
     {{ items[i][0] | replace('_', '\\_') }} & {{ items[i][1] | replace('_', '\\_') }} 
     {% if i + 1 < items|length %}

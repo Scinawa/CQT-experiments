@@ -1,4 +1,7 @@
 {
+    "number_of_gates": 20,
+    "depth": 20,
+    "nshots": 500,
     "final_loss": null,
     "train_accuracy": 1.0,
     "test_accuracy": 0.96,
@@ -1224,6 +1227,6 @@
     "final_RZ_angle_check": [
         0.0
     ],
-    "predict_train_duration": 0.29906511306762695,
-    "predict_test_duration": 0.14028143882751465
+    "predict_train_duration": 0.5930044651031494,
+    "predict_test_duration": 0.48374319076538086
 }

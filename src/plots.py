@@ -10,6 +10,7 @@ import os
 import ast
 
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+import itertools
 
 
 def prepare_grid_coupler(
@@ -66,15 +67,13 @@ def prepare_grid_chevron_swap_coupler(
     return plot_grid
 
 
-def plot_fidelity_graph(
-    experiment_name, connectivity, pos, output_path="build/", demo_data="data/BASELINE/"
-):
+def plot_fidelity_graph(experiment_name, connectivity, pos, output_path="build/"):
     """
     Generates a fidelity graph for the given experiment.
     """
 
     # temporary fix for demo data
-    results_demo_json_path = Path(demo_data) / f"fidelity2qb.json"
+    results_demo_json_path = "data" / Path(experiment_name) / f"fidelity2qb.json"
     with open(results_demo_json_path, "r") as f:
         results_tmp = json.load(f)
     # this will be changed because of MLK - beware of stringescape issues
@@ -513,8 +512,12 @@ def plot_reuploading_classifier(raw_data, output_path="build/"):
     test_y = np.array(data_json["test_predictions"])
     loss_history = data_json["loss_history"]
 
-    fig = plt.figure(figsize=(8, 6), dpi=120)
-    gs = fig.add_gridspec(2, 2, height_ratios=[2, 1])  # 2 rows, 2 columns
+    if loss_history:
+        fig = plt.figure(figsize=(8, 6), dpi=120)
+        gs = fig.add_gridspec(2, 2, height_ratios=[2, 1])  # 2 rows, 2 columns
+    else:
+        fig = plt.figure(figsize=(8, 4), dpi=120)
+        gs = fig.add_gridspec(1, 2)  # 1 row, 2 columns
 
     # Train plot (top-left)
     ax_train = fig.add_subplot(gs[0, 0])
@@ -542,12 +545,13 @@ def plot_reuploading_classifier(raw_data, output_path="build/"):
     )
     ax_test.add_patch(circle_test)
 
-    # Loss plot (bottom row spanning both columns)
-    ax_loss = fig.add_subplot(gs[1, :])
-    ax_loss.plot(loss_history)
-    ax_loss.set_title("Loss plot")
-    ax_loss.set_xlabel(r"$Iteration$")
-    ax_loss.set_ylabel(r"$Loss$")
+    if loss_history:
+        # Loss plot (bottom row spanning both columns)
+        ax_loss = fig.add_subplot(gs[1, :])
+        ax_loss.plot(loss_history)
+        ax_loss.set_title("Loss plot")
+        ax_loss.set_xlabel(r"$Iteration$")
+        ax_loss.set_ylabel(r"$Loss$")
 
     plt.tight_layout()
     os.makedirs(output_path, exist_ok=True)
@@ -605,8 +609,62 @@ def do_plot_reuploading(raw_data, output_path="build/"):
     return os.path.join(output_dir, "final_plot.pdf")
 
 
-def plot_process_tomography(raw_data, expname, output_path="build/"):
-    return "placeholder.png"
+def plot_process_tomography(expname, output_path="build/"):
+    """
+    Plot process tomography matrices for a given experiment/expname.
+
+    Args:
+        expname (str): Experiment name to include in the output filename.
+        output_path (str): Directory to save the output plot.
+    Returns:
+        str: Path to saved PDF file.
+    """
+
+    repo_root = os.path.dirname(os.path.dirname(__file__))  # ../ from src/
+    folder_path = os.path.join(
+        repo_root, "data", "process_tomography", expname, "matrices"
+    )
+    npy_files = np.sort([f for f in os.listdir(folder_path) if f.endswith(".npy")])
+
+    fig, ax = plt.subplots(len(npy_files), 1, figsize=[len(npy_files) * 5, 15], dpi=300)
+
+    # If only one subplot, wrap it in a list for consistency
+    if len(npy_files) == 1:
+        ax = [ax]
+
+    for idx, file_name in enumerate(npy_files):
+        full_path = os.path.join(folder_path, file_name)
+        arr = np.load(full_path)
+
+        # Define labels depending on matrix shape
+        if arr.shape == (4, 4):
+            labels = ["I", "X", "Y", "Z"]
+            fontsize = 10
+        elif arr.shape == (16, 16):
+            single_labels = ["I", "X", "Y", "Z"]
+            labels = [a + b for a, b in itertools.product(single_labels, repeat=2)]
+            fontsize = 8
+        else:
+            labels = []
+            fontsize = 10
+
+        ax[idx].imshow(np.real(arr), cmap="coolwarm", vmin=-1, vmax=1)
+        ax[idx].set_xticks(range(len(labels)))
+        ax[idx].set_yticks(range(len(labels)))
+        ax[idx].set_xticklabels(labels, fontsize=fontsize)
+        ax[idx].set_yticklabels(labels, fontsize=fontsize)
+        title = file_name.removeprefix("gate_").replace(".npy", f"_{expname}")
+        ax[idx].set_title(title)
+
+    plt.tight_layout()
+
+    os.makedirs(output_path, exist_ok=True)
+    out_file = os.path.join(output_path, f"process_tomography_{expname}_matrices.pdf")
+    plt.savefig(out_file, format="pdf", bbox_inches="tight")
+    plt.close()
+
+    # return "placeholder.png"
+    return out_file
 
 
 def plot_tomography(raw_data, expname, output_path="build/"):
@@ -775,4 +833,35 @@ def plot_qml(raw_data, expname, output_path="build/"):
     out_file = os.path.join(output_path, f"{expname}_qml_confusion_matrices.pdf")
     fig.savefig(out_file, dpi=300, bbox_inches="tight")
     plt.close(fig)
+    return out_file
+
+
+def plot_amplitude_encoding(raw_data, expname, output_path="build/"):
+    """
+    Plot Amplitude Encoding algorithm results as a histogram of measured
+    bitstrings, together with the expected outcome.
+    """
+    # Load data from JSON file
+    with open(raw_data, "r") as f:
+        data = json.load(f)
+
+    # Extract frequencies for the first (and only) key in 'frequencies'
+    frequencies = data["plotparameters"]["frequencies"]
+    input_vector = data["input_vector"]
+    norm_vector = input_vector / np.linalg.norm(input_vector)
+
+    plt.figure()
+    plt.bar(
+        frequencies.keys(), frequencies.values(), color="skyblue", edgecolor="black"
+    )
+    plt.plot(norm_vector**2 * np.sum(frequencies.values()), "-x", c="red")
+    plt.xlabel("Bitstring")
+    plt.ylabel("Counts")
+    plt.title("Amplitude Encoding Algorithm Measurement Histogram")
+    plt.tight_layout()
+
+    os.makedirs(output_path, exist_ok=True)
+    out_file = os.path.join(output_path, f"{expname}_results.pdf")
+    plt.savefig(out_file)
+    plt.close()
     return out_file

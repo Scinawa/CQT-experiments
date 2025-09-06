@@ -51,8 +51,9 @@ if __name__ == "__main__":
     result = circuit(nshots=args.nshots)
     frequencies = result.frequencies()
     results = prepare_ghz_results(frequencies, args.nshots, args.nqubits, circuit)
+    out_dir = config.output_dir_for(__file__, args.device)
+    
 
-    out_dir = config.output_dir_for(__file__) / args.device
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, "results.json"), "w") as f:
         json.dump(results, f, indent=4)

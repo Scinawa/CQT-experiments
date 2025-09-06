@@ -62,7 +62,7 @@ def main(qubit_pairs, device, nshots):
         results["plotparameters"]["frequencies"][f"{qubits}"] = prob_dict
 
     # Write to data/<scriptname>/<device>/results.json
-    out_dir = config.output_dir_for(__file__) / device
+    out_dir = config.output_dir_for(__file__, device)
     out_dir.mkdir(parents=True, exist_ok=True)
     try:
         with (out_dir / "data.json").open("w", encoding="utf-8") as f:

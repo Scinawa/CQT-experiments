@@ -87,27 +87,18 @@ def get_maximum_mermin(experiment_dir, filename):
     return max_value
 
 
-def context_new_version(args, meta_data):
+def context_version(experiment_dir, meta_data=None):
     """
-    Get the current version of the libraries used in the benchmarking suite.
+    Get the version info and runcard for the given experiment directory.
+    If meta_data is not provided, it will be loaded from meta.json in the directory.
     """
+    if meta_data is None:
+        meta_json_path = Path("data") / experiment_dir / "meta.json"
+        with open(meta_json_path, "r") as f:
+            meta_data = json.load(f)
     return {
         "versions": meta_data.get("versions", {}),
-        "runcard": meta_data.get("runcard", args.experiment_left),
-        "runcard_link": meta_data.get("runcard_link", "https://link-to-runcard.com"),
-    }
-
-
-def context_control_version(args):
-    """
-    Get the control version of the libraries used in the benchmarking suite.
-    """
-    meta_json_path = Path("data") / args.experiment_right / "meta.json"
-    with open(meta_json_path, "r") as f:
-        meta_data = json.load(f)
-    return {
-        "versions": meta_data.get("versions", {}),
-        "runcard": meta_data.get("runcard", args.experiment_right),
+        "runcard": meta_data.get("runcard", experiment_dir),
         "runcard_link": meta_data.get("runcard_link", "https://link-to-runcard.com"),
     }
 
@@ -215,7 +206,7 @@ def get_stat_t12(experiment_dir, stat_type):
     """
     Returns a dictionary with average, min, max, and median T1 for the given experiment directory.
     """
-    results_json_path = Path("data") / experiment_dir / "platform/calibration.json"
+    results_json_path = Path("data") / experiment_dir / "calibration.json"
     with open(results_json_path, "r") as f:
         results = json.load(f)
 

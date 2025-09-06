@@ -1,4 +1,3 @@
-
 import numpy as np
 import qibo
 from qibo import gates
@@ -16,6 +15,7 @@ import logging
 import signal
 import shutil
 import atexit
+import time
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
@@ -137,8 +137,9 @@ def main(qubits_list, device, nshots, debug=False, args=None, input_filename="in
         qibo.set_backend("qibolab", platform=device)
         logger.info("Using backend: qibolab (platform=%s)", device)
     
-    base_dir = _P(__file__).resolve().parent
-    cfg_path = base_dir / input_filename
+    base_dir = _P(os.path.dirname(os.path.abspath(sys.argv[0])))
+    cfg_path = base_dir / "input.json"
+
     tmp_path = base_dir / (input_filename + "_tmp")
     backup_path = base_dir / (input_filename + "_backup")
     logger.debug("Loading config from %s", cfg_path)
@@ -172,11 +173,14 @@ def main(qubits_list, device, nshots, debug=False, args=None, input_filename="in
     args = data['args']
     num_qubits = args['num_qubits']
     output_qubit = args['output_qubit']
-    out_dir = config.output_dir_for(__file__) / device
+    out_dir = config.output_dir_for(base_dir / "fix", device)
     out_dir.mkdir(parents=True, exist_ok=True)
     results = []
 
     processed_count = 0
+
+
+
 
     for idx, config_data in data['qc_configurations'].items():
         # Skip if we've already processed this data point (has qibo_sigmoid_expval field)
@@ -198,7 +202,10 @@ def main(qubits_list, device, nshots, debug=False, args=None, input_filename="in
         circuit = var_circuit(angles_dict, num_qubits)
         circuit.add(gates.M(output_qubit))
 
+        start_time = time.time()
         result = circuit(nshots=nshots)
+        end_time = time.time()
+        duration = end_time - start_time
 
         frequencies = result.frequencies()
         total_counts = sum(frequencies.values())
@@ -219,6 +226,7 @@ def main(qubits_list, device, nshots, debug=False, args=None, input_filename="in
         config_data['qibo_sigmoid_expval'] = float(sigmoid_expval)
         config_data['qibo_predicted_label'] = predicted_label
         config_data['qibo_correct'] = predicted_label == true_label
+        config_data['duration'] = duration
         
 
         # Write to temporary file first, then atomically rename
@@ -229,16 +237,16 @@ def main(qubits_list, device, nshots, debug=False, args=None, input_filename="in
         shutil.move(tmp_path, cfg_path)
         logger.info(f"Updated input file {cfg_path} with results for data point {idx}")
 
-        # Store result for summary
-        result_entry = {
-            "data_point_idx": idx,
-            "true_label": true_label,
-            "noiseless_label": noiseless_label,
-            "predicted_label": predicted_label,
-            "sigmoid_expval": sigmoid_expval,
-            "correct": predicted_label == true_label
-        }
-        results.append(result_entry)
+        # # Store result for summary
+        # result_entry = {
+        #     "data_point_idx": idx,
+        #     "true_label": true_label,
+        #     "noiseless_label": noiseless_label,
+        #     "predicted_label": predicted_label,
+        #     "sigmoid_expval": sigmoid_expval,
+        #     "duration": duration
+        # }
+        # results.append(result_entry)
 
         logger.info("Processed data point %s: predicted=%s true=%s noiseless=%s prob=%.3f",
                     idx, predicted_label, true_label, noiseless_label, sigmoid_expval)  # Fixed variable name
@@ -315,7 +323,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--number-datapoints-output",
         type=int,
-        default=500,
+        default=50,
         help="Number of data points to output",
     )
     cnf = vars(parser.parse_args())
