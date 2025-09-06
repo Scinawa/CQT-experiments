@@ -89,7 +89,7 @@ def main(nqubits, qubit_list, device, nshots, via_client):
         results["y"][f"{qubits}"] = result.tolist()
 
         # Write to data/<scriptname>/<device>/results.json
-        out_dir = config.output_dir_for(__file__) / device
+        out_dir = config.output_dir_for(__file__, device)
         out_dir.mkdir(parents=True, exist_ok=True)
         with open(out_dir / "results.json", "w", encoding="utf-8") as f:
             json.dump(results, f, ensure_ascii=False, indent=4)

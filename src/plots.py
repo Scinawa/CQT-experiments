@@ -65,14 +65,14 @@ def prepare_grid_chevron_swap_coupler(
 
 
 def plot_fidelity_graph(
-    experiment_name, connectivity, pos, output_path="build/", demo_data="data/BASELINE/"
+    experiment_name, connectivity, pos, output_path="build/"
 ):
     """
     Generates a fidelity graph for the given experiment.
     """
 
     # temporary fix for demo data
-    results_demo_json_path = Path(demo_data) / f"fidelity2qb.json"
+    results_demo_json_path = "data" / Path(experiment_name) / f"fidelity2qb.json"
     with open(results_demo_json_path, "r") as f:
         results_tmp = json.load(f)
     # this will be changed because of MLK - beware of stringescape issues
@@ -734,3 +734,32 @@ def plot_qml(raw_data, expname, output_path="build/"):
     fig.savefig(full_path, dpi=200, bbox_inches="tight", transparent=True)
     plt.close(fig)
     return full_path
+
+
+def plot_amplitude_encoding(raw_data, expname, output_path="build/"):
+    """
+    Plot Amplitude Encoding algorithm results as a histogram of measured
+    bitstrings, together with the expected outcome.    
+    """
+    # Load data from JSON file
+    with open(raw_data, "r") as f:
+        data = json.load(f)
+
+    # Extract frequencies for the first (and only) key in 'frequencies'
+    frequencies = data["plotparameters"]["frequencies"]
+    input_vector = data["input_vector"]
+    norm_vector = input_vector/np.linalg.norm(input_vector)
+
+    plt.figure()
+    plt.bar(frequencies.keys(), frequencies.values(), color="skyblue", edgecolor="black")
+    plt.plot(norm_vector**2*np.sum(frequencies.values()), '-x', c='red')
+    plt.xlabel("Bitstring")
+    plt.ylabel("Counts")
+    plt.title("Amplitude Encoding Algorithm Measurement Histogram")
+    plt.tight_layout()
+
+    os.makedirs(output_path, exist_ok=True)
+    out_file = os.path.join(output_path, f"{expname}_results.pdf")
+    plt.savefig(out_file)
+    plt.close()
+    return out_file

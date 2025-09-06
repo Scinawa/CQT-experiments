@@ -24,6 +24,10 @@ from qiboml.operations.differentiation import PSR
 # os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path(
 #     "/mnt/scratch/qibolab_platforms_nqch"
 # ).as_posix()
+from pathlib import Path as _P
+import sys
+sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+import config  # scripts/config.py
 
 
 # Prepare the training dataset
@@ -54,7 +58,7 @@ if __name__ == "__main__":
         "--device",
         type=str,
         default="numpy",
-        choices=["numpy", "nqch-sim", "sinq20"],
+        choices=["numpy", "sinq20"],
         help="Device to use: numpy, nqch-sim, or sinq20 (default: numpy)",
     )
     parser.add_argument(
@@ -102,7 +106,12 @@ if __name__ == "__main__":
 
     # Set up directories
     backend_name = backend.name.lower().replace(" ", "_")
+
     results_dir = os.path.join("data", "universal_approximant/")
+    # Write to data/<scriptname>/<device>/results.json
+    results_dir = config.output_dir_for(__file__, args.device)
+    results_dir.mkdir(parents=True, exist_ok=True)
+
     params_dir = os.path.join(results_dir, "params")
     os.makedirs(params_dir, exist_ok=True)
 

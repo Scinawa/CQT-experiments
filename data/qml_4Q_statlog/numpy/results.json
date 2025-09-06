@@ -74170,7 +74170,10 @@
           0.4175620037322142,
           -0.11564209788772442
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5366010793535907,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "501": {
       "orig_angles": [
@@ -74315,7 +74318,10 @@
           0.31116567663244693,
           0.0268980514370451
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.45842951678320015,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "502": {
       "orig_angles": [
@@ -74460,7 +74466,10 @@
           0.2958726229344908,
           -0.18739864979218018
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4567748355181423,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "503": {
       "orig_angles": [
@@ -74605,7 +74614,10 @@
           0.36552110235704716,
           -0.19990237852441303
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.43700322293759947,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "504": {
       "orig_angles": [
@@ -74750,7 +74762,10 @@
           0.3345938413309375,
           -0.23774386929432434
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.43372560580456077,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "505": {
       "orig_angles": [
@@ -74895,7 +74910,10 @@
           0.38565456544004784,
           -0.21236031677076334
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.47502081252106,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "506": {
       "orig_angles": [
@@ -75040,7 +75058,10 @@
           0.378014094687694,
           -0.18228135310924276
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5432251644818576,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "507": {
       "orig_angles": [
@@ -75185,7 +75206,10 @@
           0.421268457388731,
           -0.19288484071575812
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5382584045560131,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "508": {
       "orig_angles": [
@@ -75330,7 +75354,10 @@
           0.28714586565933026,
           0.10212195099112306
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5531319780689512,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "509": {
       "orig_angles": [
@@ -75475,7 +75502,10 @@
           0.2160149071747121,
           0.1599419521227933
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.42882011739172643,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "510": {
       "orig_angles": [
@@ -75620,7 +75650,10 @@
           0.5557268871613091,
           -0.049047341745612594
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4650570548417855,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "511": {
       "orig_angles": [
@@ -75765,7 +75798,10 @@
           0.6020769631067806,
           -0.10581051864605942
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5332840382511314,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "512": {
       "orig_angles": [
@@ -75910,7 +75946,10 @@
           0.5968973839728513,
           -0.20216175051660645
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5332840382511314,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "513": {
       "orig_angles": [
@@ -76055,7 +76094,10 @@
           0.47694531493262904,
           0.09249480270220259
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5366010793535907,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "514": {
       "orig_angles": [
@@ -76200,7 +76242,10 @@
           0.29343262833083905,
           -0.12587248349778113
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.45842951678320015,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "515": {
       "orig_angles": [
@@ -76345,7 +76390,10 @@
           0.40650411853126467,
           -0.14970895077954194
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5547792351072148,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "516": {
       "orig_angles": [
@@ -76490,7 +76538,10 @@
           0.370800677908934,
           -0.24291665387654288
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5199893401555818,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "517": {
       "orig_angles": [
@@ -76635,7 +76686,10 @@
           0.36878722847231915,
           -0.2007039131831464
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5613558846263439,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "518": {
       "orig_angles": [
@@ -76780,7 +76834,10 @@
           0.3687615125394659,
           -0.1839196461377085
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.46008511544443426,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "519": {
       "orig_angles": [
@@ -76925,7 +76982,10 @@
           0.403474070367996,
           -0.17978420968529318
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5332840382511314,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "520": {
       "orig_angles": [
@@ -77070,7 +77130,10 @@
           0.4016663226932816,
           -0.18900157203957174
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5597136492671929,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "521": {
       "orig_angles": [
@@ -77215,7 +77278,10 @@
           0.4219007694055873,
           -0.15801608707234915
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.40451998971625175,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "522": {
       "orig_angles": [
@@ -77360,7 +77426,10 @@
           0.4458642726991874,
           -0.08779788347428968
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.42882011739172643,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "523": {
       "orig_angles": [
@@ -77505,7 +77574,10 @@
           0.3645899918116269,
           0.06481593283782289
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4419298941260467,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "524": {
       "orig_angles": [
@@ -77650,7 +77722,10 @@
           0.2526894135559063,
           0.07475263846728464
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5233164098038501,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "525": {
       "orig_angles": [
@@ -77795,7 +77870,10 @@
           0.23549609343563804,
           0.09214804779743185
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.46008511544443426,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "526": {
       "orig_angles": [
@@ -77940,7 +78018,10 @@
           0.36516448659464096,
           -0.08842617069998324
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.48001065984441826,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "527": {
       "orig_angles": [
@@ -78085,7 +78166,10 @@
           0.49935976307481955,
           -0.0742892002795163
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.45181665544957894,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "528": {
       "orig_angles": [
@@ -78230,7 +78314,10 @@
           0.4518831637844968,
           -0.12619969345024426
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5199893401555818,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "529": {
       "orig_angles": [
@@ -78375,7 +78462,10 @@
           0.4204669036558789,
           -0.15632473445983913
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.548183344550421,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "530": {
       "orig_angles": [
@@ -78520,7 +78610,10 @@
           0.44576169390162895,
           -0.16239462230934007
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.43208895029076777,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "531": {
       "orig_angles": [
@@ -78665,7 +78758,10 @@
           0.4421322457565516,
           -0.1373754966074633
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.51499550161941,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "532": {
       "orig_angles": [
@@ -78810,7 +78906,10 @@
           0.3486992598228733,
           -0.22969065452336032
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.45842951678320015,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "533": {
       "orig_angles": [
@@ -78955,7 +79054,10 @@
           0.46890871450442806,
           -0.1303805614435696
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.47502081252106,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "534": {
       "orig_angles": [
@@ -79100,7 +79202,10 @@
           0.4375603682688577,
           -0.24629721439275976
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5399148845555657,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "535": {
       "orig_angles": [
@@ -79245,7 +79350,10 @@
           0.41635764460059377,
           -0.1751916424148584
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5448788923735801,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "536": {
       "orig_angles": [
@@ -79390,7 +79498,10 @@
           0.4455360813650483,
           -0.11069025928281631
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "537": {
       "orig_angles": [
@@ -79535,7 +79646,10 @@
           0.3413841303330102,
           0.07495670061338497
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.46174159544398685,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "538": {
       "orig_angles": [
@@ -79680,7 +79794,10 @@
           0.2719755611873011,
           0.11677462165569988
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5216531151169002,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "539": {
       "orig_angles": [
@@ -79825,7 +79942,10 @@
           0.3829283907308587,
           0.16108228855205609
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.549833997312478,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "540": {
       "orig_angles": [
@@ -79970,7 +80090,10 @@
           0.37930018702630586,
           0.07214906451323394
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5646362918030292,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "541": {
       "orig_angles": [
@@ -80115,7 +80238,10 @@
           0.3889560142757158,
           -0.00849751296161802
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.45181665544957894,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "542": {
       "orig_angles": [
@@ -80260,7 +80386,10 @@
           0.28653541645274455,
           0.10139858763090451
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5629967770624005,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "543": {
       "orig_angles": [
@@ -80405,7 +80534,10 @@
           0.2554668015712033,
           0.05128839265924222
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5564252894494102,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "544": {
       "orig_angles": [
@@ -80550,7 +80682,10 @@
           0.23131381270232299,
           0.049576288814886516
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4700359482354282,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "545": {
       "orig_angles": [
@@ -80695,7 +80830,10 @@
           0.31325373624127995,
           -0.18046214206319455
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5216531151169002,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "546": {
       "orig_angles": [
@@ -80840,7 +80978,10 @@
           0.48591582045758197,
           -0.10896029811729699
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5465316309986,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "547": {
       "orig_angles": [
@@ -80985,7 +81126,10 @@
           0.4071204616322027,
           -0.09744894095573955
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.42718800842998617,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "548": {
       "orig_angles": [
@@ -81130,7 +81274,10 @@
           0.3136528499497072,
           -0.23447805857055348
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.45181665544957894,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "549": {
       "orig_angles": [
@@ -81275,7 +81422,10 @@
           0.3172764364800986,
           -0.13740142025559376
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4766835901961499,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "550": {
       "orig_angles": [
@@ -81420,7 +81570,10 @@
           0.309091589668833,
           -0.0746523679759288
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.46837560501823133,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "551": {
       "orig_angles": [
@@ -81565,7 +81718,10 @@
           0.2915984803325937,
           -0.09946239888864881
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.52497918747894,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "552": {
       "orig_angles": [
@@ -81710,7 +81866,10 @@
           0.4711371082870289,
           -0.06343393873764264
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.45512110762641994,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "553": {
       "orig_angles": [
@@ -81855,7 +82014,10 @@
           0.4739138617892815,
           -0.18883863803118006
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5283030450758288,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "554": {
       "orig_angles": [
@@ -82000,7 +82162,10 @@
           0.4031528619352552,
           -0.281001975779125
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5415704832167999,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "555": {
       "orig_angles": [
@@ -82145,7 +82310,10 @@
           0.44621040417429914,
           -0.1819004370439169
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4667159617488687,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "556": {
       "orig_angles": [
@@ -82290,7 +82458,10 @@
           0.3883470917054709,
           -0.23757633602688938
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.42718800842998617,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "557": {
       "orig_angles": [
@@ -82435,7 +82606,10 @@
           0.39844051781621614,
           -0.17552362775224353
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5547792351072148,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "558": {
       "orig_angles": [
@@ -82580,7 +82754,10 @@
           0.40059534020724746,
           0.16769802687138358
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4452207648927852,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "559": {
       "orig_angles": [
@@ -82725,7 +82902,10 @@
           0.30272773231199396,
           0.11781738519840701
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.41419097843501507,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "560": {
       "orig_angles": [
@@ -82870,7 +83050,10 @@
           0.3513683123313862,
           -0.08463483514145428
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5662743941954392,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "561": {
       "orig_angles": [
@@ -83015,7 +83198,10 @@
           0.25587572324150526,
           0.19959706490247733
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.45016600268752216,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "562": {
       "orig_angles": [
@@ -83160,7 +83346,10 @@
           0.3932750703743014,
           -0.11877488839150582
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5564252894494102,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "563": {
       "orig_angles": [
@@ -83305,7 +83494,10 @@
           0.4662275540945342,
           -0.02023303359835879
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.574442516811659,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "564": {
       "orig_angles": [
@@ -83450,7 +83642,10 @@
           0.5227736622173196,
           0.039040276754223
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5793242521487495,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "565": {
       "orig_angles": [
@@ -83595,7 +83790,10 @@
           0.3660904810593636,
           -0.13322059033754577
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5841905229354074,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "566": {
       "orig_angles": [
@@ -83740,7 +83938,10 @@
           0.3076007896741758,
           -0.08604120918682073
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5514835536611825,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "567": {
       "orig_angles": [
@@ -83885,7 +84086,10 @@
           0.2845481108403821,
           -0.13489569782844812
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5547792351072148,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "568": {
       "orig_angles": [
@@ -84030,7 +84234,10 @@
           0.27839087151975483,
           -0.1900564864871515
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "569": {
       "orig_angles": [
@@ -84175,7 +84382,10 @@
           0.31333906879168727,
           -0.22897878051574005
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5316243949817686,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "570": {
       "orig_angles": [
@@ -84320,7 +84530,10 @@
           0.30888299658838514,
           -0.15854266853516236
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5382584045560131,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "571": {
       "orig_angles": [
@@ -84465,7 +84678,10 @@
           0.2856216834526035,
           -0.1437273041915859
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5233164098038501,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "572": {
       "orig_angles": [
@@ -84610,7 +84826,10 @@
           0.2930847645985196,
           -0.2128036933910447
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5580701058739532,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "573": {
       "orig_angles": [
@@ -84755,7 +84974,10 @@
           0.3196619793206314,
           -0.008306849671072591
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4650570548417855,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "574": {
       "orig_angles": [
@@ -84900,7 +85122,10 @@
           0.4055740118997284,
           -0.28637331700710356
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5432251644818576,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "575": {
       "orig_angles": [
@@ -85045,7 +85270,10 @@
           0.34778309168146493,
           -0.19839925388881344
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5597136492671929,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "576": {
       "orig_angles": [
@@ -85190,7 +85418,10 @@
           0.39552752338284336,
           -0.1525158218895505
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4667159617488687,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "577": {
       "orig_angles": [
@@ -85335,7 +85566,10 @@
           0.417619828874153,
           -0.1228410936166062
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5465316309986,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "578": {
       "orig_angles": [
@@ -85480,7 +85714,10 @@
           0.42021688743485947,
           -0.1436690096366046
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4435747105505899,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "579": {
       "orig_angles": [
@@ -85625,7 +85862,10 @@
           0.4193018697033643,
           -0.08036053635259577
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5133301737382324,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "580": {
       "orig_angles": [
@@ -85770,7 +86010,10 @@
           0.30107840739805314,
           0.09992052920561553
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5580701058739532,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "581": {
       "orig_angles": [
@@ -85915,7 +86158,10 @@
           0.25595862881965453,
           0.16752434782370787
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5662743941954392,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "582": {
       "orig_angles": [
@@ -86060,7 +86306,10 @@
           0.2512714327977533,
           0.1338198120235113
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4452207648927852,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "583": {
       "orig_angles": [
@@ -86205,7 +86454,10 @@
           0.3400472515539212,
           -0.025948762493852334
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5711798826082736,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "584": {
       "orig_angles": [
@@ -86350,7 +86602,10 @@
           0.3305743905243975,
           0.06943773812384757
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5613558846263439,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "585": {
       "orig_angles": [
@@ -86495,7 +86750,10 @@
           0.45031331427091653,
           0.1775670429851307
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4567748355181423,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "586": {
       "orig_angles": [
@@ -86640,7 +86898,10 @@
           0.3591435072919812,
           0.06169829821073135
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.51499550161941,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "587": {
       "orig_angles": [
@@ -86785,7 +87046,10 @@
           0.3525353567911695,
           -0.05680617476087507
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5233164098038501,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "588": {
       "orig_angles": [
@@ -86930,7 +87194,10 @@
           0.4950839632478572,
           -0.09340370551785115
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5332840382511314,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "589": {
       "orig_angles": [
@@ -87075,7 +87342,10 @@
           0.4180456899492325,
           -0.06148593288899645
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.47834688488309984,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "590": {
       "orig_angles": [
@@ -87220,7 +87490,10 @@
           0.2242702368506332,
           -0.11004334269350743
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.47502081252106,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "591": {
       "orig_angles": [
@@ -87365,7 +87638,10 @@
           0.3212802156495665,
           -0.11765691263535503
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5349429451582145,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "592": {
       "orig_angles": [
@@ -87510,7 +87786,10 @@
           0.38443564543391995,
           -0.23167801205306143
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5711798826082736,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "593": {
       "orig_angles": [
@@ -87655,7 +87934,10 @@
           0.4014451212651954,
           -0.23838431311803865
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.48666982626176764,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "594": {
       "orig_angles": [
@@ -87800,7 +88082,10 @@
           0.360236700741413,
           -0.21818974293937282
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49166743818588077,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "595": {
       "orig_angles": [
@@ -87945,7 +88230,10 @@
           0.3582020095935182,
           -0.20619066206735814
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5016666604938546,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "596": {
       "orig_angles": [
@@ -88090,7 +88378,10 @@
           0.3752639600747243,
           -0.18102864593651585
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4667159617488687,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "597": {
       "orig_angles": [
@@ -88235,7 +88526,10 @@
           0.4171011485095477,
           -0.12288031208237221
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5366010793535907,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "598": {
       "orig_angles": [
@@ -88380,7 +88674,10 @@
           0.33932315892190124,
           0.07814855649849907
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4850044983805899,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "599": {
       "orig_angles": [
@@ -88525,7 +88822,10 @@
           0.21753020334748935,
           0.1448912589132814
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5316243949817686,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "600": {
       "orig_angles": [
@@ -88670,7 +88970,10 @@
           0.22145306315497176,
           0.16388450080324263
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5564252894494102,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "601": {
       "orig_angles": [
@@ -88815,7 +89118,10 @@
           0.22539012625099986,
           0.1678450626668294
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5183251216999564,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "602": {
       "orig_angles": [
@@ -88960,7 +89266,10 @@
           0.28863954031105576,
           0.10610503848940309
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4966667160485049,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "603": {
       "orig_angles": [
@@ -89105,7 +89414,10 @@
           0.32252109491619546,
           0.07096579781755774
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5448788923735801,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "604": {
       "orig_angles": [
@@ -89250,7 +89562,10 @@
           0.26034106768121507,
           0.13022251897846865
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5049998333399998,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "605": {
       "orig_angles": [
@@ -89395,7 +89710,10 @@
           0.2743565735826218,
           0.11991895113099293
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4900013331200346,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "606": {
       "orig_angles": [
@@ -89540,7 +89858,10 @@
           0.3862308375621327,
           -0.09796185964667636
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.548183344550421,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "607": {
       "orig_angles": [
@@ -89685,7 +90006,10 @@
           0.6122855940231244,
           -0.09454675761610515
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5382584045560131,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "608": {
       "orig_angles": [
@@ -89830,7 +90154,10 @@
           0.47143015113626513,
           0.2043481308860523
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49333372836697054,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "609": {
       "orig_angles": [
@@ -89975,7 +90302,10 @@
           0.41111742210750624,
           0.10798128448986768
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.569546223939229,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "610": {
       "orig_angles": [
@@ -90120,7 +90450,10 @@
           0.38216704157913356,
           0.027784369324362873
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.549833997312478,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "611": {
       "orig_angles": [
@@ -90265,7 +90598,10 @@
           0.541131700322084,
           0.08286738359727552
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5597136492671929,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "612": {
       "orig_angles": [
@@ -90410,7 +90746,10 @@
           0.4639829406475674,
           -0.10894144722379215
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5266414114504839,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "613": {
       "orig_angles": [
@@ -90555,7 +90894,10 @@
           0.2892055963955755,
           -0.08135741808814993
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5133301737382324,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "614": {
       "orig_angles": [
@@ -90700,7 +91042,10 @@
           0.19028361707324326,
           -0.0896260950661745
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5216531151169002,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "615": {
       "orig_angles": [
@@ -90845,7 +91190,10 @@
           0.15977916201220063,
           -0.008711088527075653
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5382584045560131,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "616": {
       "orig_angles": [
@@ -90990,7 +91338,10 @@
           0.1761314440865515,
           -0.0009463859951387155
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5332840382511314,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "617": {
       "orig_angles": [
@@ -91135,7 +91486,10 @@
           0.25190739726559247,
           -0.16129281625030095
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4816748783000437,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "618": {
       "orig_angles": [
@@ -91280,7 +91634,10 @@
           0.30095934074668107,
           -0.08862036541243204
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4883354501562881,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "619": {
       "orig_angles": [
@@ -91425,7 +91782,10 @@
           0.15948654163294762,
           -0.16036035872761434
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.45842951678320015,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "620": {
       "orig_angles": [
@@ -91570,7 +91930,10 @@
           0.17589568834899252,
           -0.07093367713233312
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5448788923735801,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "621": {
       "orig_angles": [
@@ -91715,7 +92078,10 @@
           0.13836482204460698,
           -0.048975080723430674
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5183251216999564,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "622": {
       "orig_angles": [
@@ -91860,7 +92226,10 @@
           0.3671786648094943,
           -0.15139927049363894
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5448788923735801,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "623": {
       "orig_angles": [
@@ -92005,7 +92374,10 @@
           0.38897770115561614,
           -0.21748593106409614
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "624": {
       "orig_angles": [
@@ -92150,7 +92522,10 @@
           0.3804348469310094,
           -0.22012356423329424
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "625": {
       "orig_angles": [
@@ -92295,7 +92670,10 @@
           0.4104138578589621,
           -0.14327661552152393
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5349429451582145,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "626": {
       "orig_angles": [
@@ -92440,7 +92818,10 @@
           0.23960565333296505,
           0.15248764105265997
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4900013331200346,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "627": {
       "orig_angles": [
@@ -92585,7 +92966,10 @@
           0.22000446099014498,
           0.1642921209021384
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49166743818588077,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "628": {
       "orig_angles": [
@@ -92730,7 +93114,10 @@
           0.29942725993123603,
           0.05450712982952813
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5066662716330296,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "629": {
       "orig_angles": [
@@ -92875,7 +93262,10 @@
           0.5709159857770033,
           0.1894287178717901
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5432251644818576,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "630": {
       "orig_angles": [
@@ -93020,7 +93410,10 @@
           0.5706863381798201,
           0.15616147899629215
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5233164098038501,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "631": {
       "orig_angles": [
@@ -93165,7 +93558,10 @@
           0.5284168336188172,
           0.13498416662298085
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.46837560501823133,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "632": {
       "orig_angles": [
@@ -93310,7 +93706,10 @@
           0.4600521928471113,
           -0.09494293823880234
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5266414114504839,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "633": {
       "orig_angles": [
@@ -93455,7 +93854,10 @@
           0.5982910063063122,
           0.0471476016075866
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5199893401555818,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "634": {
       "orig_angles": [
@@ -93600,7 +94002,10 @@
           0.46575134482143465,
           -0.07498852799474126
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5332840382511314,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "635": {
       "orig_angles": [
@@ -93745,7 +94150,10 @@
           0.3707897860023468,
           -0.1726795080897243
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4850044983805899,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "636": {
       "orig_angles": [
@@ -93890,7 +94298,10 @@
           0.2833453866514285,
           -0.08189694405770828
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5448788923735801,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "637": {
       "orig_angles": [
@@ -94035,7 +94446,10 @@
           0.09953949653948682,
           -0.043189238203669225
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5432251644818576,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "638": {
       "orig_angles": [
@@ -94180,7 +94594,10 @@
           0.15787418427352523,
           0.01678477845089483
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "639": {
       "orig_angles": [
@@ -94325,7 +94742,10 @@
           0.2141472300753043,
           -0.1237001618793902
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5415704832167999,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "640": {
       "orig_angles": [
@@ -94470,7 +94890,10 @@
           0.10290963417276064,
           -0.09591116274252015
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5349429451582145,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "641": {
       "orig_angles": [
@@ -94615,7 +95038,10 @@
           0.23088578983526967,
           -0.3215647308689428
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5629967770624005,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "642": {
       "orig_angles": [
@@ -94760,7 +95186,10 @@
           0.49285257151475736,
           -0.14059942253646945
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5415704832167999,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "643": {
       "orig_angles": [
@@ -94905,7 +95334,10 @@
           0.47557004230543276,
           -0.03237542258049847
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5432251644818576,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "644": {
       "orig_angles": [
@@ -95050,7 +95482,10 @@
           0.413254391437757,
           -0.24357671955535004
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5166604965694114,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "645": {
       "orig_angles": [
@@ -95195,7 +95630,10 @@
           0.4526116406858196,
           -0.259941033595379
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5382584045560131,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "646": {
       "orig_angles": [
@@ -95340,7 +95778,10 @@
           0.37412518803786166,
           -0.21282126915671584
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.46837560501823133,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "647": {
       "orig_angles": [
@@ -95485,7 +95926,10 @@
           0.4288440267985866,
           -0.09556560813657564
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4716969549241712,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "648": {
       "orig_angles": [
@@ -95630,7 +96074,10 @@
           0.4095501567471433,
           -0.018603407076013184
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5399148845555657,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "649": {
       "orig_angles": [
@@ -95775,7 +96222,10 @@
           0.2035838007642956,
           0.1368828830022168
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49166743818588077,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "650": {
       "orig_angles": [
@@ -95920,7 +96370,10 @@
           0.15465572990340523,
           0.006665901855374787
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5547792351072148,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "651": {
       "orig_angles": [
@@ -96065,7 +96518,10 @@
           0.41353023380015674,
           0.05555757371818626
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5547792351072148,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "652": {
       "orig_angles": [
@@ -96210,7 +96666,10 @@
           0.4359449064060203,
           0.0009432236482142253
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.47502081252106,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "653": {
       "orig_angles": [
@@ -96355,7 +96814,10 @@
           0.3933007155654403,
           -0.1735090903320621
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.473358588549516,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "654": {
       "orig_angles": [
@@ -96500,7 +96962,10 @@
           0.5550581868879549,
           0.09634843885994443
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.47502081252106,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "655": {
       "orig_angles": [
@@ -96645,7 +97110,10 @@
           0.4982334296247528,
           0.03750531070308186
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.47834688488309984,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "656": {
       "orig_angles": [
@@ -96790,7 +97258,10 @@
           0.14786643428069152,
           -0.05722564391349095
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.52497918747894,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "657": {
       "orig_angles": [
@@ -96935,7 +97406,10 @@
           0.0937484645118214,
           -0.013339061093558424
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5366010793535907,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "658": {
       "orig_angles": [
@@ -97080,7 +97554,10 @@
           0.09837218027834983,
           -0.008049891730774687
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5166604965694114,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "659": {
       "orig_angles": [
@@ -97225,7 +97702,10 @@
           0.10676800023608071,
           -0.01001315757578225
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5216531151169002,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "660": {
       "orig_angles": [
@@ -97370,7 +97850,10 @@
           0.07440644346734945,
           0.07487065372790529
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5266414114504839,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "661": {
       "orig_angles": [
@@ -97515,7 +97998,10 @@
           0.12234543440993753,
           0.07785151428254496
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "662": {
       "orig_angles": [
@@ -97660,7 +98146,10 @@
           0.1786247719020861,
           -0.03899836567896443
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5382584045560131,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "663": {
       "orig_angles": [
@@ -97805,7 +98294,10 @@
           0.19481107589736146,
           -0.12332552579473313
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5033332839514952,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "664": {
       "orig_angles": [
@@ -97950,7 +98442,10 @@
           0.21704691169179935,
           -0.08059669748636505
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5266414114504839,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "665": {
       "orig_angles": [
@@ -98095,7 +98590,10 @@
           0.151355939891686,
           -0.07726157811573642
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5465316309986,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "666": {
       "orig_angles": [
@@ -98240,7 +98738,10 @@
           0.1924706616923763,
           -0.12346624606101758
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49333372836697054,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "667": {
       "orig_angles": [
@@ -98385,7 +98886,10 @@
           0.4787204380162749,
           -0.22073450998563945
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.548183344550421,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "668": {
       "orig_angles": [
@@ -98530,7 +99034,10 @@
           0.40777982433886273,
           -0.18948433624789277
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "669": {
       "orig_angles": [
@@ -98675,7 +99182,10 @@
           0.4246975645170858,
           -0.005981323386103243
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.549833997312478,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "670": {
       "orig_angles": [
@@ -98820,7 +99330,10 @@
           0.4122334678830161,
           -0.0008137121684612392
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.45512110762641994,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "671": {
       "orig_angles": [
@@ -98965,7 +99478,10 @@
           0.012513147256811191,
           0.028086106537055042
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5613558846263439,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "672": {
       "orig_angles": [
@@ -99110,7 +99626,10 @@
           0.3358906255662871,
           0.3333611250312084
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.43700322293759947,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "673": {
       "orig_angles": [
@@ -99255,7 +99774,10 @@
           0.11559098643963547,
           -0.04445430279221989
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4950001666600003,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "674": {
       "orig_angles": [
@@ -99400,7 +99922,10 @@
           0.13082111989061396,
           -0.035615297232591596
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5825702064623147,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "675": {
       "orig_angles": [
@@ -99545,7 +100070,10 @@
           0.06573762819263393,
           0.09200726091269613
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.473358588549516,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "676": {
       "orig_angles": [
@@ -99690,7 +100218,10 @@
           0.30347087131678524,
           -0.19889604928215088
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5580701058739532,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "677": {
       "orig_angles": [
@@ -99835,7 +100366,10 @@
           0.3730396750056184,
           -0.19620567040544776
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49333372836697054,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "678": {
       "orig_angles": [
@@ -99980,7 +100514,10 @@
           0.43411226178926865,
           -0.2525272481466606
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.574442516811659,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "679": {
       "orig_angles": [
@@ -100125,7 +100662,10 @@
           0.5083927880643462,
           -0.13721540203894927
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5366010793535907,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "680": {
       "orig_angles": [
@@ -100270,7 +100810,10 @@
           0.4529803706245445,
           -0.031044590190745958
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5597136492671929,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "681": {
       "orig_angles": [
@@ -100415,7 +100958,10 @@
           0.0973368249720589,
           0.034173921336755675
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.549833997312478,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "682": {
       "orig_angles": [
@@ -100560,7 +101106,10 @@
           -0.017345794448174214,
           0.025678197221019942
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5547792351072148,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "683": {
       "orig_angles": [
@@ -100705,7 +101254,10 @@
           0.3438255950173221,
           0.31908244697823873
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4716969549241712,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "684": {
       "orig_angles": [
@@ -100850,7 +101402,10 @@
           0.30528978380773514,
           0.10267735475848873
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.46837560501823133,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "685": {
       "orig_angles": [
@@ -100995,7 +101550,10 @@
           0.5052032635251326,
           -0.06834436350352005
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49333372836697054,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "686": {
       "orig_angles": [
@@ -101140,7 +101698,10 @@
           0.43289860342385034,
           -0.06557742230181363
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5016666604938546,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "687": {
       "orig_angles": [
@@ -101285,7 +101846,10 @@
           0.3225893556439968,
           -0.016232137958710535
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4966667160485049,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "688": {
       "orig_angles": [
@@ -101430,7 +101994,10 @@
           0.18741313287142353,
           0.002448920216676448
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5432251644818576,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "689": {
       "orig_angles": [
@@ -101575,7 +102142,10 @@
           0.16745140915006818,
           -0.048721270907573735
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5116645498437119,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "690": {
       "orig_angles": [
@@ -101720,7 +102290,10 @@
           0.20206309205794584,
           -0.08939269280323388
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4983333395061454,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "691": {
       "orig_angles": [
@@ -101865,7 +102438,10 @@
           0.2432023978451456,
           -0.24121352623868056
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.47834688488309984,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "692": {
       "orig_angles": [
@@ -102010,7 +102586,10 @@
           0.3637762936623643,
           -0.2069502369367665
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5366010793535907,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "693": {
       "orig_angles": [
@@ -102155,7 +102734,10 @@
           0.422645648636113,
           -0.03990427441209704
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5564252894494102,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "694": {
       "orig_angles": [
@@ -102300,7 +102882,10 @@
           0.2712884280387178,
           -0.07791366289656253
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4650570548417855,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "695": {
       "orig_angles": [
@@ -102445,7 +103030,10 @@
           0.030291434488373833,
           0.08454920072217745
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.48666982626176764,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "696": {
       "orig_angles": [
@@ -102590,7 +103178,10 @@
           0.018958668636483662,
           0.09463575832175336
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.46837560501823133,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "697": {
       "orig_angles": [
@@ -102735,7 +103326,10 @@
           0.10631313366775008,
           0.018456155725273655
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5366010793535907,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "698": {
       "orig_angles": [
@@ -102880,7 +103474,10 @@
           0.13115121902473206,
           -0.03220409616147739
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4766835901961499,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "699": {
       "orig_angles": [
@@ -103025,7 +103622,10 @@
           0.18291008665544278,
           -0.05439835161969872
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5580701058739532,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "700": {
       "orig_angles": [
@@ -103170,7 +103770,10 @@
           0.18541824353219727,
           -0.09521103000040705
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5597136492671929,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "701": {
       "orig_angles": [
@@ -103315,7 +103918,10 @@
           0.257249852699016,
           -0.14786159905880825
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.52497918747894,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "702": {
       "orig_angles": [
@@ -103460,7 +104066,10 @@
           0.27766881406236754,
           -0.1303698991629283
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5662743941954392,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "703": {
       "orig_angles": [
@@ -103605,7 +104214,10 @@
           0.25186472967303486,
           -0.2817250612732327
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5016666604938546,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "704": {
       "orig_angles": [
@@ -103750,7 +104362,10 @@
           0.3714590968891168,
           -0.21029401094056568
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5448788923735801,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "705": {
       "orig_angles": [
@@ -103895,7 +104510,10 @@
           0.3806359091320618,
           0.06539211348752402
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5465316309986,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "706": {
       "orig_angles": [
@@ -104040,7 +104658,10 @@
           0.3097745095275571,
           -0.2986814332956029
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.52497918747894,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "707": {
       "orig_angles": [
@@ -104185,7 +104806,10 @@
           0.46544944522002885,
           -0.08545619031763604
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49333372836697054,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "708": {
       "orig_angles": [
@@ -104330,7 +104954,10 @@
           0.2677592695946025,
           0.12317513095378606
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5332840382511314,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "709": {
       "orig_angles": [
@@ -104475,7 +105102,10 @@
           0.023756171822561907,
           0.034100188891164146
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5646362918030292,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "710": {
       "orig_angles": [
@@ -104620,7 +105250,10 @@
           0.1028923659764562,
           -0.006671801468922496
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5099986668799655,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "711": {
       "orig_angles": [
@@ -104765,7 +105398,10 @@
           0.19842703485483265,
           -0.1439332439639855
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5825702064623147,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "712": {
       "orig_angles": [
@@ -104910,7 +105546,10 @@
           0.4743479018343818,
           0.07054669244873807
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.549833997312478,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "713": {
       "orig_angles": [
@@ -105055,7 +105694,10 @@
           0.29986932530567656,
           -0.22442117555218918
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4900013331200346,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "714": {
       "orig_angles": [
@@ -105200,7 +105842,10 @@
           0.2803143859038097,
           -0.16943524664546122
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4700359482354282,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "715": {
       "orig_angles": [
@@ -105345,7 +105990,10 @@
           0.12229365716315796,
           -0.03178485849860503
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5531319780689512,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "716": {
       "orig_angles": [
@@ -105490,7 +106138,10 @@
           0.04755514872398725,
           0.054327578747021134
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5349429451582145,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "717": {
       "orig_angles": [
@@ -105635,7 +106286,10 @@
           0.30308600876283776,
           -0.1710147360479017
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5564252894494102,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "718": {
       "orig_angles": [
@@ -105780,7 +106434,10 @@
           0.2198681234538906,
           -0.015022194735680852
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.51499550161941,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "719": {
       "orig_angles": [
@@ -105925,7 +106582,10 @@
           0.19482261417531926,
           -0.05557538522745416
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5266414114504839,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "720": {
       "orig_angles": [
@@ -106070,7 +106730,10 @@
           0.1886798005830198,
           -0.11144102389252622
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4667159617488687,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "721": {
       "orig_angles": [
@@ -106215,7 +106878,10 @@
           0.22191882697022713,
           -0.1688058769761796
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5465316309986,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "722": {
       "orig_angles": [
@@ -106360,7 +107026,10 @@
           0.3599849546538247,
           -0.22870860236323362
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4966667160485049,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "723": {
       "orig_angles": [
@@ -106505,7 +107174,10 @@
           0.37407976947515165,
           -0.17407429067510144
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5316243949817686,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "724": {
       "orig_angles": [
@@ -106650,7 +107322,10 @@
           0.4173570403104082,
           -0.11260761792613891
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.48333950343058857,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "725": {
       "orig_angles": [
@@ -106795,7 +107470,10 @@
           0.05605503223812079,
           -0.0017173768623166275
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4716969549241712,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "726": {
       "orig_angles": [
@@ -106940,7 +107618,10 @@
           0.13144672742883048,
           0.06850696928461743
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4667159617488687,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "727": {
       "orig_angles": [
@@ -107085,7 +107766,10 @@
           0.3305390497940066,
           -0.14203171047795476
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5099986668799655,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "728": {
       "orig_angles": [
@@ -107230,7 +107914,10 @@
           0.20072933711117058,
           -0.06402187030761723
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.48333950343058857,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "729": {
       "orig_angles": [
@@ -107375,7 +108062,10 @@
           0.24020630669726756,
           -0.06898746116812417
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5083325618141193,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "730": {
       "orig_angles": [
@@ -107520,7 +108210,10 @@
           0.2367397933083982,
           -0.08768267234241414
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5415704832167999,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "731": {
       "orig_angles": [
@@ -107665,7 +108358,10 @@
           0.2335292088768992,
           -0.07052052137675179
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5016666604938546,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "732": {
       "orig_angles": [
@@ -107810,7 +108506,10 @@
           0.2388134958024453,
           -0.09247039297124254
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "733": {
       "orig_angles": [
@@ -107955,7 +108654,10 @@
           0.3640018831834382,
           -0.23165551794602443
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5183251216999564,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "734": {
       "orig_angles": [
@@ -108100,7 +108802,10 @@
           0.3675418268123434,
           -0.06088651468871906
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4983333395061454,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "735": {
       "orig_angles": [
@@ -108245,7 +108950,10 @@
           0.058399722110695496,
           -0.24532303778505965
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4766835901961499,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "736": {
       "orig_angles": [
@@ -108390,7 +109098,10 @@
           0.5257153518037496,
           -0.08901929868243924
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5580701058739532,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "737": {
       "orig_angles": [
@@ -108535,7 +109246,10 @@
           0.5297306159360248,
           -0.007185954570028047
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49333372836697054,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "738": {
       "orig_angles": [
@@ -108680,7 +109394,10 @@
           0.45583123551547045,
           0.047982549768698646
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5465316309986,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "739": {
       "orig_angles": [
@@ -108825,7 +109542,10 @@
           0.008220441853191332,
           0.11629747385978378
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5049998333399998,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "740": {
       "orig_angles": [
@@ -108970,7 +109690,10 @@
           0.2081388209709379,
           -0.05399335746491876
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.51499550161941,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "741": {
       "orig_angles": [
@@ -109115,7 +109838,10 @@
           0.3128688920062892,
           -0.129596080692937
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.548183344550421,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "742": {
       "orig_angles": [
@@ -109260,7 +109986,10 @@
           0.22262479195403143,
           -0.17169640871044256
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5066662716330296,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "743": {
       "orig_angles": [
@@ -109405,7 +110134,10 @@
           0.4279011928922875,
           -0.23243555390881165
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5166604965694114,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "744": {
       "orig_angles": [
@@ -109550,7 +110282,10 @@
           0.3905544169510054,
           -0.3068519241249639
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5382584045560131,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "745": {
       "orig_angles": [
@@ -109695,7 +110430,10 @@
           0.3959779194627694,
           -0.28443940829748926
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4900013331200346,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "746": {
       "orig_angles": [
@@ -109840,7 +110578,10 @@
           0.32528562114970727,
           -0.12486798428755613
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5033332839514952,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "747": {
       "orig_angles": [
@@ -109985,7 +110726,10 @@
           0.3034739619660923,
           -0.09986815426171607
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.52497918747894,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "748": {
       "orig_angles": [
@@ -110130,7 +110874,10 @@
           0.4836359383877784,
           -0.04487687728758519
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5116645498437119,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "749": {
       "orig_angles": [
@@ -110275,7 +111022,10 @@
           0.07989041453652679,
           0.027911744797164805
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.51499550161941,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "750": {
       "orig_angles": [
@@ -110420,7 +111170,10 @@
           0.17012950861836085,
           -0.027397785726443302
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5448788923735801,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "751": {
       "orig_angles": [
@@ -110565,7 +111318,10 @@
           0.43761374994316404,
           -0.12341695943018
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5399148845555657,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "752": {
       "orig_angles": [
@@ -110710,7 +111466,10 @@
           0.34614471048644246,
           -0.20150959073019542
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.46174159544398685,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "753": {
       "orig_angles": [
@@ -110855,7 +111614,10 @@
           0.3643848902515855,
           -0.17447779851906098
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5283030450758288,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "754": {
       "orig_angles": [
@@ -111000,7 +111762,10 @@
           0.437191963711462,
           -0.10339857697626814
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5266414114504839,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "755": {
       "orig_angles": [
@@ -111145,7 +111910,10 @@
           0.4015046490854037,
           -0.08611050444819685
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "756": {
       "orig_angles": [
@@ -111290,7 +112058,10 @@
           0.17738981361654477,
           -0.012776447390316331
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5116645498437119,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "757": {
       "orig_angles": [
@@ -111435,7 +112206,10 @@
           0.10538646245604448,
           0.02238753827568677
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5099986668799655,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "758": {
       "orig_angles": [
@@ -111580,7 +112354,10 @@
           0.061922626489777276,
           0.05665357812385
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "759": {
       "orig_angles": [
@@ -111725,7 +112502,10 @@
           0.041275723293069104,
           0.05474705572367994
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5399148845555657,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "760": {
       "orig_angles": [
@@ -111870,7 +112650,10 @@
           0.07052307342753356,
           -0.00934806360971014
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5183251216999564,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "761": {
       "orig_angles": [
@@ -112015,7 +112798,10 @@
           0.0578007618029849,
           0.02457607565458032
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5049998333399998,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "762": {
       "orig_angles": [
@@ -112160,7 +112946,10 @@
           0.37250594991321706,
           -0.08640814801944538
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5382584045560131,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "763": {
       "orig_angles": [
@@ -112305,7 +113094,10 @@
           0.34422344799746996,
           -0.1629766188991318
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5349429451582145,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "764": {
       "orig_angles": [
@@ -112450,7 +113242,10 @@
           0.4289228814829222,
           -0.11606650957662384
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5580701058739532,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "765": {
       "orig_angles": [
@@ -112595,7 +113390,10 @@
           0.2610739153922222,
           -0.07072710230998944
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5514835536611825,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "766": {
       "orig_angles": [
@@ -112740,7 +113538,10 @@
           0.1984786390080942,
           -0.11332313489802831
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5531319780689512,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "767": {
       "orig_angles": [
@@ -112885,7 +113686,10 @@
           0.1782721782365454,
           -0.15015748912024077
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5382584045560131,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "768": {
       "orig_angles": [
@@ -113030,7 +113834,10 @@
           0.34019497605322474,
           -0.15458339120894554
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5399148845555657,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "769": {
       "orig_angles": [
@@ -113175,7 +113982,10 @@
           0.3110204044446826,
           -0.2774227688467871
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5382584045560131,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "770": {
       "orig_angles": [
@@ -113320,7 +114130,10 @@
           0.34381118052729864,
           -0.23682562001843438
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5366010793535907,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "771": {
       "orig_angles": [
@@ -113465,7 +114278,10 @@
           0.4243112942788525,
           -0.11178705225226532
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5016666604938546,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "772": {
       "orig_angles": [
@@ -113610,7 +114426,10 @@
           0.4653923338398025,
           -0.10027178655709279
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5514835536611825,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "773": {
       "orig_angles": [
@@ -113755,7 +114574,10 @@
           0.4400090934909708,
           -0.20057867906403035
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5547792351072148,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "774": {
       "orig_angles": [
@@ -113900,7 +114722,10 @@
           0.40331941598092,
           -0.039711039340005416
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5382584045560131,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "775": {
       "orig_angles": [
@@ -114045,7 +114870,10 @@
           0.2260758261902042,
           -0.12680000442941786
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5366010793535907,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "776": {
       "orig_angles": [
@@ -114190,7 +115018,10 @@
           0.18528512855634102,
           0.10002021613604847
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5349429451582145,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "777": {
       "orig_angles": [
@@ -114335,7 +115166,10 @@
           0.40979006223870984,
           -0.10995488418799235
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5183251216999564,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "778": {
       "orig_angles": [
@@ -114480,7 +115314,10 @@
           0.040481954821130726,
           0.06046478255467136
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5662743941954392,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "779": {
       "orig_angles": [
@@ -114625,7 +115462,10 @@
           0.057277069447017166,
           0.024322615171737227
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5399148845555657,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "780": {
       "orig_angles": [
@@ -114770,7 +115610,10 @@
           0.06859279901270453,
           0.006374344741869372
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5216531151169002,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "781": {
       "orig_angles": [
@@ -114915,7 +115758,10 @@
           0.07480616207711656,
           -0.017889429808065096
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5465316309986,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "782": {
       "orig_angles": [
@@ -115060,7 +115906,10 @@
           0.05891110468547166,
           0.08418360826469018
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5199893401555818,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "783": {
       "orig_angles": [
@@ -115205,7 +116054,10 @@
           0.17057948485795515,
           -0.04294113939225647
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5233164098038501,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "784": {
       "orig_angles": [
@@ -115350,7 +116202,10 @@
           0.2620849037153922,
           -0.032604057486349675
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5116645498437119,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "785": {
       "orig_angles": [
@@ -115495,7 +116350,10 @@
           0.4065967798060015,
           -0.13902680594833602
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.51499550161941,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "786": {
       "orig_angles": [
@@ -115640,7 +116498,10 @@
           0.2524238516604728,
           -0.11766077290385081
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5316243949817686,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "787": {
       "orig_angles": [
@@ -115785,7 +116646,10 @@
           0.30768172548647527,
           -0.14202999920641662
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5448788923735801,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "788": {
       "orig_angles": [
@@ -115930,7 +116794,10 @@
           0.2838433337417584,
           -0.22200514752738837
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5448788923735801,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "789": {
       "orig_angles": [
@@ -116075,7 +116942,10 @@
           0.44111614771506796,
           -0.13430431553495048
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5448788923735801,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "790": {
       "orig_angles": [
@@ -116220,7 +117090,10 @@
           0.35788142396851463,
           -0.18748452895125894
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5099986668799655,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "791": {
       "orig_angles": [
@@ -116365,7 +117238,10 @@
           0.37853228941193684,
           -0.1864020564600285
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.52497918747894,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "792": {
       "orig_angles": [
@@ -116510,7 +117386,10 @@
           0.4470752990784779,
           -0.060590034538309995
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5662743941954392,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "793": {
       "orig_angles": [
@@ -116655,7 +117534,10 @@
           0.32458598896500046,
           0.04342925616186118
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5316243949817686,
+      "qibo_predicted_label": 1,
+      "qibo_correct": false
     },
     "794": {
       "orig_angles": [
@@ -116800,7 +117682,10 @@
           0.03328306413923583,
           0.07386581943968946
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5183251216999564,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "795": {
       "orig_angles": [
@@ -116945,7 +117830,10 @@
           0.08277327580641347,
           -0.01498887793807345
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5613558846263439,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "796": {
       "orig_angles": [
@@ -117090,7 +117978,10 @@
           0.10056244436963029,
           0.048209272232801186
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "797": {
       "orig_angles": [
@@ -117235,7 +118126,10 @@
           0.14268672163710283,
           -0.05454298145897029
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5432251644818576,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "798": {
       "orig_angles": [
@@ -117380,7 +118274,10 @@
           0.17852998173289006,
           -0.04973969393819165
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5547792351072148,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "799": {
       "orig_angles": [
@@ -117525,7 +118422,10 @@
           0.27379202573852507,
           -0.04418400647636998
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.45512110762641994,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "800": {
       "orig_angles": [
@@ -117670,7 +118570,10 @@
           0.428836392650393,
           -0.0665729647525801
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4850044983805899,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "801": {
       "orig_angles": [
@@ -117815,7 +118718,10 @@
           0.4164787973340914,
           0.0803124010261381
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "802": {
       "orig_angles": [
@@ -117960,7 +118866,10 @@
           0.23162010182041426,
           -0.313801035158822
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5283030450758288,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "803": {
       "orig_angles": [
@@ -118105,7 +119014,10 @@
           0.40415845420754243,
           -0.06631536961232867
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5216531151169002,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "804": {
       "orig_angles": [
@@ -118250,7 +119162,10 @@
           0.24236132409031258,
           -0.16338125091868302
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.52497918747894,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "805": {
       "orig_angles": [
@@ -118395,7 +119310,10 @@
           0.3483178016939157,
           -0.2567232978156866
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5316243949817686,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "806": {
       "orig_angles": [
@@ -118540,7 +119458,10 @@
           0.41212333641044285,
           -0.26624399081321587
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5629967770624005,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "807": {
       "orig_angles": [
@@ -118685,7 +119606,10 @@
           0.5117005228908111,
           -0.03886348530537295
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5266414114504839,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "808": {
       "orig_angles": [
@@ -118830,7 +119754,10 @@
           0.22565365331763368,
           0.10252056116102064
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "809": {
       "orig_angles": [
@@ -118975,7 +119902,10 @@
           0.003357342595807094,
           0.06098056775094273
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5332840382511314,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "810": {
       "orig_angles": [
@@ -119120,7 +120050,10 @@
           0.02743530539529074,
           0.05938628403785451
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5133301737382324,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "811": {
       "orig_angles": [
@@ -119265,7 +120198,10 @@
           0.08907345430353603,
           -0.0016376662746797471
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.548183344550421,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "812": {
       "orig_angles": [
@@ -119410,7 +120346,10 @@
           0.09353676289721652,
           0.028287850637510187
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5216531151169002,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "813": {
       "orig_angles": [
@@ -119555,7 +120494,10 @@
           0.11081480340396621,
           0.06796323679183651
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5448788923735801,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "814": {
       "orig_angles": [
@@ -119700,7 +120642,10 @@
           0.3594287084283986,
           -0.04700295981740843
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4850044983805899,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "815": {
       "orig_angles": [
@@ -119845,7 +120790,10 @@
           0.367850921492476,
           -0.05046426471284757
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.46837560501823133,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "816": {
       "orig_angles": [
@@ -119990,7 +120938,10 @@
           0.32777794879531635,
           0.11440178951030983
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5332840382511314,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "817": {
       "orig_angles": [
@@ -120135,7 +121086,10 @@
           0.3282871103396326,
           -0.25785245512934424
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.46837560501823133,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "818": {
       "orig_angles": [
@@ -120280,7 +121234,10 @@
           0.24458857194800593,
           -0.09410640953331119
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5016666604938546,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "819": {
       "orig_angles": [
@@ -120425,7 +121382,10 @@
           0.21989957475316974,
           -0.056842811267087734
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4816748783000437,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "820": {
       "orig_angles": [
@@ -120570,7 +121530,10 @@
           0.3470144126273734,
           -0.1995485130587914
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.48666982626176764,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "821": {
       "orig_angles": [
@@ -120715,7 +121678,10 @@
           0.4799042265900304,
           -0.10359391586754993
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4700359482354282,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "822": {
       "orig_angles": [
@@ -120860,7 +121826,10 @@
           0.4457978668890935,
           0.023653931839206027
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5216531151169002,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "823": {
       "orig_angles": [
@@ -121005,7 +121974,10 @@
           0.2760762120000412,
           -0.12849151733199654
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5366010793535907,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "824": {
       "orig_angles": [
@@ -121150,7 +122122,10 @@
           0.2505425352414198,
           0.08785305410512732
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4650570548417855,
+      "qibo_predicted_label": 0,
+      "qibo_correct": true
     },
     "825": {
       "orig_angles": [
@@ -121295,7 +122270,10 @@
           0.10943153375880325,
           -0.02295723456162374
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4700359482354282,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "826": {
       "orig_angles": [
@@ -121440,7 +122418,10 @@
           -0.00932438853184475,
           0.03677427367551834
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5083325618141193,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "827": {
       "orig_angles": [
@@ -121585,7 +122566,10 @@
           0.17366037665611225,
           -0.0591273280001354
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5432251644818576,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "828": {
       "orig_angles": [
@@ -121730,7 +122714,10 @@
           0.3867975768606381,
           -0.17656890000620884
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5547792351072148,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "829": {
       "orig_angles": [
@@ -121875,7 +122862,10 @@
           0.34511591878009384,
           -0.15344977552612366
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5415704832167999,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "830": {
       "orig_angles": [
@@ -122020,7 +123010,10 @@
           0.4015291773906362,
           -0.11166064579519397
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5316243949817686,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "831": {
       "orig_angles": [
@@ -122165,7 +123158,10 @@
           0.4329662967493714,
           -0.040385049830700404
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49166743818588077,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "832": {
       "orig_angles": [
@@ -122310,7 +123306,10 @@
           0.4538892333939217,
           -0.05505008377180931
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4567748355181423,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "833": {
       "orig_angles": [
@@ -122455,7 +123454,10 @@
           0.3261982449556846,
           -0.18556497512047568
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5366010793535907,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "834": {
       "orig_angles": [
@@ -122600,7 +123602,10 @@
           0.2935962662787447,
           -0.06200803705662812
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5662743941954392,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "835": {
       "orig_angles": [
@@ -122745,7 +123750,10 @@
           0.42093012402362406,
           -0.12297764066870137
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.473358588549516,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "836": {
       "orig_angles": [
@@ -122890,7 +123898,10 @@
           0.4312352316418702,
           -0.13013672882921398
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.47502081252106,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "837": {
       "orig_angles": [
@@ -123035,7 +124046,10 @@
           0.3826316461329141,
           -0.0868592872785858
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5116645498437119,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "838": {
       "orig_angles": [
@@ -123180,7 +124194,10 @@
           0.3131163314472666,
           0.001972017723528424
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.51499550161941,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "839": {
       "orig_angles": [
@@ -123325,7 +124342,10 @@
           0.2917300888843148,
           -0.012720744653527183
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.52497918747894,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "840": {
       "orig_angles": [
@@ -123470,7 +124490,10 @@
           0.11483024290300425,
           -0.05145411796175606
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4900013331200346,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "841": {
       "orig_angles": [
@@ -123615,7 +124638,10 @@
           0.08641322981554642,
           0.06373136816634008
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5016666604938546,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "842": {
       "orig_angles": [
@@ -123760,7 +124786,10 @@
           0.2540346716756027,
           -0.10842787139242882
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.48001065984441826,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "843": {
       "orig_angles": [
@@ -123905,7 +124934,10 @@
           0.32930193770512267,
           -0.04603186264481751
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5266414114504839,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "844": {
       "orig_angles": [
@@ -124050,7 +125082,10 @@
           0.28235610085607304,
           0.01602873186206022
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5283030450758288,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "845": {
       "orig_angles": [
@@ -124195,7 +125230,10 @@
           0.2529859948847829,
           -0.11584500591908384
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5099986668799655,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "846": {
       "orig_angles": [
@@ -124340,7 +125378,10 @@
           0.32860504437950855,
           -0.015278785904568382
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5166604965694114,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "847": {
       "orig_angles": [
@@ -124485,7 +125526,10 @@
           0.33909304411933705,
           -0.004179630270997742
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.51499550161941,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "848": {
       "orig_angles": [
@@ -124630,7 +125674,10 @@
           0.34142418500895355,
           -0.06622017877155692
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5216531151169002,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "849": {
       "orig_angles": [
@@ -124775,7 +125822,10 @@
           0.30004630107503166,
           -0.03628381336189701
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4883354501562881,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "850": {
       "orig_angles": [
@@ -124920,7 +125970,10 @@
           0.21841642151216062,
           0.027822147164541886
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5066662716330296,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "851": {
       "orig_angles": [
@@ -125065,7 +126118,10 @@
           0.10339623913168478,
           -0.05192358959378482
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5099986668799655,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "852": {
       "orig_angles": [
@@ -125210,7 +126266,10 @@
           0.12230158229458504,
           -0.12715916769138846
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4667159617488687,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "853": {
       "orig_angles": [
@@ -125355,7 +126414,10 @@
           0.2945416509670554,
           -0.12911283116651928
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.46837560501823133,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "854": {
       "orig_angles": [
@@ -125500,7 +126562,10 @@
           0.3604651276642292,
           -0.08874538765429607
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.52497918747894,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "855": {
       "orig_angles": [
@@ -125645,7 +126710,10 @@
           0.3437633635822441,
           -0.13563923747049583
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5465316309986,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "856": {
       "orig_angles": [
@@ -125790,7 +126858,10 @@
           0.36452282718990303,
           -0.1101854088785375
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5049998333399998,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "857": {
       "orig_angles": [
@@ -125935,7 +127006,10 @@
           0.40484131964406034,
           -0.07294609527562199
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4900013331200346,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "858": {
       "orig_angles": [
@@ -126080,7 +127154,10 @@
           0.2706353719965926,
           0.026144754173836174
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5199893401555818,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "859": {
       "orig_angles": [
@@ -126225,7 +127302,10 @@
           0.28278314759783474,
           -0.22399035947659
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5613558846263439,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "860": {
       "orig_angles": [
@@ -126370,7 +127450,10 @@
           0.38722402206676043,
           -0.020518726008252164
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5099986668799655,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "861": {
       "orig_angles": [
@@ -126515,7 +127598,10 @@
           0.04558332034605779,
           -0.014328206616590889
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5116645498437119,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "862": {
       "orig_angles": [
@@ -126660,7 +127746,10 @@
           0.02041870025710287,
           -0.007394470553283734
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5233164098038501,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "863": {
       "orig_angles": [
@@ -126805,7 +127894,10 @@
           0.05487380816500267,
           0.01650089250567322
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5448788923735801,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "864": {
       "orig_angles": [
@@ -126950,7 +128042,10 @@
           0.0631629146664896,
           0.019402738776705755
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49333372836697054,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "865": {
       "orig_angles": [
@@ -127095,7 +128190,10 @@
           0.08435675176742513,
           0.026386676955883943
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5366010793535907,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "866": {
       "orig_angles": [
@@ -127240,7 +128338,10 @@
           0.18872542078601123,
           -0.03539352463663421
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5266414114504839,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "867": {
       "orig_angles": [
@@ -127385,7 +128486,10 @@
           0.26637618393783574,
           -0.05162871768099016
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5099986668799655,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "868": {
       "orig_angles": [
@@ -127530,7 +128634,10 @@
           0.2630726093401903,
           -0.11652318597922363
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5316243949817686,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "869": {
       "orig_angles": [
@@ -127675,7 +128782,10 @@
           0.33075696981914404,
           -0.04174353942709694
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49333372836697054,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "870": {
       "orig_angles": [
@@ -127820,7 +128930,10 @@
           0.15117430832912937,
           -0.04798382956275002
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5399148845555657,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "871": {
       "orig_angles": [
@@ -127965,7 +129078,10 @@
           0.16643493825507677,
           -0.06024299774906085
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5133301737382324,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "872": {
       "orig_angles": [
@@ -128110,7 +129226,10 @@
           0.22125726628538514,
           -0.18838363770520794
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.43372560580456077,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "873": {
       "orig_angles": [
@@ -128255,7 +129374,10 @@
           0.3815581634204978,
           0.09358379732875943
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4950001666600003,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "874": {
       "orig_angles": [
@@ -128400,7 +129522,10 @@
           0.12946980583435022,
           -0.042704153965509216
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5399148845555657,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "875": {
       "orig_angles": [
@@ -128545,7 +129670,10 @@
           0.03360079123795945,
           -0.004969547957855211
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "876": {
       "orig_angles": [
@@ -128690,7 +129818,10 @@
           0.040437072397760836,
           -0.010555248432689525
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5266414114504839,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "877": {
       "orig_angles": [
@@ -128835,7 +129966,10 @@
           0.03991087048771436,
           -0.03823417805715968
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49333372836697054,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "878": {
       "orig_angles": [
@@ -128980,7 +130114,10 @@
           0.09904100139855854,
           -0.042658200765796676
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49333372836697054,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "879": {
       "orig_angles": [
@@ -129125,7 +130262,10 @@
           0.17759947397354459,
           0.010488101669006766
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5199893401555818,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "880": {
       "orig_angles": [
@@ -129270,7 +130410,10 @@
           0.17410550118146578,
           -0.014239761289364383
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.51499550161941,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "881": {
       "orig_angles": [
@@ -129415,7 +130558,10 @@
           0.24210518874333545,
           -0.05134707503061976
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5166604965694114,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "882": {
       "orig_angles": [
@@ -129560,7 +130706,10 @@
           0.304335348274753,
           -0.11638786968219103
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5432251644818576,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "883": {
       "orig_angles": [
@@ -129705,7 +130854,10 @@
           0.32599388786224803,
           -0.046407150055156166
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5133301737382324,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "884": {
       "orig_angles": [
@@ -129850,7 +131002,10 @@
           0.2029647976453048,
           -0.06004665717727406
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "885": {
       "orig_angles": [
@@ -129995,7 +131150,10 @@
           0.17484563574146084,
           -0.057774583057181736
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5066662716330296,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "886": {
       "orig_angles": [
@@ -130140,7 +131298,10 @@
           0.2866414567153214,
           -0.16418605451513205
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "887": {
       "orig_angles": [
@@ -130285,7 +131446,10 @@
           0.4113721551578141,
           -0.1725017810199832
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5415704832167999,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "888": {
       "orig_angles": [
@@ -130430,7 +131594,10 @@
           0.43354115032074203,
           -0.1602222302020326
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5597136492671929,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "889": {
       "orig_angles": [
@@ -130575,7 +131742,10 @@
           0.3999155350879946,
           -0.07149930536788882
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5531319780689512,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "890": {
       "orig_angles": [
@@ -130720,7 +131890,10 @@
           0.3887727491952555,
           -0.06861488896610862
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5349429451582145,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "891": {
       "orig_angles": [
@@ -130865,7 +132038,10 @@
           0.22346977353333136,
           -0.023741346278726774
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5216531151169002,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "892": {
       "orig_angles": [
@@ -131010,7 +132186,10 @@
           0.19957322116571646,
           -0.039213906810433144
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4966667160485049,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "893": {
       "orig_angles": [
@@ -131155,7 +132334,10 @@
           0.18638565006633184,
           -0.0336011193429967
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "894": {
       "orig_angles": [
@@ -131300,7 +132482,10 @@
           0.25007648943364325,
           -0.02515165883683397
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5432251644818576,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "895": {
       "orig_angles": [
@@ -131445,7 +132630,10 @@
           0.11613398123009461,
           -0.05925133987108184
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5133301737382324,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "896": {
       "orig_angles": [
@@ -131590,7 +132778,10 @@
           0.04569391033478857,
           -0.009355088971625482
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5316243949817686,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "897": {
       "orig_angles": [
@@ -131735,7 +132926,10 @@
           0.06162623231217952,
           -0.05570534235502598
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4950001666600003,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "898": {
       "orig_angles": [
@@ -131880,7 +133074,10 @@
           0.10742308039925687,
           -0.053035605799552916
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5199893401555818,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "899": {
       "orig_angles": [
@@ -132025,7 +133222,10 @@
           0.08030258649415722,
           0.06763246200240493
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.52497918747894,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "900": {
       "orig_angles": [
@@ -132170,7 +133370,10 @@
           0.05722142860026462,
           0.08744216970802993
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49333372836697054,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "901": {
       "orig_angles": [
@@ -132315,7 +133518,10 @@
           0.21261926040597767,
           -0.011895531438166532
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5183251216999564,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "902": {
       "orig_angles": [
@@ -132460,7 +133666,10 @@
           0.2654973260215509,
           -0.04717103941481182
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5066662716330296,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "903": {
       "orig_angles": [
@@ -132605,7 +133814,10 @@
           0.26536598815273116,
           -0.1399058793425263
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5166604965694114,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "904": {
       "orig_angles": [
@@ -132750,7 +133962,10 @@
           0.33530631034096037,
           -0.13616781894134172
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5679110497092322,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "905": {
       "orig_angles": [
@@ -132895,7 +134110,10 @@
           0.3301187657651823,
           -0.10511634110421586
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5349429451582145,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "906": {
       "orig_angles": [
@@ -133040,7 +134258,10 @@
           0.4444374100367472,
           -0.11544984704574801
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4883354501562881,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "907": {
       "orig_angles": [
@@ -133185,7 +134406,10 @@
           0.4809396880414319,
           -0.13759371125945583
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5399148845555657,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "908": {
       "orig_angles": [
@@ -133330,7 +134554,10 @@
           0.44071133491719516,
           -0.23075416717689004
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5083325618141193,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "909": {
       "orig_angles": [
@@ -133475,7 +134702,10 @@
           0.35449403896731274,
           0.4196681115801971
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5016666604938546,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "910": {
       "orig_angles": [
@@ -133620,7 +134850,10 @@
           0.22259629081840532,
           -0.03355842544177795
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4883354501562881,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "911": {
       "orig_angles": [
@@ -133765,7 +134998,10 @@
           0.23569399954634068,
           -0.027047639366190174
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5349429451582145,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "912": {
       "orig_angles": [
@@ -133910,7 +135146,10 @@
           0.394864088225666,
           0.035419987262476194
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5646362918030292,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "913": {
       "orig_angles": [
@@ -134055,7 +135294,10 @@
           0.2777011520469025,
           -0.04497116554882759
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4716969549241712,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "914": {
       "orig_angles": [
@@ -134200,7 +135442,10 @@
           0.16433192493760707,
           -0.09618430037758811
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5016666604938546,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "915": {
       "orig_angles": [
@@ -134345,7 +135590,10 @@
           0.07949756537474711,
           -0.02095003450865019
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49166743818588077,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "916": {
       "orig_angles": [
@@ -134490,7 +135738,10 @@
           0.08979066451351422,
           -0.010706327900972958
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4716969549241712,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "917": {
       "orig_angles": [
@@ -134635,7 +135886,10 @@
           0.1763099015338835,
           -0.05840360494154288
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49166743818588077,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "918": {
       "orig_angles": [
@@ -134780,7 +136034,10 @@
           0.21781967270552932,
           -0.11403193405426161
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.52497918747894,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "919": {
       "orig_angles": [
@@ -134925,7 +136182,10 @@
           0.3075567913711187,
           -0.1017367458177777
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.51499550161941,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "920": {
       "orig_angles": [
@@ -135070,7 +136330,10 @@
           0.3912049191113842,
           -0.13673778668752973
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5049998333399998,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "921": {
       "orig_angles": [
@@ -135215,7 +136478,10 @@
           0.4190625721018535,
           -0.11744068308015668
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5382584045560131,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "922": {
       "orig_angles": [
@@ -135360,7 +136626,10 @@
           0.4260755308165243,
           -0.12406451725533035
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5432251644818576,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "923": {
       "orig_angles": [
@@ -135505,7 +136774,10 @@
           0.4559424495011359,
           -0.09601245062583175
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49166743818588077,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "924": {
       "orig_angles": [
@@ -135650,7 +136922,10 @@
           0.456639525641345,
           -0.11946993123507132
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5283030450758288,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "925": {
       "orig_angles": [
@@ -135795,7 +137070,10 @@
           0.4307312056828266,
           -0.1772001331794531
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.4766835901961499,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "926": {
       "orig_angles": [
@@ -135940,7 +137218,10 @@
           0.5366042866049977,
           0.13127526964958153
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5299640517645717,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "927": {
       "orig_angles": [
@@ -136085,7 +137366,10 @@
           0.5871490569247112,
           -0.05586454453005463
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5646362918030292,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "928": {
       "orig_angles": [
@@ -136230,7 +137514,10 @@
           0.6182346945021868,
           -0.06557446964656394
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.49166743818588077,
+      "qibo_predicted_label": 0,
+      "qibo_correct": false
     },
     "929": {
       "orig_angles": [
@@ -136375,7 +137662,10 @@
           0.2690771977650148,
           -0.09579140987934207
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5465316309986,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     },
     "930": {
       "orig_angles": [
@@ -136520,14 +137810,17 @@
           0.1918849300300623,
           -0.016744463340972834
         ]
-      ]
+      ],
+      "qibo_sigmoid_expval": 0.5283030450758288,
+      "qibo_predicted_label": 1,
+      "qibo_correct": true
     }
   },
   "pennylane_accuracy": 0.5048335123523093,
   "noiseless_accuracy_check": 0.5048335123523093,
   "pennylane_accuracy_recreating_noiseless": 1.0,
-  "qibo_accuracy": 0.51,
-  "pennylane_vs_qibo_accuracy": 0.562,
-  "original_sim_accuracy_over_processed_subset": 0.812,
-  "processed_count": 500
+  "qibo_accuracy": 0.5821697099892589,
+  "pennylane_vs_qibo_accuracy": 0.44360902255639095,
+  "original_sim_accuracy_over_processed_subset": 0.5048335123523093,
+  "processed_count": 931
 }

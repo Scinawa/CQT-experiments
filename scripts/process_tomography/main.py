@@ -908,7 +908,7 @@ if __name__ == "__main__":
         ]["time (s)"] = gates_2qb_timings[ii][0]
 
     # SAVE JSON under data/<scriptname>/<device>/results.json
-    out_dir = config.output_dir_for(__file__) / args.device
+    out_dir = config.output_dir_for(__file__, args.device)
     os.makedirs(out_dir, exist_ok=True)
     with open(
         os.path.join(out_dir, "results.json"), "w", encoding="utf-8"

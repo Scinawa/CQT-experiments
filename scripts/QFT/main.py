@@ -65,7 +65,7 @@ def main(qubits_list, device, nshots):
         "plotparameters": {"frequencies": freq_dict},
     }
 
-    out_dir = config.output_dir_for(__file__) / device
+    out_dir = config.output_dir_for(__file__, device)
     out_dir.mkdir(parents=True, exist_ok=True)
     output_path = os.path.join(out_dir, f"results.json")
 
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--qubits_list",
-        default=[0, 1, 2, 3, 4],
+        default=[0, 1, 5],
         type=int,
         nargs='+',
         help="List of qubits exploited in the device",
