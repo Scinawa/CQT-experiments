@@ -137,7 +137,7 @@ def main(vector, qubits_list, device, nshots):
     data["nshots"] = nshots
     data["device"] = device
 
-    result = amplitude_enc(vector, qubits_list, device, nshots)
+    result = amplitude_enc(vector, qubits_list, nshots)
 
     n_qubits = len(qubits_list)
     success_keys = ["0" * n_qubits, "1" * n_qubits]
@@ -153,7 +153,7 @@ def main(vector, qubits_list, device, nshots):
         "plotparameters": {"frequencies": freq_dict},
     }
 
-    out_dir = config.output_dir_for(__file__) / device
+    out_dir = config.output_dir_for(__file__,  device)
     out_dir.mkdir(parents=True, exist_ok=True)
     output_path = os.path.join(out_dir, f"results.json")
 

@@ -3,6 +3,7 @@ from qibo import Circuit, gates, set_backend
 import json
 from pathlib import Path
 import sys
+import time
 from pathlib import Path as _P
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
@@ -103,7 +104,7 @@ def main(qubit_groups, device, nshots):
 
     runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
     results['runtime']= f"{runtime_seconds:.5f} seconds."
-    results['description']= f"Grover's algorithm for 3 qubits executed on {device} backend with {nshots} shots per circuit. \n We measure the success rate of finding the target state '{target}' for each pair of qubits in {qubit_pairs}."
+    results['description']= f"Grover's algorithm for 3 qubits executed on {device} backend with {nshots} shots per circuit. \n We measure the success rate of finding the target state '{target}' for each pair of qubits in {qubit_groups}."
 
 
 
