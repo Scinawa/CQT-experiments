@@ -81,7 +81,11 @@ def setup_argument_parser():
     parser.add_argument(
         "--no-statlog-plot-3q", dest="statlog_plot_3q", action="store_false"
     )
-
+    parser.add_argument(
+        "--no-amplitude-encoding-plot",
+        dest="amplitude_encoding_plot",
+        action="store_false",
+    )
     return parser
 
 
@@ -118,6 +122,45 @@ def add_stat_changes(current, baseline):
         result[f"{key}_change"] = get_change(curr_val, base_val)
     # print(f"Stat fidelity changes: {result}")
     return result
+
+
+def get_experiment_info(experiment_path, experiment_dir):
+    """
+    Extract description and duration from experiment JSON files.
+
+    Args:
+        experiment_path (str): Path to experiment (left or right)
+        experiment_dir (str): Directory for experiment type (e.g., 'mermin', 'grover2q')
+
+    Returns:
+        tuple: (description, duration)
+    """
+    description = "No description available"
+    duration = "Unknown duration"
+
+    # Try to get description from results.json
+    results_path = os.path.join("data", experiment_dir, experiment_path, "results.json")
+    if os.path.exists(results_path):
+        try:
+            with open(results_path, "r") as f:
+                results_data = json.load(f)
+                if "description" in results_data:
+                    description = results_data["description"]
+        except Exception as e:
+            logging.warning(f"Error reading description from {results_path}: {e}")
+
+    # Try to get duration from report.json
+    report_path = os.path.join("data", experiment_dir, experiment_path, "report.json")
+    if os.path.exists(report_path):
+        try:
+            with open(report_path, "r") as f:
+                report_data = json.load(f)
+                if "duration" in report_data:
+                    duration = report_data["duration"]
+        except Exception as e:
+            logging.warning(f"Error reading duration from {report_path}: {e}")
+
+    return description, duration
 
 
 def prepare_template_context(cfg):
@@ -388,19 +431,19 @@ def prepare_template_context(cfg):
         try:
             context["process_tomography_plot_is_set"] = True
             context["plot_process_tomography"] = pl.plot_process_tomography(
-                raw_data=os.path.join(
-                    "data", "process_tomography", cfg.experiment_left, "results.json"
-                ),
-                expname=f"process_tomography_{cfg.experiment_left}",
+                # raw_data=os.path.join(
+                # "data", "process_tomography", cfg.experiment_left, "results.json"
+                # ),
+                expname=cfg.experiment_left,  # f"process_tomography_{cfg.experiment_left}",
                 output_path=os.path.join(
                     "build", "process_tomography", cfg.experiment_left
                 ),
             )
             context["plot_process_tomography_baseline"] = pl.plot_process_tomography(
-                raw_data=os.path.join(
-                    "data", "process_tomography", cfg.experiment_right, "results.json"
-                ),
-                expname=f"process_tomography_{cfg.experiment_right}",
+                # raw_data=os.path.join(
+                # "data", "process_tomography", cfg.experiment_right, "results.json"
+                # ),
+                expname=cfg.experiment_right,  # f"process_tomography_{cfg.experiment_right}",
                 output_path=os.path.join(
                     "build", "process_tomography", cfg.experiment_right
                 ),
@@ -449,6 +492,7 @@ def prepare_template_context(cfg):
                     cfg.experiment_left,
                     "results.json",
                 ),
+                exp_name=cfg.experiment_left,
                 output_path=os.path.join(
                     "build", "reuploading_classifier", cfg.experiment_left
                 ),
@@ -461,6 +505,7 @@ def prepare_template_context(cfg):
                         cfg.experiment_right,
                         "results.json",
                     ),
+                    exp_name=cfg.experiment_right,
                     output_path=os.path.join(
                         "build", "reuploading_classifier", cfg.experiment_right
                     ),
@@ -504,22 +549,26 @@ def prepare_template_context(cfg):
 
     ######### YEAST CLASSIFICATION PLOTS 4Q
     if cfg.yeast_plot_4q == True:
-        context["yeast_classification_4q_plot_is_set"] = True
-        context["plot_yeast_4q"] = pl.plot_qml(
-            raw_data=os.path.join(
-                "data", "qml_4Q_yeast", cfg.experiment_left, "results.json"
-            ),
-            expname=f"4q_yeast_{cfg.experiment_left}",
-            output_path=os.path.join("build", "yeast", cfg.experiment_left),
-        )
-        context["plot_yeast_4q_baseline"] = pl.plot_qml(
-            raw_data=os.path.join(
-                "data", "qml_4Q_yeast", cfg.experiment_right, "results.json"
-            ),
-            expname=f"4q_yeast_{cfg.experiment_right}",
-            output_path=os.path.join("build", "yeast", cfg.experiment_right),
-        )
-        logging.info("Added Yeast classification 4q plots to context")
+        try:
+            context["yeast_classification_4q_plot_is_set"] = True
+            context["plot_yeast_4q"] = pl.plot_qml(
+                raw_data=os.path.join(
+                    "data", "qml_4Q_yeast", cfg.experiment_left, "results.json"
+                ),
+                expname=f"4q_yeast_{cfg.experiment_left}",
+                output_path=os.path.join("build", "yeast", cfg.experiment_left),
+            )
+            context["plot_yeast_4q_baseline"] = pl.plot_qml(
+                raw_data=os.path.join(
+                    "data", "qml_4Q_yeast", cfg.experiment_right, "results.json"
+                ),
+                expname=f"4q_yeast_{cfg.experiment_right}",
+                output_path=os.path.join("build", "yeast", cfg.experiment_right),
+            )
+            logging.info("Added Yeast classification 4q plots to context")
+        except Exception as e:
+            logging.error(f"Error adding Yeast classification 4q plots: {e}")
+            context["yeast_classification_4q_plot_is_set"] = False
     else:
         logging.info("Yeast classification 4q plot is not set, skipping...")
         context["yeast_classification_4q_plot_is_set"] = False
@@ -527,28 +576,36 @@ def prepare_template_context(cfg):
 
     ######### YEAST CLASSIFICATION PLOTS 3Q
     if cfg.yeast_plot_3q == True:
-        context["yeast_classification_3q_plot_is_set"] = True
-        context["yeast_3q_accuracy_right"] = fl.get_qml_accuracy(
-            os.path.join("data", "qml_3Q_yeast", cfg.experiment_left, "results.json")
-        )
-        context["yeast_3q_accuracy_left"] = fl.get_qml_accuracy(
-            os.path.join("data", "qml_3Q_yeast", cfg.experiment_left, "results.json")
-        )
-        context["plot_yeast_3q"] = pl.plot_qml(
-            raw_data=os.path.join(
-                "data", "qml_3Q_yeast", cfg.experiment_left, "results.json"
-            ),
-            expname=f"3q_yeast_{cfg.experiment_left}",
-            output_path=os.path.join("build", "yeast", cfg.experiment_left),
-        )
-        context["plot_yeast_3q_baseline"] = pl.plot_qml(
-            raw_data=os.path.join(
-                "data", "qml_3Q_yeast", cfg.experiment_right, "results.json"
-            ),
-            expname=f"3q_yeast_{cfg.experiment_right}",
-            output_path=os.path.join("build", "yeast", cfg.experiment_right),
-        )
-        logging.info("Added Yeast classification 3q plots to context")
+        try:
+            context["yeast_classification_3q_plot_is_set"] = True
+            context["yeast_3q_accuracy_right"] = fl.get_qml_accuracy(
+                os.path.join(
+                    "data", "qml_3Q_yeast", cfg.experiment_left, "results.json"
+                )
+            )
+            context["yeast_3q_accuracy_left"] = fl.get_qml_accuracy(
+                os.path.join(
+                    "data", "qml_3Q_yeast", cfg.experiment_left, "results.json"
+                )
+            )
+            context["plot_yeast_3q"] = pl.plot_qml(
+                raw_data=os.path.join(
+                    "data", "qml_3Q_yeast", cfg.experiment_left, "results.json"
+                ),
+                expname=f"3q_yeast_{cfg.experiment_left}",
+                output_path=os.path.join("build", "yeast", cfg.experiment_left),
+            )
+            context["plot_yeast_3q_baseline"] = pl.plot_qml(
+                raw_data=os.path.join(
+                    "data", "qml_3Q_yeast", cfg.experiment_right, "results.json"
+                ),
+                expname=f"3q_yeast_{cfg.experiment_right}",
+                output_path=os.path.join("build", "yeast", cfg.experiment_right),
+            )
+            logging.info("Added Yeast classification 3q plots to context")
+        except Exception as e:
+            logging.error(f"Error adding Yeast classification 3q plots: {e}")
+            context["yeast_classification_3q_plot_is_set"] = False
     else:
         logging.info("Yeast classification 3q plot is not set, skipping...")
         context["yeast_classification_3q_plot_is_set"] = False
@@ -556,22 +613,26 @@ def prepare_template_context(cfg):
 
     ######### STATLOG CLASSIFICATION PLOTS 4Q
     if cfg.statlog_plot_4q == True:
-        context["statlog_classification_4q_is_set"] = True
-        context["plot_statlog_4q"] = pl.plot_qml(
-            raw_data=os.path.join(
-                "data", "qml_4Q_statlog", cfg.experiment_left, "results.json"
-            ),
-            expname=f"4q_statlog_{cfg.experiment_left}",
-            output_path=os.path.join("build", "statlog", cfg.experiment_left),
-        )
-        context["plot_statlog_4q_baseline"] = pl.plot_qml(
-            raw_data=os.path.join(
-                "data", "qml_4Q_statlog", cfg.experiment_right, "results.json"
-            ),
-            expname=f"4q_statlog_{cfg.experiment_right}",
-            output_path=os.path.join("build", "statlog", cfg.experiment_right),
-        )
-        logging.info("Added StatLog classification 4q plots to context")
+        try:
+            context["statlog_classification_4q_is_set"] = True
+            context["plot_statlog_4q"] = pl.plot_qml(
+                raw_data=os.path.join(
+                    "data", "qml_4Q_statlog", cfg.experiment_left, "results.json"
+                ),
+                expname=f"4q_statlog_{cfg.experiment_left}",
+                output_path=os.path.join("build", "statlog", cfg.experiment_left),
+            )
+            context["plot_statlog_4q_baseline"] = pl.plot_qml(
+                raw_data=os.path.join(
+                    "data", "qml_4Q_statlog", cfg.experiment_right, "results.json"
+                ),
+                expname=f"4q_statlog_{cfg.experiment_right}",
+                output_path=os.path.join("build", "statlog", cfg.experiment_right),
+            )
+            logging.info("Added StatLog classification 4q plots to context")
+        except Exception as e:
+            logging.error(f"Error adding StatLog classification 4q plots: {e}")
+            context["statlog_classification_4q_is_set"] = False
     else:
         logging.info("StatLog classification 4q plot is not set, skipping...")
         context["statlog_classification_4q_plot_is_set"] = False
@@ -579,32 +640,100 @@ def prepare_template_context(cfg):
 
     ######### STATLOG CLASSIFICATION PLOTS 3Q
     if cfg.statlog_plot_3q == True:
-        context["statlog_classification_3q_plot_is_set"] = True
-        context["statlog_3q_accuracy_right"] = fl.get_qml_accuracy(
-            os.path.join("data", "qml_3Q_statlog", cfg.experiment_left, "results.json")
-        )
-        context["statlog_3q_accuracy_left"] = fl.get_qml_accuracy(
-            os.path.join("data", "qml_3Q_statlog", cfg.experiment_left, "results.json")
-        )
-        context["plot_statlog_3q"] = pl.plot_qml(
-            raw_data=os.path.join(
-                "data", "qml_3Q_statlog", cfg.experiment_left, "results.json"
-            ),
-            expname=f"3q_statlog_{cfg.experiment_left}",
-            output_path=os.path.join("build", "statlog", cfg.experiment_left),
-        )
-        context["plot_statlog_3q_baseline"] = pl.plot_qml(
-            raw_data=os.path.join(
-                "data", "qml_3Q_statlog", cfg.experiment_right, "results.json"
-            ),
-            expname=f"3q_statlog_{cfg.experiment_right}",
-            output_path=os.path.join("build", "statlog", cfg.experiment_right),
-        )
-        logging.info("Added StatLog classification 3q plots to context")
+        try:
+            context["statlog_classification_3q_plot_is_set"] = True
+            context["statlog_3q_accuracy_right"] = fl.get_qml_accuracy(
+                os.path.join(
+                    "data", "qml_3Q_statlog", cfg.experiment_left, "results.json"
+                )
+            )
+            context["statlog_3q_accuracy_left"] = fl.get_qml_accuracy(
+                os.path.join(
+                    "data", "qml_3Q_statlog", cfg.experiment_left, "results.json"
+                )
+            )
+            context["plot_statlog_3q"] = pl.plot_qml(
+                raw_data=os.path.join(
+                    "data", "qml_3Q_statlog", cfg.experiment_left, "results.json"
+                ),
+                expname=f"3q_statlog_{cfg.experiment_left}",
+                output_path=os.path.join("build", "statlog", cfg.experiment_left),
+            )
+            context["plot_statlog_3q_baseline"] = pl.plot_qml(
+                raw_data=os.path.join(
+                    "data", "qml_3Q_statlog", cfg.experiment_right, "results.json"
+                ),
+                expname=f"3q_statlog_{cfg.experiment_right}",
+                output_path=os.path.join("build", "statlog", cfg.experiment_right),
+            )
+            logging.info("Added StatLog classification 3q plots to context")
+        except Exception as e:
+            logging.error(f"Error adding StatLog classification 3q plots: {e}")
+            context["statlog_classification_3q_plot_is_set"] = False
     else:
         logging.info("StatLog classification 3q plot is not set, skipping...")
         context["statlog_classification_3q_plot_is_set"] = False
         pass
+
+    ######### AMPLITUDE ENCODING PLOTS
+    if cfg.amplitude_encoding_plot == True:
+        try:
+            context["amplitude_encoding_plot_is_set"] = True
+            context["plot_amplitude_encoding"] = pl.plot_amplitude_encoding(
+                raw_data=os.path.join(
+                    "data", "amplitude_encoding", cfg.experiment_left, "results.json"
+                ),
+                expname=f"amplitude_encoding_{cfg.experiment_left}",
+                output_path=os.path.join(
+                    "build", "amplitude_encoding", cfg.experiment_left
+                ),
+            )
+            context["plot_amplitude_encoding_baseline"] = pl.plot_amplitude_encoding(
+                raw_data=os.path.join(
+                    "data", "amplitude_encoding", cfg.experiment_right, "results.json"
+                ),
+                expname=f"amplitude_encoding_{cfg.experiment_right}",
+                output_path=os.path.join(
+                    "build", "amplitude_encoding", cfg.experiment_right
+                ),
+            )
+            logging.info("Added Amplitude Encoding plots to context")
+        except Exception as e:
+            logging.error(f"Error adding Amplitude Encoding plots: {e}")
+            context["amplitude_encoding_plot_is_set"] = False
+    else:
+        logging.info("Amplitude Encoding plot is not set, skipping...")
+        context["amplitude_encoding_plot_is_set"] = False
+        pass
+
+    # Define experiment mapping (experiment directory → context key prefix)
+    experiment_mapping = {
+        "mermin": "mermin",
+        "grover2q": "grover2q",
+        "grover3q": "grover3q",
+        "GHZ": "ghz",
+        "tomography": "tomography",
+        "process_tomography": "process_tomography",
+        "reuploading_classifier": "reuploading_classifier",
+        "QFT": "qft",
+        "qml_4Q_yeast": "yeast_4q",
+        "qml_3Q_yeast": "yeast_3q",
+        "qml_4Q_statlog": "statlog_4q",
+        "qml_3Q_statlog": "statlog_3q",
+        "amplitude_encoding": "amplitude_encoding",
+    }
+
+    # Extract experiment info and add to context
+    for exp_dir, context_key in experiment_mapping.items():
+        left_desc, left_duration = get_experiment_info(cfg.experiment_left, exp_dir)
+        right_desc, right_duration = get_experiment_info(cfg.experiment_right, exp_dir)
+
+        # Add to context - use the left experiment description for the main description
+        context[f"{context_key}_description"] = left_desc
+        context[f"{context_key}_duration_left"] = left_duration
+        context[f"{context_key}_duration_right"] = right_duration
+
+        logging.info(f"Added description and duration for {exp_dir}")
 
     return context
 

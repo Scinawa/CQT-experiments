@@ -263,33 +263,49 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 
 \section{5 Qubit Mermin}
+{{ mermin_description }}
+
 \begin{multicols}{2}
 
+\begin{itemize}
+\item \textbf{Duration:} {{ mermin_duration_left }}
+\end{itemize}
+
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_mermin_baseline }} }
+\includegraphics[width=0.95\linewidth]{ {{ plot_mermin }} }
 \end{center}
 
 \columnbreak
 
+\begin{itemize}
+\item \textbf{Duration:} {{ mermin_duration_right }}
+\end{itemize}
+
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_mermin }} }
+\includegraphics[width=0.95\linewidth]{ {{ plot_mermin_baseline }} }
 \end{center}
 \end{multicols}
 
 \newpage 
 
-
-
 {% if reuploading_plot_is_set %}
-
 \section{Data reuploading classifier}
+{{ reuploading_description }}
+
 \begin{multicols}{2}
+\begin{itemize}
+\item \textbf{Duration:} {{ reuploading_duration_left }}
+\end{itemize}
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_reuploading }} }
 \end{center}
 
 \columnbreak
+
+\begin{itemize}
+\item \textbf{Duration:} {{ reuploading_duration_right }}
+\end{itemize}
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_baseline }} }
@@ -301,14 +317,13 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 % Grover 2Q state preparation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 {% if grover2q_plot_is_set %}
 \section{Grover - 2 qubits}
-\begin{multicols}{2}
+{{ grover2q_description }}
 
+\begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ grover2q_duration_left }}
 \end{itemize}
 
 \begin{center}
@@ -318,8 +333,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ grover2q_duration_right }}
 \end{itemize}
 
 \begin{center}
@@ -328,18 +342,17 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{multicols}
 {% endif %}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grover 3Q state preparation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 {% if grover3q_plot_is_set %}
 \section{Grover - 3 qubits}
+{{ grover3q_description }}
+
 \begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ grover3q_duration_left }}
 \end{itemize}
 
 \begin{center}
@@ -348,17 +361,13 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \columnbreak
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ grover3q_duration_right }}
 \end{itemize}
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_grover3q_baseline }} }
 \end{center}
 \end{multicols}
 {% endif %}
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % GHZ state preparation
@@ -367,11 +376,11 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 {% if ghz_plot_is_set %}
 \newpage
 \section{GHZ state preparation}
-\begin{multicols}{2}
+{{ ghz_description }}
 
+\begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ ghz_duration_left }}
 \end{itemize}
 
 \begin{center}
@@ -381,18 +390,14 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ ghz_duration_right }}
 \end{itemize}
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_ghz_baseline }} }
 \end{center}
 \end{multicols}
-
 {% endif %}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Tomography state preparation
@@ -400,11 +405,11 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 {% if tomography_plot_is_set %}
 \section{Tomography state preparation}
-\begin{multicols}{2}
+{{ tomography_description }}
 
+\begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ tomography_duration_left }}
 \end{itemize}
 
 \begin{center}
@@ -414,8 +419,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ tomography_duration_right }}
 \end{itemize}
 
 \begin{center}
@@ -424,18 +428,17 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{multicols}
 {% endif %}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Process tomography state preparation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 {% if process_tomography_plot_is_set %}
 \section{Process Tomography state preparation}
-\begin{multicols}{2}
+{{ process_tomography_description }}
 
+\begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ process_tomography_duration_left }}
 \end{itemize}
 
 \begin{center}
@@ -445,8 +448,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ process_tomography_duration_right }}
 \end{itemize}
 
 \begin{center}
@@ -455,21 +457,18 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{multicols}
 {% endif %}
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Ruploading classifier 
+% Reuploading classifier 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 {% if reuploading_classifier_plot_is_set %}
 \section{Reuploading Classifier}
+{{ reuploading_classifier_description }}
+
 \begin{multicols}{2}
-
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ reuploading_classifier_duration_left }}
 \end{itemize}
-
 
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_classifier }} }
@@ -478,8 +477,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ reuploading_classifier_duration_right }}
 \end{itemize}
 
 \begin{center}
@@ -488,18 +486,17 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{multicols}
 {% endif %}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % QFT PLOT  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 {% if qft_plot_is_set %}
 \section{QFT Plots}
-\begin{multicols}{2}
+{{ qft_description }}
 
+\begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ qft_duration_left }}
 \end{itemize}
 
 \begin{center}
@@ -509,8 +506,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ qft_duration_right }}
 \end{itemize}
 
 \begin{center}
@@ -519,48 +515,38 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{multicols}
 {% endif %}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Yeast classifier 3q
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 {% if yeast_classification_3q_plot_is_set %}
 \section{QML: Yeast dataset (3 qubits)}
-\begin{multicols}{2}
+{{ yeast_3q_description }}
 
+\begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ yeast_3q_duration_left }}
 \item \textbf{Accuracy:} {{ yeast_3q_accuracy_left }}
 \end{itemize}
 
 \begin{center}
-%\begin{tauenvmine}
 \centering
 \includegraphics[width=0.95\linewidth]{ {{ plot_yeast_3q }} }
-%\end{tauenvmine}
 \end{center}
 
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ yeast_3q_duration_right }}
 \item \textbf{Accuracy:} {{ yeast_3q_accuracy_right }}
-
 \end{itemize}
 
 \begin{center}
 \centering
 \includegraphics[width=0.95\linewidth]{ {{ plot_yeast_3q_baseline }} }
-%\end{tauenvmine}
 \end{center}
-
 \end{multicols}
 {% endif %}
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Statlog classifier 3q
@@ -568,38 +554,30 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 {% if statlog_classification_3q_plot_is_set %}
 \section{QML: Statlog-Satellite dataset (3 qubits)}
+{{ statlog_3q_description }}
 
 \begin{multicols}{2}
-
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ statlog_3q_duration_left }}
 \item \textbf{Accuracy:} {{ statlog_3q_accuracy_left }}
 \end{itemize}
 
 \begin{center}
-%\begin{tauenvmine}
 \centering
 \includegraphics[width=0.95\linewidth]{ {{ plot_statlog_3q }} }
-%\end{tauenvmine}
 \end{center}
 
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ statlog_3q_duration_right }}
 \item \textbf{Accuracy:} {{ statlog_3q_accuracy_right }}
-
 \end{itemize}
 
 \begin{center}
-%\begin{tauenvmine}
 \centering
 \includegraphics[width=0.95\linewidth]{ {{ plot_statlog_3q_baseline }} }
-%\end{tauenvmine}
 \end{center}
-
 \end{multicols}
 {% endif %}
 
@@ -608,43 +586,31 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 {% if yeast_classification_4q_plot_is_set %}
-
 \section{QML: Yeast dataset (4 qubits)}
+{{ yeast_4q_description }}
 
 \begin{multicols}{2}
-
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ yeast_4q_duration_left }}
 \end{itemize}
 
 \begin{center}
-%\begin{tauenvmine}
 \centering
 \includegraphics[width=0.95\linewidth]{ {{ plot_yeast_4q }} }
-%\end{tauenvmine}
 \end{center}
 
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ yeast_4q_duration_right }}
 \end{itemize}
 
-
 \begin{center}
-%\begin{tauenvmine}
 \centering
 \includegraphics[width=0.95\linewidth]{ {{ plot_yeast_4q_baseline }} }
-%\end{tauenvmine}
 \end{center}
-
 \end{multicols}
 {% endif %}
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Statlog classifier 4q
@@ -652,36 +618,59 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 {% if statlog_classification_4q_plot_is_set %}
 \section{QML: Statlog-Satellite dataset (4 qubits)}
+{{ statlog_4q_description }}
 
 \begin{multicols}{2}
-
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ statlog_4q_duration_left }}
 \end{itemize}
 
-
 \begin{center}
-%\begin{tauenvmine}
 \centering
 \includegraphics[width=0.95\linewidth]{ {{ plot_statlog_4q }} }
-%\end{tauenvmine}
 \end{center}
 
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Description:} -
-\item \textbf{Duration:} - 
+\item \textbf{Duration:} {{ statlog_4q_duration_right }}
 \end{itemize}
 
 \begin{center}
-%\begin{tauenvmine}
 \centering
 \includegraphics[width=0.95\linewidth]{ {{ plot_statlog_4q_baseline }} }
-%\end{tauenvmine}
+\end{center>
+\end{multicols}
+{% endif %}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Amplitude Encoding
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{% if amplitude_encoding_plot_is_set %}
+\section{Amplitude Encoding}
+{{ amplitude_encoding_description }}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item \textbf{Duration:} {{ amplitude_encoding_duration_left }}
+\end{itemize}
+
+\begin{center}
+\centering
+\includegraphics[width=0.95\linewidth]{ {{ plot_amplitude_encoding }} }
 \end{center}
 
+\columnbreak
+
+\begin{itemize}
+\item \textbf{Duration:} {{ amplitude_encoding_duration_right }}
+\end{itemize}
+
+\begin{center}
+\centering
+\includegraphics[width=0.95\linewidth]{ {{ plot_amplitude_encoding_baseline }} }
+\end{center}
 \end{multicols}
 {% endif %}
 

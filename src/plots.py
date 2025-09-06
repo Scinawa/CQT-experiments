@@ -422,14 +422,23 @@ def plot_grover(raw_data, expname, output_path="build/"):
     key = next(iter(frequencies))
     freq_dict = frequencies[key]
 
-    bitstrings = list(freq_dict)
-    counts = [freq_dict[bs] for bs in bitstrings]
+    # Convert bitstrings to integers for plotting to avoid matplotlib categorical warning
+    try:
+        bitstrings = [int(bs) for bs in freq_dict]
+        x_tick_labels = [str(bs) for bs in freq_dict]
+    except Exception:
+        # fallback: use as string
+        bitstrings = list(range(len(freq_dict)))
+        x_tick_labels = [str(bs) for bs in freq_dict]
+
+    counts = [freq_dict[bs] for bs in freq_dict]
 
     plt.figure()
     plt.bar(bitstrings, counts, color="skyblue", edgecolor="black")
     plt.xlabel("Bitstring")
     plt.ylabel("Counts")
     plt.title("Grover's Algorithm Measurement Histogram")
+    plt.xticks(bitstrings, x_tick_labels, rotation=45, ha="right")
     plt.tight_layout()
 
     os.makedirs(output_path, exist_ok=True)
@@ -450,10 +459,12 @@ def plot_QFT(raw_data, expname, output_path="build/"):
     # Extract frequencies for the first (and only) key in 'frequencies'
     frequencies = data["plotparameters"]["frequencies"]
 
+    # Ensure bitstrings are strings for plotting
+    bitstrings = [str(bs) for bs in frequencies.keys()]
+    counts = [frequencies[bs] for bs in frequencies.keys()]
+
     plt.figure()
-    plt.bar(
-        frequencies.keys(), frequencies.values(), color="skyblue", edgecolor="black"
-    )
+    plt.bar(bitstrings, counts, color="skyblue", edgecolor="black")
     plt.xlabel("Bitstring")
     plt.ylabel("Counts")
     plt.title("QFT's Algorithm Measurement Histogram")
@@ -479,8 +490,9 @@ def plot_ghz(raw_data, output_path="build/"):
     freq_dict = data.get("plotparameters", {}).get("frequencies", {})
     success_rate = data.get("success_rate", None)
 
-    bitstrings = list(freq_dict.keys())
-    counts = [freq_dict[b] for b in bitstrings]
+    # Ensure bitstrings are strings for plotting
+    bitstrings = [str(b) for b in freq_dict.keys()]
+    counts = [freq_dict[b] for b in freq_dict]
 
     plt.figure()
     plt.bar(bitstrings, counts, color="mediumseagreen", edgecolor="black")
@@ -495,6 +507,39 @@ def plot_ghz(raw_data, output_path="build/"):
 
     os.makedirs(output_path, exist_ok=True)
     out_file = os.path.join(output_path, "ghz_results.pdf")
+    plt.savefig(out_file)
+    plt.close()
+    return out_file
+
+
+def plot_amplitude_encoding(raw_data, expname, output_path="build/"):
+    """
+    Plot Amplitude Encoding algorithm results as a histogram of measured
+    bitstrings, together with the expected outcome.
+    """
+    # Load data from JSON file
+    with open(raw_data, "r") as f:
+        data = json.load(f)
+
+    # Extract frequencies for the first (and only) key in 'frequencies'
+    frequencies = data["plotparameters"]["frequencies"]
+    input_vector = data["input_vector"]
+    norm_vector = input_vector / np.linalg.norm(input_vector)
+
+    # Ensure bitstrings are strings for plotting
+    bitstrings = [str(bs) for bs in frequencies.keys()]
+    counts = [frequencies[bs] for bs in frequencies.keys()]
+
+    plt.figure()
+    plt.bar(bitstrings, counts, color="skyblue", edgecolor="black")
+    plt.plot(norm_vector**2 * np.sum(counts), "-x", c="red")
+    plt.xlabel("Bitstring")
+    plt.ylabel("Counts")
+    plt.title("Amplitude Encoding Algorithm Measurement Histogram")
+    plt.tight_layout()
+
+    os.makedirs(output_path, exist_ok=True)
+    out_file = os.path.join(output_path, f"{expname}_results.pdf")
     plt.savefig(out_file)
     plt.close()
     return out_file
@@ -833,35 +878,4 @@ def plot_qml(raw_data, expname, output_path="build/"):
     out_file = os.path.join(output_path, f"{expname}_qml_confusion_matrices.pdf")
     fig.savefig(out_file, dpi=300, bbox_inches="tight")
     plt.close(fig)
-    return out_file
-
-
-def plot_amplitude_encoding(raw_data, expname, output_path="build/"):
-    """
-    Plot Amplitude Encoding algorithm results as a histogram of measured
-    bitstrings, together with the expected outcome.
-    """
-    # Load data from JSON file
-    with open(raw_data, "r") as f:
-        data = json.load(f)
-
-    # Extract frequencies for the first (and only) key in 'frequencies'
-    frequencies = data["plotparameters"]["frequencies"]
-    input_vector = data["input_vector"]
-    norm_vector = input_vector / np.linalg.norm(input_vector)
-
-    plt.figure()
-    plt.bar(
-        frequencies.keys(), frequencies.values(), color="skyblue", edgecolor="black"
-    )
-    plt.plot(norm_vector**2 * np.sum(frequencies.values()), "-x", c="red")
-    plt.xlabel("Bitstring")
-    plt.ylabel("Counts")
-    plt.title("Amplitude Encoding Algorithm Measurement Histogram")
-    plt.tight_layout()
-
-    os.makedirs(output_path, exist_ok=True)
-    out_file = os.path.join(output_path, f"{expname}_results.pdf")
-    plt.savefig(out_file)
-    plt.close()
     return out_file
