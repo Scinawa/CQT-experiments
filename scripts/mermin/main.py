@@ -2,6 +2,8 @@ import pathlib
 import os
 import json
 import argparse
+import time
+
 # from dynaconf import Dynaconf
 
 # os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path("/mnt/scratch/qibolab_platforms_nqch").as_posix()
@@ -61,8 +63,12 @@ def main(nqubits, qubit_list, device, nshots, via_client):
     custom_passes = [Unroller(native_gates=natives)]
     custom_pipeline = Passes(custom_passes)
 
-    set_backend("numpy")  # , platform="sinq-20") # , platform=device)
-    # set_transpiler(custom_pipeline)
+    _tmp_runtimes = []
+
+    if device == "numpy":
+        set_backend("numpy")
+    else:
+        set_backend("qibolab", platform=device)
 
     poly = get_mermin_polynomial(nqubits)
     coeff = get_mermin_coefficients(poly)
@@ -75,18 +81,23 @@ def main(nqubits, qubit_list, device, nshots, via_client):
         for idx, theta in enumerate(theta_array):
             frequencies = []
             for circ in circuits:
-                circ.set_parameters([theta])
-                if via_client:
-                    # use the correct circuit variable
-                    job = client.run_circuit(circ, device=device, nshots=nshots)
-                    freq = job.result(verbose=True).frequencies()
-                else:
-                    freq = circ(nshots=nshots).frequencies()
+                # circ.set_parameters([theta])
+                start_time = time.time()
+                freq = circ(nshots=nshots).frequencies()
+                end_time = time.time()
+                _tmp_runtimes.append(end_time - start_time)
+
                 frequencies.append(freq)
             result[idx] = compute_mermin(frequencies, coeff)
 
         results["x"][f"{qubits}"] = theta_array.tolist()
         results["y"][f"{qubits}"] = result.tolist()
+
+        runtime_seconds = (
+            sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
+        )
+        results["runtime"] = f"{runtime_seconds:.5f} seconds."
+        results["description"] = f"Mermin's algorithm for {nqubits} qubits."
 
         # Write to data/<scriptname>/<device>/results.json
         out_dir = config.output_dir_for(__file__, device)
