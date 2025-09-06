@@ -294,7 +294,8 @@ def prepare_template_context(cfg):
     # if cfg.reuploading_plot == True:
     #     context["reuploading_plot_is_set"] = True
     #     context["plot_reuploading"] = pl.do_plot_reuploading(
-    #         raw_data=os.path.join("data", "reuploading", cfg.experiment_left, "results.json")
+    #         raw_data=os.path.join("data", "reuploading", cfg.experiment_left, "results.json"),
+    #         expname=f"reuploading_{cfg.experiment_left}",
     #     )
     #     context["plot_reuploading_baseline"] = pl.do_plot_reuploading(
     #         raw_data=os.path.join("data", "reuploading", cfg.experiment_right, "results.json")
@@ -416,7 +417,7 @@ def prepare_template_context(cfg):
     ######### TOMOGRAPHY PLOTS
     if cfg.tomography_plot == True:
         try:
-            context["tomography_is_set"] = True
+            context["tomography_plot_is_set"] = True
             context["plot_tomography"] = pl.plot_tomography(
                 raw_data=os.path.join(
                     "data", "tomography", cfg.experiment_left, "results.json"
@@ -435,7 +436,7 @@ def prepare_template_context(cfg):
             context["tomography_is_set"] = False
     else:
         logging.info("Tomography plot is not set, skipping...")
-        context["tomography_is_set"] = False
+        context["tomography_plot_is_set"] = False
 
     ######### REUPLOADING CLASSIFIER PLOTS
     if cfg.reuploading_classifier_plot == True:
@@ -528,10 +529,10 @@ def prepare_template_context(cfg):
     if cfg.yeast_plot_3q == True:
         context["yeast_classification_3q_plot_is_set"] = True
         context["yeast_3q_accuracy_right"] = fl.get_qml_accuracy(
-            os.path.join("data", "qml_yeast_class_3q", cfg.data_left, "results.json")
+            os.path.join("data", "qml_3Q_yeast", cfg.experiment_left, "results.json")
         )
         context["yeast_3q_accuracy_left"] = fl.get_qml_accuracy(
-            os.path.join("data", "qml_yeast_class_3q", cfg.data_left, "results.json")
+            os.path.join("data", "qml_3Q_yeast", cfg.experiment_left, "results.json")
         )
         context["plot_yeast_3q"] = pl.plot_qml(
             raw_data=os.path.join(
@@ -580,10 +581,10 @@ def prepare_template_context(cfg):
     if cfg.statlog_plot_3q == True:
         context["statlog_classification_3q_plot_is_set"] = True
         context["statlog_3q_accuracy_right"] = fl.get_qml_accuracy(
-            os.path.join("data", "qml_statlog_class_3q", cfg.data_left, "results.json")
+            os.path.join("data", "qml_3Q_statlog", cfg.experiment_left, "results.json")
         )
         context["statlog_3q_accuracy_left"] = fl.get_qml_accuracy(
-            os.path.join("data", "qml_statlog_class_3q", cfg.data_left, "results.json")
+            os.path.join("data", "qml_3Q_statlog", cfg.experiment_left, "results.json")
         )
         context["plot_statlog_3q"] = pl.plot_qml(
             raw_data=os.path.join(

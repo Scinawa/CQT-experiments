@@ -500,7 +500,7 @@ def plot_ghz(raw_data, output_path="build/"):
     return out_file
 
 
-def plot_reuploading_classifier(raw_data, output_path="build/"):
+def plot_reuploading_classifier(raw_data, exp_name, output_path="build/"):
     # Retrieve relevant data
 
     with open(raw_data, "r") as f:
@@ -556,15 +556,15 @@ def plot_reuploading_classifier(raw_data, output_path="build/"):
     plt.tight_layout()
     os.makedirs(output_path, exist_ok=True)
     fig.savefig(
-        os.path.join(output_path, "reuploading_classifier_results.pdf"),
+        os.path.join(output_path, f"reuploading_classifier_results_{exp_name}.pdf"),
         bbox_inches="tight",
         dpi=300,
     )
     plt.close(fig)
-    return os.path.join(output_path, "reuploading_classifier_results.pdf")
+    return os.path.join(output_path, f"reuploading_classifier_results_{exp_name}.pdf")
 
 
-def do_plot_reuploading(raw_data, output_path="build/"):
+def do_plot_reuploading(raw_data, expname, output_path="build/"):
     """
     Generate reuploading plots for each epoch and a final summary plot using data from the results JSON file.
 
@@ -602,11 +602,11 @@ def do_plot_reuploading(raw_data, output_path="build/"):
         target=y_train,
         predictions=median_pred,
         err=mad_pred,
-        title="final_plot",
+        title=f"final_plot_{expname}",
         outdir=output_dir,
     )
 
-    return os.path.join(output_dir, "final_plot.pdf")
+    return os.path.join(output_dir, f"plot_reuploading_{expname}.pdf")
 
 
 def plot_process_tomography(expname, output_path="build/"):
