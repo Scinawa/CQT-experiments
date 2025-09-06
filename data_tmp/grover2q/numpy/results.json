@@ -11,5 +11,7 @@
                 "11": 1.0
             }
         }
-    }
+    },
+    "runtime": "0.17187 seconds.",
+    "description": "Grover's algorithm for 2 qubits executed on numpy backend with 1000 shots per circuit. \n We measure the success rate of finding the target state '11' for each pair of qubits in [[0, 1]]."
 }
