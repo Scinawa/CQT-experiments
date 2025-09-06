@@ -409,12 +409,14 @@ def prepare_template_context(cfg):
                 raw_data=os.path.join(
                     "data", "GHZ", cfg.experiment_left, "results.json"
                 ),
+                experiment_name=cfg.experiment_left,
                 output_path=os.path.join("build", "GHZ", cfg.experiment_left),
             )
             context["plot_ghz_baseline"] = pl.plot_ghz(
                 raw_data=os.path.join(
                     "data", "GHZ", cfg.experiment_right, "results.json"
                 ),
+                experiment_name=cfg.experiment_right,
                 output_path=os.path.join("build", "GHZ", cfg.experiment_right),
             )
             logging.info("Added GHZ plots to context")
