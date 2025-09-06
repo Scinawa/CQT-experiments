@@ -918,22 +918,22 @@ if __name__ == "__main__":
     # SAVE NPY FILES under data/<scriptname>/<device>/matrices/
     matrices_dir = os.path.join(out_dir, "matrices")
     os.makedirs(matrices_dir, exist_ok=True)
-    for ii in range(0, len(empty_1qb_matrices)):
-        qubit = single_qubit_indices[ii]
-        np.save(
-            os.path.join(matrices_dir, f"empty_1qb_matrix_qubit{qubit}.npy"),
-            empty_1qb_matrices[ii],
-        )
-    for ii in range(0, len(empty_2qb_matrices)):
-        pair = two_qubit_pairs[ii]
-        np.save(
-            os.path.join(
-                matrices_dir, f"empty_2qb_matrix_qubits{pair[0]}_{pair[1]}.npy"
-            ),
-            empty_2qb_matrices[ii],
-        )
-    for ii in range(0, len(gates_1qb_matrices)):
-        for jj in range(0, len(gates_1qb_matrices[0])):
+#    for ii in range(0, len(empty_1qb_matrices)):
+#        qubit = single_qubit_indices[ii]
+#        np.save(
+#            os.path.join(matrices_dir, f"empty_1qb_matrix_qubit{qubit}.npy"),
+#            empty_1qb_matrices[ii],
+#        )
+#    for ii in range(0, len(empty_2qb_matrices)):
+#        pair = two_qubit_pairs[ii]
+#        np.save(
+#            os.path.join(
+#                matrices_dir, f"empty_2qb_matrix_qubits{pair[0]}_{pair[1]}.npy"
+#            ),
+#            empty_2qb_matrices[ii],
+#        )
+    for ii in range(0, len(noisyPTM_1qb)):
+        for jj in range(0, len(noisyPTM_1qb[0])):
             qubit = single_qubit_indices[ii]
             gate = gate_set_1qb[jj]
             if isinstance(gate_set_1qb[jj], tuple):
@@ -948,7 +948,7 @@ if __name__ == "__main__":
                     matrices_dir,
                     f"gate_{gate_name}_{np.around(params,4)}_qubit{qubit}.npy",
                 ),
-                gates_1qb_matrices[ii][jj],
+                noisyPTM_1qb[ii][jj],
             )
     for ii in range(0, len(empty_2qb_matrices)):
         pair = two_qubit_pairs[ii]
@@ -965,5 +965,5 @@ if __name__ == "__main__":
                 matrices_dir,
                 f"gate_{gate_name}_{np.around(params,4)}_qubits{pair[0]}_{pair[1]}.npy",
             ),
-            gates_2qb_matrices[ii],
+            noisyPTM_2qb[ii],
         )

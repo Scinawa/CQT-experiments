@@ -391,6 +391,9 @@ def main(
 
     # Generate results dictionary and save results and metadata to json files
     report_data = {
+        "number_of_gates": nlayers*2*nqubits,
+        "depth": nlayers*2,
+        "nshots": nshots,
         "final_loss": final_loss,
         "train_accuracy": train_acc,
         "test_accuracy": test_acc,
