@@ -704,6 +704,12 @@ def plot_process_tomography(expname, output_path="build/"):
         title = file_name.removeprefix("gate_").replace(".npy", f"_{expname}")
         ax[idx].set_title(title)
 
+        # Add colorbar beside subplots
+        im = ax[idx].imshow(np.real(arr), cmap="coolwarm", vmin=-1, vmax=1)
+        cbar = fig.colorbar(
+            im, ax=ax[idx], orientation="vertical", fraction=0.05, pad=0.01
+        )
+
     plt.tight_layout()
 
     os.makedirs(output_path, exist_ok=True)
