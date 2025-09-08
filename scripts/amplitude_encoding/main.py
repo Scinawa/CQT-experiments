@@ -115,7 +115,7 @@ def amplitude_enc(vector, qubits_list, nshosts):
         
     result = circuit(nshots=nshosts)
     
-    return result
+    return result, circuit.depth, len(circuit.queue)
 
 
 def main(vector, qubits_list, device, nshots):
@@ -130,6 +130,9 @@ def main(vector, qubits_list, device, nshots):
     data = dict()
 
     results["input_vector"] = vector
+    results["circuit_depth"] = {}
+    results["gates_count"] = {}
+    results["elapsed_time"] = {}
     results["success_rate"] = {}
     results["plotparameters"] = {}
     results["plotparameters"]["frequencies"] = {}
@@ -137,7 +140,7 @@ def main(vector, qubits_list, device, nshots):
     data["nshots"] = nshots
     data["device"] = device
 
-    result = amplitude_enc(vector, qubits_list, nshots)
+    result, depth, num_gates = amplitude_enc(vector, qubits_list, nshots)
 
     n_qubits = len(qubits_list)
     success_keys = ["0" * n_qubits, "1" * n_qubits]
@@ -149,6 +152,8 @@ def main(vector, qubits_list, device, nshots):
 
     results = {
         "input_vector": vector,
+        "circuit_depth": depth,
+        "gates_count": num_gates,
         "success_rate": success_rate,
         "plotparameters": {"frequencies": freq_dict},
     }
