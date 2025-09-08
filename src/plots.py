@@ -425,23 +425,20 @@ def plot_grover(raw_data, expname, output_path="build/"):
     key = next(iter(frequencies))
     freq_dict = frequencies[key]
 
-    # Convert bitstrings to integers for plotting to avoid matplotlib categorical warning
-    try:
-        bitstrings = [int(bs) for bs in freq_dict]
-        x_tick_labels = [str(bs) for bs in freq_dict]
-    except Exception:
-        # fallback: use as string
-        bitstrings = list(range(len(freq_dict)))
-        x_tick_labels = [str(bs) for bs in freq_dict]
-
-    counts = [freq_dict[bs] for bs in freq_dict]
+    # Use evenly spaced numeric positions and set bitstrings as tick labels to avoid gaps/warnings
+    labels = list(freq_dict.keys())
+    if all(isinstance(k, str) and set(k) <= {"0", "1"} for k in labels):
+        labels = sorted(labels, key=lambda s: int(s, 2))
+    x = np.arange(len(labels))
+    counts = [freq_dict[k] for k in labels]
+    tick_labels = [str(k) for k in labels]
 
     plt.figure()
-    plt.bar(bitstrings, counts, color="skyblue", edgecolor="black")
+    plt.bar(x, counts, color="skyblue", edgecolor="black")
     plt.xlabel("Bitstring")
     plt.ylabel("Counts")
     plt.title("Grover's Algorithm Measurement Histogram")
-    plt.xticks(bitstrings, x_tick_labels, rotation=45, ha="right")
+    plt.xticks(x, tick_labels, rotation=45, ha="right")
     plt.tight_layout()
 
     os.makedirs(output_path, exist_ok=True)
