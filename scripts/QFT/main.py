@@ -29,7 +29,7 @@ def QFT(qubits_list, device, nshots):
         circuit.add(qibo.gates.M(q))
 
     result = circuit(nshots=nshots)
-    return result
+    return result, circuit.depth, len(circuit.queue)
 
 
 def main(qubits_list, device, nshots):
@@ -43,6 +43,9 @@ def main(qubits_list, device, nshots):
     results = dict()
     data = dict()
 
+    results["circuit_depth"] = {}
+    results["gates_count"] = {}
+    results["elapsed_time"] = {}
     results["success_rate"] = {}
     results["plotparameters"] = {}
     results["plotparameters"]["frequencies"] = {}
@@ -50,7 +53,7 @@ def main(qubits_list, device, nshots):
     data["nshots"] = nshots
     data["device"] = device
 
-    result = QFT(qubits_list, device, nshots)
+    result, depth, num_gates = QFT(qubits_list, device, nshots)
 
     n_qubits = len(qubits_list)
     success_keys = ["0" * n_qubits, "1" * n_qubits]
@@ -61,6 +64,8 @@ def main(qubits_list, device, nshots):
     freq_dict = {bitstr: result.frequencies().get(bitstr, 0) for bitstr in all_bitstrings}
 
     results = {
+        "circuit_depth": depth,
+        "gates_count": num_gates,
         "success_rate": success_rate,
         "plotparameters": {"frequencies": freq_dict},
     }
