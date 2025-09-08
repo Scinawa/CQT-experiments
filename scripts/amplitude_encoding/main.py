@@ -174,7 +174,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--qubits_list",
-        default=[0, 1, 5],
+        default=[0, 1, 4],
         type=int,
         nargs='+',
         help="List of qubits exploited in the device",
