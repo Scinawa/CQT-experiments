@@ -4,6 +4,7 @@ import os
 import json
 import sys
 from pathlib import Path as _P
+import time
 
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
@@ -112,10 +113,12 @@ def amplitude_enc(vector, qubits_list, nshosts):
     
     for q in qubits_list:
         circuit.add(qibo.gates.M(q))
-        
-    result = circuit(nshots=nshosts)
     
-    return result, circuit.depth, len(circuit.queue)
+    start = time.perf_counter()
+    result = circuit(nshots=nshosts)
+    end = time.perf_counter()
+    
+    return result, circuit.depth, len(circuit.queue), end - start
 
 
 def main(vector, qubits_list, device, nshots):
@@ -129,6 +132,7 @@ def main(vector, qubits_list, device, nshots):
     results = dict()
     data = dict()
 
+    results["description"] = {}
     results["input_vector"] = vector
     results["circuit_depth"] = {}
     results["gates_count"] = {}
@@ -140,7 +144,7 @@ def main(vector, qubits_list, device, nshots):
     data["nshots"] = nshots
     data["device"] = device
 
-    result, depth, num_gates = amplitude_enc(vector, qubits_list, nshots)
+    result, depth, num_gates, duration = amplitude_enc(vector, qubits_list, nshots)
 
     n_qubits = len(qubits_list)
     success_keys = ["0" * n_qubits, "1" * n_qubits]
@@ -151,9 +155,11 @@ def main(vector, qubits_list, device, nshots):
     freq_dict = {bitstr: result.frequencies().get(bitstr, 0) for bitstr in all_bitstrings}
 
     results = {
+        "description": f"Encoding of a vector of numerical data into the amplitudes of a quantum state. The input vector is {vector}, encoded in the qubits {qubits_list}. The number of gates is {num_gates}, the depth of the circuit is {depth} and the runtime execution is {duration}ms",
         "input_vector": vector,
         "circuit_depth": depth,
         "gates_count": num_gates,
+        "elapsed_time": duration,
         "success_rate": success_rate,
         "plotparameters": {"frequencies": freq_dict},
     }
