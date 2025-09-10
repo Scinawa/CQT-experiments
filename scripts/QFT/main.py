@@ -3,6 +3,7 @@ import qibo
 import os
 import json
 import sys
+import time
 from pathlib import Path as _P
 
 
@@ -11,7 +12,7 @@ import config  # scripts/config.py
 
 
 
-def QFT(qubits_list, device, nshots):
+def QFT(qubits_list, nshots):
     n_qubits = len(qubits_list)
     total_qubits = int(np.max(qubits_list) + 1)
 
@@ -28,8 +29,7 @@ def QFT(qubits_list, device, nshots):
     for q in qubits_list:
         circuit.add(qibo.gates.M(q))
 
-    result = circuit(nshots=nshots)
-    return result, circuit.depth, len(circuit.queue)
+    return circuit
 
 
 def main(qubits_list, device, nshots):
@@ -39,35 +39,59 @@ def main(qubits_list, device, nshots):
         qibo.set_backend("numpy")
     else:
         qibo.set_backend("qibolab", platform=device)
+        
+    qubits_lists = [[0,1,3], [3,4,8], [8,9,13], [4,9,5], [13,14,17], [14,15,17]]
+    
+    num_qubits = len(qubits_lists[0])
+    
+    frequencies = dict()
+    fidelities = []
+    times = []
+    all_bitstrings = [format(i, f"0{num_qubits}b") for i in range(2**num_qubits)]
+    
+    for qubits_list in qubits_lists:
+        print(f'Trying qubits: {qubits_list}')
+        
+        circuit = QFT(qubits_list, nshots)
+        
+        start = time.perf_counter()
+        result = circuit(nshots=nshots)
+        end = time.perf_counter()
+    
+        circuit_state = np.array([result.frequencies().get(bitstr, 0) for bitstr in all_bitstrings]) / nshots
+        
+        key = format(qubits_list)
+        frequencies[key] = circuit_state
+        fidelities.append(circuit_state[0])
+        times.append(end - start)
+
+    num_gates = len(circuit.queue)
+    depth = circuit.depth
 
     results = dict()
     data = dict()
 
+    frequencies = {k: v.tolist() if isinstance(v, np.ndarray) else v for k, v in frequencies.items()}
+
+    results["description"] = {}
     results["circuit_depth"] = {}
     results["gates_count"] = {}
-    results["elapsed_time"] = {}
-    results["success_rate"] = {}
+    results["elapsed_times"] = {}
+    results["frequencies"] = {}
     results["plotparameters"] = {}
-    results["plotparameters"]["frequencies"] = {}
-    data["qubits_list"] = qubits_list
+    results["plotparameters"]["qubits_lists"] = {}
+    results["plotparameters"]["fidelities"] = {}
     data["nshots"] = nshots
     data["device"] = device
 
-    result, depth, num_gates = QFT(qubits_list, device, nshots)
-
-    n_qubits = len(qubits_list)
-    success_keys = ["0" * n_qubits, "1" * n_qubits]
-    total_success = sum(result.frequencies().get(k, 0) for k in success_keys)
-    success_rate = total_success / nshots if nshots else 0.0
-
-    all_bitstrings = [format(i, f"0{n_qubits}b") for i in range(2**n_qubits)]
-    freq_dict = {bitstr: result.frequencies().get(bitstr, 0) for bitstr in all_bitstrings}
-
     results = {
-        "circuit_depth": depth,
-        "gates_count": num_gates,
-        "success_rate": success_rate,
-        "plotparameters": {"frequencies": freq_dict},
+        "description": f"Implementation of the Quantum Fourier Transform on different subsets of three qubits {qubits_lists}. The number of gates is {num_gates}, the depth of the circuit is {depth} and the average runtime execution is {np.mean(times):.3f}ms",
+        "circuit_depths": depth,
+        "gates_counts": num_gates,
+        "elapsed_times": times,
+        "frequencies": frequencies,
+        "plotparameters": {"qubits_lists": qubits_lists,
+                           "fidelities": fidelities},
     }
 
     out_dir = config.output_dir_for(__file__, device)
@@ -83,13 +107,6 @@ import argparse
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--qubits_list",
-        default=[0, 1, 4],
-        type=int,
-        nargs='+',
-        help="List of qubits exploited in the device",
-    )
-    parser.add_argument(
         "--device",
         default="numpy",
         type=str,
@@ -102,4 +119,4 @@ if __name__ == "__main__":
         help="Number of shots for each circuit",
     )
     args = vars(parser.parse_args())
-    main(args["qubits_list"], args["device"], args["nshots"])
+    main(args["device"], args["nshots"])
