@@ -187,24 +187,38 @@ def prepare_template_context(cfg):
     logging.info("Loaded experiment metadata from %s", meta_json_path)
 
     ######### Fidelity statistics and changes
-    stat_fidelity = fl.get_stat_fidelity(cfg.experiment_left + "/sinq20")
-    stat_fidelity_baseline = fl.get_stat_fidelity(cfg.experiment_right + "/sinq20")
-    stat_fidelity_with_improvement = add_stat_changes(
-        stat_fidelity, stat_fidelity_baseline
-    )
-    logging.info("Prepared stat_fidelity and stat_fidelity_with_improvement")
+    try:
+        stat_fidelity = fl.get_stat_fidelity(cfg.experiment_left + "/sinq20")
+        stat_fidelity_baseline = fl.get_stat_fidelity(cfg.experiment_right + "/sinq20")
+        stat_fidelity_with_improvement = add_stat_changes(
+            stat_fidelity, stat_fidelity_baseline
+        )
+        logging.info("Prepared stat_fidelity and stat_fidelity_with_improvement")
+    except Exception as e:
+        logging.error(f"Error preparing fidelity statistics: {e}")
+        stat_fidelity = {}
+        stat_fidelity_baseline = {}
+        stat_fidelity_with_improvement = {}
 
     ##########Pulse Fidelity statistics and changes
-    stat_pulse_fidelity = fl.get_stat_pulse_fidelity(cfg.experiment_left + "/sinq20")
-    stat_pulse_fidelity_baseline = fl.get_stat_pulse_fidelity(
-        cfg.experiment_right + "/sinq20"
-    )
-    stat_pulse_fidelity_with_improvement = add_stat_changes(
-        stat_pulse_fidelity, stat_pulse_fidelity_baseline
-    )
-    logging.info(
-        "Prepared stat_pulse_fidelity and stat_pulse_fidelity_with_improvement"
-    )
+    try:
+        stat_pulse_fidelity = fl.get_stat_pulse_fidelity(
+            cfg.experiment_left + "/sinq20"
+        )
+        stat_pulse_fidelity_baseline = fl.get_stat_pulse_fidelity(
+            cfg.experiment_right + "/sinq20"
+        )
+        stat_pulse_fidelity_with_improvement = add_stat_changes(
+            stat_pulse_fidelity, stat_pulse_fidelity_baseline
+        )
+        logging.info(
+            "Prepared stat_pulse_fidelity and stat_pulse_fidelity_with_improvement"
+        )
+    except Exception as e:
+        logging.error(f"Error preparing pulse fidelity statistics: {e}")
+        stat_pulse_fidelity = {}
+        stat_pulse_fidelity_baseline = {}
+        stat_pulse_fidelity_with_improvement = {}
 
     ######### T1 statistics and changes
     stat_t1 = fl.get_stat_t12(cfg.experiment_left + "/sinq20", "t1")
@@ -239,18 +253,39 @@ def prepare_template_context(cfg):
         "stat_t2": stat_t2_with_improvement,
         "stat_t2_baseline": stat_t2_baseline,
         #
-        "version": fl.context_version(cfg.experiment_left + "/sinq20", meta_data),
-        "version_baseline": fl.context_version(cfg.experiment_right + "/sinq20"),
+        "version": fl.context_version(
+            os.path.join(
+                "data", "version_extractor", cfg.experiment_left, "results.json"
+            )
+        ),
+        "version_baseline": fl.context_version(
+            os.path.join(
+                "data", "version_extractor", cfg.experiment_right, "results.json"
+            )
+        ),
+    }
+    #
+    try:
+        context["fidelity"] = fl.context_fidelity(cfg.experiment_left + "/sinq20")
+        context["fidelity_baseline"] = fl.context_fidelity(
+            cfg.experiment_right + "/sinq20"
+        )
+    except Exception as e:
+        logging.error(f"Error preparing fidelity context: {e}")
+        context["fidelity"] = {}
+        context["fidelity_baseline"] = {}
         #
-        "fidelity": fl.context_fidelity(cfg.experiment_left + "/sinq20"),
-        "fidelity_baseline": fl.context_fidelity(cfg.experiment_right + "/sinq20"),
-        #
-        "plot_exp": pl.plot_fidelity_graph(
+    try:
+        context["plot_exp"] = pl.plot_fidelity_graph(
             cfg.experiment_left + "/sinq20", config.connectivity, config.pos
-        ),
-        "plot_baseline": pl.plot_fidelity_graph(
+        )
+        context["plot_baseline"] = pl.plot_fidelity_graph(
             cfg.experiment_right + "/sinq20", config.connectivity, config.pos
-        ),
+        )
+    except Exception as e:
+        logging.error(f"Error preparing fidelity plots: {e}")
+        context["plot_exp"] = "placeholder.png"
+        context["plot_baseline"] = "placeholder.png"
         #
         # "plot_chevron_swap_0": pl.plot_chevron_swap_coupler(
         #     qubit_number=0,
@@ -263,7 +298,7 @@ def prepare_template_context(cfg):
         #     data_dir="data/DEMODATA/",
         #     output_path="build/",
         # ),
-    }
+
     logging.info("Basic context dictionary prepared")
 
     # # Add additional plots if needed
