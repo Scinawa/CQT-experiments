@@ -4,13 +4,14 @@ TARGET = report.pdf
 
 # Default experiment directory
 EXPERIMENT_LEFT ?= 9848c933bfcafbb8f81c940f504b893a2fa6ac23
-EXPERIMENT_RIGHT ?= 9848c933bfcafbb8f81c940f504b893a2fa6ac23
+EXPERIMENT_RIGHT ?= 41f4570fce52da0c4bbb483f6fb7d870a551df65
 
 
 download-data:
-	@echo "Downloading data for experiment $(EXPERIMENT_LEFT) and $(EXPERIMENT_RIGHT)..."
+	@echo "Downloading data for experiment $(EXPERIMENT_LEFT)"
 	@python download.py --hash-id $(EXPERIMENT_LEFT)
-	# @python src/download_data.py --hash-id $(EXPERIMENT_RIGHT)
+	@echo "Downloading data for experiment $(EXPERIMENT_RIGHT)"
+	@python download.py --hash-id $(EXPERIMENT_RIGHT)
 
 
 build: clean
