@@ -103,20 +103,40 @@ def get_maximum_mermin(experiment_dir, filename):
     return max_value
 
 
-def context_version(experiment_dir, meta_data=None):
+def context_version(version_extractor_results_path):
     """
-    Get the version info and runcard for the given experiment directory.
-    If meta_data is not provided, it will be loaded from meta.json in the directory.
+    Get the version info from the version_extractor experiment results.json file.
+
+    Args:
+        version_extractor_results_path (str): Path to the version_extractor results.json file
+
+    Returns:
+        dict: Dictionary containing versions, device, and extraction_time
     """
-    if meta_data is None:
-        meta_json_path = Path("data") / experiment_dir / "meta.json"
-        with open(meta_json_path, "r") as f:
-            meta_data = json.load(f)
-    return {
-        "versions": meta_data.get("versions", {}),
-        "runcard": meta_data.get("runcard", experiment_dir),
-        "runcard_link": meta_data.get("runcard_link", "https://link-to-runcard.com"),
-    }
+    try:
+        with open(version_extractor_results_path, "r") as f:
+            version_data = json.load(f)
+
+        return {
+            "versions": version_data.get("versions", {}),
+            "device": version_data.get("device", "Unknown Device"),
+            "extraction_time": version_data.get("extraction_time", "Unknown Time"),
+            "runcard": version_data.get(
+                "device", "Unknown Device"
+            ),  # Use device as runcard fallback
+            "runcard_link": "https://link-to-runcard.com",  # Default link
+        }
+    except Exception as e:
+        logging.warning(
+            f"Error reading version data from {version_extractor_results_path}: {e}"
+        )
+        return {
+            "versions": {},
+            "device": "Unknown Device",
+            "extraction_time": "Unknown Time",
+            "runcard": "Unknown Device",
+            "runcard_link": "https://link-to-runcard.com",
+        }
 
 
 def context_fidelity(experiment_dir):
