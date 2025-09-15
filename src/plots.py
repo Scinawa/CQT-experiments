@@ -556,6 +556,8 @@ def plot_reuploading_classifier(raw_data, exp_name, output_path="build/"):
     test_x = np.array(data_json["x_test"])
     test_y = np.array(data_json["test_predictions"])
     loss_history = data_json["loss_history"]
+    train_acc = data_json["train_accuracy"]
+    test_acc = data_json["test_accuracy"]
 
     if loss_history:
         fig = plt.figure(figsize=(8, 6), dpi=120)
@@ -569,7 +571,7 @@ def plot_reuploading_classifier(raw_data, exp_name, output_path="build/"):
     for label in np.unique(train_y):
         data_label = np.transpose(train_x[np.where(train_y == label)])
         ax_train.scatter(data_label[0], data_label[1])
-    ax_train.set_title("Train predictions")
+    ax_train.set_title(f"Train predictions: {train_acc} accuracy")
     ax_train.set_xlabel(r"$x$")
     ax_train.set_ylabel(r"$y$")
     circle_train = plt.Circle(
@@ -582,7 +584,7 @@ def plot_reuploading_classifier(raw_data, exp_name, output_path="build/"):
     for label in np.unique(test_y):
         data_label = np.transpose(test_x[np.where(test_y == label)])
         ax_test.scatter(data_label[0], data_label[1])
-    ax_test.set_title("Test predictions")
+    ax_test.set_title(f"Test predictions: {test_acc} accuracy")
     ax_test.set_xlabel(r"$x$")
     ax_test.set_ylabel(r"$y$")
     circle_test = plt.Circle(
