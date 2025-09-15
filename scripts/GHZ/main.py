@@ -63,7 +63,7 @@ if __name__ == "__main__":
     out_dir = config.output_dir_for(__file__, args.device)
 
     results['runtime']= f"{runtime_seconds:.5f} seconds."
-    results['description']= f"GHZ circuit with {args.nqubits} qubits executed on {args.device} backend with {args.nshots} shots. \n We measure the success rate of obtaining the GHZ state (all 0s or all 1s)."
+    results['description']= f"GHZ circuit with {args.nqubits} qubits executed on {args.device} backend with {args.nshots} shots. \n We measure the success rate of obtaining the GHZ state (all 0s or all 1s). \n Total execution time: {runtime_seconds:.5f} seconds."
 
 
     os.makedirs(out_dir, exist_ok=True)
