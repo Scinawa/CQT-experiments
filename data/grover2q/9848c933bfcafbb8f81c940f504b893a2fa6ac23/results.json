@@ -1,17 +1,17 @@
 {
     "success_rate": {
-        "[0, 1]": 0.855
+        "[0, 1]": 0.754
     },
     "plotparameters": {
         "frequencies": {
             "[0, 1]": {
-                "00": 0.018,
-                "01": 0.076,
-                "10": 0.051,
-                "11": 0.855
+                "00": 0.034,
+                "01": 0.177,
+                "10": 0.035,
+                "11": 0.754
             }
         }
     },
-    "runtime": "10.31284 seconds.",
+    "runtime": "10.42360 seconds.",
     "description": "Grover's algorithm for 2 qubits executed on sinq20 backend with 1000 shots per circuit. \n We measure the success rate of finding the target state '11' for each pair of qubits in [[0, 1]]."
 }
