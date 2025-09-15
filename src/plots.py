@@ -8,6 +8,9 @@ from pathlib import Path
 import json
 import os
 import ast
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
+
 
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 import itertools
@@ -474,7 +477,7 @@ def plot_QFT(raw_data, expname, output_path="build/"):
     return out_file
 
 
-def plot_ghz(raw_data, output_path="build/"):
+def plot_ghz(raw_data, experiment_name, output_path="build/"):
     """
     Plot GHZ results as a histogram of measured bitstrings.
     Expects a JSON with keys:
@@ -503,7 +506,7 @@ def plot_ghz(raw_data, output_path="build/"):
     plt.tight_layout()
 
     os.makedirs(output_path, exist_ok=True)
-    out_file = os.path.join(output_path, "ghz_results.pdf")
+    out_file = os.path.join(output_path, f"{experiment_name}_ghz_results.pdf")
     plt.savefig(out_file)
     plt.close()
     return out_file
@@ -698,6 +701,12 @@ def plot_process_tomography(expname, output_path="build/"):
         title = file_name.removeprefix("gate_").replace(".npy", f"_{expname}")
         ax[idx].set_title(title)
 
+        # Add colorbar beside subplots
+        im = ax[idx].imshow(np.real(arr), cmap="coolwarm", vmin=-1, vmax=1)
+        cbar = fig.colorbar(
+            im, ax=ax[idx], orientation="vertical", fraction=0.05, pad=0.01
+        )
+
     plt.tight_layout()
 
     os.makedirs(output_path, exist_ok=True)
@@ -757,12 +766,8 @@ def plot_qft(raw_data, expname, output_path="build/"):
     plt.close()
     return full_path
 
+
 def plot_qml(raw_data, expname, output_path="build/"):
-    import numpy as np
-    from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
-    import matplotlib.pyplot as plt
-    import os
-    import json
 
     with open(raw_data, "r") as f:
         data = json.load(f)

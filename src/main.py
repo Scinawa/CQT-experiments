@@ -1,4 +1,5 @@
 import argparse
+from multiprocessing import context
 from pathlib import Path
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader
@@ -378,6 +379,15 @@ def prepare_template_context(cfg):
     ######### GROVER 3q PLOTS
     if cfg.grover3q_plot == True:
         try:
+            context["grover3q_description"] = fl.extract_description(
+                os.path.join("data", "grover3q", cfg.experiment_left, "results.json")
+            )
+            context["grover3q_runtime_left"] = fl.extract_runtime(
+                os.path.join("data", "grover3q", cfg.experiment_left, "results.json")
+            )
+            context["grover3q_runtime_right"] = fl.extract_runtime(
+                os.path.join("data", "grover3q", cfg.experiment_right, "results.json")
+            )
             context["grover3q_plot_is_set"] = True
             context["plot_grover3q"] = pl.plot_grover(
                 raw_data=os.path.join(
@@ -405,16 +415,28 @@ def prepare_template_context(cfg):
     if cfg.ghz_plot == True:
         try:
             context["ghz_plot_is_set"] = True
+            context["ghz_description"] = fl.extract_description(
+                os.path.join("data", "GHZ", cfg.experiment_left, "results.json")
+            )
+            context["ghz_runtime_left"] = fl.extract_runtime(
+                os.path.join("data", "GHZ", cfg.experiment_left, "results.json")
+            )
+            context["ghz_runtime_right"] = fl.extract_runtime(
+                os.path.join("data", "GHZ", cfg.experiment_right, "results.json")
+            )
+
             context["plot_ghz"] = pl.plot_ghz(
                 raw_data=os.path.join(
                     "data", "GHZ", cfg.experiment_left, "results.json"
                 ),
+                experiment_name=cfg.experiment_left,
                 output_path=os.path.join("build", "GHZ", cfg.experiment_left),
             )
             context["plot_ghz_baseline"] = pl.plot_ghz(
                 raw_data=os.path.join(
                     "data", "GHZ", cfg.experiment_right, "results.json"
                 ),
+                experiment_name=cfg.experiment_right,
                 output_path=os.path.join("build", "GHZ", cfg.experiment_right),
             )
             logging.info("Added GHZ plots to context")
@@ -524,14 +546,14 @@ def prepare_template_context(cfg):
     if cfg.qft_plot == True:
         try:
             context["qft_plot_is_set"] = True
-            context["plot_qft"] = pl.plot_qft(
+            context["plot_qft"] = pl.plot_QFT(
                 raw_data=os.path.join(
                     "data", "QFT", cfg.experiment_left, "results.json"
                 ),
                 expname=f"QFT_{cfg.experiment_left}",
                 output_path=os.path.join("build", "QFT", cfg.experiment_left),
             )
-            context["plot_qft_baseline"] = pl.plot_qft(
+            context["plot_qft_baseline"] = pl.plot_QFT(
                 raw_data=os.path.join(
                     "data", "QFT", cfg.experiment_right, "results.json"
                 ),
