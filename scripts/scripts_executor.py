@@ -7,25 +7,23 @@ from logging.handlers import RotatingFileHandler
 import shutil
 from git.repo.base import Repo
 
- 
-
 
 # Base path to the scripts directory (run from project root)
 base_path = "scripts/"
 experiment_list = [
-#       "GHZ",
-#          "mermin",
-#     "grover2q",  # very broken (see above)
-# #    "tomography", # very broken
-# #    "process_tomography", # very broken (see above)
-#    "grover3q",
-#     "universal_approximant",
-# #     "reuploading_classifier",
-#     "QFT",
-#     "qml_3Q_yeast",
-    "qml_4Q_yeast",
-    "qml_3Q_statlog",
-    "qml_4Q_statlog"
+    #       "GHZ",
+    "mermin",
+    #     "grover2q",  # very broken (see above)
+    # #    "tomography", # very broken
+    # #    "process_tomography", # very broken (see above)
+    #    "grover3q",
+    #     "universal_approximant",
+    # #     "reuploading_classifier",
+    #     "QFT",
+    #     "qml_3Q_yeast",
+    # "qml_4Q_yeast",
+    # "qml_3Q_statlog",
+    # "qml_4Q_statlog"
 ]
 
 
@@ -92,8 +90,6 @@ def setup_logger(log_file: str, level_name: str) -> logging.Logger:
     return logger
 
 
-
-
 def run_script(logger: logging.Logger, script_path: str, device: str, tag: str) -> int:
     if not os.path.exists(script_path):
         logger.warning(f"main.py not found in {tag}")
@@ -127,23 +123,22 @@ def main():
     args = parse_args()
     logger = setup_logger(args.log_file, args.log_level)
 
-
     # COPY RUNCARD INTO DATA SECTION
     repo = Repo("/mnt/scratch/qibolab_platforms_nqch")
     hash_id = repo.commit().hexsha
 
-    # Copy /mnt/scratch/qibolab_platforms_nqch into 
+    # Copy /mnt/scratch/qibolab_platforms_nqch into
     # data/<hash_id>/
     runcard_dir = os.path.join("data", hash_id)
 
     try:
-        shutil.copytree("/mnt/scratch/qibolab_platforms_nqch", runcard_dir, dirs_exist_ok=True)
+        shutil.copytree(
+            "/mnt/scratch/qibolab_platforms_nqch", runcard_dir, dirs_exist_ok=True
+        )
     except Exception as e:
-        #print("diocas")
+        # print("diocas")
         logger.error(f"Failed to copy runcard directory")
         # sys.exit(1)
-
-
 
     overall_rc = 0
     for subfolder in args.experiments:

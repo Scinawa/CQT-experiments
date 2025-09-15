@@ -288,30 +288,30 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \newpage 
 
-{% if reuploading_plot_is_set %}
-\section{Data reuploading classifier}
-{{ reuploading_description }}
+%{% if reuploading_plot_is_set %}
+%\section{Data reuploading classifier}
+%{{ reuploading_classifier_description }}
 
-\begin{multicols}{2}
-\begin{itemize}
-\item \textbf{Duration:} {{ reuploading_duration_left }}
-\end{itemize}
+%\begin{multicols}{2}
+%\begin{itemize}
+%\item \textbf{Duration:} {{ reuploading_classifier_duration_left }}
+%\end{itemize}
 
-\begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading }} }
-\end{center}
+%\begin{center}
+%\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading }} }
+%\end{center}
 
-\columnbreak
+%\columnbreak
 
-\begin{itemize}
-\item \textbf{Duration:} {{ reuploading_duration_right }}
-\end{itemize}
+%\begin{itemize}
+%\item \textbf{Duration:} {{ reuploading_classifier_duration_right }}
+%\end{itemize}
 
-\begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_baseline }} }
-\end{center}
-\end{multicols}
-{% endif %}
+%\begin{center}
+%\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_baseline }} }
+%\end{center}
+%\end{multicols}
+%{% endif %}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grover 2Q state preparation
@@ -470,7 +470,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Duration:} {{ reuploading_classifier_duration_left }}
+\item \textbf{Duration:} {{ reuploading_classifier_runtime_left }}
 \end{itemize}
 
 \begin{center}
@@ -480,7 +480,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Duration:} {{ reuploading_classifier_duration_right }}
+\item \textbf{Duration:} {{ reuploading_classifier_runtime_right }}
 \end{itemize}
 
 \begin{center}
@@ -517,6 +517,8 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{center}
 \end{multicols}
 {% endif %}
+
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Yeast classifier 3q
@@ -590,11 +592,11 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 {% if yeast_classification_4q_plot_is_set %}
 \section{QML: Yeast dataset (4 qubits)}
-{{ yeast_4q_description }}
+{{ qml_4Q_yeast_description }}
 
 \begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Duration:} {{ yeast_4q_duration_left }}
+\item \textbf{Runtime:} {{ qml_4Q_yeast_runtime_left }}
 \end{itemize}
 
 \begin{center}
@@ -605,7 +607,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Duration:} {{ yeast_4q_duration_right }}
+\item \textbf{Runtime:} {{ qml_4Q_yeast_runtime_right }}
 \end{itemize}
 
 \begin{center}
