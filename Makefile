@@ -6,6 +6,13 @@ TARGET = report.pdf
 EXPERIMENT_LEFT ?= 9848c933bfcafbb8f81c940f504b893a2fa6ac23
 EXPERIMENT_RIGHT ?= 9848c933bfcafbb8f81c940f504b893a2fa6ac23
 
+
+download-data:
+	@echo "Downloading data for experiment $(EXPERIMENT_LEFT) and $(EXPERIMENT_RIGHT)..."
+	@python download.py --hash-id $(EXPERIMENT_LEFT)
+	# @python src/download_data.py --hash-id $(EXPERIMENT_RIGHT)
+
+
 build: clean
 	@mkdir -p build
 	@cp src/templates/placeholder.png build/placeholder.png
@@ -22,7 +29,6 @@ pdf-only:
 
 pdf: build pdf-only
 	@echo "Compiling .tex and building the .pdf"
-
 
 clean:
 	@echo "Cleaning build directory..."

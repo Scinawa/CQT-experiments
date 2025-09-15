@@ -447,27 +447,28 @@ def plot_grover(raw_data, expname, output_path="build/"):
     plt.close()
     return out_file
 
-
-def plot_QFT(raw_data, expname, output_path="build/"):
+def plot_qft(raw_data, expname, output_path="build/"):
     """
-    Plot QFT algorithm results as a histogram of measured bitstrings.
+    Plot QFT algorithm results on different triples as fidelities.
     """
     # Load data from JSON file
     with open(raw_data, "r") as f:
         data = json.load(f)
 
     # Extract frequencies for the first (and only) key in 'frequencies'
-    frequencies = data["plotparameters"]["frequencies"]
+    fidelities = data["plotparameters"]["fidelities"]
+    qubits_lists = data["plotparameters"]["qubits_lists"]
 
     # Ensure bitstrings are strings for plotting
-    bitstrings = [str(bs) for bs in frequencies.keys()]
-    counts = [frequencies[bs] for bs in frequencies.keys()]
+    bitstrings = [str(bs) for bs in qubits_lists]
 
     plt.figure()
-    plt.bar(bitstrings, counts, color="skyblue", edgecolor="black")
-    plt.xlabel("Bitstring")
-    plt.ylabel("Counts")
-    plt.title("QFT's Algorithm Measurement Histogram")
+    plt.plot(bitstrings, fidelities, color="skyblue", linestyle='None', marker='x')
+    plt.plot(bitstrings, np.ones_like(fidelities), color='r')
+    plt.xticks(rotation=90)
+    plt.xlabel("Qubits Set")
+    plt.ylabel("Fidelity")
+    plt.title("QFT's Fidelity on Different set of qubits")
     plt.tight_layout()
 
     os.makedirs(output_path, exist_ok=True)
@@ -721,50 +722,6 @@ def plot_process_tomography(expname, output_path="build/"):
 def plot_tomography(raw_data, expname, output_path="build/"):
     return "placeholder.png"
 
-
-def plot_qft(raw_data, expname, output_path="build/"):
-    """
-    Plot the results of a Quantum Fourier Transform (QFT) experiment as a histogram.
-
-    Args:
-        raw_data (str): Path to the JSON file containing the QFT results.
-        expname (str): Experiment name to include in the output filename.
-        output_path (str): Directory to save the output plot.
-
-    Returns:
-        str: Path to the saved plot file.
-    """
-    with open(raw_data, "r") as f:
-        data = json.load(f)
-
-    dataplot = data["plotparameters"]["frequencies"]
-    n_shots = data.get("n_shots", 1000)
-    qubits_list = data.get("qubits_list", [])
-    n_qubits = len(qubits_list)
-
-    os.makedirs(output_path, exist_ok=True)
-
-    with plt.style.context("fivethirtyeight"):
-        plt.bar(dataplot.keys(), dataplot.values())
-        plt.title("QFT")
-        plt.xlabel("States")
-        plt.xticks(rotation=90)
-        plt.ylabel("Counts")
-        plt.axhline(
-            n_shots / 2**n_qubits,
-            color="k",
-            linestyle="dashed",
-            label="Target Frequency",
-        )
-        plt.legend()
-        plt.tight_layout()
-
-        filename = f"{expname}_QFT_on_{qubits_list}_{n_shots}shots.pdf"
-        full_path = os.path.join(output_path, filename)
-        plt.savefig(full_path)
-
-    plt.close()
-    return full_path
 
 
 def plot_qml(raw_data, expname, output_path="build/"):

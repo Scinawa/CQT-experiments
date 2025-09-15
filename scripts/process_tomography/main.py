@@ -884,9 +884,25 @@ if __name__ == "__main__":
         noisyPTM_2qb.append(temp1)
         noiselessPTM_2qb.append(temp2)
 
+    ### Compute total execution time
+    total_time = 0  # store results here
+
+    for ii in range(0, len(empty_1qb_matrices)):
+        for jj in range(0, len(gate_set_1qb)):
+            total_time += gates_1qb_timings[ii][jj]
+
+    for kk in range(0, len(empty_2qb_matrices)):
+        total_time += gates_2qb_timings[kk][0]
+
     ### Compute norm of the difference between NOISY and NOISELESS ###
 
     result_dict = {}
+    result_dict["description"] = f"Process tomography involves preparing a circuit particular set of states, \
+        appending a gate (process) to the circuit, and measuring the circuit in the Pauli basis. \n\
+        The data is processed to get the Pauli Liouville representation of a process (gate). \n \
+        - Single qubit process tomography executed on qubits: {single_qubit_indices}\n \
+        - Two qubit process tomography on coupled qubits: {two_qubit_pairs}\n \
+        Total execution time for process tomography is {total_time} seconds."
     result_dict["oneQubitResults"] = {}
     result_dict["twoQubitResults"] = {}
 

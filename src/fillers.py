@@ -25,7 +25,7 @@ def extract_description(filename):
     with open(filename, "r") as f:
         results = json.load(f)
 
-    return results.get("description", "No description provided.")
+    return results.get("description", " --- No description provided. ---")
 
 
 def extract_runtime(filename):
@@ -33,7 +33,7 @@ def extract_runtime(filename):
     with open(filename, "r") as f:
         results = json.load(f)
 
-    return results.get("runtime", "No runtime provided.")
+    return results.get("runtime", " --- No runtime provided. ---")
 
 
 def context_plot_1(exp_name):
