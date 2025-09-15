@@ -5,9 +5,6 @@ os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path("/mnt/scratch/qibolab_platforms_n
 
 from qibocal.auto.execute import Executor
 from qibocal.cli.report import report
-from qibocal.cli.upload import upload_report 
-
-from db import Session, QubitDevice, SingleQubitGateFidelity
 
 import argparse
 import json

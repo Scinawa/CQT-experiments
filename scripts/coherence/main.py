@@ -5,9 +5,6 @@ os.environ["QIBOLAB_PLATFORMS"] = (pathlib.Path(__file__).parent / "qibolab_plat
 
 from qibocal.auto.execute import Executor
 from qibocal.cli.report import report
-from qibocal.cli.upload import upload_report 
-
-from db import Session, QubitDevice, CoherenceTime
 
 import argparse
 import json
