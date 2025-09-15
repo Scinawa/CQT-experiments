@@ -1,4 +1,5 @@
 import argparse
+from multiprocessing import context
 from pathlib import Path
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader
@@ -23,6 +24,13 @@ def setup_argument_parser():
     """Set up the command line argument parser."""
     parser = argparse.ArgumentParser(description="Generate a quantum benchmark report.")
     parser.add_argument(
+        "--base_dir",
+        type=str,
+        default="data/",
+        help="Base directory for data and output.",
+    )
+
+    parser.add_argument(
         "--experiment-right",
         type=str,
         default="9848c933bfcafbb8f81c940f504b893a2fa6ac23",
@@ -31,7 +39,7 @@ def setup_argument_parser():
     parser.add_argument(
         "--experiment-left",
         type=str,
-        default="9848c933bfcafbb8f81c940f504b893a2fa6ac23",
+        default="numpy",
         help="Directory containing the experiment data.",
     )
 
@@ -167,10 +175,13 @@ def prepare_template_context(cfg):
     """
     Prepare a complete template context for the benchmarking report.
     """
+
     logging.info("Preparing context for full benchmarking report.")
 
+    base_path = Path(cfg.base_dir)
+
     # Load experiment metadata from mega.json
-    meta_json_path = Path("data") / cfg.experiment_left / "sinq20" / "meta.json"
+    meta_json_path = base_path / cfg.experiment_left / "sinq20" / "meta.json"
     with open(meta_json_path, "r") as f:
         meta_data = json.load(f)
     logging.info("Loaded experiment metadata from %s", meta_json_path)
@@ -295,14 +306,12 @@ def prepare_template_context(cfg):
         context["t1_plot_is_set"] = False
         pass
 
-    path = Path("data/")
-
     ######### MERMIN TABLE
     maximum_mermin = fl.get_maximum_mermin(
-        path / "mermin" / cfg.experiment_left, "results.json"
+        base_path / "mermin" / cfg.experiment_left, "results.json"
     )
     maximum_mermin_baseline = fl.get_maximum_mermin(
-        path / "mermin" / cfg.experiment_right, "results.json"
+        base_path / "mermin" / cfg.experiment_right, "results.json"
     )
     context["mermin_maximum"] = maximum_mermin
     context["mermin_maximum_baseline"] = maximum_mermin_baseline
@@ -333,22 +342,6 @@ def prepare_template_context(cfg):
         context["mermin_5_plot_is_set"] = False
         pass
 
-    # ######### REUPLOADING PLOTS
-    # if cfg.reuploading_plot == True:
-    #     context["reuploading_plot_is_set"] = True
-    #     context["plot_reuploading"] = pl.do_plot_reuploading(
-    #         raw_data=os.path.join("data", "reuploading", cfg.experiment_left, "results.json"),
-    #         expname=f"reuploading_{cfg.experiment_left}",
-    #     )
-    #     context["plot_reuploading_baseline"] = pl.do_plot_reuploading(
-    #         raw_data=os.path.join("data", "reuploading", cfg.experiment_right, "results.json")
-    #     )
-    #     logging.info("Added reuploading plots to context")
-    # else:
-    #     print("Reuploading plot is not set, skipping...")
-    #     context["reuploading_plot_is_set"] = False
-    #     pass
-
     ######### GROVER 2q PLOTS
     if cfg.grover2q_plot == True:
         try:
@@ -378,6 +371,15 @@ def prepare_template_context(cfg):
     ######### GROVER 3q PLOTS
     if cfg.grover3q_plot == True:
         try:
+            context["grover3q_description"] = fl.extract_description(
+                os.path.join("data", "grover3q", cfg.experiment_left, "results.json")
+            )
+            context["grover3q_runtime_left"] = fl.extract_runtime(
+                os.path.join("data", "grover3q", cfg.experiment_left, "results.json")
+            )
+            context["grover3q_runtime_right"] = fl.extract_runtime(
+                os.path.join("data", "grover3q", cfg.experiment_right, "results.json")
+            )
             context["grover3q_plot_is_set"] = True
             context["plot_grover3q"] = pl.plot_grover(
                 raw_data=os.path.join(
@@ -405,16 +407,28 @@ def prepare_template_context(cfg):
     if cfg.ghz_plot == True:
         try:
             context["ghz_plot_is_set"] = True
+            context["ghz_description"] = fl.extract_description(
+                os.path.join("data", "GHZ", cfg.experiment_left, "results.json")
+            )
+            context["ghz_runtime_left"] = fl.extract_runtime(
+                os.path.join("data", "GHZ", cfg.experiment_left, "results.json")
+            )
+            context["ghz_runtime_right"] = fl.extract_runtime(
+                os.path.join("data", "GHZ", cfg.experiment_right, "results.json")
+            )
+
             context["plot_ghz"] = pl.plot_ghz(
                 raw_data=os.path.join(
                     "data", "GHZ", cfg.experiment_left, "results.json"
                 ),
+                experiment_name=cfg.experiment_left,
                 output_path=os.path.join("build", "GHZ", cfg.experiment_left),
             )
             context["plot_ghz_baseline"] = pl.plot_ghz(
                 raw_data=os.path.join(
                     "data", "GHZ", cfg.experiment_right, "results.json"
                 ),
+                experiment_name=cfg.experiment_right,
                 output_path=os.path.join("build", "GHZ", cfg.experiment_right),
             )
             logging.info("Added GHZ plots to context")
@@ -484,6 +498,31 @@ def prepare_template_context(cfg):
     ######### REUPLOADING CLASSIFIER PLOTS
     if cfg.reuploading_classifier_plot == True:
         try:
+            context["reuploading_classifier_description"] = fl.extract_description(
+                os.path.join(
+                    "data",
+                    "reuploading_classifier",
+                    cfg.experiment_left,
+                    "results.json",
+                )
+            )
+            context["reuploading_classifier_runtime_left"] = fl.extract_runtime(
+                os.path.join(
+                    "data",
+                    "reuploading_classifier",
+                    cfg.experiment_left,
+                    "results.json",
+                )
+            )
+            context["reuploading_classifier_runtime_right"] = fl.extract_runtime(
+                os.path.join(
+                    "data",
+                    "reuploading_classifier",
+                    cfg.experiment_right,
+                    "results.json",
+                )
+            )
+
             context["reuploading_classifier_plot_is_set"] = True
             context["plot_reuploading_classifier"] = pl.plot_reuploading_classifier(
                 raw_data=os.path.join(
@@ -523,15 +562,25 @@ def prepare_template_context(cfg):
     ######### QFT PLOTS
     if cfg.qft_plot == True:
         try:
+            context["QFT_description"] = fl.extract_description(
+                os.path.join("data", "QFT", cfg.experiment_left, "results.json")
+            )
+            context["QFT_runtime_left"] = fl.extract_runtime(
+                os.path.join("data", "QFT", cfg.experiment_left, "results.json")
+            )
+            context["QFT_runtime_right"] = fl.extract_runtime(
+                os.path.join("data", "QFT", cfg.experiment_right, "results.json")
+            )
+
             context["qft_plot_is_set"] = True
-            context["plot_qft"] = pl.plot_qft(
+            context["plot_qft"] = pl.plot_QFT(
                 raw_data=os.path.join(
                     "data", "QFT", cfg.experiment_left, "results.json"
                 ),
                 expname=f"QFT_{cfg.experiment_left}",
                 output_path=os.path.join("build", "QFT", cfg.experiment_left),
             )
-            context["plot_qft_baseline"] = pl.plot_qft(
+            context["plot_qft_baseline"] = pl.plot_QFT(
                 raw_data=os.path.join(
                     "data", "QFT", cfg.experiment_right, "results.json"
                 ),
@@ -550,6 +599,22 @@ def prepare_template_context(cfg):
     ######### YEAST CLASSIFICATION PLOTS 4Q
     if cfg.yeast_plot_4q == True:
         try:
+            context["qml_4Q_yeast_description"] = fl.extract_description(
+                os.path.join(
+                    "data", "qml_4Q_yeast", cfg.experiment_left, "results.json"
+                )
+            )
+            context["qml_4Q_yeast_runtime_left"] = fl.extract_runtime(
+                os.path.join(
+                    "data", "qml_4Q_yeast", cfg.experiment_left, "results.json"
+                )
+            )
+            context["qml_4Q_yeast_runtime_right"] = fl.extract_runtime(
+                os.path.join(
+                    "data", "qml_4Q_yeast", cfg.experiment_right, "results.json"
+                )
+            )
+
             context["yeast_classification_4q_plot_is_set"] = True
             context["plot_yeast_4q"] = pl.plot_qml(
                 raw_data=os.path.join(

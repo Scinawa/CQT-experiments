@@ -24,7 +24,7 @@ dependencies = [
     "qibo",
     "qibo_client",
     "qibocal",
-    "git",
+    "GitPython",
     "torch",
     "torchvision",
     "qiboml",
