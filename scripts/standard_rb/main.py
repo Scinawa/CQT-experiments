@@ -34,9 +34,7 @@ def main(nqubits, nshots, niter, depths, device):
 
 
     params = {
-        "depths": depths,
-        # [1, 2, 3, 6, 12, 21, 40, 73, 135, 250]
-        #[1, 2, 3, 4, 5, 8, 11, 16, 24, 35, 52, 77, 114, 169, 250],
+        "depths": depths, # [1, 2, 3, 6, 12, 21, 40, 73, 135, 250]
         "niter": niter #10
     }
      
