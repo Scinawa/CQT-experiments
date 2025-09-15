@@ -11,18 +11,58 @@ import numpy as np
 import matplotlib.pyplot as plt
 from qibo import Circuit, gates, set_backend
 from qibo.transpiler import NativeGates, Passes, Unroller
-from utils import (
-    get_mermin_coefficients,
-    get_mermin_polynomial,
-    get_readout_basis,
-    compute_mermin,
-)
+from qibo.hamiltonians import SymbolicHamiltonian
+from qibo.symbols import X, Y
 
 # Add scripts/ to sys.path so we import scripts/config.py
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 import config  # scripts/config.py
+
+
+def compute_mermin(frequencies, mermin_coefficients):
+    """Computes the chsh inequality out of the frequencies of the 4 circuits executed."""
+    assert len(frequencies) == len(mermin_coefficients)
+    m = 0
+    for j, freq in enumerate(frequencies):
+        for key in freq:
+            m += (
+                mermin_coefficients[j]
+                * freq[key]
+                * (-1) ** (sum([int(key[k]) for k in range(len(key))]))
+            )
+    nshots = sum(freq[x] for x in freq)
+    if nshots != 0:
+        return float(m / nshots)
+
+    return 0
+
+
+def get_mermin_polynomial(n):
+    assert n > 1
+    m0 = X(0)
+    m0p = Y(0)
+    for i in range(1, n):
+        mn = m0 * (X(i) + Y(i)) + m0p * (X(i) - Y(i))
+        mnp = m0 * (Y(i) - X(i)) + m0p * (X(i) + Y(i))
+        m0 = mn.expand()
+        m0p = mnp.expand()
+    m = m0 / 2 ** ((n - 1) // 2)
+    return SymbolicHamiltonian(m.expand())
+
+
+def get_readout_basis(mermin_polynomial: SymbolicHamiltonian):
+    return [
+        "".join([factor.name[0] for factor in term.factors])
+        for term in mermin_polynomial.terms
+    ]
+
+
+def get_mermin_coefficients(mermin_polynomial: SymbolicHamiltonian):
+    return [term.coefficient.real for term in mermin_polynomial.terms]
+
+
 
 
 def create_mermin_circuit(qubits):
@@ -47,7 +87,7 @@ def create_mermin_circuits(qubits: list[int], readout_basis: list[str]):
     return circuits
 
 
-def main(nqubits, qubit_list, device, nshots, via_client):
+def main(nqubits, qubit_list, device, nshots):
     results = dict()
     data = dict()
 
@@ -124,7 +164,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--device",
-        choices=["numpy", "nqch-sim", "sinq20"],
+        choices=["numpy", "sinq20"],
         default="numpy",
         type=str,
         help="Device to use",
@@ -134,9 +174,6 @@ if __name__ == "__main__":
         default=1000,
         type=int,
         help="Number of shots for each circuit",
-    )
-    parser.add_argument(
-        "--via_client", default=False, type=bool, help="Use qibo client or direct"
     )
     args = vars(parser.parse_args())
     main(**args)

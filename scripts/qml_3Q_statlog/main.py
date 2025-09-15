@@ -305,7 +305,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--nshots",
-        default=300,
+        default=360,
         type=int,
         help="Number of shots for each circuit execution",
     )
@@ -323,7 +323,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--number-datapoints-output",
         type=int,
-        default=50,
+        default=1000,
         help="Number of data points to output",
     )
     cnf = vars(parser.parse_args())
