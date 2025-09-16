@@ -37,6 +37,10 @@ os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path(
     "/mnt/scratch/qibolab_platforms_nqch"
 ).as_posix()
 
+import sys
+from pathlib import Path as _P
+sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+import config  # scripts/config.py
 
 # Prepare the training dataset
 def _circle(points):
@@ -293,7 +297,7 @@ def main(
 
     # Set up directories
     backend_name = backend.name.lower().replace(" ", "_")
-    output_dir = os.path.join("data", f"reuploading_classifier/{device}/")
+    output_dir = config.output_dir_for(__file__, device)
     params_dir = os.path.join(output_dir, "params")
     os.makedirs(params_dir, exist_ok=True)
 
