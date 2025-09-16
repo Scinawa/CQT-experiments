@@ -103,7 +103,7 @@ def get_maximum_mermin(experiment_dir, filename):
     return max_value
 
 
-def context_version(version_extractor_results_path):
+def context_version(calibration_id, version_extractor_results_path):
     """
     Get the version info from the version_extractor experiment results.json file.
 
@@ -114,6 +114,9 @@ def context_version(version_extractor_results_path):
         dict: Dictionary containing versions, device, and extraction_time
     """
     try:
+        import pdb
+
+        pdb.set_trace()
         with open(version_extractor_results_path, "r") as f:
             version_data = json.load(f)
 
@@ -121,9 +124,7 @@ def context_version(version_extractor_results_path):
             "versions": version_data.get("versions", {}),
             "device": version_data.get("device", "Unknown Device"),
             "extraction_time": version_data.get("extraction_time", "Unknown Time"),
-            "runcard": version_data.get(
-                "device", "Unknown Device"
-            ),  # Use device as runcard fallback
+            "calibration_id": calibration_id,
             "runcard_link": "https://link-to-runcard.com",  # Default link
         }
     except Exception as e:

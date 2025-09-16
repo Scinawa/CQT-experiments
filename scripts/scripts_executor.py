@@ -154,16 +154,29 @@ def main():
 
     # Copy /mnt/scratch/qibolab_platforms_nqch into
     # data/<hash_id>/
-    runcard_dir = os.path.join("data", hash_id)
+    calibration_dir = os.path.join("data", hash_id)
 
     try:
         shutil.copytree(
-            "/mnt/scratch/qibolab_platforms_nqch", runcard_dir, dirs_exist_ok=True
+            "/mnt/scratch/qibolab_platforms_nqch", calibration_dir, dirs_exist_ok=True
         )
     except Exception as e:
         # print("diocas")
-        logger.error(f"Failed to copy runcard directory")
+        logger.error(f"Failed to copy calibration directory")
         # sys.exit(1)
+
+        # Remove the .git directory inside the copied calibration directory via shell
+        git_dir = os.path.join(calibration_dir, ".git")
+        if os.path.isdir(git_dir):
+            logger.info(f"Removing git directory {git_dir}")
+            try:
+                subprocess.run(f"rm -rf -- '{git_dir}'", shell=True, check=True)
+            except subprocess.CalledProcessError:
+                logger.error(f"Shell removal failed for {git_dir}; attempting fallback")
+                try:
+                    shutil.rmtree(git_dir)
+                except Exception:
+                    logger.exception(f"Fallback removal failed for {git_dir}")
 
     overall_rc = 0
     for subfolder in args.experiments:

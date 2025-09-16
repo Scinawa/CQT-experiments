@@ -180,8 +180,11 @@ def prepare_template_context(cfg):
 
     base_path = Path(cfg.base_dir)
 
-    # Load experiment metadata from mega.json
-    meta_json_path = base_path / cfg.experiment_left / "sinq20" / "meta.json"
+    # memo
+    # we take the basic information from version_extractor experiment...
+    meta_json_path = (
+        base_path / "version_extractor" / cfg.experiment_left / "results.json"
+    )
     with open(meta_json_path, "r") as f:
         meta_data = json.load(f)
     logging.info("Loaded experiment metadata from %s", meta_json_path)
@@ -232,6 +235,8 @@ def prepare_template_context(cfg):
     stat_t2_with_improvement = add_stat_changes(stat_t2, stat_t2_baseline)
     logging.info("Prepared stat_t2 and stat_t2_with_improvement")
 
+    # memo
+    # we take the basic information from version_extractor experiment...
     context = {
         "experiment_name": meta_data.get("title", "Unknown Title"),
         "platform": meta_data.get("platform", "Unknown Platform"),
@@ -253,15 +258,17 @@ def prepare_template_context(cfg):
         "stat_t2": stat_t2_with_improvement,
         "stat_t2_baseline": stat_t2_baseline,
         #
-        "version": fl.context_version(
+        "calibration_data": fl.context_version(
+            cfg.experiment_left,
             os.path.join(
                 "data", "version_extractor", cfg.experiment_left, "results.json"
-            )
+            ),
         ),
-        "version_baseline": fl.context_version(
+        "calibration_data_baseline": fl.context_version(
+            cfg.experiment_right,
             os.path.join(
                 "data", "version_extractor", cfg.experiment_right, "results.json"
-            )
+            ),
         ),
     }
     #

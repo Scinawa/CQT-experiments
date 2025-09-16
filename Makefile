@@ -3,11 +3,13 @@ TARGET = report.pdf
 .PHONY: build clean pdf runscripts runscripts-device
 
 # Default experiment directory
-EXPERIMENT_LEFT ?= 9848c933bfcafbb8f81c940f504b893a2fa6ac23
+EXPERIMENT_LEFT ?= 32fa7be02d2d6d5812d7cb47f8c293561b74c0b5
 EXPERIMENT_RIGHT ?= 41f4570fce52da0c4bbb483f6fb7d870a551df65
 
 
 download-data:
+	@mkdir -p data
+	#@[ -d data ] && rm -rf data/* || true
 	@echo "Downloading data for experiment $(EXPERIMENT_LEFT)"
 	@python download.py --hash-id $(EXPERIMENT_LEFT)
 	@echo "Downloading data for experiment $(EXPERIMENT_RIGHT)"
