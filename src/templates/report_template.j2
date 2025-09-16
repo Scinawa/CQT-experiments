@@ -23,7 +23,13 @@
 % AUTHORS AND INFORMATION
 %----------------------------------------------------------
 
-\author{Team name or Tool name}
+\makeatletter
+\xdef\authordate{\today}   % expand \today now; define globally
+\makeatother
+
+\author{\authordate}       % will print the actual date where author goes
+
+
 
 %----------------------------------------------------------
 % LOGO CONFIGURATION
@@ -70,9 +76,9 @@
 \begin{tauenvmine}
 %\vspace{-0.2.cm}
 \centering
-{\Large \textbf{ {{ version.runcard | replace('_', '\\_') }} }} \\
-%\textbf{Runcard:} \href{ {{ version.runcard_link }} }{ {{ version.runcard | replace('_', '\\_') }} }
-\href{ {{ version.runcard_link }} }{ Link to Runcard }
+{\Large \textbf{ {{ calibration_data.device | replace('_', '\\_') }} }} \\
+\emph{ {{ calibration_data.calibration_id | replace('_', '\\_') }} } \\
+%\href{ {{ calibration_data.calibration_id }} }{ Link to Runcard }
 %\vspace{0.15cm}
 \end{tauenvmine}
 \end{center}
@@ -83,9 +89,8 @@
 \begin{tauenvmine}
 %\vspace{-0.2cm}
 \centering
-{\Large \textbf{ {{ version_baseline.runcard | replace('_', '\\_') }} }} \\
-%\textbf{Runcard:} \href{ {{ version_baseline.runcard_link }} }{ {{ version_baseline.runcard | replace('_', '\\_') }} }
-\href{ {{ version_baseline.runcard_link }} }{ Link to Runcard }
+{\Large \textbf{ {{ calibration_data_baseline.device | replace('_', '\\_') }} }} \\
+\emph{ {{ calibration_data_baseline.calibration_id | replace('_', '\\_') }} } \\
 %\vspace{0.15cm}
 \end{tauenvmine}
 \end{center}
@@ -103,7 +108,7 @@
 \begin{tabular}{@{}ll|ll@{}}
 \toprule
 \textbf{Library} & \textbf{Version} & \textbf{Library} & \textbf{Version} \\ \midrule
-{% set items = version.versions.items()|list %}
+{% set items = calibration_data.versions.items()|list %}
 {% for i in range(0, items|length, 2) %}
     {{ items[i][0] | replace('_', '\\_') }} & {{ items[i][1] | replace('_', '\\_') }} 
     {% if i + 1 < items|length %}
@@ -129,7 +134,7 @@
 \begin{tabular}{@{}ll|ll@{}}
 \toprule
 \textbf{Library} & \textbf{Version} & \textbf{Library} & \textbf{Version} \\ \midrule
-{% set items = version_baseline.versions.items()|list %}
+{% set items = calibration_data_baseline.versions.items()|list %}
 {% for i in range(0, items|length, 2) %}
     {{ items[i][0] | replace('_', '\\_') }} & {{ items[i][1] | replace('_', '\\_') }} 
     {% if i + 1 < items|length %}
