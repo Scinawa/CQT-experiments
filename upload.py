@@ -55,12 +55,15 @@ def load_experiment_list(config_file="scripts/experiment_list.txt"):
 
 def setup_logging(log_level):
     """Setup logging configuration"""
+    # Ensure logs directory exists
+    os.makedirs('logs', exist_ok=True)
+    
     logging.basicConfig(
         level=log_level,
         format='%(asctime)s - %(levelname)s - %(message)s',
         handlers=[
             logging.StreamHandler(),
-            logging.FileHandler('upload.log')
+            logging.FileHandler('logs/upload.log')
         ]
     )
 
@@ -97,6 +100,13 @@ def upload_calibration_compressed(src_dir, hash_id, notes=""):
     except Exception as e:
         logger.error(f"Failed to upload calibration data: {e}")
         raise
+    finally:
+        # Clean up the archive file
+        try:
+            os.remove(archive_name)
+            logger.debug(f"Cleaned up archive: {archive_name}")
+        except OSError as e:
+            logger.warning(f"Failed to cleanup archive {archive_name}: {e}")
     
     return archive_name
 
