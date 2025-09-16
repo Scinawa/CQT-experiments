@@ -301,7 +301,7 @@ if __name__ == "__main__":
         "--device",
         default="numpy",
         type=str,
-        help="Device to use (e.g., 'nqch' or 'numpy' for local simulation)",
+        help="Device to use (e.g., 'sinq20' or 'numpy' for local simulation)",
     )
     parser.add_argument(
         "--nshots",

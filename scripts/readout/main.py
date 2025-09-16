@@ -50,7 +50,7 @@ def main(nqubits, device, nshots):
     _tmp_runtimes.append(end_time - start_time)
 
     for (qb, gnd_err), exc_err in zip(e1.items(), e2.values()):
-        results["readout_fidelity"]["qb"] = 1 - (gnd_err + exc_err) / 2
+        results["readout_fidelity"][f"{qb}"] = 1 - (gnd_err + exc_err) / 2
 
     runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
     results['runtime']= f"{runtime_seconds:.5f} seconds."

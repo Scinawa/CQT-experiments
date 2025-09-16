@@ -12,7 +12,46 @@ from clientdb.client import (
     results_upload, results_download,unpack,test,results_list
 )
 
-from scripts.scripts_executor import experiment_list
+# from scripts.scripts_executor import experiment_list
+
+
+
+def load_experiment_list(config_file="scripts/experiment_list.txt"):
+    """
+    Load experiment list from a configuration file.
+
+    Args:
+        config_file (str): Path to the experiment list configuration file
+
+    Returns:
+        list: List of experiment names (uncommented lines)
+    """
+    experiments = []
+    try:
+        with open(config_file, "r") as f:
+            for line in f:
+                # Strip whitespace and skip empty lines
+                line = line.strip()
+                if not line:
+                    continue
+                # Skip comment lines (starting with #)
+                if line.startswith("#"):
+                    continue
+                # Add the experiment name
+                experiments.append(line)
+    except FileNotFoundError:
+        logging.warning(
+            f"Experiment list file '{config_file}' not found. Using fallback list."
+        )
+        # Fallback to original hardcoded list if file not found
+        experiments = ["mermin"]
+    except Exception as e:
+        logging.error(f"Error reading experiment list from '{config_file}': {e}")
+        experiments = ["mermin"]
+
+    return experiments
+
+
 
 def setup_logging(log_level):
     """Setup logging configuration"""
@@ -94,6 +133,9 @@ def main():
         logger.error(f"Calibration upload failed: {e}")
         return 1
     
+
+    experiment_list = load_experiment_list()
+
     # Upload results for each experiment
     logger.info(f"Starting experiment results upload for {len(experiment_list)} experiments")
     successful_uploads = 0

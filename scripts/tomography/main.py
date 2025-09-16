@@ -41,12 +41,12 @@ def run_tomography(targets, device, nshots, root_path):
             "myexec",
             path=root_path,
             platform=platform,
-            targets=[targets],
+            targets=[(targets[0], targets[1])],
             update=True,
             force=True,
         ) as e:
             circuit = bell_circuit()
-            output = e.two_qubit_state_tomography(circuit=circuit, targets=[targets])
+            output = e.two_qubit_state_tomography(circuit=circuit, targets=[(targets[0], targets[1])])
             report(e.path, e.history)
             # Save frequencies if available
             if hasattr(output, "frequencies"):

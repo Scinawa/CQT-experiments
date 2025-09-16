@@ -12,7 +12,7 @@ from git.repo.base import Repo
 base_path = "scripts/"
 
 
-def load_experiment_list(config_file="experiment_list.txt"):
+def load_experiment_list(config_file="scripts/experiment_list.txt"):
     """
     Load experiment list from a configuration file.
 
@@ -37,14 +37,11 @@ def load_experiment_list(config_file="experiment_list.txt"):
                 experiments.append(line)
     except FileNotFoundError:
         logging.warning(
-            f"Experiment list file '{config_file}' not found. Using fallback list."
+            f"Experiment list file '{config_file}' not found."
         )
-        # Fallback to original hardcoded list if file not found
-        experiments = ["mermin"]
+        sys.exit(1)
     except Exception as e:
         logging.error(f"Error reading experiment list from '{config_file}': {e}")
-        experiments = ["mermin"]
-
     return experiments
 
 

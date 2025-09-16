@@ -22,6 +22,11 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
 
+from pathlib import Path
+from git.repo.base import Repo
+
+
+
 
 
 def get_package_version(package_name):
@@ -57,10 +62,18 @@ def main(device):
         if version is not None:
             versions[package] = version
     
+    platform = "sinq20" if device == "sinq20" else device
+    repo = Repo("/mnt/scratch/qibolab_platforms_nqch")
+    hash_id = repo.commit().hexsha
+
+
+
     results = {
         "versions": versions,
         "device": device,
-        "extraction_time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        "extraction_time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+        "title": hash_id,
+        "platform": platform,
     }
 
     out_dir = config.output_dir_for(__file__, device)

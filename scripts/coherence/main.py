@@ -1,7 +1,7 @@
 import os
 import pathlib
 
-os.environ["QIBOLAB_PLATFORMS"] = (pathlib.Path(__file__).parent / "qibolab_platforms_nqch").as_posix()
+# os.environ["QIBOLAB_PLATFORMS"] = (pathlib.Path(__file__).parent / "qibolab_platforms_nqch").as_posix()
 
 from qibocal.auto.execute import Executor
 from qibocal.cli.report import report
@@ -58,8 +58,8 @@ def main(device):
         start_time = time.time()
         e.t1(parameters=params_t1, targets=qb_array1)
         e.t1(parameters=params_t1, targets=qb_array2)
-        results: dict = e.ramsey(parameters=params_t2_ramsey, targets=qb_array1)._results.t2
-        results.update(e.ramsey(parameters=params_t2_ramsey, targets=qb_array2)._results.t2)
+        results_exp: dict = e.ramsey(parameters=params_t2_ramsey, targets=qb_array1)._results.t2
+        results_exp.update(e.ramsey(parameters=params_t2_ramsey, targets=qb_array2)._results.t2)
         end_time = time.time()
         _tmp_runtimes.append(end_time - start_time)
 
@@ -68,15 +68,15 @@ def main(device):
         for qubit in range(1, 21):
             qubit_id = qubit - 1
             t1_val = float(e.platform.calibration.single_qubits[qubit_id].t1[0]) / 1e3
-            t2_val = float(results[qubit_id][0]) / 1e3
+            t2_val = float(results_exp[qubit_id][0]) / 1e3
 
             t1=0 if t1_val < 0 or t1_val > 100 else t1_val
             t2=0 if t2_val < 0 or t2_val > 100 else t2_val
 
-            results["t1"]["qubit_id"] = t1
-            results["t2"]["qubit_id"] = t2
+            results["t1"][f"{qubit_id}"] = t1
+            results["t2"][f"{qubit_id}"] = t2
 
-    untime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
+    runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
     results['runtime']= f"{runtime_seconds:.5f} seconds."
     results['description']= f"T1 and T2 experiments performed on {device} backend. \n The thermalization and coherence times are computed with this routine."
 
