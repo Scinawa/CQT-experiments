@@ -246,7 +246,8 @@ def main(
     lr,
     epochs,
     nshots,
-    grid,
+    ##grid,
+    num_train_samples,
     num_test_samples,
     seed,
     gpu,
@@ -271,8 +272,9 @@ def main(
     torch.set_default_device(torch_device)
 
     # Generate training data
-    training_set = create_dataset(grid=grid)
-    test_set = create_dataset(samples=num_test_samples)
+    ##training_set = create_dataset(grid=grid)
+    training_set = create_dataset(samples=num_train_samples, seed=1)
+    test_set = create_dataset(samples=num_test_samples, seed=0)
     x_train = torch.tensor(training_set[0])
     y_train = torch.tensor(
         training_set[1].reshape([training_set[1].shape[0], 1]), dtype=torch.float64
@@ -301,7 +303,7 @@ def main(
 
     # Set up classical preprocessing
     if load_and_test:
-        file_path = f"{script_directory}/saved_parameters.pkl"
+        file_path = f"{script_directory}/input_parameters.pkl"
         linear_encoder = TrainedLinearEncoder(file_path).double()
         nlayers = 10
         lr = None
@@ -417,7 +419,8 @@ def main(
         "lr": lr,
         "epochs": epochs,
         "nshots": nshots,
-        "grid": grid,
+        ##"grid": grid,
+        "num_train_samples": num_train_samples,
         "num_test_samples": num_test_samples,
         "seed": seed,
         "gpu": gpu,
@@ -432,7 +435,7 @@ def main(
     """
     # Load from results.json and generate plots
     raw_data = os.path.join(output_dir, f"results.json")
-    plot_reuploading_classifier(raw_data, output_path=output_dir)
+    plot_reuploading_classifier(raw_data, exp_name='15092025', output_path=output_dir)
     """
 
 
@@ -466,11 +469,17 @@ if __name__ == "__main__":
     parser.add_argument(
         "--nshots", type=int, default=500, help="Number of shots (default: 500)"
     )
+    ##parser.add_argument(
+     ##   "--grid",
+     ##   type=int,
+     ##   default=11,
+     ##   help="Number of grid points along both paramter directions for generating training dataset (default: 11)",
+    ##)
     parser.add_argument(
-        "--grid",
+        "--num_train_samples",
         type=int,
-        default=11,
-        help="Number of grid points along both paramter directions for generating training dataset (default: 11)",
+        default=100,
+        help="Number of train samples (default: 100)",
     )
     parser.add_argument(
         "--num_test_samples",
@@ -481,8 +490,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--seed",
         type=int,
-        default=42,
-        help="Random seed value for initializing trainable circuit parameters (default: 42)",
+        default=48,
+        help="Random seed value for initializing trainable circuit parameters (default: 48)",
     )
     parser.add_argument(
         "--gpu",
