@@ -27,7 +27,8 @@ def main(device):
 
     _tmp_runtimes = []
 
-    root_path = "coherence"
+    out_dir = config.output_dir_for(__file__, device)
+    root_path = out_dir 
     platform = device
 
     qb_array1 = [0, 2, 4, 8, 12, 6, 10, 14, 17, 16, 19]
