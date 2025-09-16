@@ -1,7 +1,7 @@
 import os
 import pathlib
 
-os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path("/mnt/scratch/qibolab_platforms_nqch").as_posix()
+# os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path("/mnt/scratch/qibolab_platforms_nqch").as_posix()
 
 from qibocal.auto.execute import Executor
 from qibocal.cli.report import report
@@ -21,15 +21,20 @@ def main(nqubits, nshots, niter, depths, device):
     data = dict()
 
     results["fidelity"] = {}
-    data["nqubits"] = qubit_pairs
+    data["nqubits"] = nqubits
     data["nshots"] = nshots
-    data["niter"] = nshots
-    data["depths"] = nshots
+    data["niter"] = niter
+    data["depths"] = depths
     data["device"] = device
 
     _tmp_runtimes = []
 
-    root_path = "standard_rb"
+    out_dir = config.output_dir_for(__file__, device)
+
+    # import pdb
+    # pdb.set_trace()
+
+    root_path = out_dir #/ "standard_rb"
     platform = device
 
 
@@ -55,14 +60,15 @@ def main(nqubits, nshots, niter, depths, device):
 
         for qubit in range(1, nqubits+1):
             qubit_id = qubit - 1
-            results["fidelity"]["qubit_id"] = float(e.platform.calibration.single_qubits[qubit_id].rb_fidelity[0])
+            results["fidelity"][f"{qubit_id}"] = float(e.platform.calibration.single_qubits[qubit_id].rb_fidelity[0])
 
-    untime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
+    runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
     results['runtime']= f"{runtime_seconds:.5f} seconds."
     results['description']= f"Single qubit Randomized Benchmarking executed on {device} backend with {nshots} shots per circuit and {niter} iterations per depth. \n The gate fidelity is computed in a SPAM robust way."
 
     # Write to data/<scriptname>/<device>/results.json
-    out_dir = config.output_dir_for(__file__, device)
+    
+    
     out_dir.mkdir(parents=True, exist_ok=True)
     try:
         with (out_dir / "data.json").open("w", encoding="utf-8") as f:
@@ -77,31 +83,31 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--nqubits",
-        default=20,
+        default=5,
         type=int,
         help="Total number of qubits",
     )
     parser.add_argument(
         "--nshots",
-        default=1000,
+        default=100,
         type=int,
         help="Number of shots for each circuit",
     )
     parser.add_argument(
         "--niter",
-        default=1000,
+        default=3,
         type=int,
         help="Iteration on each depths",
     )
     parser.add_argument(
         "--depths",
-        default=[1, 2, 3, 6, 12, 21, 40, 73, 135, 250],
+        default=[1, 2, 3, 5, 6, 12],  #  , 21, 40, 73, 135, 250],
         type=list,
         help="List of depths for the protocol",
     )
     parser.add_argument(
         "--device",
-        choices=["sinq20"],
+        choices=["sinq20", "numpy"],
         default="sinq20",
         type=str,
         help="Device to use",

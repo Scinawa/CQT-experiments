@@ -244,7 +244,7 @@ def prepare_template_context(cfg):
         "start_time": meta_data.get("start-time", "Unknown Start Time"),
         "end_time": meta_data.get("start-time", "Unknown Start Time"),
         #
-        "report_of_changes": "\\textcolor{green}{Additional data of changes (from software).}",
+        "report_of_changes": " ", #"\\textcolor{green}{Additional data of changes (from software).}",
         #
         "stat_fidelity": stat_fidelity_with_improvement,
         "stat_fidelity_baseline": stat_fidelity_baseline,

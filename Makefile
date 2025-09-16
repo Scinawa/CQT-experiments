@@ -10,8 +10,10 @@ EXPERIMENT_RIGHT ?= 41f4570fce52da0c4bbb483f6fb7d870a551df65
 download-data:
 	@mkdir -p data
 	#@[ -d data ] && rm -rf data/* || true
+
 	@echo "Downloading data for experiment $(EXPERIMENT_LEFT)"
 	@python download.py --hash-id $(EXPERIMENT_LEFT)
+
 	@echo "Downloading data for experiment $(EXPERIMENT_RIGHT)"
 	@python download.py --hash-id $(EXPERIMENT_RIGHT)
 
