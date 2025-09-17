@@ -27,8 +27,8 @@ def main(device):
 
     _tmp_runtimes = []
 
-    out_dir = config.output_dir_for(__file__, device)
-    root_path = out_dir 
+
+    root_path = config.output_dir_for(__file__, device)
     platform = device
 
     qb_array1 = [0, 2, 4, 8, 12, 6, 10, 14, 17, 16, 19]
@@ -82,12 +82,13 @@ def main(device):
     results['description']= f"T1 and T2 experiments performed on {device} backend. \n The thermalization and coherence times are computed with this routine."
 
     # Write to data/<scriptname>/<device>/results.json
-    out_dir = config.output_dir_for(__file__, device)
-    out_dir.mkdir(parents=True, exist_ok=True)
+    #out_dir.mkdir(parents=True, exist_ok=True)
+    import pdb
+    pdb.set_trace()
     try:
-        with (out_dir / "data.json").open("w", encoding="utf-8") as f:
+        with (root_path / "data.json").open("w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
-        with (out_dir / "results.json").open("w", encoding="utf-8") as f:
+        with (root_path / "results.json").open("w", encoding="utf-8") as f:
             json.dump(results, f, ensure_ascii=False, indent=4)
     except Exception as e:
         print(f"Failed to write output files to {out_dir}: {e}")
