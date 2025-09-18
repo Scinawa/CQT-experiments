@@ -901,8 +901,7 @@ if __name__ == "__main__":
         appending a gate (process) to the circuit, and measuring the circuit in the Pauli basis. \n\
         The data is processed to get the Pauli Liouville representation of a process (gate). \n \
         - Single qubit process tomography executed on qubits: {single_qubit_indices}\n \
-        - Two qubit process tomography on coupled qubits: {two_qubit_pairs}\n \
-        Total execution time for process tomography is {total_time} seconds."
+        - Two qubit process tomography on coupled qubits: {two_qubit_pairs}"
     result_dict["oneQubitResults"] = {}
     result_dict["twoQubitResults"] = {}
 

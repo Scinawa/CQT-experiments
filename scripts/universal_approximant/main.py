@@ -200,6 +200,7 @@ if __name__ == "__main__":
         "duration": duration,
         "median_predictions": median_pred.tolist(),
         "mad_predictions": mad_pred.tolist(),
+        "description": Universal approximant total execution time: {duration:.5f} seconds.
     }
 
     with open(os.path.join(results_dir, "results.json"), "w") as json_file:
