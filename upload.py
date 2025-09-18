@@ -55,12 +55,15 @@ def load_experiment_list(config_file="scripts/experiment_list.txt"):
 
 def setup_logging(log_level):
     """Setup logging configuration"""
+    # Ensure logs directory exists
+    os.makedirs('logs', exist_ok=True)
+    
     logging.basicConfig(
         level=log_level,
         format='%(asctime)s - %(levelname)s - %(message)s',
         handlers=[
             logging.StreamHandler(),
-            logging.FileHandler('upload.log')
+            logging.FileHandler('logs/upload.log')
         ]
     )
 
@@ -89,7 +92,7 @@ def upload_calibration_compressed(src_dir, hash_id, notes=""):
     with tarfile.open(archive_name, "w:gz") as tar:
         tar.add(src_dir, arcname=os.path.basename(src_dir))
 
-    logger.info(f"Created archive: {archive_name}")
+    logger.debug(f"Created archive: {archive_name}")
 
     try:
         calibrations_upload(hashID=hash_id, notes=notes, files=[archive_name])
@@ -97,6 +100,13 @@ def upload_calibration_compressed(src_dir, hash_id, notes=""):
     except Exception as e:
         logger.error(f"Failed to upload calibration data: {e}")
         raise
+    finally:
+        # Clean up the archive file
+        try:
+            os.remove(archive_name)
+            logger.debug(f"Cleaned up archive: {archive_name}")
+        except OSError as e:
+            logger.warning(f"Failed to cleanup archive {archive_name}: {e}")
     
     return archive_name
 
@@ -105,7 +115,7 @@ def main():
     parser = argparse.ArgumentParser(description="Upload calibration data and experiment results")
     parser.add_argument("--hash-id", help="Hash ID for the calibration", default="9848c933bfcafbb8f81c940f504b893a2fa6ac23")
     parser.add_argument("--notes", default="", help="Optional notes for the calibration upload")
-    parser.add_argument("--log-level", default="DEBUG", choices=["DEBUG", "INFO", "WARNING", "ERROR"], 
+    parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], 
                        help="Set the logging level")
     args = parser.parse_args()
 
@@ -146,7 +156,7 @@ def main():
         experiment_dir = f"./data/{experiment_name}/{args.hash_id}"
         
         if os.path.exists(experiment_dir):
-            logger.info(f"Found experiment directory: {experiment_dir}")
+            logger.debug(f"Found experiment directory: {experiment_dir}")
             
             # Create a tar.gz archive of the entire experiment directory using a TemporaryDirectory
             with tempfile.TemporaryDirectory() as tmpdir:

@@ -46,13 +46,19 @@ def run_tomography(targets, device, nshots, root_path):
             force=True,
         ) as e:
             circuit = bell_circuit()
+            start_time = time.time()
             output = e.two_qubit_state_tomography(circuit=circuit, targets=[(targets[0], targets[1])])
+            end_time = time.time()
+            runtime_seconds = end_time - start_time
             report(e.path, e.history)
             # Save frequencies if available
             if hasattr(output, "frequencies"):
                 results["frequencies"] = output.frequencies
+                results["runtime"] = runtime_seconds
+                results["description"] = f"State tomography on qubits {[targets]}."
     else:
         # Simulate with numpy backend
+        start_time = time.time()
         circuit = bell_circuit()
         r = circuit()
         probs = r.probabilities()
@@ -60,7 +66,10 @@ def run_tomography(targets, device, nshots, root_path):
         all_bitstrings = [format(i, f"0{num_bits}b") for i in range(2**num_bits)]
         # Convert probabilities to expected counts, then normalize to frequencies
         freq = {bs: probs[i] for i, bs in enumerate(all_bitstrings)}
+        end_time = time.time()
+        runtime_seconds = end_time - start_time
         results["frequencies"] = freq
+        results["description"] = f"State tomography on numpy backend."
 
     return data, results
 

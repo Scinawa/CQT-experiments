@@ -1,7 +1,7 @@
 import os
 import pathlib
 
-os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path("/mnt/scratch/qibolab_platforms_nqch").as_posix()
+#os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path("/mnt/scratch/qibolab_platforms_nqch").as_posix()
 
 from qibo import Circuit, gates, set_backend
 

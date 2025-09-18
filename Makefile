@@ -18,6 +18,13 @@ download-data:
 	@python download.py --hash-id $(EXPERIMENT_RIGHT)
 
 
+upload-data:
+	@echo "Uploading data for experiment $(EXPERIMENT_LEFT)"
+	@python upload.py --hash-id $(EXPERIMENT_LEFT)
+
+	@echo "Uploading data for experiment $(EXPERIMENT_RIGHT)"
+	@python upload.py --hash-id $(EXPERIMENT_RIGHT)
+
 build: clean
 	@mkdir -p build
 	@cp src/templates/placeholder.png build/placeholder.png
