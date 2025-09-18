@@ -301,11 +301,11 @@ if __name__ == "__main__":
         "--device",
         default="numpy",
         type=str,
-        help="Device to use (e.g., 'nqch' or 'numpy' for local simulation)",
+        help="Device to use (e.g., 'sinq20' or 'numpy' for local simulation)",
     )
     parser.add_argument(
         "--nshots",
-        default=300,
+        default=360,
         type=int,
         help="Number of shots for each circuit execution",
     )
@@ -323,7 +323,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--number-datapoints-output",
         type=int,
-        default=50,
+        default=1000,
         help="Number of data points to output",
     )
     cnf = vars(parser.parse_args())

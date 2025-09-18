@@ -41,13 +41,13 @@ def run_tomography(targets, device, nshots, root_path):
             "myexec",
             path=root_path,
             platform=platform,
-            targets=[targets],
+            targets=[(targets[0], targets[1])],
             update=True,
             force=True,
         ) as e:
             circuit = bell_circuit()
             start_time = time.time()
-            output = e.two_qubit_state_tomography(circuit=circuit, targets=[targets])
+            output = e.two_qubit_state_tomography(circuit=circuit, targets=[(targets[0], targets[1])])
             end_time = time.time()
             runtime_seconds = end_time - start_time
             report(e.path, e.history)

@@ -7,26 +7,46 @@ from logging.handlers import RotatingFileHandler
 import shutil
 from git.repo.base import Repo
 
- 
-
 
 # Base path to the scripts directory (run from project root)
 base_path = "scripts/"
-experiment_list = [
-#       "GHZ",
-#          "mermin",
-#     "grover2q",  # very broken (see above)
-# #    "tomography", # very broken
-# #    "process_tomography", # very broken (see above)
-#    "grover3q",
-#     "universal_approximant",
-# #     "reuploading_classifier",
-#     "QFT",
-#     "qml_3Q_yeast",
-    "qml_4Q_yeast",
-    "qml_3Q_statlog",
-    "qml_4Q_statlog"
-]
+
+
+def load_experiment_list(config_file="scripts/experiment_list.txt"):
+    """
+    Load experiment list from a configuration file.
+
+    Args:
+        config_file (str): Path to the experiment list configuration file
+
+    Returns:
+        list: List of experiment names (uncommented lines)
+    """
+    experiments = []
+    try:
+        with open(config_file, "r") as f:
+            for line in f:
+                # Strip whitespace and skip empty lines
+                line = line.strip()
+                if not line:
+                    continue
+                # Skip comment lines (starting with #)
+                if line.startswith("#"):
+                    continue
+                # Add the experiment name
+                experiments.append(line)
+    except FileNotFoundError:
+        logging.warning(
+            f"Experiment list file '{config_file}' not found."
+        )
+        sys.exit(1)
+    except Exception as e:
+        logging.error(f"Error reading experiment list from '{config_file}': {e}")
+    return experiments
+
+
+# Load experiment list from configuration file
+experiment_list = load_experiment_list()
 
 
 def parse_args():
@@ -92,8 +112,6 @@ def setup_logger(log_file: str, level_name: str) -> logging.Logger:
     return logger
 
 
-
-
 def run_script(logger: logging.Logger, script_path: str, device: str, tag: str) -> int:
     if not os.path.exists(script_path):
         logger.warning(f"main.py not found in {tag}")
@@ -127,23 +145,35 @@ def main():
     args = parse_args()
     logger = setup_logger(args.log_file, args.log_level)
 
-
     # COPY RUNCARD INTO DATA SECTION
     repo = Repo("/mnt/scratch/qibolab_platforms_nqch")
     hash_id = repo.commit().hexsha
 
-    # Copy /mnt/scratch/qibolab_platforms_nqch into 
+    # Copy /mnt/scratch/qibolab_platforms_nqch into
     # data/<hash_id>/
-    runcard_dir = os.path.join("data", hash_id)
+    calibration_dir = os.path.join("data", hash_id)
 
     try:
-        shutil.copytree("/mnt/scratch/qibolab_platforms_nqch", runcard_dir, dirs_exist_ok=True)
+        shutil.copytree(
+            "/mnt/scratch/qibolab_platforms_nqch", calibration_dir, dirs_exist_ok=True
+        )
     except Exception as e:
-        #print("diocas")
-        logger.error(f"Failed to copy runcard directory")
+        # print("diocas")
+        logger.error(f"Failed to copy calibration directory")
         # sys.exit(1)
 
-
+        # Remove the .git directory inside the copied calibration directory via shell
+        git_dir = os.path.join(calibration_dir, ".git")
+        if os.path.isdir(git_dir):
+            logger.info(f"Removing git directory {git_dir}")
+            try:
+                subprocess.run(f"rm -rf -- '{git_dir}'", shell=True, check=True)
+            except subprocess.CalledProcessError:
+                logger.error(f"Shell removal failed for {git_dir}; attempting fallback")
+                try:
+                    shutil.rmtree(git_dir)
+                except Exception:
+                    logger.exception(f"Fallback removal failed for {git_dir}")
 
     overall_rc = 0
     for subfolder in args.experiments:

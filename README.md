@@ -49,9 +49,18 @@ uv sync
 
 ## Usage
 
-1. **Run experiments and prepare your benchmark data**: This can be done buy 
- - `sbatch scripts/runscripts_sinq20.sh` to run code on the quantum computer
- - `sbatch scripts/runscripts_numpy.sh` to run code on the numpy simulator.
+1. **Run experiments and prepare your benchmark data**: 
+
+Make sure you have your experiment in `experiment_list.txt` (and comment things you don't want to execute).
+
+This can be done by
+
+(Batch execution in background)
+ - `sbatch scripts/run_sinq20.sh` to run code on the quantum computer
+ - `sbatch scripts/run_numpy.sh` to run code on the numpy simulator.
+(Without daemonizing the process)
+- `srun -p sinq20 scripts/run_sinq20.sh`  to run code on the quantum computer
+- `srun -p gpu scripts/run_numpy.sh`  to run code on the numpy simulator
 
 
 2. **Generate the report**: Run the `make pdf` script to generate the LaTeX file populated with your benchmark data.

@@ -24,6 +24,13 @@ def setup_argument_parser():
     """Set up the command line argument parser."""
     parser = argparse.ArgumentParser(description="Generate a quantum benchmark report.")
     parser.add_argument(
+        "--base_dir",
+        type=str,
+        default="data/",
+        help="Base directory for data and output.",
+    )
+
+    parser.add_argument(
         "--experiment-right",
         type=str,
         default="9848c933bfcafbb8f81c940f504b893a2fa6ac23",
@@ -32,7 +39,7 @@ def setup_argument_parser():
     parser.add_argument(
         "--experiment-left",
         type=str,
-        default="9848c933bfcafbb8f81c940f504b893a2fa6ac23",
+        default="numpy",
         help="Directory containing the experiment data.",
     )
 
@@ -168,33 +175,53 @@ def prepare_template_context(cfg):
     """
     Prepare a complete template context for the benchmarking report.
     """
+
     logging.info("Preparing context for full benchmarking report.")
 
-    # Load experiment metadata from mega.json
-    meta_json_path = Path("data") / cfg.experiment_left / "sinq20" / "meta.json"
+    base_path = Path(cfg.base_dir)
+
+    # memo
+    # we take the basic information from version_extractor experiment...
+    meta_json_path = (
+        base_path / "version_extractor" / cfg.experiment_left / "results.json"
+    )
     with open(meta_json_path, "r") as f:
         meta_data = json.load(f)
     logging.info("Loaded experiment metadata from %s", meta_json_path)
 
     ######### Fidelity statistics and changes
-    stat_fidelity = fl.get_stat_fidelity(cfg.experiment_left + "/sinq20")
-    stat_fidelity_baseline = fl.get_stat_fidelity(cfg.experiment_right + "/sinq20")
-    stat_fidelity_with_improvement = add_stat_changes(
-        stat_fidelity, stat_fidelity_baseline
-    )
-    logging.info("Prepared stat_fidelity and stat_fidelity_with_improvement")
+    try:
+        stat_fidelity = fl.get_stat_fidelity(cfg.experiment_left + "/sinq20")
+        stat_fidelity_baseline = fl.get_stat_fidelity(cfg.experiment_right + "/sinq20")
+        stat_fidelity_with_improvement = add_stat_changes(
+            stat_fidelity, stat_fidelity_baseline
+        )
+        logging.info("Prepared stat_fidelity and stat_fidelity_with_improvement")
+    except Exception as e:
+        logging.error(f"Error preparing fidelity statistics: {e}")
+        stat_fidelity = {}
+        stat_fidelity_baseline = {}
+        stat_fidelity_with_improvement = {}
 
     ##########Pulse Fidelity statistics and changes
-    stat_pulse_fidelity = fl.get_stat_pulse_fidelity(cfg.experiment_left + "/sinq20")
-    stat_pulse_fidelity_baseline = fl.get_stat_pulse_fidelity(
-        cfg.experiment_right + "/sinq20"
-    )
-    stat_pulse_fidelity_with_improvement = add_stat_changes(
-        stat_pulse_fidelity, stat_pulse_fidelity_baseline
-    )
-    logging.info(
-        "Prepared stat_pulse_fidelity and stat_pulse_fidelity_with_improvement"
-    )
+    try:
+        stat_pulse_fidelity = fl.get_stat_pulse_fidelity(
+            cfg.experiment_left + "/sinq20"
+        )
+        stat_pulse_fidelity_baseline = fl.get_stat_pulse_fidelity(
+            cfg.experiment_right + "/sinq20"
+        )
+        stat_pulse_fidelity_with_improvement = add_stat_changes(
+            stat_pulse_fidelity, stat_pulse_fidelity_baseline
+        )
+        logging.info(
+            "Prepared stat_pulse_fidelity and stat_pulse_fidelity_with_improvement"
+        )
+    except Exception as e:
+        logging.error(f"Error preparing pulse fidelity statistics: {e}")
+        stat_pulse_fidelity = {}
+        stat_pulse_fidelity_baseline = {}
+        stat_pulse_fidelity_with_improvement = {}
 
     ######### T1 statistics and changes
     stat_t1 = fl.get_stat_t12(cfg.experiment_left + "/sinq20", "t1")
@@ -208,6 +235,8 @@ def prepare_template_context(cfg):
     stat_t2_with_improvement = add_stat_changes(stat_t2, stat_t2_baseline)
     logging.info("Prepared stat_t2 and stat_t2_with_improvement")
 
+    # memo
+    # we take the basic information from version_extractor experiment...
     context = {
         "experiment_name": meta_data.get("title", "Unknown Title"),
         "platform": meta_data.get("platform", "Unknown Platform"),
@@ -215,7 +244,7 @@ def prepare_template_context(cfg):
         "start_time": meta_data.get("start-time", "Unknown Start Time"),
         "end_time": meta_data.get("start-time", "Unknown Start Time"),
         #
-        "report_of_changes": "\\textcolor{green}{Additional data of changes (from software).}",
+        "report_of_changes": " ", #"\\textcolor{green}{Additional data of changes (from software).}",
         #
         "stat_fidelity": stat_fidelity_with_improvement,
         "stat_fidelity_baseline": stat_fidelity_baseline,
@@ -229,18 +258,41 @@ def prepare_template_context(cfg):
         "stat_t2": stat_t2_with_improvement,
         "stat_t2_baseline": stat_t2_baseline,
         #
-        "version": fl.context_version(cfg.experiment_left + "/sinq20", meta_data),
-        "version_baseline": fl.context_version(cfg.experiment_right + "/sinq20"),
+        "calibration_data": fl.context_version(
+            cfg.experiment_left,
+            os.path.join(
+                "data", "version_extractor", cfg.experiment_left, "results.json"
+            ),
+        ),
+        "calibration_data_baseline": fl.context_version(
+            cfg.experiment_right,
+            os.path.join(
+                "data", "version_extractor", cfg.experiment_right, "results.json"
+            ),
+        ),
+    }
+    #
+    try:
+        context["fidelity"] = fl.context_fidelity(cfg.experiment_left + "/sinq20")
+        context["fidelity_baseline"] = fl.context_fidelity(
+            cfg.experiment_right + "/sinq20"
+        )
+    except Exception as e:
+        logging.error(f"Error preparing fidelity context: {e}")
+        context["fidelity"] = {}
+        context["fidelity_baseline"] = {}
         #
-        "fidelity": fl.context_fidelity(cfg.experiment_left + "/sinq20"),
-        "fidelity_baseline": fl.context_fidelity(cfg.experiment_right + "/sinq20"),
-        #
-        "plot_exp": pl.plot_fidelity_graph(
+    try:
+        context["plot_exp"] = pl.plot_fidelity_graph(
             cfg.experiment_left + "/sinq20", config.connectivity, config.pos
-        ),
-        "plot_baseline": pl.plot_fidelity_graph(
+        )
+        context["plot_baseline"] = pl.plot_fidelity_graph(
             cfg.experiment_right + "/sinq20", config.connectivity, config.pos
-        ),
+        )
+    except Exception as e:
+        logging.error(f"Error preparing fidelity plots: {e}")
+        context["plot_exp"] = "placeholder.png"
+        context["plot_baseline"] = "placeholder.png"
         #
         # "plot_chevron_swap_0": pl.plot_chevron_swap_coupler(
         #     qubit_number=0,
@@ -253,7 +305,7 @@ def prepare_template_context(cfg):
         #     data_dir="data/DEMODATA/",
         #     output_path="build/",
         # ),
-    }
+
     logging.info("Basic context dictionary prepared")
 
     # # Add additional plots if needed
@@ -296,14 +348,12 @@ def prepare_template_context(cfg):
         context["t1_plot_is_set"] = False
         pass
 
-    path = Path("data/")
-
     ######### MERMIN TABLE
     maximum_mermin = fl.get_maximum_mermin(
-        path / "mermin" / cfg.experiment_left, "results.json"
+        base_path / "mermin" / cfg.experiment_left, "results.json"
     )
     maximum_mermin_baseline = fl.get_maximum_mermin(
-        path / "mermin" / cfg.experiment_right, "results.json"
+        base_path / "mermin" / cfg.experiment_right, "results.json"
     )
     context["mermin_maximum"] = maximum_mermin
     context["mermin_maximum_baseline"] = maximum_mermin_baseline
@@ -333,22 +383,6 @@ def prepare_template_context(cfg):
     else:
         context["mermin_5_plot_is_set"] = False
         pass
-
-    # ######### REUPLOADING PLOTS
-    # if cfg.reuploading_plot == True:
-    #     context["reuploading_plot_is_set"] = True
-    #     context["plot_reuploading"] = pl.do_plot_reuploading(
-    #         raw_data=os.path.join("data", "reuploading", cfg.experiment_left, "results.json"),
-    #         expname=f"reuploading_{cfg.experiment_left}",
-    #     )
-    #     context["plot_reuploading_baseline"] = pl.do_plot_reuploading(
-    #         raw_data=os.path.join("data", "reuploading", cfg.experiment_right, "results.json")
-    #     )
-    #     logging.info("Added reuploading plots to context")
-    # else:
-    #     print("Reuploading plot is not set, skipping...")
-    #     context["reuploading_plot_is_set"] = False
-    #     pass
 
     ######### GROVER 2q PLOTS
     if cfg.grover2q_plot == True:
@@ -506,6 +540,31 @@ def prepare_template_context(cfg):
     ######### REUPLOADING CLASSIFIER PLOTS
     if cfg.reuploading_classifier_plot == True:
         try:
+            context["reuploading_classifier_description"] = fl.extract_description(
+                os.path.join(
+                    "data",
+                    "reuploading_classifier",
+                    cfg.experiment_left,
+                    "results.json",
+                )
+            )
+            context["reuploading_classifier_runtime_left"] = fl.extract_runtime(
+                os.path.join(
+                    "data",
+                    "reuploading_classifier",
+                    cfg.experiment_left,
+                    "results.json",
+                )
+            )
+            context["reuploading_classifier_runtime_right"] = fl.extract_runtime(
+                os.path.join(
+                    "data",
+                    "reuploading_classifier",
+                    cfg.experiment_right,
+                    "results.json",
+                )
+            )
+
             context["reuploading_classifier_plot_is_set"] = True
             context["plot_reuploading_classifier"] = pl.plot_reuploading_classifier(
                 raw_data=os.path.join(
@@ -545,6 +604,16 @@ def prepare_template_context(cfg):
     ######### QFT PLOTS
     if cfg.qft_plot == True:
         try:
+            context["QFT_description"] = fl.extract_description(
+                os.path.join("data", "QFT", cfg.experiment_left, "results.json")
+            )
+            context["QFT_runtime_left"] = fl.extract_runtime(
+                os.path.join("data", "QFT", cfg.experiment_left, "results.json")
+            )
+            context["QFT_runtime_right"] = fl.extract_runtime(
+                os.path.join("data", "QFT", cfg.experiment_right, "results.json")
+            )
+
             context["qft_plot_is_set"] = True
             context["plot_qft"] = pl.plot_QFT(
                 raw_data=os.path.join(
@@ -572,6 +641,22 @@ def prepare_template_context(cfg):
     ######### YEAST CLASSIFICATION PLOTS 4Q
     if cfg.yeast_plot_4q == True:
         try:
+            context["qml_4Q_yeast_description"] = fl.extract_description(
+                os.path.join(
+                    "data", "qml_4Q_yeast", cfg.experiment_left, "results.json"
+                )
+            )
+            context["qml_4Q_yeast_runtime_left"] = fl.extract_runtime(
+                os.path.join(
+                    "data", "qml_4Q_yeast", cfg.experiment_left, "results.json"
+                )
+            )
+            context["qml_4Q_yeast_runtime_right"] = fl.extract_runtime(
+                os.path.join(
+                    "data", "qml_4Q_yeast", cfg.experiment_right, "results.json"
+                )
+            )
+
             context["yeast_classification_4q_plot_is_set"] = True
             context["plot_yeast_4q"] = pl.plot_qml(
                 raw_data=os.path.join(

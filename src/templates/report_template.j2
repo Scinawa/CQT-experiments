@@ -23,7 +23,13 @@
 % AUTHORS AND INFORMATION
 %----------------------------------------------------------
 
-\author{Team name or Tool name}
+\makeatletter
+\xdef\authordate{\today}   % expand \today now; define globally
+\makeatother
+
+\author{\authordate}       % will print the actual date where author goes
+
+
 
 %----------------------------------------------------------
 % LOGO CONFIGURATION
@@ -70,9 +76,9 @@
 \begin{tauenvmine}
 %\vspace{-0.2.cm}
 \centering
-{\Large \textbf{ {{ version.runcard | replace('_', '\\_') }} }} \\
-%\textbf{Runcard:} \href{ {{ version.runcard_link }} }{ {{ version.runcard | replace('_', '\\_') }} }
-\href{ {{ version.runcard_link }} }{ Link to Runcard }
+{\Large \textbf{ {{ calibration_data.device | replace('_', '\\_') }} }} \\
+\emph{ {{ calibration_data.calibration_id | replace('_', '\\_') }} } \\
+%\href{ {{ calibration_data.calibration_id }} }{ Link to Runcard }
 %\vspace{0.15cm}
 \end{tauenvmine}
 \end{center}
@@ -83,9 +89,8 @@
 \begin{tauenvmine}
 %\vspace{-0.2cm}
 \centering
-{\Large \textbf{ {{ version_baseline.runcard | replace('_', '\\_') }} }} \\
-%\textbf{Runcard:} \href{ {{ version_baseline.runcard_link }} }{ {{ version_baseline.runcard | replace('_', '\\_') }} }
-\href{ {{ version_baseline.runcard_link }} }{ Link to Runcard }
+{\Large \textbf{ {{ calibration_data_baseline.device | replace('_', '\\_') }} }} \\
+\emph{ {{ calibration_data_baseline.calibration_id | replace('_', '\\_') }} } \\
 %\vspace{0.15cm}
 \end{tauenvmine}
 \end{center}
@@ -103,7 +108,7 @@
 \begin{tabular}{@{}ll|ll@{}}
 \toprule
 \textbf{Library} & \textbf{Version} & \textbf{Library} & \textbf{Version} \\ \midrule
-{% set items = version.versions.items()|list %}
+{% set items = calibration_data.versions.items()|list %}
 {% for i in range(0, items|length, 2) %}
     {{ items[i][0] | replace('_', '\\_') }} & {{ items[i][1] | replace('_', '\\_') }} 
     {% if i + 1 < items|length %}
@@ -129,7 +134,7 @@
 \begin{tabular}{@{}ll|ll@{}}
 \toprule
 \textbf{Library} & \textbf{Version} & \textbf{Library} & \textbf{Version} \\ \midrule
-{% set items = version_baseline.versions.items()|list %}
+{% set items = calibration_data_baseline.versions.items()|list %}
 {% for i in range(0, items|length, 2) %}
     {{ items[i][0] | replace('_', '\\_') }} & {{ items[i][1] | replace('_', '\\_') }} 
     {% if i + 1 < items|length %}
@@ -288,30 +293,30 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \newpage 
 
-{% if reuploading_plot_is_set %}
-\section{Data reuploading classifier}
-{{ reuploading_description }}
+%{% if reuploading_plot_is_set %}
+%\section{Data reuploading classifier}
+%{{ reuploading_classifier_description }}
 
-\begin{multicols}{2}
-\begin{itemize}
-\item \textbf{Duration:} {{ reuploading_duration_left }}
-\end{itemize}
+%\begin{multicols}{2}
+%\begin{itemize}
+%\item \textbf{Duration:} {{ reuploading_classifier_duration_left }}
+%\end{itemize}
 
-\begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading }} }
-\end{center}
+%\begin{center}
+%\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading }} }
+%\end{center}
 
-\columnbreak
+%\columnbreak
 
-\begin{itemize}
-\item \textbf{Duration:} {{ reuploading_duration_right }}
-\end{itemize}
+%\begin{itemize}
+%\item \textbf{Duration:} {{ reuploading_classifier_duration_right }}
+%\end{itemize}
 
-\begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_baseline }} }
-\end{center}
-\end{multicols}
-{% endif %}
+%\begin{center}
+%\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_baseline }} }
+%\end{center}
+%\end{multicols}
+%{% endif %}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grover 2Q state preparation
@@ -470,7 +475,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Duration:} {{ reuploading_classifier_duration_left }}
+\item \textbf{Duration:} {{ reuploading_classifier_runtime_left }}
 \end{itemize}
 
 \begin{center}
@@ -480,7 +485,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Duration:} {{ reuploading_classifier_duration_right }}
+\item \textbf{Duration:} {{ reuploading_classifier_runtime_right }}
 \end{itemize}
 
 \begin{center}
@@ -517,6 +522,8 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{center}
 \end{multicols}
 {% endif %}
+
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Yeast classifier 3q
@@ -590,11 +597,11 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 {% if yeast_classification_4q_plot_is_set %}
 \section{QML: Yeast dataset (4 qubits)}
-{{ yeast_4q_description }}
+{{ qml_4Q_yeast_description }}
 
 \begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Duration:} {{ yeast_4q_duration_left }}
+\item \textbf{Runtime:} {{ qml_4Q_yeast_runtime_left }}
 \end{itemize}
 
 \begin{center}
@@ -605,7 +612,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Duration:} {{ yeast_4q_duration_right }}
+\item \textbf{Runtime:} {{ qml_4Q_yeast_runtime_right }}
 \end{itemize}
 
 \begin{center}
