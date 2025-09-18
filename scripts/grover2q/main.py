@@ -73,7 +73,7 @@ def main(qubit_pairs, device, nshots):
 
     runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
     results['runtime']= f"{runtime_seconds:.5f} seconds."
-    results['description']= f"Grover's algorithm for 2 qubits executed on {device} backend with {nshots} shots per circuit. \n We measure the success rate of finding the target state '{target}' for each pair of qubits in {qubit_pairs}. \n Total execution time: {runtime_seconds:.5f} seconds."
+    results['description']= f"Grover's algorithm for 2 qubits executed on {device} backend with {nshots} shots per circuit. \n We measure the success rate of finding the target state '{target}' for each pair of qubits in {qubit_pairs}."
 
     # Write to data/<scriptname>/<device>/results.json
     out_dir = config.output_dir_for(__file__, device)

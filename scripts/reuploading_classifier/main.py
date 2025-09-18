@@ -408,7 +408,7 @@ def main(
         "final_RZ_angle_check": model[-1].circuit_parameters.detach().numpy().tolist(),
         "predict_train_duration": predict_train_duration,
         "predict_test_duration": predict_test_duration,
-        "description": f"Reuploading classifier with {nqubits} qubits, {nlayers} layers, depth of {nlayers*2}, {nshots} shots. \n Total execution time: {duration:.5f} seconds."
+        "description": f"Reuploading classifier with {nqubits} qubits, {nlayers} layers, depth of {nlayers*2}, {nshots} shots."
     }
 
     static_meta_data = {

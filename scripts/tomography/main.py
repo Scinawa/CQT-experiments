@@ -55,7 +55,7 @@ def run_tomography(targets, device, nshots, root_path):
             if hasattr(output, "frequencies"):
                 results["frequencies"] = output.frequencies
                 results["runtime"] = runtime_seconds
-                results["description"] = f"State tomography on qubits {[targets]}. Total execution time: {runtime_seconds:.5f} seconds."
+                results["description"] = f"State tomography on qubits {[targets]}."
     else:
         # Simulate with numpy backend
         start_time = time.time()
@@ -69,7 +69,7 @@ def run_tomography(targets, device, nshots, root_path):
         end_time = time.time()
         runtime_seconds = end_time - start_time
         results["frequencies"] = freq
-        results["description"] = f"State tomography on numpy backend. Total execution time: {runtime_seconds:.5f} seconds."
+        results["description"] = f"State tomography on numpy backend."
 
     return data, results
 
