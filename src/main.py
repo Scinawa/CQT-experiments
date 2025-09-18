@@ -44,7 +44,9 @@ def setup_argument_parser():
     )
 
     # Plot toggles (default: True). Use --no-<flag> to disable.
-    parser.add_argument("--no-t1-plot", dest="t1_plot", action="store_false")
+    parser.add_argument(
+        "--no-t1-plot", dest="t1_plot", default=False, action="store_false"
+    )
     parser.add_argument(
         "--no-mermin-5-plot", dest="mermin_5_plot", action="store_false"
     )
@@ -179,20 +181,28 @@ def prepare_template_context(cfg):
     logging.info("Preparing context for full benchmarking report.")
 
     base_path = Path(cfg.base_dir)
+    context = {}
 
     # memo
     # we take the basic information from version_extractor experiment...
     meta_json_path = (
         base_path / "version_extractor" / cfg.experiment_left / "results.json"
     )
+
     with open(meta_json_path, "r") as f:
         meta_data = json.load(f)
     logging.info("Loaded experiment metadata from %s", meta_json_path)
 
     ######### Fidelity statistics and changes
     try:
-        stat_fidelity = fl.get_stat_fidelity(cfg.experiment_left + "/sinq20")
-        stat_fidelity_baseline = fl.get_stat_fidelity(cfg.experiment_right + "/sinq20")
+        stat_fidelity = fl.get_stat_fidelity(
+            os.path.join("data", cfg.experiment_left, "sinq20", "calibration.json"),
+            cfg.experiment_left,
+        )
+        stat_fidelity_baseline = fl.get_stat_fidelity(
+            os.path.join("data", cfg.experiment_right, "sinq20", "calibration.json"),
+            cfg.experiment_right,
+        )
         stat_fidelity_with_improvement = add_stat_changes(
             stat_fidelity, stat_fidelity_baseline
         )
@@ -224,10 +234,28 @@ def prepare_template_context(cfg):
         stat_pulse_fidelity_with_improvement = {}
 
     ######### T1 statistics and changes
-    stat_t1 = fl.get_stat_t12(cfg.experiment_left + "/sinq20", "t1")
-    stat_t1_baseline = fl.get_stat_t12(cfg.experiment_right + "/sinq20", "t1")
-    stat_t1_with_improvement = add_stat_changes(stat_t1, stat_t1_baseline)
-    logging.info("Prepared stat_t1 and stat_t1_with_improvement")
+    try:
+        stat_t1 = fl.get_stat_t12(cfg.experiment_left + "/sinq20", "t1")
+        stat_t1_baseline = fl.get_stat_t12(cfg.experiment_right + "/sinq20", "t1")
+        stat_t1_with_improvement = add_stat_changes(stat_t1, stat_t1_baseline)
+        logging.info("Prepared stat_t1 and stat_t1_with_improvement")
+    except Exception as e:
+        logging.error(f"Error preparing T1 statistics: {e}")
+
+    ##### READOUT Fidelity statistics and changes
+    try:
+        stat_readout_fidelity = fl.get_readout_fidelity(
+            os.path.join("data", cfg.experiment_left, "sinq20", "calibration.json"),
+            cfg.experiment_left,
+        )
+        stat_readout_fidelity_baseline = fl.get_readout_fidelity(
+            os.path.join("data", cfg.experiment_right, "sinq20", "calibration.json"),
+            cfg.experiment_right,
+        )
+    except Exception as e:
+        logging.error(f"Error preparing readout fidelity statistics: {e}")
+        stat_readout_fidelity = {}
+        stat_readout_fidelity_baseline = {}
 
     ######### T2 statistics and changes
     stat_t2 = fl.get_stat_t12(cfg.experiment_left + "/sinq20", "t2")
@@ -237,59 +265,78 @@ def prepare_template_context(cfg):
 
     # memo
     # we take the basic information from version_extractor experiment...
-    context = {
-        "experiment_name": meta_data.get("title", "Unknown Title"),
-        "platform": meta_data.get("platform", "Unknown Platform"),
+    try:
+        context["experiment_name"] = meta_data.get("title", "Unknown Title")
+        context["platform"] = meta_data.get("platform", "Unknown Platform")
         #
-        "start_time": meta_data.get("start-time", "Unknown Start Time"),
-        "end_time": meta_data.get("start-time", "Unknown Start Time"),
+        context["start_time"] = meta_data.get("start-time", "Unknown Start Time")
+        context["end_time"] = meta_data.get("end-time", "Unknown End Time")
         #
-        "report_of_changes": " ", #"\\textcolor{green}{Additional data of changes (from software).}",
+        context["report_of_changes"] = (
+            " "  # "\\textcolor{green}{Additional data of changes (from software).}",
+        )
         #
-        "stat_fidelity": stat_fidelity_with_improvement,
-        "stat_fidelity_baseline": stat_fidelity_baseline,
+        context["stat_fidelity"] = stat_fidelity_with_improvement
+        context["stat_fidelity_baseline"] = stat_fidelity_baseline
         #
-        "stat_pulse_fidelity": stat_pulse_fidelity_with_improvement,
-        "stat_pulse_fidelity_baseline": stat_pulse_fidelity_baseline,
+        context["stat_pulse_fidelity"] = stat_pulse_fidelity_with_improvement
+        context["stat_pulse_fidelity_baseline"] = stat_pulse_fidelity_baseline
         #
-        "stat_t1": stat_t1_with_improvement,
-        "stat_t1_baseline": stat_t1_baseline,
+        context["stat_readout_fidelity"] = stat_readout_fidelity
+        context["stat_readout_fidelity_baseline"] = stat_readout_fidelity_baseline
+
+        context["stat_t1"] = stat_t1_with_improvement
+        context["stat_t1_baseline"] = stat_t1_baseline
         #
-        "stat_t2": stat_t2_with_improvement,
-        "stat_t2_baseline": stat_t2_baseline,
+        context["stat_t2"] = stat_t2_with_improvement
+        context["stat_t2_baseline"] = stat_t2_baseline
         #
-        "calibration_data": fl.context_version(
+        context["calibration_data"] = fl.context_version(
             cfg.experiment_left,
             os.path.join(
                 "data", "version_extractor", cfg.experiment_left, "results.json"
             ),
-        ),
-        "calibration_data_baseline": fl.context_version(
+        )
+        context["calibration_data_baseline"] = fl.context_version(
             cfg.experiment_right,
             os.path.join(
                 "data", "version_extractor", cfg.experiment_right, "results.json"
             ),
-        ),
-    }
-    #
+        )
+    except Exception as e:
+        logging.error(f"Error preparing basic context: {e}")
+
+    ######## TABLE OF FIDELITIESSSSSSS
     try:
-        context["fidelity"] = fl.context_fidelity(cfg.experiment_left + "/sinq20")
-        context["fidelity_baseline"] = fl.context_fidelity(
+        context["fidelities_list"] = fl.context_fidelity(
+            cfg.experiment_left + "/sinq20"
+        )
+        context["fidelities_list_baseline"] = fl.context_fidelity(
             cfg.experiment_right + "/sinq20"
         )
     except Exception as e:
         logging.error(f"Error preparing fidelity context: {e}")
-        context["fidelity"] = {}
-        context["fidelity_baseline"] = {}
+        context["fidelities_list"] = {}
+        context["fidelities_list_baseline"] = {}
         #
+
+    ##### FIDELITY PLOT MAIN PAGEEE
     try:
         context["plot_exp"] = pl.plot_fidelity_graph(
-            cfg.experiment_left + "/sinq20", config.connectivity, config.pos
+            # os.path.join("data", "standard_rb", cfg.experiment_left, "results.json"),
+            os.path.join("data", cfg.experiment_left, "sinq20", "calibration.json"),
+            cfg.experiment_left,
+            config.connectivity,
+            config.pos,
         )
         context["plot_baseline"] = pl.plot_fidelity_graph(
-            cfg.experiment_right + "/sinq20", config.connectivity, config.pos
+            os.path.join("data", cfg.experiment_right, "sinq20", "calibration.json"),
+            cfg.experiment_right,
+            config.connectivity,
+            config.pos,
         )
     except Exception as e:
+        print(e)
         logging.error(f"Error preparing fidelity plots: {e}")
         context["plot_exp"] = "placeholder.png"
         context["plot_baseline"] = "placeholder.png"
@@ -331,6 +378,7 @@ def prepare_template_context(cfg):
     # logging.info("Added chevron_swap_coupler plots to context")
 
     # ######### T1 PLOT
+    # pdb.set_trace()
     if cfg.t1_plot == True:
         try:
             context["t1_plot_is_set"] = True
@@ -548,6 +596,7 @@ def prepare_template_context(cfg):
                     "results.json",
                 )
             )
+            # pdb.set_trace()
             context["reuploading_classifier_runtime_left"] = fl.extract_runtime(
                 os.path.join(
                     "data",

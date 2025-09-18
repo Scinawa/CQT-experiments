@@ -114,9 +114,9 @@ def context_version(calibration_id, version_extractor_results_path):
         dict: Dictionary containing versions, device, and extraction_time
     """
     try:
-        import pdb
+        # import pdb
 
-        pdb.set_trace()
+        # pdb.set_trace()
         with open(version_extractor_results_path, "r") as f:
             version_data = json.load(f)
 
@@ -145,23 +145,29 @@ def context_fidelity(experiment_dir):
     Extracts the list of fidelities and error bars from the experiment results.
     Returns a list of dicts: {"fidelity": ..., "error_bars": ...}
     """
-    results_json_path = Path("data") / experiment_dir / "data/rb-0/results.json"
+    results_json_path = Path("data") / experiment_dir / "calibration.json"
     with open(results_json_path, "r") as f:
         results = json.load(f)
 
-    fidelities = results.get('"fidelity"', {})
-    error_bars = results.get('"error_bars"', {})
+    # Extract rb_fidelity from the new structure
+    single_qubits = results.get("single_qubits", {})
+    fidelities = {}
+    error_bars = {}
 
-    # Convert dict_values to list and get the first item (which should be a list)
-    fidelities_list = list(fidelities.values())
-    # Extract the first element from each key ("1", "2", ..., "20") in error_bars
-    error_bars_list = []
-    for k in sorted(error_bars.keys(), key=lambda x: int(x)):
-        values = error_bars[k]
-        if isinstance(values, list) and values:
-            error_bars_list.append(values[0])
-        else:
-            error_bars_list.append(None)
+    for qubit_id, qubit_data in single_qubits.items():
+        rb_fidelity = qubit_data.get("rb_fidelity", [0, 0])
+        fidelities[qubit_id] = rb_fidelity[0] if rb_fidelity else 0
+        error_bars[qubit_id] = (
+            rb_fidelity[1] if rb_fidelity and len(rb_fidelity) > 1 else 0
+        )
+
+    # Set missing keys to 0 for all qubits 0-19
+    fidelities.update({str(qn): 0 for qn in range(20) if str(qn) not in fidelities})
+    error_bars.update({str(qn): 0 for qn in range(20) if str(qn) not in error_bars})
+
+    # Create ordered lists for qubits 0-19
+    fidelities_list = [fidelities[str(qn)] for qn in range(20)]
+    error_bars_list = [error_bars[str(qn)] for qn in range(20)]
 
     _ = [
         {
@@ -201,17 +207,18 @@ def context_fidelity(experiment_dir):
         for item in _
     ]
 
+    # pdb.set_trace()
     # Debugging line to inspect the fidelity and error bars
     # Zip and return as list of dicts for template clarity
     return _
 
 
-def get_stat_fidelity(experiment_dir):
+def get_stat_fidelity(raw_data, experiment_dir):
     """
     Returns a dictionary with average, min, max, and median fidelity for the given experiment directory.
     """
-    results_json_path = Path("data") / experiment_dir / "data/rb-0/results.json"
-    with open(results_json_path, "r") as f:
+
+    with open(raw_data, "r") as f:
         results = json.load(f)
 
     fidelities = results.get('"fidelity"', {})
@@ -305,3 +312,36 @@ def get_stat_pulse_fidelity(experiment_dir):
     }
 
     return dict_pulse_fidelities
+
+
+def get_readout_fidelity(raw_data, experiment_dir):
+    """
+    Returns a dictionary with average, min, max, and median readout fidelity for the given experiment directory.
+    """
+    # results_json_path = Path("data") / experiment_dir / "calibration.json"
+    with open(raw_data, "r") as f:
+        results = json.load(f)
+
+    # Extract readout fidelity from the new structure
+    single_qubits = results.get("single_qubits", {})
+    readout_fidelities = []
+
+    for qubit_data in single_qubits.values():
+        readout_fidelity = qubit_data.get("readout", {}).get("fidelity", None)
+        if readout_fidelity is not None:
+            try:
+                readout_fidelities.append(float(readout_fidelity))
+            except (ValueError, TypeError):
+                continue
+
+    if not readout_fidelities:
+        return {"average": None, "min": None, "max": None, "median": None}
+
+    dict_readout_fidelities = {
+        "average": f"{np.nanmean(readout_fidelities):.3g}",
+        "min": f"{np.nanmin(readout_fidelities):.3g}",
+        "max": f"{np.nanmax(readout_fidelities):.3g}",
+        "median": f"{np.nanmedian(readout_fidelities):.3g}",
+    }
+
+    return dict_readout_fidelities

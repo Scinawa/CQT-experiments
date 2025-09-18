@@ -70,23 +70,38 @@ def prepare_grid_chevron_swap_coupler(
     return plot_grid
 
 
-def plot_fidelity_graph(experiment_name, connectivity, pos, output_path="build/"):
+def plot_fidelity_graph(
+    raw_data, experiment_name, connectivity, pos, output_path="build/"
+):
     """
     Generates a fidelity graph for the given experiment.
     """
 
     # temporary fix for demo data
-    results_demo_json_path = "data" / Path(experiment_name) / f"fidelity2qb.json"
-    with open(results_demo_json_path, "r") as f:
-        results_tmp = json.load(f)
-    # this will be changed because of MLK - beware of stringescape issues
-    fidelities_2qb = results_tmp.get('"fidelities_2qb"', {})
+    # results_demo_json_path = "data" / Path(experiment_name) / f"fidelity2qb.json"
+    # with open(results_demo_json_path, "r") as f:
+    #     results_tmp = json.load(f)
+    # # this will be changed because of MLK - beware of stringescape issues
+    # fidelities_2qb = results_tmp.get('"fidelities_2qb"', {})
 
     # Load results for the main path
-    results_json_path = "data" / Path(experiment_name) / "data/rb-0/results.json"
-    with open(results_json_path, "r") as f:
+    # results_json_path = "data" / Path(experiment_name) / "data/rb-0/results.json"
+
+    with open(raw_data, "r") as f:
         results = json.load(f)
-    fidelities = results.get('"fidelity"', {})
+
+    # Extract rb_fidelity from the new structure
+    single_qubits = results.get("single_qubits", {})
+    fidelities = {}
+    for qubit_id, qubit_data in single_qubits.items():
+        rb_fidelity = qubit_data.get("rb_fidelity", [0, 0])
+        fidelities[qubit_id] = rb_fidelity[0] if rb_fidelity else 0
+
+    # Set missing keys to 0 for all qubits 0-19
+    fidelities.update({str(qn): 0 for qn in range(20) if str(qn) not in fidelities})
+
+    # Initialize empty 2-qubit fidelities (not available in current data structure)
+    fidelities_2qb = {}
 
     labels = {
         a: f"Q{a}\n{np.round(fidelities[str(a)] * 100, decimals=2)}" for a in range(20)
@@ -123,21 +138,24 @@ def plot_fidelity_graph(experiment_name, connectivity, pos, output_path="build/"
     # import pdb
 
     # pdb.set_trace()
-    nx.draw_networkx_edge_labels(
-        g,
-        pos,
-        edge_labels={
-            (a, b): (
-                f"{np.round(fidelities_2qb[f'({a},{b})'] * 100, decimals=2)}"
-                if f"({a},{b})" in fidelities_2qb
-                else "-"
-            )
-            for a, b in connectivity
-        },
-        font_color="black",
-        font_size=8,
-        font_weight="bold",
-    )
+    try:
+        nx.draw_networkx_edge_labels(
+            g,
+            pos,
+            edge_labels={
+                (a, b): (
+                    f"{np.round(fidelities_2qb[f'({a},{b})'] * 100, decimals=2)}"
+                    if f"({a},{b})" in fidelities_2qb
+                    else "-"
+                )
+                for a, b in connectivity
+            },
+            font_color="black",
+            font_size=8,
+            font_weight="bold",
+        )
+    except Exception as e:
+        print(f"Warning: could not draw edge labels: {e}")
 
     ax = plt.gca()
     # Place colorbar below the plot
@@ -153,8 +171,8 @@ def plot_fidelity_graph(experiment_name, connectivity, pos, output_path="build/"
     cbar.set_label("1Q Fidelity")
     plt.box(False)
     plt.tight_layout()
-    filename = "experiment_name.pdf"
-    full_path = output_path + filename
+    filename = "fidelities.pdf"
+    full_path = output_path + experiment_name + "_" + filename
     plt.savefig(full_path)
     plt.close()
     return full_path
@@ -447,6 +465,7 @@ def plot_grover(raw_data, expname, output_path="build/"):
     plt.close()
     return out_file
 
+
 def plot_qft(raw_data, expname, output_path="build/"):
     """
     Plot QFT algorithm results on different triples as fidelities.
@@ -463,8 +482,8 @@ def plot_qft(raw_data, expname, output_path="build/"):
     bitstrings = [str(bs) for bs in qubits_lists]
 
     plt.figure()
-    plt.plot(bitstrings, fidelities, color="skyblue", linestyle='None', marker='x')
-    plt.plot(bitstrings, np.ones_like(fidelities), color='r')
+    plt.plot(bitstrings, fidelities, color="skyblue", linestyle="None", marker="x")
+    plt.plot(bitstrings, np.ones_like(fidelities), color="r")
     plt.xticks(rotation=90)
     plt.xlabel("Qubits Set")
     plt.ylabel("Fidelity")
@@ -721,7 +740,6 @@ def plot_process_tomography(expname, output_path="build/"):
 
 def plot_tomography(raw_data, expname, output_path="build/"):
     return "placeholder.png"
-
 
 
 def plot_qml(raw_data, expname, output_path="build/"):

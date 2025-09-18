@@ -16,7 +16,7 @@
 % TITLE
 %----------------------------------------------------------
 
-\journalname{Quantum Benchmark Report}
+\journalname{Benchmark Report}
 \title{Benchmarking report of {{ platform }}}
 
 %----------------------------------------------------------
@@ -191,8 +191,9 @@ T2 & {{ stat_t2.average }} & {{ stat_t2.median }} & {{ stat_t2.min }} & {{ stat_
  & {{ stat_t2.average_change }} & {{ stat_t2.median_change }} & {{ stat_t2.min_change }} & {{ stat_t2.max_change }} \\
 Fidelity & {{ stat_fidelity.average }} & {{ stat_fidelity.median }} & {{ stat_fidelity.min }} & {{ stat_fidelity.max }} \\
  & {{ stat_fidelity.average_change }} & {{ stat_fidelity.median_change }} & {{ stat_fidelity.min_change }} & {{ stat_fidelity.max_change }} \\
-Pulse Fidelity & {{ stat_pulse_fidelity.average }} & {{ stat_pulse_fidelity.median }} & {{ stat_pulse_fidelity.min }} & {{ stat_pulse_fidelity.max }} \\
- & {{ stat_pulse_fidelity.average_change }} & {{ stat_pulse_fidelity.median_change }} & {{ stat_pulse_fidelity.min_change }} & {{ stat_pulse_fidelity.max_change }} \\
+Readout Fidelity & {{ stat_readout_fidelity.average }} & {{ stat_readout_fidelity.median }} & {{ stat_readout_fidelity.min }} & {{ stat_readout_fidelity.max }} \\
+%Pulse Fidelity & {{ stat_pulse_fidelity.average }} & {{ stat_pulse_fidelity.median }} & {{ stat_pulse_fidelity.min }} & {{ stat_pulse_fidelity.max }} \\
+% & {{ stat_pulse_fidelity.average_change }} & {{ stat_pulse_fidelity.median_change }} & {{ stat_pulse_fidelity.min_change }} & {{ stat_pulse_fidelity.max_change }} \\
 Mermin Max & {{ mermin_maximum }} & & & \\
 \bottomrule
 \end{tabular}
@@ -213,8 +214,11 @@ T2 & {{ stat_t2_baseline.average }} & {{ stat_t2_baseline.median }} & {{ stat_t2
  & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
 Fidelity & {{ stat_fidelity_baseline.average }} & {{ stat_fidelity_baseline.median }} & {{ stat_fidelity_baseline.min }} & {{ stat_fidelity_baseline.max }} \\
  & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
-Pulse Fidelity & {{ stat_pulse_fidelity_baseline.average }} & {{ stat_pulse_fidelity_baseline.median }} & {{ stat_pulse_fidelity_baseline.min }} & {{ stat_pulse_fidelity_baseline.max }} \\
+Readout Fidelity & {{ stat_readout_fidelity_baseline.average }} & {{ stat_readout_fidelity_baseline.median }} & {{ stat_readout_fidelity_baseline.min }} & {{ stat_readout_fidelity_baseline.max }} \\
  & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
+
+%Pulse Fidelity & {{ stat_pulse_fidelity_baseline.average }} & {{ stat_pulse_fidelity_baseline.median }} & {{ stat_pulse_fidelity_baseline.min }} & {{ stat_pulse_fidelity_baseline.max }} \\
+% & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
 Mermin Max & {{ mermin_maximum }} & & & \\
 \bottomrule
 \end{tabular}
@@ -241,7 +245,7 @@ Mermin Max & {{ mermin_maximum }} & & & \\
 \begin{tabular}{@{}c c c@{}}
 \toprule
 Qubit n & Fidelity & Error Bars \\ \midrule
-{% for row in new_fidelity %}
+{% for row in fidelities_list %}
 {{ row.qn }} & {{ row.fidelity }} & $\pm$ {{ row.error_bars }} \\
 {% endfor %}
 \bottomrule
@@ -255,7 +259,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \begin{tabular}{@{}c c c@{}}
 \toprule
 Qubit n & Fidelity & Error Bars \\ \midrule
-{% for row in control_fidelity %}
+{% for row in fidelities_list_baseline %}
 {{ row.qn }} & {{ row.fidelity }} & $\pm$ {{ row.error_bars }} \\
 {% endfor %}
 \bottomrule
@@ -291,7 +295,6 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{center}
 \end{multicols}
 
-\newpage 
 
 %{% if reuploading_plot_is_set %}
 %\section{Data reuploading classifier}
@@ -347,11 +350,14 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{multicols}
 {% endif %}
 
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grover 3Q state preparation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 {% if grover3q_plot_is_set %}
+\newpage
 \section{Grover - 3 qubits}
 {{ grover3q_description }}
 
@@ -435,11 +441,13 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{multicols}
 {% endif %}
 
-\newpage
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Process tomography state preparation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\newpage
 {% if process_tomography_plot_is_set %}
 \section{Process Tomography state preparation}
 {{ process_tomography_description }}
@@ -523,7 +531,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{multicols}
 {% endif %}
 
-\newpage
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Yeast classifier 3q
@@ -733,7 +741,9 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{figure}
 {% endif %}
 
-{% if t1_plot_is_set is defined %}
+
+
+{% if t1_plot_is_set is true %}
 \section{T1 Decay Plots}
 \begin{figure}[h!]
 \centering

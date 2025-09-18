@@ -218,7 +218,7 @@ def main():
     )
     parser.add_argument(
         "--log-level",
-        default="DEBUG",
+        default="INFO",
         choices=["DEBUG", "INFO", "WARNING", "ERROR"],
         help="Set the logging level",
     )
@@ -241,7 +241,7 @@ def main():
     logger.info("Starting download process")
 
     # Clean the output directory before downloading
-    clean_output_directory(args.output_dir)
+    # clean_output_directory(args.output_dir)
 
     # Set up the server connection
     set_server(
