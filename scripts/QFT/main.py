@@ -32,7 +32,7 @@ def QFT(qubits_list, nshots):
     return circuit
 
 
-def main(qubits_list, device, nshots):
+def main(device, nshots):
     # Remove all qibo_client usage and via_client logic
     # Set backend as in template/main.py, GHZ/main.py, mermin/main.py
     if device == "numpy":

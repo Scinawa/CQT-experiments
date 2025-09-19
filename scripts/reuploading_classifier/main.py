@@ -403,7 +403,7 @@ def main(
         "final_loss": final_loss,
         "train_accuracy": train_acc,
         "test_accuracy": test_acc,
-        "duration": duration,
+        "runtime": duration,
         "x_train": x_train.detach().numpy().tolist(),
         "train_predictions": train_preds,
         "x_test": x_test.detach().numpy().tolist(),
