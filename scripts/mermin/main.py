@@ -158,7 +158,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--qubit_list",
-        default=[[0, 1, 2]],
+        default=[[13, 17, 18]],
         type=list,
         help="Target qubits list",
     )

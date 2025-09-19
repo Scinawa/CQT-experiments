@@ -11,7 +11,6 @@ sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
 
-
 def QFT(qubits_list, nshots):
     n_qubits = len(qubits_list)
     total_qubits = int(np.max(qubits_list) + 1)
@@ -39,27 +38,35 @@ def main(device, nshots):
         qibo.set_backend("numpy")
     else:
         qibo.set_backend("qibolab", platform=device)
-        
-    qubits_lists = [[0,1,3], [3,4,8], [8,9,13], [4,9,5], [13,14,17], [14,15,17]]
-    
+
+    qubits_lists = [
+        [13, 17, 18],
+        [17, 18, 19],
+        [13, 14, 18],
+        [9, 14, 15],
+    ]
+
     num_qubits = len(qubits_lists[0])
-    
+
     frequencies = dict()
     fidelities = []
     times = []
     all_bitstrings = [format(i, f"0{num_qubits}b") for i in range(2**num_qubits)]
-    
+
     for qubits_list in qubits_lists:
-        print(f'Trying qubits: {qubits_list}')
-        
+        print(f"Trying qubits: {qubits_list}")
+
         circuit = QFT(qubits_list, nshots)
-        
+
         start = time.perf_counter()
         result = circuit(nshots=nshots)
         end = time.perf_counter()
-    
-        circuit_state = np.array([result.frequencies().get(bitstr, 0) for bitstr in all_bitstrings]) / nshots
-        
+
+        circuit_state = (
+            np.array([result.frequencies().get(bitstr, 0) for bitstr in all_bitstrings])
+            / nshots
+        )
+
         key = format(qubits_list)
         frequencies[key] = circuit_state
         fidelities.append(circuit_state[0])
@@ -71,12 +78,15 @@ def main(device, nshots):
     results = dict()
     data = dict()
 
-    frequencies = {k: v.tolist() if isinstance(v, np.ndarray) else v for k, v in frequencies.items()}
+    frequencies = {
+        k: v.tolist() if isinstance(v, np.ndarray) else v
+        for k, v in frequencies.items()
+    }
 
     results["description"] = {}
     results["circuit_depth"] = {}
     results["gates_count"] = {}
-    results["elapsed_times"] = {}
+    results["duration"] = {}
     results["frequencies"] = {}
     results["plotparameters"] = {}
     results["plotparameters"]["qubits_lists"] = {}
@@ -85,13 +95,12 @@ def main(device, nshots):
     data["device"] = device
 
     results = {
-        "description": f"Implementation of the Quantum Fourier Transform on different subsets of three qubits {qubits_lists}. The number of gates is {num_gates}, the depth of the circuit is {depth} and the average runtime execution is {np.mean(times):.3f}ms",
+        "description": f"Implementation of the Quantum Fourier Transform on different subsets of three qubits {qubits_lists}. The number of gates is {num_gates}, the depth of the circuit is {depth}",
         "circuit_depths": depth,
         "gates_counts": num_gates,
-        "elapsed_times": times,
+        "runtime": np.average(times),
         "frequencies": frequencies,
-        "plotparameters": {"qubits_lists": qubits_lists,
-                           "fidelities": fidelities},
+        "plotparameters": {"qubits_lists": qubits_lists, "fidelities": fidelities},
     }
 
     out_dir = config.output_dir_for(__file__, device)
@@ -100,7 +109,8 @@ def main(device, nshots):
 
     with open(output_path, "w") as f:
         json.dump(results, f)
-        print(f'File saved on {output_path}')
+        print(f"File saved on {output_path}")
+
 
 import argparse
 

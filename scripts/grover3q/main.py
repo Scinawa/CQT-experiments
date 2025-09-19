@@ -125,7 +125,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--qubit_groups",
-        default=[[0, 1, 3, 4]],
+        default=[[17, 13, 18, 14]],
         type=list,
         help="Target qubits, last qubit used as ancilla",
     )
