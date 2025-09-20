@@ -21,9 +21,10 @@ from qiboml.models.decoding import Expectation
 from qiboml.interfaces.pytorch import QuantumModel
 from qiboml.operations.differentiation import PSR
 
-# os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path(
-#     "/mnt/scratch/qibolab_platforms_nqch"
-# ).as_posix()
+os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path(
+    "/mnt/scratch/qibolab_platforms_nqch"
+).as_posix()
+
 from pathlib import Path as _P
 import sys
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
@@ -95,7 +96,13 @@ if __name__ == "__main__":
     y_train = 2 * (((y_train - y_train.min()) / (y_train.max() - y_train.min())) - 0.5)
 
     # Set up backend
-    backend = construct_backend(backend_str)
+    #backend = construct_backend(backend_str)
+    if backend_str == "numpy":
+        backend = construct_backend("numpy")
+    elif backend_str == "nqch-sim":
+        backend = construct_backend("numpy")  # placeholder
+    elif backend_str == "sinq20":
+        backend = construct_backend("qibolab", platform="sinq20")
 
     # Set up transpiler
     glist = [gates.GPI2, gates.RZ, gates.Z, gates.CZ]
@@ -200,7 +207,7 @@ if __name__ == "__main__":
         "duration": duration,
         "median_predictions": median_pred.tolist(),
         "mad_predictions": mad_pred.tolist(),
-        "description": Universal approximant total execution time: {duration:.5f} seconds.
+        "description": f"Universal approximant total execution time: {duration:.5f} seconds."
     }
 
     with open(os.path.join(results_dir, "results.json"), "w") as json_file:
