@@ -65,8 +65,8 @@ def get_mermin_coefficients(mermin_polynomial: SymbolicHamiltonian):
 
 
 
-def create_mermin_circuit(qubits):
-    c = Circuit(len(qubits))
+def create_mermin_circuit(qubits, nqubits=20):
+    c = Circuit(nqubits)
     c.add(gates.H(qubits[0]))
     c.add([gates.CNOT(qubits[i], qubits[i + 1]) for i in range(len(qubits) - 1)])
     c.add(gates.RZ(qubits[0], 0))
@@ -121,7 +121,7 @@ def main(nqubits, qubit_list, device, nshots):
         for idx, theta in enumerate(theta_array):
             frequencies = []
             for circ in circuits:
-                # circ.set_parameters([theta])
+                circ.set_parameters([theta])
                 start_time = time.time()
                 freq = circ(nshots=nshots).frequencies()
                 end_time = time.time()
@@ -158,7 +158,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--qubit_list",
-        default=[[13, 17, 18]],
+        default=[[13,17,18]],
         type=list,
         help="Target qubits list",
     )
