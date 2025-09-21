@@ -91,7 +91,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--qubit_pairs",
-        default=[[0, 1]],
+        default=[[13, 14]],
         type=list,
         help="Target qubit pairs",
     )

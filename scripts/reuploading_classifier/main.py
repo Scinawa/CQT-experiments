@@ -403,7 +403,7 @@ def main(
         "final_loss": final_loss,
         "train_accuracy": train_acc,
         "test_accuracy": test_acc,
-        "duration": duration,
+        "runtime": duration,
         "x_train": x_train.detach().numpy().tolist(),
         "train_predictions": train_preds,
         "x_test": x_test.detach().numpy().tolist(),
@@ -505,11 +505,10 @@ if __name__ == "__main__":
         help="Option to run job on GPU when backend is qiboml. Enter GPU cuda ID (default: None)",
     )
     parser.add_argument(
-        # "--load_and_test", type=bool, default=False, help="Option to load trained weights into model (nlayers=10 only) instead of training (default: False)", # training mode (long duration)
         "--load_and_test",
         type=bool,
         default=True,
-        help="Option to load trained weights into model (nlayers=10 only) instead of training (test: True)",
+        help="Option to load specific trained model (nlayers=10, seed=48) instead of training (default: True)", # False = training mode, warning long duration on QPU
     )
     args = vars(parser.parse_args())
     main(**args)
