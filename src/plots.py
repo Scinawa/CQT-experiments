@@ -483,7 +483,7 @@ def plot_qft(raw_data, expname, output_path="build/"):
 
     plt.figure()
     plt.plot(bitstrings, fidelities, color="skyblue", linestyle="None", marker="x")
-    plt.plot(bitstrings, np.ones_like(fidelities), color="r")
+    # plt.plot(bitstrings, np.ones_like(fidelities), color="r")
     plt.xticks(rotation=90)
     plt.xlabel("Qubits Set")
     plt.ylabel("Fidelity")

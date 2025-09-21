@@ -3,8 +3,9 @@ TARGET = report.pdf
 .PHONY: build clean pdf runscripts runscripts-device
 
 # Default experiment directory
-EXPERIMENT_LEFT ?= 32fa7be02d2d6d5812d7cb47f8c293561b74c0b5
-EXPERIMENT_RIGHT ?= 41f4570fce52da0c4bbb483f6fb7d870a551df65
+EXPERIMENT_LEFT ?= fdb93a3978fe6356741e31b98c93c68837767080
+EXPERIMENT_RIGHT ?= 32fa7be02d2d6d5812d7cb47f8c293561b74c0b5
+#EXPERIMENT_RIGHT ?= 41f4570fce52da0c4bbb483f6fb7d870a551df65
 
 
 download-data:
@@ -38,6 +39,10 @@ pdf-only:
 	@echo "Compiling LaTeX report in pdf..."
 	pdflatex -output-directory=build report.tex > logs/pdflatex.log
 	@cp build/report.pdf .
+	@cp build/report.pdf reports/report_$(shell echo $(EXPERIMENT_LEFT) | cut -c1-10)_vs_$(shell echo $(EXPERIMENT_RIGHT) | cut -c1-10)_$$(date +%d%m%Y_%H).pdf
+	@cp build/report.pdf reports/latest_report.pdf	
+
+
 
 pdf: build pdf-only
 	@echo "Compiling .tex and building the .pdf"

@@ -11,13 +11,14 @@
 % Additional packages that might be needed and are not in tau.cls
 \usepackage{longtable}
 \usepackage{multicol}
+\usepackage{needspace}
 
 %----------------------------------------------------------
 % TITLE
 %----------------------------------------------------------
 
 \journalname{Benchmark Report}
-\title{Benchmarking report of {{ platform }}}
+\title{Benchmarking of NQCH's {{ platform }}}
 
 %----------------------------------------------------------
 % AUTHORS AND INFORMATION
@@ -67,7 +68,7 @@
 
 % Report of changes
 \section{Report of Changes}
-\taustart{T}This report presents a benchmarking study of a quantum computer based on superconducting qubits, procured from IQM Machines and integrated with Keysight Technologies measurement solutions. Our objective is to evaluate device performance across key metrics (T1, T2, fidelity) but also showcasing the performances of simple application of quantum computers. {{ report_of_changes }}
+\taustart{T}This report presents a benchmarking study of a quantum computer based on superconducting qubits, procured from IQM Machines and integrated with Keysight Technologies measurement solutions. Our objective is to evaluate device performance across key metrics (T1, T2, fidelity, ...) but also showcasing the performances of simple applications of quantum computers. {{ report_of_changes }}
 
 
 \begin{multicols}{2}
@@ -75,9 +76,10 @@
 \begin{center}
 \begin{tauenvmine}
 %\vspace{-0.2.cm}
-\centering
-{\Large \textbf{ {{ calibration_data.device | replace('_', '\\_') }} }} \\
-\emph{ {{ calibration_data.calibration_id | replace('_', '\\_') }} } \\
+%\centering
+{\Large Platform: \textbf{ {{ calibration_data.device | replace('_', '\\_') }} }} \\
+Calibration-id: \emph{ {{ calibration_data.calibration_id | replace('_', '\\_') }} } \\
+Date: \emph{ {{ calibration_data.extraction_time | replace('_', '\\_') }} } \\
 %\href{ {{ calibration_data.calibration_id }} }{ Link to Runcard }
 %\vspace{0.15cm}
 \end{tauenvmine}
@@ -88,9 +90,10 @@
 \begin{center}
 \begin{tauenvmine}
 %\vspace{-0.2cm}
-\centering
-{\Large \textbf{ {{ calibration_data_baseline.device | replace('_', '\\_') }} }} \\
-\emph{ {{ calibration_data_baseline.calibration_id | replace('_', '\\_') }} } \\
+%\centering
+{\Large Platform: \textbf{ {{ calibration_data_baseline.device | replace('_', '\\_') }} }} \\
+Calibration-id: \emph{ {{ calibration_data_baseline.calibration_id | replace('_', '\\_') }} } \\
+Date: \emph{ {{ calibration_data_baseline.extraction_time | replace('_', '\\_') }} } \\
 %\vspace{0.15cm}
 \end{tauenvmine}
 \end{center}
@@ -121,7 +124,7 @@
 \end{tabular}
 \end{center}
 \hspace{1cm}
-\begin{minipage}[t]{0.45\linewidth}
+\begin{minipage}{0.45\linewidth}
 
 \end{minipage}
 \end{tauenv}
@@ -147,7 +150,7 @@
 \end{tabular}
 \end{center}
 \hspace{1cm}
-\begin{minipage}[t]{0.45\linewidth}
+\begin{minipage}{0.45\linewidth}
 \end{minipage}
 \end{tauenv}
 
@@ -159,13 +162,19 @@
 \begin{multicols}{2}
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_exp }} }
+\begin{minipage}{0.95\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ {{ plot_exp }} }
+\end{minipage}
 \end{center}
 
 \columnbreak
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_baseline }} }
+\begin{minipage}{0.95\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ {{ plot_baseline }} }
+\end{minipage}
 \end{center}
 \end{multicols}
 
@@ -185,16 +194,16 @@
 \toprule
  & Average & Median & Min & Max \\
 \midrule
-T1 & {{ stat_t1.average }} & {{ stat_t1.median }} & {{ stat_t1.min }} & {{ stat_t1.max }} \\
- & {{ stat_t1.average_change }} & {{ stat_t1.median_change }} & {{ stat_t1.min_change }} & {{ stat_t1.max_change }} \\
-T2 & {{ stat_t2.average }} & {{ stat_t2.median }} & {{ stat_t2.min }} & {{ stat_t2.max }} \\
- & {{ stat_t2.average_change }} & {{ stat_t2.median_change }} & {{ stat_t2.min_change }} & {{ stat_t2.max_change }} \\
+T1 (ns) & {{ stat_t1.average }} & {{ stat_t1.median }} & {{ stat_t1.min }} & {{ stat_t1.max }} \\
+% & {{ stat_t1.average_change }} & {{ stat_t1.median_change }} & {{ stat_t1.min_change }} & {{ stat_t1.max_change }} \\
+T2 (ns) & {{ stat_t2.average }} & {{ stat_t2.median }} & {{ stat_t2.min }} & {{ stat_t2.max }} \\
+% & {{ stat_t2.average_change }} & {{ stat_t2.median_change }} & {{ stat_t2.min_change }} & {{ stat_t2.max_change }} \\
 Fidelity & {{ stat_fidelity.average }} & {{ stat_fidelity.median }} & {{ stat_fidelity.min }} & {{ stat_fidelity.max }} \\
- & {{ stat_fidelity.average_change }} & {{ stat_fidelity.median_change }} & {{ stat_fidelity.min_change }} & {{ stat_fidelity.max_change }} \\
-Readout Fidelity & {{ stat_readout_fidelity.average }} & {{ stat_readout_fidelity.median }} & {{ stat_readout_fidelity.min }} & {{ stat_readout_fidelity.max }} \\
+% & {{ stat_fidelity.average_change }} & {{ stat_fidelity.median_change }} & {{ stat_fidelity.min_change }} & {{ stat_fidelity.max_change }} \\
+RO fidelity  & {{ stat_readout_fidelity.average }} & {{ stat_readout_fidelity.median }} & {{ stat_readout_fidelity.min }} & {{ stat_readout_fidelity.max }} \\
 %Pulse Fidelity & {{ stat_pulse_fidelity.average }} & {{ stat_pulse_fidelity.median }} & {{ stat_pulse_fidelity.min }} & {{ stat_pulse_fidelity.max }} \\
 % & {{ stat_pulse_fidelity.average_change }} & {{ stat_pulse_fidelity.median_change }} & {{ stat_pulse_fidelity.min_change }} & {{ stat_pulse_fidelity.max_change }} \\
-Mermin Max & {{ mermin_maximum }} & & & \\
+Mermin Max  & {{ mermin_maximum }} & & & \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -208,18 +217,18 @@ Mermin Max & {{ mermin_maximum }} & & & \\
 \toprule
  & Average & Median & Min & Max \\
 \midrule
-T1 & {{ stat_t1_baseline.average }} & {{ stat_t1_baseline.median }} & {{ stat_t1_baseline.min }} & {{ stat_t1_baseline.max }} \\
- & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
-T2 & {{ stat_t2_baseline.average }} & {{ stat_t2_baseline.median }} & {{ stat_t2_baseline.min }} & {{ stat_t2_baseline.max }} \\
- & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
-Fidelity & {{ stat_fidelity_baseline.average }} & {{ stat_fidelity_baseline.median }} & {{ stat_fidelity_baseline.min }} & {{ stat_fidelity_baseline.max }} \\
- & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
-Readout Fidelity & {{ stat_readout_fidelity_baseline.average }} & {{ stat_readout_fidelity_baseline.median }} & {{ stat_readout_fidelity_baseline.min }} & {{ stat_readout_fidelity_baseline.max }} \\
- & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
+T1 (ns) & {{ stat_t1_baseline.average }} & {{ stat_t1_baseline.median }} & {{ stat_t1_baseline.min }} & {{ stat_t1_baseline.max }} \\
+% & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
+T2 (ns) & {{ stat_t2_baseline.average }} & {{ stat_t2_baseline.median }} & {{ stat_t2_baseline.min }} & {{ stat_t2_baseline.max }} \\
+% & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
+Fidelity  & {{ stat_fidelity_baseline.average }} & {{ stat_fidelity_baseline.median }} & {{ stat_fidelity_baseline.min }} & {{ stat_fidelity_baseline.max }} \\
+% & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
+RO Fidelity  & {{ stat_readout_fidelity_baseline.average }} & {{ stat_readout_fidelity_baseline.median }} & {{ stat_readout_fidelity_baseline.min }} & {{ stat_readout_fidelity_baseline.max }} \\
+% & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
 
 %Pulse Fidelity & {{ stat_pulse_fidelity_baseline.average }} & {{ stat_pulse_fidelity_baseline.median }} & {{ stat_pulse_fidelity_baseline.min }} & {{ stat_pulse_fidelity_baseline.max }} \\
 % & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
-Mermin Max & {{ mermin_maximum }} & & & \\
+Mermin Max  & {{ mermin_maximum }} & & & \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -277,21 +286,27 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \begin{multicols}{2}
 
 \begin{itemize}
-\item \textbf{Duration:} {{ mermin_duration_left }}
+\item \textbf{Runtime:} {{ mermin_runtime_left }}
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_mermin }} }
+\begin{minipage}{0.95\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ {{ plot_mermin }} }
+\end{minipage}
 \end{center}
 
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Duration:} {{ mermin_duration_right }}
+\item \textbf{Runtime:} {{ mermin_runtime_right }}
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_mermin_baseline }} }
+\begin{minipage}{0.95\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ {{ plot_mermin_baseline }} }
+\end{minipage}
 \end{center}
 \end{multicols}
 
@@ -330,23 +345,32 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 {{ grover2q_description }}
 
 \begin{multicols}{2}
-\begin{itemize}
-\item \textbf{Duration:} {{ grover2q_duration_left }}
-\end{itemize}
+\raggedcolumns  % avoid balancing at the end
 
+% --- LEFT BLOCK ---
+\Needspace{0.48\textheight} % tune this: ~image+caption+padding
+\begin{samepage}            % keep the block intact once started
+\begin{itemize}
+\item \textbf{Runtime:} {{ grover2q_runtime_left }}
+\end{itemize}
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_grover2q }} }
 \end{center}
+\end{samepage}
 
 \columnbreak
 
+% --- RIGHT BLOCK ---
+\Needspace{0.48\textheight}
+\begin{samepage}
 \begin{itemize}
-\item \textbf{Duration:} {{ grover2q_duration_right }}
+\item \textbf{Runtime:} {{ grover2q_runtime_right }}
 \end{itemize}
-
 \begin{center}
 \includegraphics[width=0.95\linewidth]{ {{ plot_grover2q_baseline }} }
 \end{center}
+\end{samepage}
+
 \end{multicols}
 {% endif %}
 
@@ -367,7 +391,10 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_grover3q }} }
+\begin{minipage}{0.95\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ {{ plot_grover3q }} }
+\end{minipage}
 \end{center}
 
 \columnbreak
@@ -375,7 +402,10 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \item \textbf{Runtime:} {{ grover3q_runtime_right }}
 \end{itemize}
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_grover3q_baseline }} }
+\begin{minipage}{0.95\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ {{ plot_grover3q_baseline }} }
+\end{minipage}
 \end{center}
 \end{multicols}
 {% endif %}
@@ -385,7 +415,6 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 {% if ghz_plot_is_set %}
-\newpage
 \section{GHZ state preparation}
 {{ ghz_description }}
 
@@ -426,7 +455,10 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_tomography }} }
+\begin{minipage}{0.95\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ {{ plot_tomography }} }
+\end{minipage}
 \end{center}
 
 \columnbreak
@@ -436,7 +468,10 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_tomography_baseline }} }
+\begin{minipage}{0.95\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ {{ plot_tomography_baseline }} }
+\end{minipage}
 \end{center}
 \end{multicols}
 {% endif %}
@@ -454,7 +489,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Duration:} {{ process_tomography_duration_left }}
+\item \textbf{Runtime:} {{ process_tomography_runtime_left }}
 \end{itemize}
 
 \begin{center}
@@ -464,7 +499,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Duration:} {{ process_tomography_duration_right }}
+\item \textbf{Runtime:} {{ process_tomography_runtime_right }}
 \end{itemize}
 
 \begin{center}
@@ -487,7 +522,10 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_classifier }} }
+\begin{minipage}{0.95\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ {{ plot_reuploading_classifier }} }
+\end{minipage}
 \end{center}
 
 \columnbreak
@@ -497,7 +535,10 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_classifier_baseline }} }
+\begin{minipage}{0.95\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ {{ plot_reuploading_classifier_baseline }} }
+\end{minipage}
 \end{center}
 \end{multicols}
 {% endif %}
@@ -512,7 +553,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Duration:} {{ qft_duration_left }}
+\item \textbf{Runtime:} {{ qft_runtime_left }}
 \end{itemize}
 
 \begin{center}
@@ -522,7 +563,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Duration:} {{ qft_duration_right }}
+\item \textbf{Runtime:} {{ qft_runtime_right }}
 \end{itemize}
 
 \begin{center}
@@ -657,7 +698,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \begin{center}
 \centering
 \includegraphics[width=0.95\linewidth]{ {{ plot_statlog_4q_baseline }} }
-\end{center>
+\end{center}
 \end{multicols}
 {% endif %}
 
@@ -671,7 +712,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \begin{multicols}{2}
 \begin{itemize}
-\item \textbf{Duration:} {{ amplitude_encoding_duration_left }}
+\item \textbf{Runtime:} {{ amplitude_encoding_runtime_left }}
 \end{itemize}
 
 \begin{center}
@@ -682,7 +723,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \columnbreak
 
 \begin{itemize}
-\item \textbf{Duration:} {{ amplitude_encoding_duration_right }}
+\item \textbf{Runtime:} {{ amplitude_encoding_runtime_right }}
 \end{itemize}
 
 \begin{center}

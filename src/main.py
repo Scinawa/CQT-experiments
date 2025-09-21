@@ -188,7 +188,6 @@ def prepare_template_context(cfg):
     meta_json_path = (
         base_path / "version_extractor" / cfg.experiment_left / "results.json"
     )
-
     with open(meta_json_path, "r") as f:
         meta_data = json.load(f)
     logging.info("Loaded experiment metadata from %s", meta_json_path)
@@ -340,42 +339,8 @@ def prepare_template_context(cfg):
         logging.error(f"Error preparing fidelity plots: {e}")
         context["plot_exp"] = "placeholder.png"
         context["plot_baseline"] = "placeholder.png"
-        #
-        # "plot_chevron_swap_0": pl.plot_chevron_swap_coupler(
-        #     qubit_number=0,
-        #     data_dir="data/DEMODATA/",
-        #     output_path="build/",
-        # ),
-        # #
-        # "plot_swap_coupler": pl.plot_swap_coupler(
-        #     qubit_number=0,
-        #     data_dir="data/DEMODATA/",
-        #     output_path="build/",
-        # ),
 
-    logging.info("Basic context dictionary prepared")
-
-    # # Add additional plots if needed
-    # context["grid_coupler_is_set"] = False
-    # grid_coupler_plots = pl.prepare_grid_coupler(
-    #     max_number=2,
-    #     data_dir="data/DEMODATA",
-    #     baseline_dir="data/DEMODATA",
-    #     output_path="build/",
-    # )
-    # context["plot_grid_coupler"] = grid_coupler_plots
-    # logging.info("Added grid_coupler plots to context")
-
-    # # Add additional chevron_swap_coupler plots if needed
-    # context["chevron_swap_coupler_is_set"] = False
-    # chevron_swap_coupler_plots = pl.prepare_grid_chevron_swap_coupler(
-    #     max_number=2,
-    #     data_dir="data/DEMODATA",
-    #     baseline_dir="data/DEMODATA",
-    #     output_path="build/",
-    # )
-    # context["plot_chevron_swap_coupler"] = chevron_swap_coupler_plots
-    # logging.info("Added chevron_swap_coupler plots to context")
+    # logging.info("Basic context dictionary prepared")
 
     # ######### T1 PLOT
     # pdb.set_trace()
@@ -424,6 +389,13 @@ def prepare_template_context(cfg):
                 expname=f"mermin_{cfg.experiment_right}",
                 output_path="build/",
             )
+            context["mermin_runtime_left"] = fl.extract_runtime(
+                os.path.join("data", "mermin", cfg.experiment_left, "results.json")
+            )
+            context["mermin_runtime_right"] = fl.extract_runtime(
+                os.path.join("data", "mermin", cfg.experiment_right, "results.json")
+            )
+
             logging.info("Added Mermin 5Q plots to context")
         except Exception as e:
             logging.error(f"Error adding Mermin 5Q plots: {e}")
@@ -450,6 +422,14 @@ def prepare_template_context(cfg):
                 expname=f"grover2q_{cfg.experiment_right}",
                 output_path="build/",
             )
+
+            context["grover2q_runtime_left"] = fl.extract_runtime(
+                os.path.join("data", "grover2q", cfg.experiment_left, "results.json")
+            )
+            context["grover2q_runtime_right"] = fl.extract_runtime(
+                os.path.join("data", "grover2q", cfg.experiment_right, "results.json")
+            )
+
             logging.info("Added Grover 2Q plots to context")
         except Exception as e:
             logging.error(f"Error adding Grover 2Q plots: {e}")
@@ -653,25 +633,26 @@ def prepare_template_context(cfg):
     ######### QFT PLOTS
     if cfg.qft_plot == True:
         try:
-            context["QFT_description"] = fl.extract_description(
+            context["qft_plot_is_set"] = True
+
+            context["qft_description"] = fl.extract_description(
                 os.path.join("data", "QFT", cfg.experiment_left, "results.json")
             )
-            context["QFT_runtime_left"] = fl.extract_runtime(
+            context["qft_runtime_left"] = fl.extract_runtime(
                 os.path.join("data", "QFT", cfg.experiment_left, "results.json")
             )
-            context["QFT_runtime_right"] = fl.extract_runtime(
+            context["qft_runtime_right"] = fl.extract_runtime(
                 os.path.join("data", "QFT", cfg.experiment_right, "results.json")
             )
 
-            context["qft_plot_is_set"] = True
-            context["plot_qft"] = pl.plot_QFT(
+            context["plot_qft"] = pl.plot_qft(
                 raw_data=os.path.join(
                     "data", "QFT", cfg.experiment_left, "results.json"
                 ),
                 expname=f"QFT_{cfg.experiment_left}",
                 output_path=os.path.join("build", "QFT", cfg.experiment_left),
             )
-            context["plot_qft_baseline"] = pl.plot_QFT(
+            context["plot_qft_baseline"] = pl.plot_qft(
                 raw_data=os.path.join(
                     "data", "QFT", cfg.experiment_right, "results.json"
                 ),
@@ -685,7 +666,6 @@ def prepare_template_context(cfg):
     else:
         logging.info("QFT plot is not set, skipping...")
         context["qft_plot_is_set"] = False
-        pass
 
     ######### YEAST CLASSIFICATION PLOTS 4Q
     if cfg.yeast_plot_4q == True:
@@ -844,6 +824,16 @@ def prepare_template_context(cfg):
                     "build", "amplitude_encoding", cfg.experiment_left
                 ),
             )
+            context["amplitude_encoding_runtime_left"] = fl.extract_runtime(
+                os.path.join(
+                    "data", "amplitude_encoding", cfg.experiment_left, "results.json"
+                )
+            )
+            context["amplitude_encoding_runtime_right"] = fl.extract_runtime(
+                os.path.join(
+                    "data", "amplitude_encoding", cfg.experiment_right, "results.json"
+                )
+            )
             context["plot_amplitude_encoding_baseline"] = pl.plot_amplitude_encoding(
                 raw_data=os.path.join(
                     "data", "amplitude_encoding", cfg.experiment_right, "results.json"
@@ -891,6 +881,40 @@ def prepare_template_context(cfg):
 
         logging.info(f"Added description and duration for {exp_dir}")
 
+    # # Add additional plots if needed
+    # context["grid_coupler_is_set"] = False
+    # grid_coupler_plots = pl.prepare_grid_coupler(
+    #     max_number=2,
+    #     data_dir="data/DEMODATA",
+    #     baseline_dir="data/DEMODATA",
+    #     output_path="build/",
+    # )
+    # context["plot_grid_coupler"] = grid_coupler_plots
+    # logging.info("Added grid_coupler plots to context")
+
+    # # Add additional chevron_swap_coupler plots if needed
+    # context["chevron_swap_coupler_is_set"] = False
+    # chevron_swap_coupler_plots = pl.prepare_grid_chevron_swap_coupler(
+    #     max_number=2,
+    #     data_dir="data/DEMODATA",
+    #     baseline_dir="data/DEMODATA",
+    #     output_path="build/",
+    # )
+    # context["plot_chevron_swap_coupler"] = chevron_swap_coupler_plots
+    # logging.info("Added chevron_swap_coupler plots to context")
+
+    #
+    # "plot_chevron_swap_0": pl.plot_chevron_swap_coupler(
+    #     qubit_number=0,
+    #     data_dir="data/DEMODATA/",
+    #     output_path="build/",
+    # ),
+    # #
+    # "plot_swap_coupler": pl.plot_swap_coupler(
+    #     qubit_number=0,
+    #     data_dir="data/DEMODATA/",
+    #     output_path="build/",
+    # ),
     return context
 
 
