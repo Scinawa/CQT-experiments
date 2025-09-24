@@ -505,10 +505,9 @@ if __name__ == "__main__":
         help="Option to run job on GPU when backend is qiboml. Enter GPU cuda ID (default: None)",
     )
     parser.add_argument(
-        "--load_and_test",
-        type=bool,
-        default=True,
-        help="Option to load specific trained model (nlayers=10, seed=48) instead of training (default: True)", # False = training mode, warning long duration on QPU
+        "--load_and_test", 
+        action="store_true", 
+        help="Trigger load_and_test=True (load trained weights into model instead of training), otherwise load_and_test=False",
     )
     args = vars(parser.parse_args())
     main(**args)
