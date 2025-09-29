@@ -167,7 +167,7 @@ def main(vector, qubits_list, device, nshots):
     }
 
     results = {
-        "description": f"Encoding of a vector of numerical data into the amplitudes of a quantum state. The input vector is {vector}, encoded in the qubits {qubits_list}. The number of gates is {num_gates}, the depth of the circuit is {depth} and the runtime execution is {duration:.3f}ms",
+        "description": f"Encoding of a vector of numerical data into the amplitudes of a quantum state. The input vector is {vector}. The number of gates is {num_gates}, the depth of the circuit is {depth} and the runtime execution is {duration:.3f}ms",
         "input_vector": vector,
         "circuit_depth": depth,
         "gates_count": num_gates,

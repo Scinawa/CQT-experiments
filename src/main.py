@@ -198,18 +198,18 @@ def prepare_template_context(cfg):
             os.path.join("data", cfg.experiment_left, "sinq20", "calibration.json"),
             cfg.experiment_left,
         )
-        stat_fidelity_baseline = fl.get_stat_fidelity(
+        stat_fidelity_right = fl.get_stat_fidelity(
             os.path.join("data", cfg.experiment_right, "sinq20", "calibration.json"),
             cfg.experiment_right,
         )
         stat_fidelity_with_improvement = add_stat_changes(
-            stat_fidelity, stat_fidelity_baseline
+            stat_fidelity, stat_fidelity_right
         )
         logging.info("Prepared stat_fidelity and stat_fidelity_with_improvement")
     except Exception as e:
         logging.error(f"Error preparing fidelity statistics: {e}")
         stat_fidelity = {}
-        stat_fidelity_baseline = {}
+        stat_fidelity_right = {}
         stat_fidelity_with_improvement = {}
 
     ##########Pulse Fidelity statistics and changes
@@ -217,11 +217,11 @@ def prepare_template_context(cfg):
         stat_pulse_fidelity = fl.get_stat_pulse_fidelity(
             cfg.experiment_left + "/sinq20"
         )
-        stat_pulse_fidelity_baseline = fl.get_stat_pulse_fidelity(
+        stat_pulse_fidelity_right = fl.get_stat_pulse_fidelity(
             cfg.experiment_right + "/sinq20"
         )
         stat_pulse_fidelity_with_improvement = add_stat_changes(
-            stat_pulse_fidelity, stat_pulse_fidelity_baseline
+            stat_pulse_fidelity, stat_pulse_fidelity_right
         )
         logging.info(
             "Prepared stat_pulse_fidelity and stat_pulse_fidelity_with_improvement"
@@ -229,14 +229,14 @@ def prepare_template_context(cfg):
     except Exception as e:
         logging.error(f"Error preparing pulse fidelity statistics: {e}")
         stat_pulse_fidelity = {}
-        stat_pulse_fidelity_baseline = {}
+        stat_pulse_fidelity_right = {}
         stat_pulse_fidelity_with_improvement = {}
 
     ######### T1 statistics and changes
     try:
         stat_t1 = fl.get_stat_t12(cfg.experiment_left + "/sinq20", "t1")
-        stat_t1_baseline = fl.get_stat_t12(cfg.experiment_right + "/sinq20", "t1")
-        stat_t1_with_improvement = add_stat_changes(stat_t1, stat_t1_baseline)
+        stat_t1_right = fl.get_stat_t12(cfg.experiment_right + "/sinq20", "t1")
+        stat_t1_with_improvement = add_stat_changes(stat_t1, stat_t1_right)
         logging.info("Prepared stat_t1 and stat_t1_with_improvement")
     except Exception as e:
         logging.error(f"Error preparing T1 statistics: {e}")
@@ -247,19 +247,19 @@ def prepare_template_context(cfg):
             os.path.join("data", cfg.experiment_left, "sinq20", "calibration.json"),
             cfg.experiment_left,
         )
-        stat_readout_fidelity_baseline = fl.get_readout_fidelity(
+        stat_readout_fidelity_right = fl.get_readout_fidelity(
             os.path.join("data", cfg.experiment_right, "sinq20", "calibration.json"),
             cfg.experiment_right,
         )
     except Exception as e:
         logging.error(f"Error preparing readout fidelity statistics: {e}")
         stat_readout_fidelity = {}
-        stat_readout_fidelity_baseline = {}
+        stat_readout_fidelity_right = {}
 
     ######### T2 statistics and changes
     stat_t2 = fl.get_stat_t12(cfg.experiment_left + "/sinq20", "t2")
-    stat_t2_baseline = fl.get_stat_t12(cfg.experiment_right + "/sinq20", "t2")
-    stat_t2_with_improvement = add_stat_changes(stat_t2, stat_t2_baseline)
+    stat_t2_right = fl.get_stat_t12(cfg.experiment_right + "/sinq20", "t2")
+    stat_t2_with_improvement = add_stat_changes(stat_t2, stat_t2_right)
     logging.info("Prepared stat_t2 and stat_t2_with_improvement")
 
     # memo
@@ -276,19 +276,19 @@ def prepare_template_context(cfg):
         )
         #
         context["stat_fidelity"] = stat_fidelity_with_improvement
-        context["stat_fidelity_baseline"] = stat_fidelity_baseline
+        context["stat_fidelity_right"] = stat_fidelity_right
         #
         context["stat_pulse_fidelity"] = stat_pulse_fidelity_with_improvement
-        context["stat_pulse_fidelity_baseline"] = stat_pulse_fidelity_baseline
+        context["stat_pulse_fidelity_right"] = stat_pulse_fidelity_right
         #
         context["stat_readout_fidelity"] = stat_readout_fidelity
-        context["stat_readout_fidelity_baseline"] = stat_readout_fidelity_baseline
+        context["stat_readout_fidelity_right"] = stat_readout_fidelity_right
 
         context["stat_t1"] = stat_t1_with_improvement
-        context["stat_t1_baseline"] = stat_t1_baseline
+        context["stat_t1_right"] = stat_t1_right
         #
         context["stat_t2"] = stat_t2_with_improvement
-        context["stat_t2_baseline"] = stat_t2_baseline
+        context["stat_t2_right"] = stat_t2_right
         #
         context["calibration_data"] = fl.context_version(
             cfg.experiment_left,
@@ -296,7 +296,7 @@ def prepare_template_context(cfg):
                 "data", "version_extractor", cfg.experiment_left, "results.json"
             ),
         )
-        context["calibration_data_baseline"] = fl.context_version(
+        context["calibration_data_right"] = fl.context_version(
             cfg.experiment_right,
             os.path.join(
                 "data", "version_extractor", cfg.experiment_right, "results.json"
@@ -310,13 +310,13 @@ def prepare_template_context(cfg):
         context["fidelities_list"] = fl.context_fidelity(
             cfg.experiment_left + "/sinq20"
         )
-        context["fidelities_list_baseline"] = fl.context_fidelity(
+        context["fidelities_list_right"] = fl.context_fidelity(
             cfg.experiment_right + "/sinq20"
         )
     except Exception as e:
         logging.error(f"Error preparing fidelity context: {e}")
         context["fidelities_list"] = {}
-        context["fidelities_list_baseline"] = {}
+        context["fidelities_list_right"] = {}
         #
 
     ##### FIDELITY PLOT MAIN PAGEEE
@@ -328,7 +328,7 @@ def prepare_template_context(cfg):
             config.connectivity,
             config.pos,
         )
-        context["plot_baseline"] = pl.plot_fidelity_graph(
+        context["plot_right"] = pl.plot_fidelity_graph(
             os.path.join("data", cfg.experiment_right, "sinq20", "calibration.json"),
             cfg.experiment_right,
             config.connectivity,
@@ -338,7 +338,7 @@ def prepare_template_context(cfg):
         print(e)
         logging.error(f"Error preparing fidelity plots: {e}")
         context["plot_exp"] = "placeholder.png"
-        context["plot_baseline"] = "placeholder.png"
+        context["plot_right"] = "placeholder.png"
 
     # logging.info("Basic context dictionary prepared")
 
@@ -365,11 +365,11 @@ def prepare_template_context(cfg):
     maximum_mermin = fl.get_maximum_mermin(
         base_path / "mermin" / cfg.experiment_left, "results.json"
     )
-    maximum_mermin_baseline = fl.get_maximum_mermin(
+    maximum_mermin_right = fl.get_maximum_mermin(
         base_path / "mermin" / cfg.experiment_right, "results.json"
     )
     context["mermin_maximum"] = maximum_mermin
-    context["mermin_maximum_baseline"] = maximum_mermin_baseline
+    context["mermin_maximum_right"] = maximum_mermin_right
 
     ######### MERMIN PLOTS
     if cfg.mermin_5_plot == True:
@@ -382,7 +382,7 @@ def prepare_template_context(cfg):
                 expname=f"mermin_{cfg.experiment_left}",
                 output_path="build/",
             )
-            context["plot_mermin_baseline"] = mermin_5_plot_baseline = pl.mermin_plot(
+            context["plot_mermin_right"] = mermin_5_plot_right = pl.mermin_plot(
                 raw_data=os.path.join(
                     "data", "mermin", cfg.experiment_right, "results.json"
                 ),
@@ -393,6 +393,12 @@ def prepare_template_context(cfg):
                 os.path.join("data", "mermin", cfg.experiment_left, "results.json")
             )
             context["mermin_runtime_right"] = fl.extract_runtime(
+                os.path.join("data", "mermin", cfg.experiment_right, "results.json")
+            )
+            context["mermin_qubits_left"] = fl.extract_qubits_used(
+                os.path.join("data", "mermin", cfg.experiment_left, "results.json")
+            )
+            context["mermin_qubits_right"] = fl.extract_qubits_used(
                 os.path.join("data", "mermin", cfg.experiment_right, "results.json")
             )
 
@@ -415,7 +421,7 @@ def prepare_template_context(cfg):
                 expname=f"grover2q_{cfg.experiment_left}",
                 output_path="build/",
             )
-            context["plot_grover2q_baseline"] = pl.plot_grover(
+            context["plot_grover2q_right"] = pl.plot_grover(
                 raw_data=os.path.join(
                     "data", "grover2q", cfg.experiment_right, "results.json"
                 ),
@@ -427,6 +433,12 @@ def prepare_template_context(cfg):
                 os.path.join("data", "grover2q", cfg.experiment_left, "results.json")
             )
             context["grover2q_runtime_right"] = fl.extract_runtime(
+                os.path.join("data", "grover2q", cfg.experiment_right, "results.json")
+            )
+            context["grover2q_qubits_left"] = fl.extract_qubits_used(
+                os.path.join("data", "grover2q", cfg.experiment_left, "results.json")
+            )
+            context["grover2q_qubits_right"] = fl.extract_qubits_used(
                 os.path.join("data", "grover2q", cfg.experiment_right, "results.json")
             )
 
@@ -450,6 +462,13 @@ def prepare_template_context(cfg):
             context["grover3q_runtime_right"] = fl.extract_runtime(
                 os.path.join("data", "grover3q", cfg.experiment_right, "results.json")
             )
+            context["grover3q_qubits_left"] = fl.extract_qubits_used(
+                os.path.join("data", "grover3q", cfg.experiment_left, "results.json")
+            )
+            context["grover3q_qubits_right"] = fl.extract_qubits_used(
+                os.path.join("data", "grover3q", cfg.experiment_right, "results.json")
+            )
+
             context["grover3q_plot_is_set"] = True
             context["plot_grover3q"] = pl.plot_grover(
                 raw_data=os.path.join(
@@ -458,7 +477,7 @@ def prepare_template_context(cfg):
                 expname=f"grover3q_{cfg.experiment_left}",
                 output_path="build/",
             )
-            context["plot_grover3q_baseline"] = pl.plot_grover(
+            context["plot_grover3q_right"] = pl.plot_grover(
                 raw_data=os.path.join(
                     "data", "grover3q", cfg.experiment_right, "results.json"
                 ),
@@ -486,6 +505,12 @@ def prepare_template_context(cfg):
             context["ghz_runtime_right"] = fl.extract_runtime(
                 os.path.join("data", "GHZ", cfg.experiment_right, "results.json")
             )
+            context["ghz_qubits_left"] = fl.extract_qubits_used(
+                os.path.join("data", "GHZ", cfg.experiment_left, "results.json")
+            )
+            context["ghz_qubits_right"] = fl.extract_qubits_used(
+                os.path.join("data", "GHZ", cfg.experiment_right, "results.json")
+            )
 
             context["plot_ghz"] = pl.plot_ghz(
                 raw_data=os.path.join(
@@ -494,7 +519,7 @@ def prepare_template_context(cfg):
                 experiment_name=cfg.experiment_left,
                 output_path=os.path.join("build", "GHZ", cfg.experiment_left),
             )
-            context["plot_ghz_baseline"] = pl.plot_ghz(
+            context["plot_ghz_right"] = pl.plot_ghz(
                 raw_data=os.path.join(
                     "data", "GHZ", cfg.experiment_right, "results.json"
                 ),
@@ -514,7 +539,7 @@ def prepare_template_context(cfg):
     if cfg.process_tomography_plot == True:
         try:
             context["process_tomography_plot_is_set"] = True
-            context["plot_process_tomography"] = pl.plot_process_tomography(
+            context["plot_process_tomography_left"] = pl.plot_process_tomography(
                 # raw_data=os.path.join(
                 # "data", "process_tomography", cfg.experiment_left, "results.json"
                 # ),
@@ -523,7 +548,7 @@ def prepare_template_context(cfg):
                     "build", "process_tomography", cfg.experiment_left
                 ),
             )
-            context["plot_process_tomography_baseline"] = pl.plot_process_tomography(
+            context["plot_process_tomography_right"] = pl.plot_process_tomography(
                 # raw_data=os.path.join(
                 # "data", "process_tomography", cfg.experiment_right, "results.json"
                 # ),
@@ -531,6 +556,16 @@ def prepare_template_context(cfg):
                 output_path=os.path.join(
                     "build", "process_tomography", cfg.experiment_right
                 ),
+            )
+            context["process_tomography_runtime_left"] = fl.extract_runtime(
+                os.path.join(
+                    "data", "process_tomography", cfg.experiment_left, "results.json"
+                )
+            )
+            context["process_tomography_runtime_right"] = fl.extract_runtime(
+                os.path.join(
+                    "data", "process_tomography", cfg.experiment_right, "results.json"
+                )
             )
             logging.info("Added Process Tomography plots to context")
         except Exception as e:
@@ -551,7 +586,7 @@ def prepare_template_context(cfg):
                 ),
                 output_path=os.path.join("build", "tomography", cfg.experiment_left),
             )
-            context["plot_tomography_baseline"] = pl.plot_tomography(
+            context["plot_tomography_right"] = pl.plot_tomography(
                 raw_data=os.path.join(
                     "data", "tomography", cfg.experiment_right, "results.json"
                 ),
@@ -607,7 +642,7 @@ def prepare_template_context(cfg):
                     "build", "reuploading_classifier", cfg.experiment_left
                 ),
             )
-            context["plot_reuploading_classifier_baseline"] = (
+            context["plot_reuploading_classifier_right"] = (
                 pl.plot_reuploading_classifier(
                     raw_data=os.path.join(
                         "data",
@@ -652,7 +687,7 @@ def prepare_template_context(cfg):
                 expname=f"QFT_{cfg.experiment_left}",
                 output_path=os.path.join("build", "QFT", cfg.experiment_left),
             )
-            context["plot_qft_baseline"] = pl.plot_qft(
+            context["plot_qft_right"] = pl.plot_qft(
                 raw_data=os.path.join(
                     "data", "QFT", cfg.experiment_right, "results.json"
                 ),
@@ -694,7 +729,7 @@ def prepare_template_context(cfg):
                 expname=f"4q_yeast_{cfg.experiment_left}",
                 output_path=os.path.join("build", "yeast", cfg.experiment_left),
             )
-            context["plot_yeast_4q_baseline"] = pl.plot_qml(
+            context["plot_yeast_4q_right"] = pl.plot_qml(
                 raw_data=os.path.join(
                     "data", "qml_4Q_yeast", cfg.experiment_right, "results.json"
                 ),
@@ -731,7 +766,7 @@ def prepare_template_context(cfg):
                 expname=f"3q_yeast_{cfg.experiment_left}",
                 output_path=os.path.join("build", "yeast", cfg.experiment_left),
             )
-            context["plot_yeast_3q_baseline"] = pl.plot_qml(
+            context["plot_yeast_3q_right"] = pl.plot_qml(
                 raw_data=os.path.join(
                     "data", "qml_3Q_yeast", cfg.experiment_right, "results.json"
                 ),
@@ -758,7 +793,7 @@ def prepare_template_context(cfg):
                 expname=f"4q_statlog_{cfg.experiment_left}",
                 output_path=os.path.join("build", "statlog", cfg.experiment_left),
             )
-            context["plot_statlog_4q_baseline"] = pl.plot_qml(
+            context["plot_statlog_4q_right"] = pl.plot_qml(
                 raw_data=os.path.join(
                     "data", "qml_4Q_statlog", cfg.experiment_right, "results.json"
                 ),
@@ -795,7 +830,7 @@ def prepare_template_context(cfg):
                 expname=f"3q_statlog_{cfg.experiment_left}",
                 output_path=os.path.join("build", "statlog", cfg.experiment_left),
             )
-            context["plot_statlog_3q_baseline"] = pl.plot_qml(
+            context["plot_statlog_3q_right"] = pl.plot_qml(
                 raw_data=os.path.join(
                     "data", "qml_3Q_statlog", cfg.experiment_right, "results.json"
                 ),
@@ -834,7 +869,7 @@ def prepare_template_context(cfg):
                     "data", "amplitude_encoding", cfg.experiment_right, "results.json"
                 )
             )
-            context["plot_amplitude_encoding_baseline"] = pl.plot_amplitude_encoding(
+            context["plot_amplitude_encoding_right"] = pl.plot_amplitude_encoding(
                 raw_data=os.path.join(
                     "data", "amplitude_encoding", cfg.experiment_right, "results.json"
                 ),
