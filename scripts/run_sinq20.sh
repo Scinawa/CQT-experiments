@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -p sinq20
-#SBATCH -o logs/slurm_gpu.out
-#SBATCH -e logs/slurm_gpu.err
+#SBATCH -o logs/slurm_sinq20.out
+#SBATCH -e logs/slurm_sinq20.err
 
 # Fallback if someone runs this with srun/bash directly (not sbatch)
 # if [ -z "$SLURM_JOB_ID" ]; then

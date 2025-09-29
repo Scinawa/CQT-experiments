@@ -74,7 +74,7 @@ def main(qubit_pairs, device, nshots):
     results["description"] = (
         f"Grover's algorithm for 2 qubits executed on {device} backend with {nshots} shots per circuit. \n We measure the success rate of finding the target state '{target}' for each pair of qubits in {qubit_pairs}."
     )
-    results["qubit_used"] = qubit_pairs
+    results["qubits_used"] = qubit_pairs
 
     # Write to data/<scriptname>/<device>/results.json
     out_dir = config.output_dir_for(__file__, device)

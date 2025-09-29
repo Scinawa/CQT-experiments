@@ -136,7 +136,7 @@ def main(nqubits, qubit_list, device, nshots):
         )
         results["runtime"] = f"{runtime_seconds:.5f} seconds."
         results["description"] = f"Mermin's algorithm for {nqubits} qubits."
-        results["qubit_used"] = qubit_list
+        results["qubits_used"] = qubit_list
 
         # Write to data/<scriptname>/<device>/results.json
         out_dir = config.output_dir_for(__file__, device)
