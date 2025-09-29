@@ -573,8 +573,10 @@ def plot_reuploading_classifier(raw_data, exp_name, output_path="build/"):
 
     train_x = np.array(data_json["x_train"])
     train_y = np.array(data_json["train_predictions"])
+    train_y = np.round(train_y)
     test_x = np.array(data_json["x_test"])
     test_y = np.array(data_json["test_predictions"])
+    test_y = np.round(test_y)
     loss_history = data_json["loss_history"]
     train_acc = data_json["train_accuracy"]
     test_acc = data_json["test_accuracy"]

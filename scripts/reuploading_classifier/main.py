@@ -95,6 +95,8 @@ def trainable_circuit(nqubits, entanglement=True, density_matrix=False):
 def predict(model, data):
     test_pred = torch.as_tensor([torch.sigmoid(model(x)) for x in data])
     test_pred = test_pred.to("cpu")
+    return test_pred.tolist()
+    
     test_pred_int = torch.round(test_pred)
 
     return test_pred_int.tolist()
@@ -394,6 +396,8 @@ def main(
     predict_test_end = time.time()
     predict_test_duration = predict_test_end - predict_test_start
 
+    runtime = predict_train_duration + predict_test_duration
+
     train_acc = compute_accuracy(y_train, train_preds)
     test_acc = compute_accuracy(y_test, test_preds)
 
@@ -415,7 +419,7 @@ def main(
         "final_RZ_angle_check": model[-1].circuit_parameters.detach().numpy().tolist(),
         "predict_train_duration": predict_train_duration,
         "predict_test_duration": predict_test_duration,
-        "runtime": f"{duration:.5f} seconds.",
+        "runtime": f"{runtime:.5f} seconds.",
         "qubits_used": [qubit_id],
         "description": f"Reuploading classifier with {nqubits} qubits, {nlayers} layers, depth of {nlayers*2}, {nshots} shots.",
     }
@@ -486,13 +490,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--num_train_samples",
         type=int,
-        default=100,
+        default=10,
         help="Number of train samples (default: 100)",
     )
     parser.add_argument(
         "--num_test_samples",
         type=int,
-        default=100,
+        default=10,
         help="Number of test samples (default: 100)",
     )
     parser.add_argument(
