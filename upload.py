@@ -5,6 +5,8 @@ import logging
 import tempfile
 import shutil
 import atexit
+import toml  # Added for reading .secrets.toml
+from git import Repo  # Add this import
 
 from clientdb.client import (
     set_server,
@@ -111,9 +113,25 @@ def upload_calibration_compressed(src_dir, hash_id, notes=""):
     return archive_name
 
 
+def get_server_params_from_secrets(secrets_path=".secrets.toml"):
+    """
+    Load qibodbhost and qibodbkey from a TOML secrets file.
+    """
+    try:
+        secrets = toml.load(secrets_path)
+        qibodbhost = secrets.get("qibodbhost")
+        qibodbkey = secrets.get("qibodbkey")
+        if not qibodbhost or not qibodbkey:
+            raise ValueError("qibodbhost or qibodbkey missing in secrets file")
+        return qibodbhost, qibodbkey
+    except Exception as e:
+        logging.error(f"Failed to read server parameters from {secrets_path}: {e}")
+        raise
+
+
 def main():
     parser = argparse.ArgumentParser(description="Upload calibration data and experiment results")
-    parser.add_argument("--hash-id", help="Hash ID for the calibration", default="9848c933bfcafbb8f81c940f504b893a2fa6ac23")
+    parser.add_argument("--hash-id", help="Hash ID for the calibration", default="latest")
     parser.add_argument("--notes", default="", help="Optional notes for the calibration upload")
     parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], 
                        help="Set the logging level")
@@ -126,11 +144,28 @@ def main():
     logger.info("Starting upload process")
 
     # Set up the server connection
-    set_server("http://157.230.158.238", api_token="H1jqzIl7bFTvHHDR642QV0VgsF0KP5jJr8s2Vhy4OvE")
-    logger.info("Connected to server")
-    
+    try:
+        qibodbhost, qibodbkey = get_server_params_from_secrets()
+        set_server(qibodbhost, qibodbkey)
+        logger.info("Connected to server")
+    except Exception as e:
+        logger.error(f"Failed to set up server connection: {e}")
+        return 1
+
+    # Determine hash_id and prepare calibration directory if needed
+    if args.hash_id == "latest":
+        repo = Repo("/mnt/scratch/qibolab_platforms_nqch")
+        hash_id = repo.commit().hexsha
+        calibration_dir = os.path.join("data", hash_id)
+        if not os.path.exists(calibration_dir):
+            logger.info(f"Copying /mnt/scratch/qibolab_platforms_nqch to {calibration_dir}")
+            shutil.copytree("/mnt/scratch/qibolab_platforms_nqch", calibration_dir)
+        args.hash_id = hash_id  # Update args.hash_id for downstream use
+    else:
+        calibration_dir = f"./data/{args.hash_id}"
+
     # Upload calibration data
-    src_dir = f"./data/{args.hash_id}"
+    src_dir = calibration_dir
     logger.info(f"Uploading calibration data from {src_dir}")
     try:
         archive_name = upload_calibration_compressed(
