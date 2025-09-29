@@ -9,6 +9,7 @@ from pathlib import Path as _P
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
+
 def ccz_gate_auxilliary():
     ccz = Circuit(4)
     ccz.add(gates.CNOT(1, 3))
@@ -32,9 +33,10 @@ def ccz_gate_auxilliary():
     ccz.add(gates.CNOT(0, 1))
     return ccz
 
+
 def grover_3q(qubits, target):
     ccz = ccz_gate_auxilliary()
-    
+
     a = qubits[-1:]
     qubits = qubits[:-1]
 
@@ -43,13 +45,13 @@ def grover_3q(qubits, target):
     for i, bit in enumerate(target):
         if int(bit) == 0:
             c.add(gates.X(qubits[i]))
-    c.add(ccz.on_qubits(*(qubits+a)))
+    c.add(ccz.on_qubits(*(qubits + a)))
     for i, bit in enumerate(target):
         if int(bit) == 0:
             c.add(gates.X(qubits[i]))
     c.add([gates.H(i) for i in qubits])
     c.add([gates.X(i) for i in qubits])
-    c.add(ccz.on_qubits(*(qubits+a)))
+    c.add(ccz.on_qubits(*(qubits + a)))
     c.add([gates.X(i) for i in qubits])
     c.add([gates.H(i) for i in qubits])
 
@@ -79,16 +81,14 @@ def main(qubit_groups, device, nshots):
 
     _tmp_runtimes = []
 
-
     for qubits in qubit_groups:
         c = grover_3q(qubits, target)
-        
+
         start_time = time.time()
         r = c(nshots=nshots)
         end_time = time.time()
         _tmp_runtimes.append(end_time - start_time)
-        
-        
+
         freq = r.frequencies()
 
         target_freq = freq.get(target, 0)
@@ -100,14 +100,12 @@ def main(qubit_groups, device, nshots):
         prob_dict = {bs: (freq.get(bs, 0) / nshots) for bs in all_bitstrings}
         results["plotparameters"]["frequencies"][f"{qubits}"] = prob_dict
 
-
-
     runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
-    results['runtime']= f"{runtime_seconds:.5f} seconds."
-    results['description']= f"Grover's algorithm for 3 qubits executed on {device} backend with {nshots} shots per circuit. \n We measure the success rate of finding the target state '{target}' for each pair of qubits in {qubit_groups}."
-
-
-
+    results["runtime"] = f"{runtime_seconds:.5f} seconds."
+    results["description"] = (
+        f"Grover's algorithm for 3 qubits executed on {device} backend with {nshots} shots per circuit. \n We measure the success rate of finding the target state '{target}' for each pair of qubits in {qubit_groups}."
+    )
+    results["qubit_used"] = qubit_groups
 
     # Write to data/<scriptname>/<device>/results.json
     out_dir = config.output_dir_for(__file__, device)

@@ -147,7 +147,6 @@ def main(vector, qubits_list, device, nshots):
     results["input_vector"] = vector
     results["circuit_depth"] = {}
     results["gates_count"] = {}
-    results["elapsed_time"] = {}
     results["success_rate"] = {}
     results["plotparameters"] = {}
     results["plotparameters"]["frequencies"] = {}
@@ -172,8 +171,9 @@ def main(vector, qubits_list, device, nshots):
         "input_vector": vector,
         "circuit_depth": depth,
         "gates_count": num_gates,
-        "elapsed_time": duration,
+        "runtime": f"{duration:.5f} seconds.",
         "success_rate": success_rate,
+        "qubits_used": qubits_list,
         "plotparameters": {"frequencies": freq_dict},
     }
 

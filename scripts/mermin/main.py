@@ -63,8 +63,6 @@ def get_mermin_coefficients(mermin_polynomial: SymbolicHamiltonian):
     return [term.coefficient.real for term in mermin_polynomial.terms]
 
 
-
-
 def create_mermin_circuit(qubits, nqubits=20):
     c = Circuit(nqubits)
     c.add(gates.H(qubits[0]))
@@ -138,6 +136,7 @@ def main(nqubits, qubit_list, device, nshots):
         )
         results["runtime"] = f"{runtime_seconds:.5f} seconds."
         results["description"] = f"Mermin's algorithm for {nqubits} qubits."
+        results["qubit_used"] = qubit_list
 
         # Write to data/<scriptname>/<device>/results.json
         out_dir = config.output_dir_for(__file__, device)
@@ -158,7 +157,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--qubit_list",
-        default=[[13,17,18]],
+        default=[[13, 17, 18]],
         type=list,
         help="Target qubits list",
     )

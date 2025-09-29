@@ -15,6 +15,7 @@ import time
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
+
 def main(nqubits, nshots, niter, depths, device):
 
     results = dict()
@@ -34,15 +35,14 @@ def main(nqubits, nshots, niter, depths, device):
     # import pdb
     # pdb.set_trace()
 
-    root_path = out_dir #/ "standard_rb"
+    root_path = out_dir  # / "standard_rb"
     platform = device
 
-
     params = {
-        "depths": depths, # [1, 2, 3, 6, 12, 21, 40, 73, 135, 250]
-        "niter": niter #10
+        "depths": depths,  # [1, 2, 3, 6, 12, 21, 40, 73, 135, 250]
+        "niter": niter,  # 10
     }
-     
+
     with Executor.open(
         "myexec",
         path=root_path,
@@ -50,25 +50,29 @@ def main(nqubits, nshots, niter, depths, device):
         update=True,
         force=True,
     ) as e:
-        
+
         start_time = time.time()
         e.standard_rb(parameters=params)
         end_time = time.time()
         _tmp_runtimes.append(end_time - start_time)
-        
+
         report(e.path, e.history)
 
-        for qubit in range(1, nqubits+1):
+        for qubit in range(1, nqubits + 1):
             qubit_id = qubit - 1
-            results["fidelity"][f"{qubit_id}"] = float(e.platform.calibration.single_qubits[qubit_id].rb_fidelity[0])
+            results["fidelity"][f"{qubit_id}"] = float(
+                e.platform.calibration.single_qubits[qubit_id].rb_fidelity[0]
+            )
 
     runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
-    results['runtime']= f"{runtime_seconds:.5f} seconds."
-    results['description']= f"Single qubit Randomized Benchmarking executed on {device} backend with {nshots} shots per circuit and {niter} iterations per depth. \n The gate fidelity is computed in a SPAM robust way."
+    results["runtime"] = f"{runtime_seconds:.5f} seconds."
+    results["description"] = (
+        f"Single qubit Randomized Benchmarking executed on {device} backend with {nshots} shots per circuit and {niter} iterations per depth. \n The gate fidelity is computed in a SPAM robust way."
+    )
+    results["qubits_used"] = list(range(nqubits))
 
     # Write to data/<scriptname>/<device>/results.json
-    
-    
+
     out_dir.mkdir(parents=True, exist_ok=True)
     try:
         with (out_dir / "data.json").open("w", encoding="utf-8") as f:

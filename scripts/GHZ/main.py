@@ -37,9 +37,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--nqubits", type=int, default=3)
     parser.add_argument("--nshots", type=int, default=1000)
-    parser.add_argument(
-        "--device", choices=["numpy", "sinq20"], default="numpy"
-    )
+    parser.add_argument("--device", choices=["numpy", "sinq20"], default="numpy")
     args = parser.parse_args()
 
     if args.device == "numpy":
@@ -47,24 +45,22 @@ if __name__ == "__main__":
     elif args.device == "sinq20":
         set_backend("qibolab", platform=args.device)
 
-
     circuit = create_ghz_circuit(args.nqubits)
-    
 
     start_time = time.time()
     result = circuit(nshots=args.nshots)
     end_time = time.time()
     runtime_seconds = end_time - start_time
 
-
-
     frequencies = result.frequencies()
     results = prepare_ghz_results(frequencies, args.nshots, args.nqubits, circuit)
     out_dir = config.output_dir_for(__file__, args.device)
 
-    results['runtime']= f"{runtime_seconds:.5f} seconds."
-    results['description']= f"GHZ circuit with {args.nqubits} qubits executed on {args.device} backend with {args.nshots} shots. \n We measure the success rate of obtaining the GHZ state (all 0s or all 1s)."
-
+    results["runtime"] = f"{runtime_seconds:.5f} seconds."
+    results["description"] = (
+        f"GHZ circuit with {args.nqubits} qubits executed on {args.device} backend with {args.nshots} shots. \n We measure the success rate of obtaining the GHZ state (all 0s or all 1s)."
+    )
+    results["qubits_used"] = list(range(args.nqubits))
 
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, "results.json"), "w") as f:

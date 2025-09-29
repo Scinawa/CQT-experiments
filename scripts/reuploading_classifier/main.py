@@ -39,8 +39,10 @@ os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path(
 
 import sys
 from pathlib import Path as _P
+
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
+
 
 # Prepare the training dataset
 def _circle(points):
@@ -397,13 +399,12 @@ def main(
 
     # Generate results dictionary and save results and metadata to json files
     report_data = {
-        "number_of_gates": nlayers*2*nqubits,
-        "depth": nlayers*2,
+        "number_of_gates": nlayers * 2 * nqubits,
+        "depth": nlayers * 2,
         "nshots": nshots,
         "final_loss": final_loss,
         "train_accuracy": train_acc,
         "test_accuracy": test_acc,
-        "runtime": duration,
         "x_train": x_train.detach().numpy().tolist(),
         "train_predictions": train_preds,
         "x_test": x_test.detach().numpy().tolist(),
@@ -414,7 +415,9 @@ def main(
         "final_RZ_angle_check": model[-1].circuit_parameters.detach().numpy().tolist(),
         "predict_train_duration": predict_train_duration,
         "predict_test_duration": predict_test_duration,
-        "description": f"Reuploading classifier with {nqubits} qubits, {nlayers} layers, depth of {nlayers*2}, {nshots} shots."
+        "runtime": f"{duration:.5f} seconds.",
+        "qubits_used": [qubit_id],
+        "description": f"Reuploading classifier with {nqubits} qubits, {nlayers} layers, depth of {nlayers*2}, {nshots} shots.",
     }
 
     static_meta_data = {
@@ -475,10 +478,10 @@ if __name__ == "__main__":
         "--nshots", type=int, default=500, help="Number of shots (default: 500)"
     )
     ##parser.add_argument(
-     ##   "--grid",
-     ##   type=int,
-     ##   default=11,
-     ##   help="Number of grid points along both paramter directions for generating training dataset (default: 11)",
+    ##   "--grid",
+    ##   type=int,
+    ##   default=11,
+    ##   help="Number of grid points along both paramter directions for generating training dataset (default: 11)",
     ##)
     parser.add_argument(
         "--num_train_samples",
@@ -508,7 +511,7 @@ if __name__ == "__main__":
         "--load_and_test",
         type=bool,
         default=True,
-        help="Option to load specific trained model (nlayers=10, seed=48) instead of training (default: True)", # False = training mode, warning long duration on QPU
+        help="Option to load specific trained model (nlayers=10, seed=48) instead of training (default: True)",  # False = training mode, warning long duration on QPU
     )
     args = vars(parser.parse_args())
     main(**args)

@@ -409,12 +409,20 @@ def _gate_tomography(
                 total_depth += new_circ.depth
                 type_of_gates += new_circ.gate_names
             matrix_jk[j, k] = exp_val
-    logging.info(f"    Total depth from {4**(nqubits) * 4**(nqubits) - 4**nqubits} circuits: {total_depth}")
-    logging.info(f"    Average depth: {total_depth / ((4**nqubits) * (4**nqubits) - (4**nqubits))}")
+    logging.info(
+        f"    Total depth from {4**(nqubits) * 4**(nqubits) - 4**nqubits} circuits: {total_depth}"
+    )
+    logging.info(
+        f"    Average depth: {total_depth / ((4**nqubits) * (4**nqubits) - (4**nqubits))}"
+    )
     # print("average depth", total_depth / ((4**nqubits) * (4**nqubits) - (4**nqubits)))
     # print("type of gates", type_of_gates)
     # print()
-    return backend.cast(matrix_jk, dtype=matrix_jk.dtype), total_depth/((4**nqubits) * (4**nqubits) - (4**nqubits)), type_of_gates
+    return (
+        backend.cast(matrix_jk, dtype=matrix_jk.dtype),
+        total_depth / ((4**nqubits) * (4**nqubits) - (4**nqubits)),
+        type_of_gates,
+    )
 
 
 def GST(
@@ -558,14 +566,14 @@ def GST(
             #     )
             # )
             matrix, avg_depth, type_of_gates = _gate_tomography(
-                    nqubits=nqubits,
-                    gate=gate,
-                    nshots=nshots,
-                    ct_qubits=ct_qubits,
-                    noise_model=noise_model,
-                    backend=backend,
-                    transpiler=transpiler,
-                )
+                nqubits=nqubits,
+                gate=gate,
+                nshots=nshots,
+                ct_qubits=ct_qubits,
+                noise_model=noise_model,
+                backend=backend,
+                transpiler=transpiler,
+            )
             toc = timeit.default_timer() - tic
             matrices.append(matrix)
             timings.append(toc)
@@ -788,7 +796,9 @@ if __name__ == "__main__":
     empty_2qb_avg_depths = []
     empty_2qb_type_of_gates_dict = []
     for pair in two_qubit_pairs:
-        logging.info(f"Process tomography of empty 2qb matrix on qubits {pair[0]}_{pair[1]}")
+        logging.info(
+            f"Process tomography of empty 2qb matrix on qubits {pair[0]}_{pair[1]}"
+        )
         empty_2qb_matrix, timings, avg_depths, type_of_gates_dict = GST(
             gate_set=None,
             nqubits=2,
@@ -897,13 +907,16 @@ if __name__ == "__main__":
     ### Compute norm of the difference between NOISY and NOISELESS ###
 
     result_dict = {}
-    result_dict["description"] = f"Process tomography involves preparing a circuit particular set of states, \
+    result_dict["description"] = (
+        f"Process tomography involves preparing a circuit particular set of states, \
         appending a gate (process) to the circuit, and measuring the circuit in the Pauli basis. \n\
         The data is processed to get the Pauli Liouville representation of a process (gate). \n \
         - Single qubit process tomography executed on qubits: {single_qubit_indices}\n \
         - Two qubit process tomography on coupled qubits: {two_qubit_pairs}"
+    )
     result_dict["oneQubitResults"] = {}
     result_dict["twoQubitResults"] = {}
+    result_dict["runtime"] = f"{total_time:.5f} seconds."
 
     ### One qubit ###
     for ii in range(0, len(empty_1qb_matrices)):
@@ -926,25 +939,24 @@ if __name__ == "__main__":
             result_dict["oneQubitResults"][f"{qubit}"][
                 f"{gate_name}({qubit}, {params})"
             ] = {}
-            result_dict["oneQubitResults"][f"{qubit}"][f"{gate_name}({qubit}, {params})"][
-                "one_norm"
-            ] = one_norm
-            result_dict["oneQubitResults"][f"{qubit}"][f"{gate_name}({qubit}, {params})"][
-                "inf_norm"
-            ] = inf_norm
-            result_dict["oneQubitResults"][f"{qubit}"][f"{gate_name}({qubit}, {params})"][
-                "two_norm"
-            ] = two_norm
-            result_dict["oneQubitResults"][f"{qubit}"][f"{gate_name}({qubit}, {params})"][
-                "time (s)"
-            ] = gates_1qb_timings[ii][jj]
-            result_dict["oneQubitResults"][f"{qubit}"][f"{gate_name}({qubit}, {params})"][
-                "average depth"
-            ] = gates_1qb_avg_depths[ii][jj]
-            result_dict["oneQubitResults"][f"{qubit}"][f"{gate_name}({qubit}, {params})"][
-                "type of gates (dict)"
-            ] = gates_1qb_type_of_gates_dict[ii][jj]
-
+            result_dict["oneQubitResults"][f"{qubit}"][
+                f"{gate_name}({qubit}, {params})"
+            ]["one_norm"] = one_norm
+            result_dict["oneQubitResults"][f"{qubit}"][
+                f"{gate_name}({qubit}, {params})"
+            ]["inf_norm"] = inf_norm
+            result_dict["oneQubitResults"][f"{qubit}"][
+                f"{gate_name}({qubit}, {params})"
+            ]["two_norm"] = two_norm
+            result_dict["oneQubitResults"][f"{qubit}"][
+                f"{gate_name}({qubit}, {params})"
+            ]["time (s)"] = gates_1qb_timings[ii][jj]
+            result_dict["oneQubitResults"][f"{qubit}"][
+                f"{gate_name}({qubit}, {params})"
+            ]["average depth"] = gates_1qb_avg_depths[ii][jj]
+            result_dict["oneQubitResults"][f"{qubit}"][
+                f"{gate_name}({qubit}, {params})"
+            ]["type of gates (dict)"] = gates_1qb_type_of_gates_dict[ii][jj]
 
     ### Two qubit ###
     for ii in range(0, len(empty_2qb_matrices)):
@@ -998,20 +1010,20 @@ if __name__ == "__main__":
     # SAVE NPY FILES under data/<scriptname>/<device>/matrices/
     matrices_dir = os.path.join(out_dir, "matrices")
     os.makedirs(matrices_dir, exist_ok=True)
-#    for ii in range(0, len(empty_1qb_matrices)):
-#        qubit = single_qubit_indices[ii]
-#        np.save(
-#            os.path.join(matrices_dir, f"empty_1qb_matrix_qubit{qubit}.npy"),
-#            empty_1qb_matrices[ii],
-#        )
-#    for ii in range(0, len(empty_2qb_matrices)):
-#        pair = two_qubit_pairs[ii]
-#        np.save(
-#            os.path.join(
-#                matrices_dir, f"empty_2qb_matrix_qubits{pair[0]}_{pair[1]}.npy"
-#            ),
-#            empty_2qb_matrices[ii],
-#        )
+    #    for ii in range(0, len(empty_1qb_matrices)):
+    #        qubit = single_qubit_indices[ii]
+    #        np.save(
+    #            os.path.join(matrices_dir, f"empty_1qb_matrix_qubit{qubit}.npy"),
+    #            empty_1qb_matrices[ii],
+    #        )
+    #    for ii in range(0, len(empty_2qb_matrices)):
+    #        pair = two_qubit_pairs[ii]
+    #        np.save(
+    #            os.path.join(
+    #                matrices_dir, f"empty_2qb_matrix_qubits{pair[0]}_{pair[1]}.npy"
+    #            ),
+    #            empty_2qb_matrices[ii],
+    #        )
     for ii in range(0, len(noisyPTM_1qb)):
         for jj in range(0, len(noisyPTM_1qb[0])):
             qubit = single_qubit_indices[ii]

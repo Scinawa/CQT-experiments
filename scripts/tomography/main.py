@@ -3,6 +3,7 @@ import json
 import sys
 import pathlib
 from pathlib import Path
+import time
 
 from qibo import Circuit, gates, set_backend
 
@@ -47,14 +48,17 @@ def run_tomography(targets, device, nshots, root_path):
         ) as e:
             circuit = bell_circuit()
             start_time = time.time()
-            output = e.two_qubit_state_tomography(circuit=circuit, targets=[(targets[0], targets[1])])
+            output = e.two_qubit_state_tomography(
+                circuit=circuit, targets=[(targets[0], targets[1])]
+            )
             end_time = time.time()
             runtime_seconds = end_time - start_time
             report(e.path, e.history)
             # Save frequencies if available
             if hasattr(output, "frequencies"):
                 results["frequencies"] = output.frequencies
-                results["runtime"] = runtime_seconds
+                results["runtime"] = f"{runtime_seconds:.5f} seconds."
+                results["qubits_used"] = targets
                 results["description"] = f"State tomography on qubits {[targets]}."
     else:
         # Simulate with numpy backend
@@ -70,6 +74,8 @@ def run_tomography(targets, device, nshots, root_path):
         runtime_seconds = end_time - start_time
         results["frequencies"] = freq
         results["description"] = f"State tomography on numpy backend."
+        results["runtime"] = f"{runtime_seconds:.5f} seconds."
+        results["qubits_used"] = targets
 
     return data, results
 

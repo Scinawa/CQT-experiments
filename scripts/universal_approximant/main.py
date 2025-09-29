@@ -27,6 +27,7 @@ os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path(
 
 from pathlib import Path as _P
 import sys
+
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
@@ -96,7 +97,7 @@ if __name__ == "__main__":
     y_train = 2 * (((y_train - y_train.min()) / (y_train.max() - y_train.min())) - 0.5)
 
     # Set up backend
-    #backend = construct_backend(backend_str)
+    # backend = construct_backend(backend_str)
     if backend_str == "numpy":
         backend = construct_backend("numpy")
     elif backend_str == "nqch-sim":
@@ -204,10 +205,11 @@ if __name__ == "__main__":
     results = {
         "epoch_data": plot_data,
         "loss_history": loss_history,
-        "duration": duration,
         "median_predictions": median_pred.tolist(),
         "mad_predictions": mad_pred.tolist(),
-        "description": f"Universal approximant total execution time: {duration:.5f} seconds."
+        "runtime": f"{duration:.5f} seconds.",
+        "qubits_used": [args.qubit_id],
+        "description": f"Universal approximant. ",
     }
 
     with open(os.path.join(results_dir, "results.json"), "w") as json_file:
