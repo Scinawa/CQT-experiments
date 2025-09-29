@@ -3,6 +3,7 @@ import tarfile
 import argparse
 import logging
 import shutil
+import toml  # Added for reading .secrets.toml
 
 from clientdb.client import (
     set_server,
@@ -18,6 +19,25 @@ from clientdb.client import (
 )
 
 from scripts.scripts_executor import experiment_list
+
+
+def get_server_params_from_secrets(secrets_path=".secrets.toml"):
+    """
+    Load qibodbhost and qibodbkey from a TOML secrets file.
+    """
+    try:
+        secrets = toml.load(secrets_path)
+        qibodbhost = secrets.get("qibodbhost")
+        qibodbkey = secrets.get("qibodbkey")
+        if not qibodbhost or not qibodbkey:
+            raise ValueError("qibodbhost or qibodbkey missing in secrets file")
+        return qibodbhost, qibodbkey
+    except Exception as e:
+        logging.error(f"Failed to read server parameters from {secrets_path}: {e}")
+        raise
+
+
+####
 
 
 def clean_output_directory(output_dir):
@@ -243,11 +263,16 @@ def main():
     # Clean the output directory before downloading
     # clean_output_directory(args.output_dir)
 
+    # Load secrets from secrets.toml
+    try:
+        dburi, dbkey = get_server_params_from_secrets()
+        logger.info("Successfully loaded secrets from secrets.toml")
+    except Exception as e:
+        logger.error(f"Failed to load secrets: {e}")
+        return 1
+
     # Set up the server connection
-    set_server(
-        "http://157.230.158.238",
-        api_token="H1jqzIl7bFTvHHDR642QV0VgsF0KP5jJr8s2Vhy4OvE",
-    )
+    set_server(dburi, api_token=dbkey)
     logger.info("Connected to server")
 
     success = True
