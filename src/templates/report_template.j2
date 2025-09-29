@@ -91,9 +91,9 @@ Date: \emph{ {{ calibration_data.extraction_time | replace('_', '\\_') }} } \\
 \begin{tauenvmine}
 %\vspace{-0.2cm}
 %\centering
-{\Large Platform: \textbf{ {{ calibration_data_baseline.device | replace('_', '\\_') }} }} \\
-Calibration-id: \emph{ {{ calibration_data_baseline.calibration_id | replace('_', '\\_') }} } \\
-Date: \emph{ {{ calibration_data_baseline.extraction_time | replace('_', '\\_') }} } \\
+{\Large Platform: \textbf{ {{ calibration_data_right.device | replace('_', '\\_') }} }} \\
+Calibration-id: \emph{ {{ calibration_data_right.calibration_id | replace('_', '\\_') }} } \\
+Date: \emph{ {{ calibration_data_right.extraction_time | replace('_', '\\_') }} } \\
 %\vspace{0.15cm}
 \end{tauenvmine}
 \end{center}
@@ -137,7 +137,7 @@ Date: \emph{ {{ calibration_data_baseline.extraction_time | replace('_', '\\_') 
 \begin{tabular}{@{}ll|ll@{}}
 \toprule
 \textbf{Library} & \textbf{Version} & \textbf{Library} & \textbf{Version} \\ \midrule
-{% set items = calibration_data_baseline.versions.items()|list %}
+{% set items = calibration_data_right.versions.items()|list %}
 {% for i in range(0, items|length, 2) %}
     {{ items[i][0] | replace('_', '\\_') }} & {{ items[i][1] | replace('_', '\\_') }} 
     {% if i + 1 < items|length %}
@@ -173,7 +173,7 @@ Date: \emph{ {{ calibration_data_baseline.extraction_time | replace('_', '\\_') 
 \begin{center}
 \begin{minipage}{0.95\linewidth}
 \centering
-\includegraphics[width=\linewidth]{ {{ plot_baseline }} }
+\includegraphics[width=\linewidth]{ {{ plot_right }} }
 \end{minipage}
 \end{center}
 \end{multicols}
@@ -217,16 +217,16 @@ Mermin Max  & {{ mermin_maximum }} & & & \\
 \toprule
  & Average & Median & Min & Max \\
 \midrule
-T1 (ns) & {{ stat_t1_baseline.average }} & {{ stat_t1_baseline.median }} & {{ stat_t1_baseline.min }} & {{ stat_t1_baseline.max }} \\
+T1 (ns) & {{ stat_t1_right.average }} & {{ stat_t1_right.median }} & {{ stat_t1_right.min }} & {{ stat_t1_right.max }} \\
 % & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
-T2 (ns) & {{ stat_t2_baseline.average }} & {{ stat_t2_baseline.median }} & {{ stat_t2_baseline.min }} & {{ stat_t2_baseline.max }} \\
+T2 (ns) & {{ stat_t2_right.average }} & {{ stat_t2_right.median }} & {{ stat_t2_right.min }} & {{ stat_t2_right.max }} \\
 % & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
-Fidelity  & {{ stat_fidelity_baseline.average }} & {{ stat_fidelity_baseline.median }} & {{ stat_fidelity_baseline.min }} & {{ stat_fidelity_baseline.max }} \\
+Fidelity  & {{ stat_fidelity_right.average }} & {{ stat_fidelity_right.median }} & {{ stat_fidelity_right.min }} & {{ stat_fidelity_right.max }} \\
 % & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
-RO Fidelity  & {{ stat_readout_fidelity_baseline.average }} & {{ stat_readout_fidelity_baseline.median }} & {{ stat_readout_fidelity_baseline.min }} & {{ stat_readout_fidelity_baseline.max }} \\
+RO Fidelity  & {{ stat_readout_fidelity_right.average }} & {{ stat_readout_fidelity_right.median }} & {{ stat_readout_fidelity_right.min }} & {{ stat_readout_fidelity_right.max }} \\
 % & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
 
-%Pulse Fidelity & {{ stat_pulse_fidelity_baseline.average }} & {{ stat_pulse_fidelity_baseline.median }} & {{ stat_pulse_fidelity_baseline.min }} & {{ stat_pulse_fidelity_baseline.max }} \\
+%Pulse Fidelity & {{ stat_pulse_fidelity_right.average }} & {{ stat_pulse_fidelity_right.median }} & {{ stat_pulse_fidelity_right.min }} & {{ stat_pulse_fidelity_right.max }} \\
 % & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} & \phantom{+0.00 (+0.00\%)} \\
 Mermin Max  & {{ mermin_maximum }} & & & \\
 \bottomrule
@@ -268,7 +268,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \begin{tabular}{@{}c c c@{}}
 \toprule
 Qubit n & Fidelity & Error Bars \\ \midrule
-{% for row in fidelities_list_baseline %}
+{% for row in fidelities_list_right %}
 {{ row.qn }} & {{ row.fidelity }} & $\pm$ {{ row.error_bars }} \\
 {% endfor %}
 \bottomrule
@@ -308,7 +308,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \begin{center}
 \begin{minipage}{0.95\linewidth}
 \centering
-\includegraphics[width=\linewidth]{ {{ plot_mermin_baseline }} }
+\includegraphics[width=\linewidth]{ {{ plot_mermin_right }} }
 \end{minipage}
 \end{center}
 \end{multicols}
@@ -334,7 +334,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 %\end{itemize}
 
 %\begin{center}
-%\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_baseline }} }
+%\includegraphics[width=0.95\linewidth]{ {{ plot_reuploading_right }} }
 %\end{center}
 %\end{multicols}
 %{% endif %}
@@ -372,7 +372,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \item \textbf{Qubits used:} {{ grover2q_qubits_right }}
 \end{itemize}
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_grover2q_baseline }} }
+\includegraphics[width=0.95\linewidth]{ {{ plot_grover2q_right }} }
 \end{center}
 \end{samepage}
 
@@ -411,7 +411,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \begin{center}
 \begin{minipage}{0.95\linewidth}
 \centering
-\includegraphics[width=\linewidth]{ {{ plot_grover3q_baseline }} }
+\includegraphics[width=\linewidth]{ {{ plot_grover3q_right }} }
 \end{minipage}
 \end{center}
 \end{multicols}
@@ -443,7 +443,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_ghz_baseline }} }
+\includegraphics[width=0.95\linewidth]{ {{ plot_ghz_right }} }
 \end{center}
 \end{multicols}
 {% endif %}
@@ -481,7 +481,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \begin{center}
 \begin{minipage}{0.95\linewidth}
 \centering
-\includegraphics[width=\linewidth]{ {{ plot_tomography_baseline }} }
+\includegraphics[width=\linewidth]{ {{ plot_tomography_right }} }
 \end{minipage}
 \end{center}
 \end{multicols}
@@ -505,7 +505,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_process_tomography }} }
+\includegraphics[width=0.95\linewidth]{ {{ plot_process_tomography_left }} }
 \end{center}
 
 \columnbreak
@@ -516,7 +516,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_process_tomography_baseline }} }
+\includegraphics[width=0.95\linewidth]{ {{ plot_process_tomography_right }} }
 \end{center}
 \end{multicols}
 {% endif %}
@@ -552,7 +552,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \begin{center}
 \begin{minipage}{0.95\linewidth}
 \centering
-\includegraphics[width=\linewidth]{ {{ plot_reuploading_classifier_baseline }} }
+\includegraphics[width=\linewidth]{ {{ plot_reuploading_classifier_right }} }
 \end{minipage}
 \end{center}
 \end{multicols}
@@ -585,7 +585,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=0.95\linewidth]{ {{ plot_qft_baseline }} }
+\includegraphics[width=0.95\linewidth]{ {{ plot_qft_right }} }
 \end{center}
 \end{multicols}
 {% endif %}
@@ -620,7 +620,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \begin{center}
 \centering
-\includegraphics[width=0.95\linewidth]{ {{ plot_yeast_3q_baseline }} }
+\includegraphics[width=0.95\linewidth]{ {{ plot_yeast_3q_right }} }
 \end{center}
 \end{multicols}
 {% endif %}
@@ -653,7 +653,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \begin{center}
 \centering
-\includegraphics[width=0.95\linewidth]{ {{ plot_statlog_3q_baseline }} }
+\includegraphics[width=0.95\linewidth]{ {{ plot_statlog_3q_right }} }
 \end{center}
 \end{multicols}
 {% endif %}
@@ -684,7 +684,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \begin{center}
 \centering
-\includegraphics[width=0.95\linewidth]{ {{ plot_yeast_4q_baseline }} }
+\includegraphics[width=0.95\linewidth]{ {{ plot_yeast_4q_right }} }
 \end{center}
 \end{multicols}
 {% endif %}
@@ -715,7 +715,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \begin{center}
 \centering
-\includegraphics[width=0.95\linewidth]{ {{ plot_statlog_4q_baseline }} }
+\includegraphics[width=0.95\linewidth]{ {{ plot_statlog_4q_right }} }
 \end{center}
 \end{multicols}
 {% endif %}
@@ -749,7 +749,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 \begin{center}
 \centering
-\includegraphics[width=0.95\linewidth]{ {{ plot_amplitude_encoding_baseline }} }
+\includegraphics[width=0.95\linewidth]{ {{ plot_amplitude_encoding_right }} }
 \end{center}
 \end{multicols}
 {% endif %}
@@ -813,7 +813,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 \hline
 {% for row in plot_grid_t1 %}
     \includegraphics[width=0.5\linewidth]{ {{ row.plot }} } &
-    \includegraphics[width=0.5\linewidth]{ {{ row.plot_baseline }} } \\
+    \includegraphics[width=0.5\linewidth]{ {{ row.plot_right }} } \\
 {% endfor %}
 \hline
 \end{tabular}

@@ -36,6 +36,14 @@ def extract_runtime(filename):
     return results.get("runtime", " --- No runtime provided. ---")
 
 
+def extract_qubits_used(filename):
+
+    with open(filename, "r") as f:
+        results = json.load(f)
+
+    return results.get("qubits_used", " --- No ``qubits_used'' provided. ---")
+
+
 def context_plot_1(exp_name):
     """
     Generates a plot with y-axis from 0 to 1 and x-axis from 0 to 500.

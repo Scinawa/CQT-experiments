@@ -100,8 +100,37 @@ def plot_fidelity_graph(
     # Set missing keys to 0 for all qubits 0-19
     fidelities.update({str(qn): 0 for qn in range(20) if str(qn) not in fidelities})
 
-    # Initialize empty 2-qubit fidelities (not available in current data structure)
+    # Create 2-qubit fidelities dictionary with tuple keys and LaTeX formatted strings
     fidelities_2qb = {}
+    two_qubits = results.get("two_qubits", {})
+
+    for pair_string, qubit_data in two_qubits.items():
+        # Parse the pair string "4-9" into tuple (4, 9)
+        pair_parts = pair_string.split("-")
+        if len(pair_parts) == 2:
+            try:
+                a, b = int(pair_parts[0]), int(pair_parts[1])
+                pair = (a, b)
+
+                rb_fidelity = qubit_data.get("rb_fidelity", [0, 0])
+                if rb_fidelity and len(rb_fidelity) >= 2:
+                    mu = rb_fidelity[0] * 100  # Convert to percentage
+                    sigma = rb_fidelity[1] * 100  # Convert to percentage
+
+                    # Truncate to 2 significant digits
+                    mu_truncated = float(f"{mu:.2g}")
+                    sigma_truncated = float(f"{sigma:.2g}")
+
+                    # Create LaTeX formatted string
+                    fidelities_2qb[pair] = (
+                        rf"${mu_truncated:.1f} \pm {sigma_truncated:.1f}$"
+                    )
+                    # Also add the reverse pair for undirected edges
+                    fidelities_2qb[(b, a)] = (
+                        rf"${mu_truncated:.1f} \pm {sigma_truncated:.1f}$"
+                    )
+            except (ValueError, IndexError):
+                continue
 
     labels = {
         a: f"Q{a}\n{np.round(fidelities[str(a)] * 100, decimals=2)}" for a in range(20)
@@ -143,12 +172,7 @@ def plot_fidelity_graph(
             g,
             pos,
             edge_labels={
-                (a, b): (
-                    f"{np.round(fidelities_2qb[f'({a},{b})'] * 100, decimals=2)}"
-                    if f"({a},{b})" in fidelities_2qb
-                    else "-"
-                )
-                for a, b in connectivity
+                (a, b): fidelities_2qb.get((a, b), "-") for a, b in connectivity
             },
             font_color="black",
             font_size=8,
