@@ -95,7 +95,7 @@ def main(device, nshots):
     data["device"] = device
 
     results = {
-        "description": f"Implementation of the Quantum Fourier Transform on different subsets of three qubits {qubits_lists}. The number of gates is {num_gates}, the depth of the circuit is {depth}",
+        "description": f"Implementation of the Quantum Fourier Transform on different subsets of three qubits. The number of gates is {num_gates}, the depth of the circuit is {depth}",
         "circuit_depths": depth,
         "gates_counts": num_gates,
         "runtime": f"{np.average(times):.5f} seconds.",

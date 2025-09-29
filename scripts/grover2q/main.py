@@ -91,7 +91,7 @@ def main(qubit_pairs, device, nshots):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--qubit_pairs",
+        "--qubit_list",
         default=[[13, 14]],
         type=list,
         help="Target qubit pairs",
