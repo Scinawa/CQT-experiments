@@ -188,6 +188,7 @@ def prepare_template_context(cfg):
     meta_json_path = (
         base_path / "version_extractor" / cfg.experiment_left / "results.json"
     )
+
     with open(meta_json_path, "r") as f:
         meta_data = json.load(f)
     logging.info("Loaded experiment metadata from %s", meta_json_path)
@@ -271,9 +272,6 @@ def prepare_template_context(cfg):
         context["start_time"] = meta_data.get("start-time", "Unknown Start Time")
         context["end_time"] = meta_data.get("end-time", "Unknown End Time")
         #
-        context["report_of_changes"] = (
-            " "  # "\\textcolor{green}{Additional data of changes (from software).}",
-        )
         #
         context["stat_fidelity"] = stat_fidelity_with_improvement
         context["stat_fidelity_right"] = stat_fidelity_right
@@ -302,6 +300,22 @@ def prepare_template_context(cfg):
                 "data", "version_extractor", cfg.experiment_right, "results.json"
             ),
         )
+
+        commit_info = fl.process_commit_info(
+            base_path / cfg.experiment_left / "commit_info.json"
+        )
+
+        context["note_left"] = commit_info.get("commit_message", [])
+        context["calibration_date_left"] = commit_info.get(
+            "calibration_date", "Unknown Date"
+        )
+        context["experiment_date_left"] = commit_info.get(
+            "experiment_date", "Unknown Date"
+        )
+        import pdb
+
+        # pdb.set_trace()
+
     except Exception as e:
         logging.error(f"Error preparing basic context: {e}")
 
@@ -322,14 +336,19 @@ def prepare_template_context(cfg):
     ##### FIDELITY PLOT MAIN PAGEEE
     try:
         context["plot_exp"] = pl.plot_fidelity_graph(
-            # os.path.join("data", "standard_rb", cfg.experiment_left, "results.json"),
             os.path.join("data", cfg.experiment_left, "sinq20", "calibration.json"),
+            os.path.join(
+                "data", "bell_tomography", cfg.experiment_left, "results.json"
+            ),
             cfg.experiment_left,
             config.connectivity,
             config.pos,
         )
         context["plot_right"] = pl.plot_fidelity_graph(
             os.path.join("data", cfg.experiment_right, "sinq20", "calibration.json"),
+            os.path.join(
+                "data", "bell_tomography", cfg.experiment_right, "results.json"
+            ),
             cfg.experiment_right,
             config.connectivity,
             config.pos,
@@ -628,6 +647,22 @@ def prepare_template_context(cfg):
                     "results.json",
                 )
             )
+            context["reuploading_classifier_qubits_left"] = fl.extract_qubits_used(
+                os.path.join(
+                    "data",
+                    "reuploading_classifier",
+                    cfg.experiment_left,
+                    "results.json",
+                )
+            )
+            context["reuploading_classifier_qubits_right"] = fl.extract_qubits_used(
+                os.path.join(
+                    "data",
+                    "reuploading_classifier",
+                    cfg.experiment_right,
+                    "results.json",
+                )
+            )
 
             context["reuploading_classifier_plot_is_set"] = True
             context["plot_reuploading_classifier"] = pl.plot_reuploading_classifier(
@@ -693,6 +728,12 @@ def prepare_template_context(cfg):
                 ),
                 expname=f"QFT_{cfg.experiment_right}",
                 output_path=os.path.join("build", "QFT", cfg.experiment_right),
+            )
+            context["qft_qubits_left"] = fl.extract_qubits_used(
+                os.path.join("data", "QFT", cfg.experiment_left, "results.json")
+            )
+            context["qft_qubits_right"] = fl.extract_qubits_used(
+                os.path.join("data", "QFT", cfg.experiment_right, "results.json")
             )
             logging.info("Added QFT plots to context")
         except Exception as e:
@@ -865,6 +906,16 @@ def prepare_template_context(cfg):
                 )
             )
             context["amplitude_encoding_runtime_right"] = fl.extract_runtime(
+                os.path.join(
+                    "data", "amplitude_encoding", cfg.experiment_right, "results.json"
+                )
+            )
+            context["amplitude_encoding_qubits_left"] = fl.extract_qubits_used(
+                os.path.join(
+                    "data", "amplitude_encoding", cfg.experiment_left, "results.json"
+                )
+            )
+            context["amplitude_encoding_qubits_right"] = fl.extract_qubits_used(
                 os.path.join(
                     "data", "amplitude_encoding", cfg.experiment_right, "results.json"
                 )

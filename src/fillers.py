@@ -41,7 +41,14 @@ def extract_qubits_used(filename):
     with open(filename, "r") as f:
         results = json.load(f)
 
-    return results.get("qubits_used", " --- No ``qubits_used'' provided. ---")
+    return results.get("qubits_used", " --- No ``qubits\_used'' provided. ---")
+
+
+def process_commit_info(filename):
+    with open(filename, "r") as f:
+        results = json.load(f)
+
+    return results
 
 
 def context_plot_1(exp_name):
