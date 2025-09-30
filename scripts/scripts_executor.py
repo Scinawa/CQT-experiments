@@ -6,10 +6,22 @@ import logging
 from logging.handlers import RotatingFileHandler
 import shutil
 from git.repo.base import Repo
-
+from datetime import datetime
+import sys
+from pathlib import Path
+import json
 
 # Base path to the scripts directory (run from project root)
 base_path = "scripts/"
+
+
+if __package__ is None or __package__ == "":
+    # invoked directly: add repo root to sys.path so 'scripts.*' resolves
+    repo_root = Path(__file__).resolve().parents[1]
+    sys.path.insert(0, str(repo_root))
+
+from scripts.config import CURRENT_CALIBRATION_DIRECTORY  # now this works in both cases
+
 
 
 def load_experiment_list(config_file="scripts/experiment_list.txt"):
@@ -140,34 +152,81 @@ def run_script(logger: logging.Logger, script_path: str, device: str, tag: str) 
         logger.exception(f"Error occurred while running {script_path}")
         return 1
 
+def copytree_safe(src: Path, dst: Path, ignore_dirs=None):
+    """
+    Recursively copy directory `src` into `dst`, skipping directories in `ignore_dirs`
+    and continuing on permission (or other) errors. Creates directories as needed.
+    """
+    src = Path(src)
+    dst = Path(dst)
+    ignore_dirs = set(ignore_dirs or [])
+
+    for root, dirs, files in os.walk(src, topdown=True):
+        root_path = Path(root)
+
+        # prune ignored directories in-place so os.walk won't descend into them
+        dirs[:] = [d for d in dirs if d not in ignore_dirs]
+
+        # compute destination folder corresponding to current root
+        rel = root_path.relative_to(src)
+        dest_root = dst / rel
+        try:
+            dest_root.mkdir(parents=True, exist_ok=True)
+        except Exception as e:
+            logger.warning(f"Could not create directory {dest_root}: {e}")
+            # continue anyway; file copies may still succeed for siblings
+            pass
+
+        # copy files under this root
+        for name in files:
+            src_file = root_path / name
+            dest_file = dest_root / name
+            try:
+                # create parent in case mkdir above failed
+                dest_file.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src_file, dest_file)
+            except Exception as e:
+                logger.warning(f"Skipping {src_file} -> {dest_file}: {e}")
+
 
 def main():
     args = parse_args()
     logger = setup_logger(args.log_file, args.log_level)
 
     # COPY RUNCARD INTO DATA SECTION
-    repo = Repo("/mnt/scratch/qibolab_platforms_nqch")
+    repo = Repo(CURRENT_CALIBRATION_DIRECTORY)
     commit = repo.commit()
     hash_id = commit.hexsha
 
     # Copy /mnt/scratch/qibolab_platforms_nqch into data/<hash_id>/
     calibration_dir = os.path.join("data", hash_id)
 
+
     try:
-        shutil.copytree(
-            "/mnt/scratch/qibolab_platforms_nqch", calibration_dir, dirs_exist_ok=True
+        # Copy, skipping .git and continuing on any copy errors
+        copytree_safe(
+            Path(CURRENT_CALIBRATION_DIRECTORY),
+            calibration_dir,
+            ignore_dirs={".git", "__pycache__"},
         )
 
-        # Write commit message into a file inside calibration_dir
-        msg_file = os.path.join(calibration_dir, "commit_message.txt")
+        # Prepare JSON content with custom format
+        time_format = "%d-%m-%Y %H:%M"
+
+        commit_info = {
+            "commit_hash": hash_id,
+            "commit_message": commit.message.strip(),
+            "experiment_date": datetime.now().strftime(time_format),
+            "calibration_date": datetime.fromtimestamp(commit.committed_date).strftime(time_format),
+        }
+
+        # Write commit info to JSON file
+        msg_file = os.path.join(calibration_dir, "commit_info.json")
         with open(msg_file, "w") as f:
-            f.write(commit.message.strip() + "\n")
+            json.dump(commit_info, f, indent=4)
 
     except Exception as e:
         logger.error(f"Failed to copy calibration directory: {e}")
-        # sys.exit(1)
-        # import pdb
-        # pdb.set_trace()
 
 
     # Remove the .git directory inside the copied calibration directory via shell
