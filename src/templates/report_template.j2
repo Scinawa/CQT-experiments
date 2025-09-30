@@ -68,7 +68,6 @@
 
 % Report of changes
 \section{Report of Changes}
-\taustart{T}This report presents a benchmarking study of a quantum computer based on superconducting qubits, procured from IQM Machines and integrated with Keysight Technologies measurement solutions. Our objective is to evaluate device performance across key metrics (T1, T2, fidelity, ...) but also showcasing the performances of simple applications of quantum computers. {{ report_of_changes }}
 
 
 \begin{multicols}{2}
@@ -77,9 +76,10 @@
 \begin{tauenvmine}
 %\vspace{-0.2.cm}
 %\centering
-{\Large Platform: \textbf{ {{ calibration_data.device | replace('_', '\\_') }} }} \\
+{Platform: \textbf{ {{ calibration_data.device | replace('_', '\\_') }} }} \\
 Calibration-id: \emph{ {{ calibration_data.calibration_id | replace('_', '\\_') }} } \\
 Date: \emph{ {{ calibration_data.extraction_time | replace('_', '\\_') }} } \\
+Note: {{ note_left }}
 %\href{ {{ calibration_data.calibration_id }} }{ Link to Runcard }
 %\vspace{0.15cm}
 \end{tauenvmine}
@@ -91,7 +91,7 @@ Date: \emph{ {{ calibration_data.extraction_time | replace('_', '\\_') }} } \\
 \begin{tauenvmine}
 %\vspace{-0.2cm}
 %\centering
-{\Large Platform: \textbf{ {{ calibration_data_right.device | replace('_', '\\_') }} }} \\
+{Platform: \textbf{ {{ calibration_data_right.device | replace('_', '\\_') }} }} \\
 Calibration-id: \emph{ {{ calibration_data_right.calibration_id | replace('_', '\\_') }} } \\
 Date: \emph{ {{ calibration_data_right.extraction_time | replace('_', '\\_') }} } \\
 %\vspace{0.15cm}

@@ -71,7 +71,12 @@ def prepare_grid_chevron_swap_coupler(
 
 
 def plot_fidelity_graph(
-    raw_data, experiment_name, connectivity, pos, output_path="build/"
+    raw_data_single,
+    raw_data_two,
+    experiment_name,
+    connectivity,
+    pos,
+    output_path="build/",
 ):
     """
     Generates a fidelity graph for the given experiment.
@@ -87,11 +92,13 @@ def plot_fidelity_graph(
     # Load results for the main path
     # results_json_path = "data" / Path(experiment_name) / "data/rb-0/results.json"
 
-    with open(raw_data, "r") as f:
-        results = json.load(f)
+    with open(raw_data_single, "r") as f:
+        results_single = json.load(f)
+    with open(raw_data_two, "r") as f:
+        results_two = json.load(f)
 
     # Extract rb_fidelity from the new structure
-    single_qubits = results.get("single_qubits", {})
+    single_qubits = results_single.get("single_qubits", {})
     fidelities = {}
     for qubit_id, qubit_data in single_qubits.items():
         rb_fidelity = qubit_data.get("rb_fidelity", [0, 0])
@@ -102,35 +109,33 @@ def plot_fidelity_graph(
 
     # Create 2-qubit fidelities dictionary with tuple keys and LaTeX formatted strings
     fidelities_2qb = {}
-    two_qubits = results.get("two_qubits", {})
+    # Keep only keys different from "best_qubits"
+    two_qubits = {k: v for k, v in results_two.items() if k != "best_qubits"}
 
-    for pair_string, qubit_data in two_qubits.items():
-        # Parse the pair string "4-9" into tuple (4, 9)
-        pair_parts = pair_string.split("-")
-        if len(pair_parts) == 2:
-            try:
+    for pair_string, fidelity_value in two_qubits.items():
+        # Parse the pair string "(0, 1)" into tuple (0, 1)
+        try:
+            # Remove parentheses and split by comma
+            clean_string = pair_string.strip("()")
+            pair_parts = clean_string.split(", ")
+            if len(pair_parts) == 2:
                 a, b = int(pair_parts[0]), int(pair_parts[1])
                 pair = (a, b)
 
-                rb_fidelity = qubit_data.get("rb_fidelity", [0, 0])
-                if rb_fidelity and len(rb_fidelity) >= 2:
-                    mu = rb_fidelity[0] * 100  # Convert to percentage
-                    sigma = rb_fidelity[1] * 100  # Convert to percentage
+                # The value is already a fidelity (not a list)
+                if isinstance(fidelity_value, (int, float)):
+                    mu = fidelity_value * 100  # Convert to percentage
 
+                    # For single values, we don't have error, so use a placeholder or omit
                     # Truncate to 2 significant digits
                     mu_truncated = float(f"{mu:.2g}")
-                    sigma_truncated = float(f"{sigma:.2g}")
 
-                    # Create LaTeX formatted string
-                    fidelities_2qb[pair] = (
-                        rf"${mu_truncated:.1f} \pm {sigma_truncated:.1f}$"
-                    )
+                    # Create LaTeX formatted string without error
+                    fidelities_2qb[pair] = rf"${mu_truncated:.1f}$"
                     # Also add the reverse pair for undirected edges
-                    fidelities_2qb[(b, a)] = (
-                        rf"${mu_truncated:.1f} \pm {sigma_truncated:.1f}$"
-                    )
-            except (ValueError, IndexError):
-                continue
+                    fidelities_2qb[(b, a)] = rf"${mu_truncated:.1f}$"
+        except (ValueError, IndexError):
+            continue
 
     labels = {
         a: f"Q{a}\n{np.round(fidelities[str(a)] * 100, decimals=2)}" for a in range(20)
@@ -164,9 +169,7 @@ def plot_fidelity_graph(
         font_weight="bold",
     )
     # print(connectivity)
-    # import pdb
 
-    # pdb.set_trace()
     try:
         nx.draw_networkx_edge_labels(
             g,
@@ -199,7 +202,140 @@ def plot_fidelity_graph(
     full_path = output_path + experiment_name + "_" + filename
     plt.savefig(full_path)
     plt.close()
+
     return full_path
+
+
+# def plot_fidelity_graph(
+#     raw_data, experiment_name, connectivity, pos, output_path="build/"
+# ):
+#     """
+#     Generates a fidelity graph for the given experiment.
+#     """
+
+#     # temporary fix for demo data
+#     # results_demo_json_path = "data" / Path(experiment_name) / f"fidelity2qb.json"
+#     # with open(results_demo_json_path, "r") as f:
+#     #     results_tmp = json.load(f)
+#     # # this will be changed because of MLK - beware of stringescape issues
+#     # fidelities_2qb = results_tmp.get('"fidelities_2qb"', {})
+
+#     # Load results for the main path
+#     # results_json_path = "data" / Path(experiment_name) / "data/rb-0/results.json"
+
+#     with open(raw_data, "r") as f:
+#         results = json.load(f)
+
+#     # Extract rb_fidelity from the new structure
+#     single_qubits = results.get("single_qubits", {})
+#     fidelities = {}
+#     for qubit_id, qubit_data in single_qubits.items():
+#         rb_fidelity = qubit_data.get("rb_fidelity", [0, 0])
+#         fidelities[qubit_id] = rb_fidelity[0] if rb_fidelity else 0
+
+#     # Set missing keys to 0 for all qubits 0-19
+#     fidelities.update({str(qn): 0 for qn in range(20) if str(qn) not in fidelities})
+
+#     # Create 2-qubit fidelities dictionary with tuple keys and LaTeX formatted strings
+#     fidelities_2qb = {}
+#     two_qubits = results.get("two_qubits", {})
+
+#     for pair_string, qubit_data in two_qubits.items():
+#         # Parse the pair string "4-9" into tuple (4, 9)
+#         pair_parts = pair_string.split("-")
+#         if len(pair_parts) == 2:
+#             try:
+#                 a, b = int(pair_parts[0]), int(pair_parts[1])
+#                 pair = (a, b)
+
+#                 rb_fidelity = qubit_data.get("rb_fidelity", [0, 0])
+#                 if rb_fidelity and len(rb_fidelity) >= 2:
+#                     mu = rb_fidelity[0] * 100  # Convert to percentage
+#                     sigma = rb_fidelity[1] * 100  # Convert to percentage
+
+#                     # Truncate to 2 significant digits
+#                     mu_truncated = float(f"{mu:.2g}")
+#                     sigma_truncated = float(f"{sigma:.2g}")
+
+#                     # Create LaTeX formatted string
+#                     fidelities_2qb[pair] = (
+#                         rf"${mu_truncated:.1f} \pm {sigma_truncated:.1f}$"
+#                     )
+#                     # Also add the reverse pair for undirected edges
+#                     fidelities_2qb[(b, a)] = (
+#                         rf"${mu_truncated:.1f} \pm {sigma_truncated:.1f}$"
+#                     )
+#             except (ValueError, IndexError):
+#                 continue
+
+#     labels = {
+#         a: f"Q{a}\n{np.round(fidelities[str(a)] * 100, decimals=2)}" for a in range(20)
+#     }
+
+#     g = nx.Graph()
+#     cmap = plt.get_cmap("viridis")
+#     array = np.array(list(fidelities.values())) * 100
+#     node_color = [
+#         (
+#             plt.cm.viridis((value * 100 - min(array)) / (max(array) - min(array)))
+#             if value > 0.8
+#             else "grey"
+#         )
+#         for value in list(fidelities.values())
+#     ]
+#     levels = MaxNLocator(nbins=100).tick_values(min(array), max(array))
+#     norm = BoundaryNorm(levels, ncolors=cmap.N, clip=True)
+
+#     g.add_nodes_from(list(range(20)))
+#     g.add_edges_from(connectivity)
+#     nx.draw_networkx_edges(g, pos, edge_color="black", width=5)
+#     nx.draw_networkx_nodes(g, pos, node_size=800, linewidths=5, node_color=node_color)
+#     nx.draw_networkx_labels(
+#         g,
+#         pos,
+#         labels=labels,
+#         font_color="r",
+#         alpha=0.6,
+#         font_size=8,
+#         font_weight="bold",
+#     )
+#     # print(connectivity)
+#     # import pdb
+
+#     # pdb.set_trace()
+#     try:
+#         nx.draw_networkx_edge_labels(
+#             g,
+#             pos,
+#             edge_labels={
+#                 (a, b): fidelities_2qb.get((a, b), "-") for a, b in connectivity
+#             },
+#             font_color="black",
+#             font_size=8,
+#             font_weight="bold",
+#         )
+#     except Exception as e:
+#         print(f"Warning: could not draw edge labels: {e}")
+
+#     ax = plt.gca()
+#     # Place colorbar below the plot
+#     cbar = plt.colorbar(
+#         plt.cm.ScalarMappable(norm=norm, cmap=cmap),
+#         ax=ax,
+#         orientation="horizontal",
+#         pad=0.1,
+#         fraction=0.05,
+#         aspect=40,  # Make the colorbar longer
+#         shrink=0.8,  # Adjust shrink to make it visually longer
+#     )
+#     cbar.set_label("1Q Fidelity")
+#     plt.box(False)
+#     plt.tight_layout()
+#     filename = "fidelities.pdf"
+#     full_path = output_path + experiment_name + "_" + filename
+#     plt.savefig(full_path)
+#     plt.close()
+#     return full_path
 
 
 def plot_swap_coupler(qubit_number=0, data_dir="data/DEMODATA", output_path="build/"):
