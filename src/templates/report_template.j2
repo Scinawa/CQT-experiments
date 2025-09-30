@@ -76,10 +76,11 @@
 \begin{tauenvmine}
 %\vspace{-0.2.cm}
 %\centering
-{Platform: \textbf{ {{ calibration_data.device | replace('_', '\\_') }} }} \\
-Calibration-id: \emph{ {{ calibration_data.calibration_id | replace('_', '\\_') }} } \\
-Date: \emph{ {{ calibration_data.extraction_time | replace('_', '\\_') }} } \\
-Note: {{ note_left }}
+{\textbf{Platform:}  {{ calibration_data.device | replace('_', '\\_') }} } \\
+\textbf{Calibration-id:} \emph{ {{ calibration_data.calibration_id | replace('_', '\\_') }} } \\
+\textbf{Calibration date:} \emph{ {{ calibration_date_left | replace('_', '\\_') }} } \\
+\textbf{Experiment date:} \emph{ {{ experiment_date_left | replace('_', '\\_') }} } \\
+\textbf{Note:} {{ note_left }}
 %\href{ {{ calibration_data.calibration_id }} }{ Link to Runcard }
 %\vspace{0.15cm}
 \end{tauenvmine}

@@ -96,7 +96,7 @@ def predict(model, data):
     test_pred = torch.as_tensor([torch.sigmoid(model(x)) for x in data])
     test_pred = test_pred.to("cpu")
     return test_pred.tolist()
-    
+
     test_pred_int = torch.round(test_pred)
 
     return test_pred_int.tolist()
@@ -249,7 +249,7 @@ class TrainedLinearEncoder(nn.Module):
 
 def main(
     device,
-    qubit_list,
+    qubit_id,
     nlayers,
     lr,
     epochs,
@@ -264,7 +264,6 @@ def main(
     nqubits = 1
     torch_device = torch.device("cpu")
     script_directory = os.path.dirname(__file__)
-    qubit_id = qubit_list[0][0]
 
     # Set up device (backend)
     if device == "numpy":
@@ -465,7 +464,7 @@ if __name__ == "__main__":
     # parser.add_argument(
     #   "--nqubits", type=int, default=1, help="Number of qubits (default: 1)"
     # )
-    parser.add_argument("--qubit_list", type=int, default=[[9]], help="Qubit ID (default: [[9]])")
+    parser.add_argument("--qubit_id", type=int, default=9, help="Qubit ID (default: 9)")
     parser.add_argument(
         "--nlayers", type=int, default=6, help="Number of layers (default: 6)"
     )
@@ -491,13 +490,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--num_train_samples",
         type=int,
-        default=100,
+        default=10,
         help="Number of train samples (default: 100)",
     )
     parser.add_argument(
         "--num_test_samples",
         type=int,
-        default=100,
+        default=10,
         help="Number of test samples (default: 100)",
     )
     parser.add_argument(

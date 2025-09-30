@@ -44,18 +44,11 @@ def extract_qubits_used(filename):
     return results.get("qubits_used", " --- No ``qubits\_used'' provided. ---")
 
 
-def extract_notes(filename):
-    try:
-        with open(filename, "r", encoding="utf-8") as f:
-            content = f.read().strip()
-        if not content:
-            return " --- No ``notes'' provided. ---"
-        return content
-    except FileNotFoundError:
-        return " --- Notes file not found. ---"
-    except Exception as e:
-        logging.warning(f"Error reading notes file {filename}: {e}")
-        return " --- Error reading notes file. ---"
+def process_commit_info(filename):
+    with open(filename, "r") as f:
+        results = json.load(f)
+
+    return results
 
 
 def context_plot_1(exp_name):
