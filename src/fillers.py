@@ -360,3 +360,47 @@ def get_readout_fidelity(raw_data, experiment_dir):
     }
 
     return dict_readout_fidelities
+
+
+def extract_best_qubits(bell_tomography_results_path):
+    """
+    Extract the best qubits data from bell tomography results.
+
+    Args:
+        bell_tomography_results_path (str): Path to the bell_tomography results.json file
+
+    Returns:
+        dict: Dictionary containing best qubits for k=2,3,4,5 with their fidelities
+    """
+    try:
+        with open(bell_tomography_results_path, "r") as f:
+            results = json.load(f)
+
+        best_qubits_data = results.get("best_qubits", {})
+
+        # Format the data for template use
+        formatted_data = {}
+        for k in ["2", "3", "4", "5"]:
+            if k in best_qubits_data:
+                qubits_list = best_qubits_data[k][0]  # First element is the qubit list
+                fidelity = best_qubits_data[k][1]  # Second element is the fidelity
+
+                # Format qubits as comma-separated string
+                qubits_str = ", ".join(map(str, qubits_list))
+                formatted_data[k] = {
+                    "qubits": qubits_str,
+                    "fidelity": f"{fidelity:.3f}",
+                }
+            else:
+                formatted_data[k] = {"qubits": "N/A", "fidelity": "N/A"}
+
+        return formatted_data
+
+    except Exception as e:
+        logging.warning(
+            f"Error reading best qubits data from {bell_tomography_results_path}: {e}"
+        )
+        # Return default structure if file doesn't exist or has errors
+        return {
+            str(k): {"qubits": "N/A", "fidelity": "N/A"} for k in ["2", "3", "4", "5"]
+        }

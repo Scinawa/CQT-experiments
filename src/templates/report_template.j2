@@ -92,9 +92,12 @@
 \begin{tauenvmine}
 %\vspace{-0.2cm}
 %\centering
-{Platform: \textbf{ {{ calibration_data_right.device | replace('_', '\\_') }} }} \\
-Calibration-id: \emph{ {{ calibration_data_right.calibration_id | replace('_', '\\_') }} } \\
-Date: \emph{ {{ calibration_data_right.extraction_time | replace('_', '\\_') }} } \\
+{\textbf{Platform:}  {{ calibration_data_right.device | replace('_', '\\_') }} } \\
+\textbf{Calibration-id:} \emph{ {{ calibration_data_right.calibration_id | replace('_', '\\_') }} } \\
+\textbf{Calibration date:} \emph{ {{ calibration_date_right | replace('_', '\\_') }} } \\
+\textbf{Experiment date:} \emph{ {{ experiment_date_right | replace('_', '\\_') }} } \\
+\textbf{Note:} {{ note_right }}
+%\href{ {{ calibration_data_right.calibration_id }} }{ Link to Runcard }
 %\vspace{0.15cm}
 \end{tauenvmine}
 \end{center}
@@ -179,6 +182,38 @@ Date: \emph{ {{ calibration_data_right.extraction_time | replace('_', '\\_') }} 
 \end{center}
 \end{multicols}
 
+\section{Best Qubits Selection}
+
+\begin{multicols}{2}
+
+\begin{center}
+\begin{tabular}{@{}c c c@{}}
+\toprule
+k-qubits & Best Qubits & Fidelity \\ \midrule
+2 & {{ best_qubits_left["2"].qubits }} & {{ best_qubits_left["2"].fidelity }} \\
+3 & {{ best_qubits_left["3"].qubits }} & {{ best_qubits_left["3"].fidelity }} \\
+4 & {{ best_qubits_left["4"].qubits }} & {{ best_qubits_left["4"].fidelity }} \\
+5 & {{ best_qubits_left["5"].qubits }} & {{ best_qubits_left["5"].fidelity }} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\columnbreak
+
+\begin{center}
+\begin{tabular}{@{}c c c@{}}
+\toprule
+k-qubits & Best Qubits & Fidelity \\ \midrule
+2 & {{ best_qubits_right["2"].qubits }} & {{ best_qubits_right["2"].fidelity }} \\
+3 & {{ best_qubits_right["3"].qubits }} & {{ best_qubits_right["3"].fidelity }} \\
+4 & {{ best_qubits_right["4"].qubits }} & {{ best_qubits_right["4"].fidelity }} \\
+5 & {{ best_qubits_right["5"].qubits }} & {{ best_qubits_right["5"].fidelity }} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{multicols}
+
 
 
 
@@ -242,10 +277,6 @@ Mermin Max  & {{ mermin_maximum }} & & & \\
 
 
 
-\newpage
-
-
-
 \section{Benchmark Results}
 
 \begin{multicols}{2}
@@ -281,7 +312,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 
 
 
-\section{5 Qubit Mermin}
+\section{Mermin}
 {{ mermin_description }}
 
 \begin{multicols}{2}
@@ -387,7 +418,6 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 % Grover 3Q state preparation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {% if grover3q_plot_is_set %}
-\newpage
 \section{Grover - 3 qubits}
 {{ grover3q_description }}
 
@@ -423,6 +453,7 @@ Qubit n & Fidelity & Error Bars \\ \midrule
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 {% if ghz_plot_is_set %}
+\newpage
 \section{GHZ state preparation}
 {{ ghz_description }}
 
