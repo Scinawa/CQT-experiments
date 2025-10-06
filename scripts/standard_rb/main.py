@@ -65,7 +65,7 @@ def main(nqubits, nshots, niter, depths, device):
             )
 
     runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
-    results["runtime"] = f"{runtime_seconds:.5f} seconds."
+    results["runtime"] = f"{runtime_seconds:.2f} seconds."
     results["description"] = (
         f"Single qubit Randomized Benchmarking executed on {device} backend with {nshots} shots per circuit and {niter} iterations per depth. \n The gate fidelity is computed in a SPAM robust way."
     )

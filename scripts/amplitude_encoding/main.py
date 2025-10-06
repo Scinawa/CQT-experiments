@@ -171,7 +171,7 @@ def main(vector, qubits_list, device, nshots):
         "input_vector": vector,
         "circuit_depth": depth,
         "gates_count": num_gates,
-        "runtime": f"{duration:.5f} seconds.",
+        "runtime": f"{duration:.2f} seconds.",
         "success_rate": success_rate,
         "qubits_used": qubits_list,
         "plotparameters": {"frequencies": freq_dict},

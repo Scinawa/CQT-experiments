@@ -134,7 +134,7 @@ def main(nqubits, qubit_list, device, nshots):
         runtime_seconds = (
             sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
         )
-        results["runtime"] = f"{runtime_seconds:.5f} seconds."
+        results["runtime"] = f"{runtime_seconds:.2f} seconds."
         results["description"] = f"Mermin's algorithm for {nqubits} qubits."
         results["qubits_used"] = qubit_list
 

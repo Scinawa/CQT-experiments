@@ -916,7 +916,7 @@ if __name__ == "__main__":
     )
     result_dict["oneQubitResults"] = {}
     result_dict["twoQubitResults"] = {}
-    result_dict["runtime"] = f"{total_time:.5f} seconds."
+    result_dict["runtime"] = f"{total_time:.2f} seconds."
 
     ### One qubit ###
     for ii in range(0, len(empty_1qb_matrices)):

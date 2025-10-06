@@ -98,7 +98,7 @@ def main(device, nshots):
         "description": f"Implementation of the Quantum Fourier Transform on different subsets of three qubits. The number of gates is {num_gates}, the depth of the circuit is {depth}",
         "circuit_depths": depth,
         "gates_counts": num_gates,
-        "runtime": f"{np.average(times):.5f} seconds.",
+        "runtime": f"{np.average(times):.2f} seconds.",
         "frequencies": frequencies,
         "qubits_used": qubits_lists,
         "plotparameters": {"qubits_lists": qubits_lists, "fidelities": fidelities},

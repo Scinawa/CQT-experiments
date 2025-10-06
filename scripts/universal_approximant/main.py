@@ -207,7 +207,7 @@ if __name__ == "__main__":
         "loss_history": loss_history,
         "median_predictions": median_pred.tolist(),
         "mad_predictions": mad_pred.tolist(),
-        "runtime": f"{duration:.5f} seconds.",
+        "runtime": f"{duration:.2f} seconds.",
         "qubits_used": [args.qubit_id],
         "description": f"Universal approximant. ",
     }

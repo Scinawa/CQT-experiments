@@ -77,7 +77,7 @@ def run_ghz_experiment(qubits_list, device, nshots, root_path):
             ghz_results = prepare_ghz_results(frequencies, nshots, nqubits)
 
             results.update(ghz_results)
-            results["runtime"] = f"{runtime_seconds:.5f} seconds."
+            results["runtime"] = f"{runtime_seconds:.2f} seconds."
             results["qubits_used"] = qubits_list
             results["description"] = (
                 f"GHZ circuit with {nqubits} qubits executed on {device} backend with {nshots} shots."
@@ -97,7 +97,7 @@ def run_ghz_experiment(qubits_list, device, nshots, root_path):
         results["description"] = (
             f"GHZ circuit with {nqubits} qubits executed on numpy backend with {nshots} shots."
         )
-        results["runtime"] = f"{runtime_seconds:.5f} seconds."
+        results["runtime"] = f"{runtime_seconds:.2f} seconds."
         results["qubits_used"] = qubits_list
 
     return data, results

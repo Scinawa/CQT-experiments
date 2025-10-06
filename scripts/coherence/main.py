@@ -82,7 +82,7 @@ def main(device):
             results["t2"][f"{qubit_id}"] = t2
 
     runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
-    results["runtime"] = f"{runtime_seconds:.5f} seconds."
+    results["runtime"] = f"{runtime_seconds:.2f} seconds."
     results["description"] = (
         f"T1 and T2 experiments performed on {device} backend. \n The thermalization and coherence times are computed with this routine."
     )

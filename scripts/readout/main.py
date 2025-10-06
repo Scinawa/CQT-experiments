@@ -53,7 +53,7 @@ def main(nqubits, device, nshots):
         results["readout_fidelity"][f"{qb}"] = 1 - (gnd_err + exc_err) / 2
 
     runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
-    results['runtime']= f"{runtime_seconds:.5f} seconds."
+    results['runtime']= f"{runtime_seconds:.2f} seconds."
     results['description']= f"Readout fidelity experiment executed on {device} backend with {nshots} shots per circuit."
 
     # Write to data/<scriptname>/<device>/results.json

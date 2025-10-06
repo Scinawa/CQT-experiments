@@ -66,7 +66,7 @@ def run_tomography(targets, device, nshots, root_path):
             # Save frequencies if available
             
             results["fidelity"] = output.results.fidelity
-            results["runtime"] = f"{runtime_seconds:.5f} seconds."
+            results["runtime"] = f"{runtime_seconds:.2f} seconds."
             results["qubits_used"] = targets
             results["description"] = f"State tomography on qubits {[targets]}."
     else:
@@ -83,7 +83,7 @@ def run_tomography(targets, device, nshots, root_path):
         runtime_seconds = end_time - start_time
         results["frequencies"] = freq
         results["description"] = f"State tomography on numpy backend."
-        results["runtime"] = f"{runtime_seconds:.5f} seconds."
+        results["runtime"] = f"{runtime_seconds:.2f} seconds."
         results["qubits_used"] = targets
 
     return data, results

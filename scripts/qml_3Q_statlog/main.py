@@ -17,101 +17,81 @@ import shutil
 import atexit
 import time
 
+from qibocal.auto.execute import Executor
+from qibocal.cli.report import report
+
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
 logger = logging.getLogger(__name__)
 
-def var_circuit(angles_dict, num_qubits):  # Fixed missing colon here
+def var_circuit(angles_dict, qubits_list):
     """
     Build a quantum circuit based on the angles dictionary from the JSON file.
-    This follows the exact same structure as the PennyLane reference implementation.
-    
-    angles_dict uses qubit labels "0", "1", "2" (zero-indexed strings).
+    Now maps to physical qubits specified in qubits_list.
     """
-    circuit = qibo.Circuit(num_qubits)
+    num_qubits = len(qubits_list)
+    max_qubit = max(qubits_list)
+    circuit = qibo.Circuit(max_qubit + 1)
 
-    if num_qubits==3:
-        for q in range(num_qubits):
-            qkey = str(q)
+    if num_qubits == 3:
+        for i, physical_qubit in enumerate(qubits_list):
+            qkey = str(i)
             q_angles = angles_dict.get(qkey, {})
             
-            logger.debug("Adding RY (depth 1) on qubit %d with angle %s", q, q_angles["1"])
-            circuit.add(gates.RY(q, theta=q_angles["1"]))
+            logger.debug("Adding RY (depth 1) on physical qubit %d with angle %s", physical_qubit, q_angles["1"])
+            circuit.add(gates.RY(physical_qubit, theta=q_angles["1"]))
         
-            logger.debug("Adding RZ (depth 2) on qubit %d with angle %s", q, q_angles["2"])
-            circuit.add(gates.RZ(q, theta=q_angles["2"]))
+            logger.debug("Adding RZ (depth 2) on physical qubit %d with angle %s", physical_qubit, q_angles["2"])
+            circuit.add(gates.RZ(physical_qubit, theta=q_angles["2"]))
             
-            logger.debug("Adding RY (depth 3) on qubit %d with angle %s", q, q_angles["3"])
-            circuit.add(gates.RY(q, theta=q_angles["3"]))
+            logger.debug("Adding RY (depth 3) on physical qubit %d with angle %s", physical_qubit, q_angles["3"])
+            circuit.add(gates.RY(physical_qubit, theta=q_angles["3"]))
 
         # First entangling layer
-        # CNOT 0->1; RZ on qubit 1 using angles_dict["1"]["4"]; CNOT
-        circuit.add(gates.CNOT(0, 1))
-        logger.debug("Adding RZ (depth 4) on qubit 1 with angle %s", angles_dict["1"]["4"])
-        circuit.add(gates.RZ(1, theta=angles_dict["1"]["4"]))
-        circuit.add(gates.CNOT(0, 1))
+        circuit.add(gates.CNOT(qubits_list[0], qubits_list[1]))
+        circuit.add(gates.RZ(qubits_list[1], theta=angles_dict["1"]["4"]))
+        circuit.add(gates.CNOT(qubits_list[0], qubits_list[1]))
 
-        # CNOT 1->2; RZ on qubit 2 using angles_dict["2"]["4"]; CNOT  
-        circuit.add(gates.CNOT(1, 2))
-        logger.debug("Adding RZ (depth 4) on qubit 2 with angle %s", angles_dict["2"]["4"])
-        circuit.add(gates.RZ(2, theta=angles_dict["2"]["4"]))
-        circuit.add(gates.CNOT(1, 2))
+        circuit.add(gates.CNOT(qubits_list[1], qubits_list[2]))
+        circuit.add(gates.RZ(qubits_list[2], theta=angles_dict["2"]["4"]))
+        circuit.add(gates.CNOT(qubits_list[1], qubits_list[2]))
 
-        # RY rotations using depths 4 and 5 (note: qubit 0 uses depth 4, others use depth 5)
-        logger.debug("Adding RY (depth 4) on qubit 0 with angle %s", angles_dict["0"]["4"])
-        circuit.add(gates.RY(0, theta=angles_dict["0"]["4"]))
-
-        logger.debug("Adding RY (depth 5) on qubit 1 with angle %s", angles_dict["1"]["5"])
-        circuit.add(gates.RY(1, theta=angles_dict["1"]["5"]))
-
-        logger.debug("Adding RY (depth 5) on qubit 2 with angle %s", angles_dict["2"]["5"])
-        circuit.add(gates.RY(2, theta=angles_dict["2"]["5"]))
+        # RY rotations
+        circuit.add(gates.RY(qubits_list[0], theta=angles_dict["0"]["4"]))
+        circuit.add(gates.RY(qubits_list[1], theta=angles_dict["1"]["5"]))
+        circuit.add(gates.RY(qubits_list[2], theta=angles_dict["2"]["5"]))
 
         # Second entangling layer  
-        # CNOT 0->1; RZ on qubit 1 using angles_dict["1"]["6"]; CNOT
-        circuit.add(gates.CNOT(0, 1))
-        circuit.add(gates.RZ(1, theta=angles_dict["1"]["6"]))
-        circuit.add(gates.CNOT(0, 1))
+        circuit.add(gates.CNOT(qubits_list[0], qubits_list[1]))
+        circuit.add(gates.RZ(qubits_list[1], theta=angles_dict["1"]["6"]))
+        circuit.add(gates.CNOT(qubits_list[0], qubits_list[1]))
 
-        # CNOT 1->2; RZ on qubit 2 using angles_dict["2"]["6"]; CNOT
-        circuit.add(gates.CNOT(1, 2))
-        circuit.add(gates.RZ(2, theta=angles_dict["2"]["6"]))
-        circuit.add(gates.CNOT(1, 2))
+        circuit.add(gates.CNOT(qubits_list[1], qubits_list[2]))
+        circuit.add(gates.RZ(qubits_list[2], theta=angles_dict["2"]["6"]))
+        circuit.add(gates.CNOT(qubits_list[1], qubits_list[2]))
 
-    if num_qubits==4:
-        for q in range(num_qubits):
-            qkey = str(q)
+    elif num_qubits == 4:
+        for i, physical_qubit in enumerate(qubits_list):
+            qkey = str(i)
             q_angles = angles_dict.get(qkey, {})
             
-            logger.debug("Adding RY (depth 1) on qubit %d with angle %s", q, q_angles["1"])
-            circuit.add(gates.RY(q, theta=q_angles["1"]))
-        
-            logger.debug("Adding RZ (depth 2) on qubit %d with angle %s", q, q_angles["2"])
-            circuit.add(gates.RZ(q, theta=q_angles["2"]))
-            
-            logger.debug("Adding RY (depth 3) on qubit %d with angle %s", q, q_angles["3"])
-            circuit.add(gates.RY(q, theta=q_angles["3"]))
+            circuit.add(gates.RY(physical_qubit, theta=q_angles["1"]))
+            circuit.add(gates.RZ(physical_qubit, theta=q_angles["2"]))
+            circuit.add(gates.RY(physical_qubit, theta=q_angles["3"]))
 
         # First entangling layer
-        # CNOT 0->1; RZ on qubit 1 using angles_dict["1"]["4"]; CNOT
-        circuit.add(gates.CNOT(0, 1))
-        logger.debug("Adding RZ (depth 4) on qubit 1 with angle %s", angles_dict["1"]["4"])
-        circuit.add(gates.RZ(1, theta=angles_dict["1"]["4"]))
-        circuit.add(gates.CNOT(0, 1))
+        circuit.add(gates.CNOT(qubits_list[0], qubits_list[1]))
+        circuit.add(gates.RZ(qubits_list[1], theta=angles_dict["1"]["4"]))
+        circuit.add(gates.CNOT(qubits_list[0], qubits_list[1]))
 
-        # CNOT 1->2; RZ on qubit 2 using angles_dict["2"]["4"]; CNOT  
-        circuit.add(gates.CNOT(1, 2))
-        logger.debug("Adding RZ (depth 4) on qubit 2 with angle %s", angles_dict["2"]["4"])
-        circuit.add(gates.RZ(2, theta=angles_dict["2"]["4"]))
-        circuit.add(gates.CNOT(1, 2))
+        circuit.add(gates.CNOT(qubits_list[1], qubits_list[2]))
+        circuit.add(gates.RZ(qubits_list[2], theta=angles_dict["2"]["4"]))
+        circuit.add(gates.CNOT(qubits_list[1], qubits_list[2]))
 
-        # CNOT 1->2; RZ on qubit 2 using angles_dict["2"]["4"]; CNOT  
-        circuit.add(gates.CNOT(2, 3))
-        logger.debug("Adding RZ (depth 4) on qubit 2 with angle %s", angles_dict["2"]["4"])
-        circuit.add(gates.RZ(3, theta=angles_dict["2"]["4"]))
-        circuit.add(gates.CNOT(2, 3))
-
+        circuit.add(gates.CNOT(qubits_list[2], qubits_list[3]))
+        circuit.add(gates.RZ(qubits_list[3], theta=angles_dict["2"]["4"]))
+        circuit.add(gates.CNOT(qubits_list[2], qubits_list[3]))
 
     return circuit
 
@@ -124,18 +104,13 @@ def load_data(cfg_path):
         data = json.load(f)
     return data
 
-def main(qubits_list, device, nshots, debug=False, args=None, input_filename="input.json", number_of_datapoints_output=10, continue_execution=True):
+def main(qubits_list, device, nshots, debug=False, args=None, input_filename="input.json", number_of_datapoints_output=100000):
     # configure logging
     level = logging.DEBUG if debug else logging.INFO
     logging.basicConfig(level=level, format="%(asctime)s | %(levelname)s | %(name)s | %(message)s")
 
-    # Set backend
-    if device == "numpy":
-        qibo.set_backend("numpy")
-        logger.info("Using backend: numpy")
-    else:
-        qibo.set_backend("qibolab", platform=device)
-        logger.info("Using backend: qibolab (platform=%s)", device)
+    qibo.set_backend("qibolab", platform=device)
+    logger.info("Using backend: qibolab (platform=%s)", device)
     
     base_dir = _P(os.path.dirname(os.path.abspath(sys.argv[0])))
     cfg_path = base_dir / "input.json"
@@ -170,95 +145,122 @@ def main(qubits_list, device, nshots, debug=False, args=None, input_filename="in
 
     data = load_data(cfg_path)
 
-    args = data['args']
-    num_qubits = args['num_qubits']
-    output_qubit = args['output_qubit']
+    num_qubits = data['args']['num_qubits']
+    output_qubit = data['args']['output_qubit']
+
+    # Ensure qubits_list has enough qubits
+    if len(qubits_list) < num_qubits:
+        logger.error(f"Need at least {num_qubits} qubits, but only {len(qubits_list)} provided")
+        return
+
     out_dir = config.output_dir_for(base_dir / "fix", device)
     out_dir.mkdir(parents=True, exist_ok=True)
-    results = []
 
     processed_count = 0
 
+    # Use physical output qubit
+    physical_output_qubit = qubits_list[min(output_qubit, len(qubits_list) - 1)]
+    
+    # Use Executor for hardware execution
+    root_path = out_dir / "executor_tmp"
+    
+    with Executor.open(
+        "qml_executor",
+        path=root_path,
+        platform=device,
+        targets=qubits_list[:num_qubits],
+        update=True,
+        force=True,
+    ) as e:
+        logger.info("Using Executor with platform: %s, qubits: %s", device, qubits_list[:num_qubits])
+        
+        for idx, _ in data['noiseless_experiment_ios'].items():
+            # Skip if we've already processed this data point (has sigmoid_expval field)
+            if str(idx) in data.get('NQCH', {}) and 'sigmoid_expval' in data['NQCH'][str(idx)]:
+                logger.info(f"Skipping data point {idx} - already processed")
+                continue
+                
+            # If we've processed enough points, break
+            if processed_count >= number_of_datapoints_output:
+                logger.info(f"Reached limit of {number_of_datapoints_output} data points, stopping")
+                break
 
+            angles_dict = data['noiseless_experiment_ios'][str(idx)]['angles']
+            true_label = data['noiseless_experiment_ios'][str(idx)]['label']
+            noiseless_label = data['noiseless_experiment_ios'][str(idx)]['noiseless_label']
 
+            logger.debug("Building circuit for data index %s; true=%s noiseless=%s", idx, true_label, noiseless_label)
+            circuit = var_circuit(angles_dict, qubits_list[:num_qubits])
+            circuit.add(gates.M(physical_output_qubit))
 
-    for idx, config_data in data['qc_configurations'].items():
-        # Skip if we've already processed this data point (has qibo_sigmoid_expval field)
-        if 'qibo_sigmoid_expval' in config_data:
-            logger.info(f"Skipping data point {idx} - already processed")
-            continue
+            start_time = time.time()
+            result = circuit(nshots=nshots)
+            end_time = time.time()
+            duration = end_time - start_time
+
+            frequencies = result.frequencies()
+            total_counts = sum(frequencies.values())
+            if total_counts == 0:
+                logger.warning("No counts returned for idx %s (total_counts=0)", idx)
+             
+            c1 = frequencies.get('1', 0)
+            c0 = frequencies.get('0', 0)
+            total_counts = c0 + c1
+            if total_counts > 0:
+                exp_z = (c0 - c1) / total_counts  # <Z> = P(0) - P(1)
+            else:
+                exp_z = 0.0
+            sigmoid_expval = 1.0 / (1.0 + np.exp(-exp_z))  # sigmoid(<Z>)
+            predicted_label = 1 if sigmoid_expval > 0.5 else 0
+
+            # Update the original data with the result
+            if 'NQCH' not in data:
+                data['NQCH'] = {}
+            data['NQCH'][str(idx)] = {
+                'sigmoid_expval': float(sigmoid_expval),
+                'predicted_label': predicted_label,
+                'is_correct': predicted_label == true_label,
+                'duration': duration
+            }
+
+            # Write to temporary file first, then atomically rename
+            with open(tmp_path, 'w') as f:
+                json.dump(data, f, indent=2)
+                f.flush()
+                os.fsync(f.fileno())
+            shutil.move(tmp_path, cfg_path)
+            logger.debug(f"Updated input file {cfg_path} with results for data point {idx}")
+
+            logger.info("Processed data point %s: predicted=%s true=%s noiseless=%s prob=%.3f",
+                        idx, predicted_label, true_label, noiseless_label, sigmoid_expval)  # Fixed variable name
             
-        # If we've processed enough points, break
-        if processed_count >= number_of_datapoints_output:
-            logger.info(f"Reached limit of {number_of_datapoints_output} data points, stopping")
-            break
-            
-        angles_dict = config_data['angles']
-        true_label = config_data['label']
-        noiseless_label = config_data['noiseless_label']
+            processed_count += 1
         
-        # Create circuit for this data point
-        logger.debug("Building circuit for data index %s; true=%s noiseless=%s", idx, true_label, noiseless_label)
-        circuit = var_circuit(angles_dict, num_qubits)
-        circuit.add(gates.M(output_qubit))
-
-        start_time = time.time()
-        result = circuit(nshots=nshots)
-        end_time = time.time()
-        duration = end_time - start_time
-
-        frequencies = result.frequencies()
-        total_counts = sum(frequencies.values())
-        if total_counts == 0:
-            logger.warning("No counts returned for idx %s (total_counts=0)", idx)
-         
-        c1 = frequencies.get('1', 0)
-        c0 = frequencies.get('0', 0)
-        total_counts = c0 + c1
-        if total_counts > 0:
-            exp_z = (c0 - c1) / total_counts  # <Z> = P(0) - P(1)
-        else:
-            exp_z = 0.0
-        sigmoid_expval = 1.0 / (1.0 + np.exp(-exp_z))  # sigmoid(<Z>)
-        predicted_label = 1 if sigmoid_expval > 0.5 else 0
-
-        # Update the original data with the result
-        config_data['qibo_sigmoid_expval'] = float(sigmoid_expval)
-        config_data['qibo_predicted_label'] = predicted_label
-        config_data['qibo_correct'] = predicted_label == true_label
-        config_data['duration'] = duration
-        
-
-        # Write to temporary file first, then atomically rename
-        with open(tmp_path, 'w') as f:
-            json.dump(data, f, indent=2)
-            f.flush()
-            os.fsync(f.fileno())
-        shutil.move(tmp_path, cfg_path)
-        logger.info(f"Updated input file {cfg_path} with results for data point {idx}")
-
-        # # Store result for summary
-        # result_entry = {
-        #     "data_point_idx": idx,
-        #     "true_label": true_label,
-        #     "noiseless_label": noiseless_label,
-        #     "predicted_label": predicted_label,
-        #     "sigmoid_expval": sigmoid_expval,
-        #     "duration": duration
-        # }
-        # results.append(result_entry)
-
-        logger.info("Processed data point %s: predicted=%s true=%s noiseless=%s prob=%.3f",
-                    idx, predicted_label, true_label, noiseless_label, sigmoid_expval)  # Fixed variable name
-        
-        processed_count += 1
+        report(e.path, e.history)
+    
+    #################################################################################
+    logger.info(f"Processing complete. Total processed data points: {processed_count}")
+    #################################################################################
 
     # Cleanup backup file on successful completion
     if backup_path.exists():
         backup_path.unlink()
-    # Recompute statistics directly from the (updated) config file instead of the in-memory 'results' list
-    qc_cfgs = list(data.get("qc_configurations", {}).values())
-    evaluated = [c for c in qc_cfgs if "qibo_predicted_label" in c]
+
+    #### Calculate accuracies based on processed results
+    # Get all data points that have been processed (have NQCH results)
+    evaluated = []
+    for idx_str, nqch_result in data.get('NQCH', {}).items():
+        if 'sigmoid_expval' in nqch_result and 'predicted_label' in nqch_result:
+            # Get corresponding original data
+            original_data = data['noiseless_experiment_ios'].get(idx_str, {})
+            if original_data:
+                evaluated_item = {
+                    'qibo_predicted_label': nqch_result['predicted_label'],
+                    'label': original_data.get('label'),
+                    'noiseless_label': original_data.get('noiseless_label'),
+                    'sigmoid_expval': nqch_result['sigmoid_expval']
+                }
+                evaluated.append(evaluated_item)
 
     if evaluated:
         qibo_accuracy = sum(c["qibo_predicted_label"] == c["label"] for c in evaluated) / len(evaluated)
@@ -274,10 +276,10 @@ def main(qubits_list, device, nshots, debug=False, args=None, input_filename="in
         )
 
         # Store new stats at top-level of JSON structure
-        data["qibo_accuracy"] = qibo_accuracy
-        data["pennylane_vs_qibo_accuracy"] = pennylane_vs_qibo_accuracy
-        data["original_sim_accuracy_over_processed_subset"] = original_sim_accuracy
-        data["processed_count"] = len(evaluated)
+        data["NQHC"]["qibo_accuracy"] = qibo_accuracy
+        data["NQHC"]["verification_vs_NQHC_accuracy"] = pennylane_vs_qibo_accuracy
+        data["NQHC"]["original_sim_accuracy_over_processed_subset"] = original_sim_accuracy
+        data["NQHC"]["processed_count"] = len(evaluated)
 
         # Write full updated data (including qc_configurations) to results.json in out_dir
         results_path = out_dir / "results.json"
@@ -285,17 +287,16 @@ def main(qubits_list, device, nshots, debug=False, args=None, input_filename="in
             json.dump(data, f, indent=2)
         logger.info("Full results (with accuracies) written to %s", results_path)
     else:
-        logger.info("No data points were processed; no results.json written")
-
+        logger.warning("No data points were processed; no results.json written")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--qubits_list",
+        "--qubits-list",
         default=[0, 1, 2],
         type=int,
         nargs='+',
-        help="List of qubits exploited in the device",
+        help="List of physical qubits to use on the device",
     )
     parser.add_argument(
         "--device",
@@ -305,7 +306,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--nshots",
-        default=360,
+        default=5000,
         type=int,
         help="Number of shots for each circuit execution",
     )
@@ -323,8 +324,16 @@ if __name__ == "__main__":
     parser.add_argument(
         "--number-datapoints-output",
         type=int,
-        default=1000,
+        default=100000,
         help="Number of data points to output",
     )
     cnf = vars(parser.parse_args())
-    main(cnf["qubits_list"], cnf["device"], cnf["nshots"], cnf.get("debug", False), None, cnf.get("input"), cnf.get("number_datapoints_output"))
+    main(
+        qubits_list=cnf["qubits_list"], 
+        device=cnf["device"], 
+        nshots=cnf["nshots"], 
+        debug=cnf.get("debug", False), 
+        args=None, 
+        input_filename=cnf.get("input"), 
+        number_of_datapoints_output=cnf.get("number_datapoints_output")
+    )
