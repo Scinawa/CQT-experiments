@@ -135,4 +135,8 @@ if __name__ == "__main__":
     parser.add_argument("--device", choices=["numpy", "sinq20"], default="numpy")
     args = parser.parse_args()
 
+<<<<<<< HEAD
     main(args.device, args.nshots, args.qubits_list)
+=======
+    main(args.device, args.nshots, args.qubits_list)
+>>>>>>> origin/main

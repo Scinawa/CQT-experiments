@@ -7,6 +7,7 @@ from git.repo.base import Repo
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO_ROOT / "data"
 
+CURRENT_CALIBRATION_DIRECTORY = "/mnt/scratch/qibolab_platforms_nqch"
 
 def output_dir_for(script_file: str, device: str | Path) -> Path:
     """Return data/<script-dir-name>/ for the given script file."""
