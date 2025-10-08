@@ -10,6 +10,7 @@ from datetime import datetime
 import sys
 from pathlib import Path
 import json
+import configparser
 
 # Base path to the scripts directory (run from project root)
 base_path = "scripts/"
@@ -23,42 +24,66 @@ if __package__ is None or __package__ == "":
 from scripts.config import CURRENT_CALIBRATION_DIRECTORY  # now this works in both cases
 
 
-
-def load_experiment_list(config_file="scripts/experiment_list.txt"):
+def load_experiment_list(config_file="scripts/experiment_list.ini"):
     """
-    Load experiment list from a configuration file.
+    Load experiment list from an INI configuration file.
 
     Args:
-        config_file (str): Path to the experiment list configuration file
+        config_file (str): Path to the experiment list INI configuration file
 
     Returns:
-        list: List of experiment names (uncommented lines)
+        dict: Dictionary with sections as keys and lists of experiments as values
     """
-    experiments = []
+    experiments = {}
     try:
-        with open(config_file, "r") as f:
-            for line in f:
-                # Strip whitespace and skip empty lines
-                line = line.strip()
-                if not line:
-                    continue
-                # Skip comment lines (starting with #)
-                if line.startswith("#"):
-                    continue
-                # Add the experiment name
-                experiments.append(line)
+        config = configparser.ConfigParser()
+        config.read(config_file)
+
+        for section in config.sections():
+            experiments[section] = []
+            for key, value in config[section].items():
+                # Only include experiments that are enabled (not commented out)
+                if not key.startswith("#") and value.lower() in [
+                    "enabled",
+                    "true",
+                    "1",
+                ]:
+                    experiments[section].append(key)
+
     except FileNotFoundError:
-        logging.warning(
-            f"Experiment list file '{config_file}' not found."
-        )
+        logging.warning(f"Experiment list file '{config_file}' not found.")
         sys.exit(1)
     except Exception as e:
         logging.error(f"Error reading experiment list from '{config_file}': {e}")
+        return {}
     return experiments
 
 
 # Load experiment list from configuration file
-experiment_list = load_experiment_list()
+experiment_groups = load_experiment_list()
+
+
+def get_available_qubits(hash_id):
+    """
+    Extract available qubits from bell_tomography results.
+
+    Args:
+        hash_id (str): Git commit hash
+
+    Returns:
+        dict: Dictionary with qubit counts as keys and [qubit_list, fidelity] as values
+    """
+    results_file = f"data/bell_tomography/{hash_id}/results.json"
+    try:
+        with open(results_file, "r") as f:
+            results = json.load(f)
+        # Extract best_qubits information from results
+        best_qubits = results.get("best_qubits", {})
+        return best_qubits
+    except Exception as e:
+        logging.error(f"Could not read bell_tomography results: {e}")
+        # fallback with dummy data
+        raise e
 
 
 def parse_args():
@@ -80,12 +105,7 @@ def parse_args():
         choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
         help="Logging level.",
     )
-    parser.add_argument(
-        "--experiments",
-        nargs="+",
-        default=experiment_list,
-        help="List of experiment subfolders to run.",
-    )
+
     return parser.parse_args()
 
 
@@ -152,6 +172,7 @@ def run_script(logger: logging.Logger, script_path: str, device: str, tag: str) 
         logger.exception(f"Error occurred while running {script_path}")
         return 1
 
+
 def copytree_safe(src: Path, dst: Path, ignore_dirs=None):
     """
     Recursively copy directory `src` into `dst`, skipping directories in `ignore_dirs`
@@ -201,7 +222,6 @@ def main():
     # Copy /mnt/scratch/qibolab_platforms_nqch into data/<hash_id>/
     calibration_dir = os.path.join("data", hash_id)
 
-
     try:
         # Copy, skipping .git and continuing on any copy errors
         copytree_safe(
@@ -217,7 +237,9 @@ def main():
             "commit_hash": hash_id,
             "commit_message": commit.message.strip(),
             "experiment_date": datetime.now().strftime(time_format),
-            "calibration_date": datetime.fromtimestamp(commit.committed_date).strftime(time_format),
+            "calibration_date": datetime.fromtimestamp(commit.committed_date).strftime(
+                time_format
+            ),
         }
 
         # Write commit info to JSON file
@@ -227,7 +249,6 @@ def main():
 
     except Exception as e:
         logger.error(f"Failed to copy calibration directory: {e}")
-
 
     # Remove the .git directory inside the copied calibration directory via shell
     git_dir = os.path.join(calibration_dir, ".git")
@@ -243,13 +264,75 @@ def main():
                 logger.exception(f"Fallback removal failed for {git_dir}")
 
     overall_rc = 0
-    for subfolder in args.experiments:
-        script_path = os.path.join(base_path, subfolder, "main.py")
+
+    # Phase 1: Run calibration experiments
+    logger.info("Phase 1: Running calibration experiments")
+    for experiment in experiment_groups.get("calibration", []):
+        script_path = os.path.join(base_path, experiment, "main.py")
         print("\n\n\n")
-        rc = run_script(logger, script_path, args.device, subfolder)
-        overall_rc = overall_rc or rc  # keep first non-zero
+        rc = run_script(logger, script_path, args.device, experiment)
+        overall_rc = overall_rc or rc
+
+    # Get available qubits from bell_tomography results
+    best_qubits = get_available_qubits(hash_id)
+    logger.info(f"Best qubits found: {best_qubits}")
+
+    # Phase 2: Run qubit-specific experiments based on available qubits
+    logger.info("Phase 2: Running qubit-specific experiments")
+
+    # Run experiments for each available qubit count
+    for qubit_count_str, qubit_data in best_qubits.items():
+        section_name = qubit_count_str
+        if section_name in experiment_groups:
+            qubit_list = qubit_data[
+                0
+            ]  # Extract the qubit list from [qubit_list, fidelity]
+            fidelity = qubit_data[1]
+            logger.info(
+                f"Running {qubit_count_str}-qubit experiments with qubits {qubit_list} (fidelity: {fidelity:.4f})"
+            )
+
+            for experiment in experiment_groups[section_name]:
+                script_path = os.path.join(base_path, experiment, "main.py")
+                print("\n\n\n")
+                # Pass qubit list to the experiment
+                qubit_list_str = [str(q) for q in qubit_list]
+                cmd_args = ["--device", args.device, "--qubits-list"] + qubit_list_str
+                rc = run_script_with_args(logger, script_path, cmd_args, experiment)
+                overall_rc = overall_rc or rc
 
     sys.exit(overall_rc)
+
+
+def run_script_with_args(
+    logger: logging.Logger, script_path: str, cmd_args: list, tag: str
+) -> int:
+    if not os.path.exists(script_path):
+        logger.warning(f"main.py not found in {tag}")
+        return 1
+
+    logger.info(f"Running {script_path} with args={cmd_args}")
+    cmd = [sys.executable, "-u", script_path] + cmd_args
+    try:
+        proc = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            bufsize=1,
+        )
+        assert proc.stdout is not None
+        for line in proc.stdout:
+            logger.info(f"[{tag}] {line.rstrip()}")
+        proc.wait()
+        if proc.returncode != 0:
+            logger.error(f"{script_path} exited with code {proc.returncode}")
+        else:
+            logger.info(f"Finished {script_path}")
+        return proc.returncode or 0
+    except Exception:
+        logger.exception(f"Error occurred while running {script_path}")
+        return 1
 
 
 if __name__ == "__main__":
