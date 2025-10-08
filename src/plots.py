@@ -572,8 +572,12 @@ def plot_reuploading_classifier(raw_data, exp_name, output_path="build/"):
         data_json = json.load(f)
 
     train_x = np.array(data_json["x_train"])
+    train_pred_errors = np.array(data_json["train_pred_errors"])
+    train_pred_errors = np.transpose(np.array([train_x[ind] for ind in train_pred_errors]))
     train_y = np.array(data_json["train_predictions"])
     test_x = np.array(data_json["x_test"])
+    test_pred_errors = np.array(data_json["test_pred_errors"])
+    test_pred_errors = np.transpose(np.array([test_x[ind] for ind in test_pred_errors]))
     test_y = np.array(data_json["test_predictions"])
     loss_history = data_json["loss_history"]
     train_acc = data_json["train_accuracy"]
@@ -591,6 +595,7 @@ def plot_reuploading_classifier(raw_data, exp_name, output_path="build/"):
     for label in np.unique(train_y):
         data_label = np.transpose(train_x[np.where(train_y == label)])
         ax_train.scatter(data_label[0], data_label[1])
+    ax_train.scatter(train_pred_errors[0], train_pred_errors[1], marker='x', color='black')
     ax_train.set_title(f"Train predictions: {train_acc} accuracy")
     ax_train.set_xlabel(r"$x$")
     ax_train.set_ylabel(r"$y$")
@@ -604,6 +609,7 @@ def plot_reuploading_classifier(raw_data, exp_name, output_path="build/"):
     for label in np.unique(test_y):
         data_label = np.transpose(test_x[np.where(test_y == label)])
         ax_test.scatter(data_label[0], data_label[1])
+    ax_test.scatter(test_pred_errors[0], test_pred_errors[1], marker='x', color='black')
     ax_test.set_title(f"Test predictions: {test_acc} accuracy")
     ax_test.set_xlabel(r"$x$")
     ax_test.set_ylabel(r"$y$")
