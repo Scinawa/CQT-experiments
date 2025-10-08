@@ -292,7 +292,7 @@ def main(qubits_list, device, nshots, debug=False, args=None, input_filename="in
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--qubits-list",
+        "--qubits_list",
         default=[0, 1, 2],
         type=int,
         nargs='+',

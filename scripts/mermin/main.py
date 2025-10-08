@@ -3,6 +3,7 @@ import os
 import json
 import argparse
 import time
+import ast
 
 # from dynaconf import Dynaconf
 
@@ -156,10 +157,10 @@ if __name__ == "__main__":
         help="Total number of qubits",
     )
     parser.add_argument(
-        "--qubit_list",
-        default=[[13, 17, 18]],
-        type=list,
-        help="Target qubits list",
+        "--qubits_list",
+        default="[13, 17, 18]",
+        type=str,
+        help="Target qubits list as string representation",
     )
     parser.add_argument(
         "--device",
@@ -174,5 +175,15 @@ if __name__ == "__main__":
         type=int,
         help="Number of shots for each circuit",
     )
-    args = vars(parser.parse_args())
-    main(**args)
+    args = parser.parse_args()
+
+    # Parse the qubit list string into actual list of integers
+    try:
+        qubits_list = ast.literal_eval(args.qubits_list)
+        # Ensure all elements are integers
+        qubits_list = [int(q) for q in qubits_list]
+    except (ValueError, SyntaxError, TypeError):
+        print(f"Error: Invalid qubit list format: {args.qubits_list}")
+        sys.exit(1)
+
+    main(args.nqubits, [qubits_list], args.device, args.nshots)

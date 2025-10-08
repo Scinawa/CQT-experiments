@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import time
 from pathlib import Path as _P
+import ast
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
@@ -122,10 +123,10 @@ def main(qubit_groups, device, nshots):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--qubit_groups",
-        default=[[17, 13, 18, 14]],
-        type=list,
-        help="Target qubits, last qubit used as ancilla",
+        "--qubits_list",
+        default="[17, 13, 18, 14]",
+        type=str,
+        help="Target qubits as string representation, last qubit used as ancilla",
     )
     parser.add_argument(
         "--device",
@@ -140,5 +141,15 @@ if __name__ == "__main__":
         type=int,
         help="Number of shots for each circuit",
     )
-    args = vars(parser.parse_args())
-    main(**args)
+    args = parser.parse_args()
+
+    # Parse the qubit list string into actual list of integers
+    try:
+        qubit_groups = ast.literal_eval(args.qubits_list)
+        # Ensure all elements are integers
+        qubit_groups = [int(q) for q in qubit_groups]
+    except (ValueError, SyntaxError, TypeError):
+        print(f"Error: Invalid qubit list format: {args.qubits_list}")
+        sys.exit(1)
+
+    main([qubit_groups], args.device, args.nshots)

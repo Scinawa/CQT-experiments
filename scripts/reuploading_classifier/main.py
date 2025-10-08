@@ -490,14 +490,14 @@ if __name__ == "__main__":
     parser.add_argument(
         "--num_train_samples",
         type=int,
-        default=10,
+        default=100,
         help="Number of train samples (default: 100)",
     )
     parser.add_argument(
         "--num_test_samples",
         type=int,
-        default=10,
-        help="Number of test samples (default: 100)",
+        default=150,
+        help="Number of test samples (default: 150)",
     )
     parser.add_argument(
         "--seed",

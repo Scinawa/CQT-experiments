@@ -6,6 +6,7 @@ import argparse
 import sys
 from pathlib import Path as _P
 import time
+import ast
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
@@ -126,13 +127,21 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--qubits_list",
-        type=int,
-        nargs="+",
-        default=[0, 1, 2],
-        help="List of qubits to use for GHZ circuit",
+        type=str,
+        default="[0, 1, 2]",
+        help="List of qubits to use for GHZ circuit as string representation",
     )
     parser.add_argument("--nshots", type=int, default=1000)
     parser.add_argument("--device", choices=["numpy", "sinq20"], default="numpy")
     args = parser.parse_args()
 
-    main(args.device, args.nshots, args.qubits_list)
+    # Parse the qubit list string into actual list of integers
+    try:
+        qubits_list = ast.literal_eval(args.qubits_list)
+        # Ensure all elements are integers
+        qubits_list = [int(q) for q in qubits_list]
+    except (ValueError, SyntaxError, TypeError):
+        print(f"Error: Invalid qubit list format: {args.qubits_list}")
+        sys.exit(1)
+
+    main(args.device, args.nshots, qubits_list)

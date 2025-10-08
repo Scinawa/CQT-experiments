@@ -209,6 +209,35 @@ def copytree_safe(src: Path, dst: Path, ignore_dirs=None):
             except Exception as e:
                 logger.warning(f"Skipping {src_file} -> {dest_file}: {e}")
 
+def run_script_with_args(
+    logger: logging.Logger, script_path: str, cmd_args: list, tag: str
+) -> int:
+    if not os.path.exists(script_path):
+        logger.warning(f"main.py not found in {tag}")
+        return 1
+
+    logger.info(f"Running {script_path} with args={cmd_args}")
+    cmd = [sys.executable, "-u", script_path] + cmd_args
+    try:
+        proc = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            bufsize=1,
+        )
+        assert proc.stdout is not None
+        for line in proc.stdout:
+            logger.info(f"[{tag}] {line.rstrip()}")
+        proc.wait()
+        if proc.returncode != 0:
+            logger.error(f"{script_path} exited with code {proc.returncode}")
+        else:
+            logger.info(f"Finished {script_path}")
+        return proc.returncode or 0
+    except Exception:
+        logger.exception(f"Error occurred while running {script_path}")
+        return 1
 
 def main():
     args = parse_args()
@@ -270,6 +299,7 @@ def main():
     for experiment in experiment_groups.get("calibration", []):
         script_path = os.path.join(base_path, experiment, "main.py")
         print("\n\n\n")
+        logger.info(f"Starting calibration experiment: {experiment}")
         rc = run_script(logger, script_path, args.device, experiment)
         overall_rc = overall_rc or rc
 
@@ -295,44 +325,16 @@ def main():
             for experiment in experiment_groups[section_name]:
                 script_path = os.path.join(base_path, experiment, "main.py")
                 print("\n\n\n")
-                # Pass qubit list to the experiment
-                qubit_list_str = [str(q) for q in qubit_list]
-                cmd_args = ["--device", args.device, "--qubits-list"] + qubit_list_str
+                # Pass qubit list to the experiment as a single bracketed string
+                qubit_list_str = f"[{', '.join(map(str, qubit_list))}]"
+                cmd_args = ["--device", args.device, "--qubits_list", qubit_list_str]
                 rc = run_script_with_args(logger, script_path, cmd_args, experiment)
                 overall_rc = overall_rc or rc
 
     sys.exit(overall_rc)
 
 
-def run_script_with_args(
-    logger: logging.Logger, script_path: str, cmd_args: list, tag: str
-) -> int:
-    if not os.path.exists(script_path):
-        logger.warning(f"main.py not found in {tag}")
-        return 1
 
-    logger.info(f"Running {script_path} with args={cmd_args}")
-    cmd = [sys.executable, "-u", script_path] + cmd_args
-    try:
-        proc = subprocess.Popen(
-            cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            bufsize=1,
-        )
-        assert proc.stdout is not None
-        for line in proc.stdout:
-            logger.info(f"[{tag}] {line.rstrip()}")
-        proc.wait()
-        if proc.returncode != 0:
-            logger.error(f"{script_path} exited with code {proc.returncode}")
-        else:
-            logger.info(f"Finished {script_path}")
-        return proc.returncode or 0
-    except Exception:
-        logger.exception(f"Error occurred while running {script_path}")
-        return 1
 
 
 if __name__ == "__main__":
