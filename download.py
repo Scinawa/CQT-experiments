@@ -167,7 +167,7 @@ def download_experiment_results(hash_id, output_dir="data_decompressed"):
                     f"Invalid parameters: hash_id='{hash_id}', experiment_name='{experiment_name}'"
                 )
                 continue
-
+            print("\n\n\n")
             try:
                 logger.info(
                     f"Downloading results for experiment: {experiment_name} with hash_id: {hash_id}"

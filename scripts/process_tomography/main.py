@@ -38,6 +38,8 @@ import argparse
 import sys
 from pathlib import Path as _P
 
+import ast
+
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
@@ -743,7 +745,16 @@ if __name__ == "__main__":
         default="numpy",
         help="Execution device",
     )
-    parser.add_argument("--nshots", type=int, default=int(1e4), help="Number of shots")
+    parser.add_argument("--nshots",
+        type=int,
+        default=int(1e4),
+        help="Number of shots",
+    )
+    parser.add_argument("--qubits_list", 
+        type=ast.literal_eval, 
+        default=[[0, 1]],
+        help="List of coupled qubit pairs, e.g. '[[0,1],[0,2],[1,4],[1,5]]'.",
+    )
     args = parser.parse_args()
 
     if args.device == "numpy":
@@ -754,10 +765,16 @@ if __name__ == "__main__":
         raise ValueError(f"Unknown device: {args.device}")
     # backend = construct_backend("qibolab", platform="sinq20")
 
+    logging.info(f"Device to perform process tomography on: {backend}")
+    logging.info(f"Number of shots to be used in process tomography: {args.nshots}")
     ### Determine qubits ###
-    single_qubit_indices = [0, 1]
+    two_qubit_pairs = args.qubits_list
+    logging.info(f"Coupled qubits: {args.qubits_list}")
+    single_qubit_indices = sorted(set(q for pair in two_qubit_pairs for q in pair))
+    logging.info(f"To perform process tomography on single qubits {single_qubit_indices}")
+    # single_qubit_indices = [0, 1]
     # single_qubit_indices = np.arange(0, 20, 1)
-    two_qubit_pairs = [[0, 1]]
+    # two_qubit_pairs = [[0, 1]]
     # two_qubit_pairs = [[0, 1], [0, 3], [1, 4], [2, 3], [2, 7], [3, 4], [3, 8], [4, 5], [4, 9], [5, 6], [5, 10], [6, 11], [7, 8], [7, 12], [8, 9], [8, 13], [9, 10], [9, 14], [10, 11], [10, 15], [11, 16], [12, 13], [13, 14], [13, 17], [14, 15], [14, 18], [15, 16], [15, 19], [17, 18], [18, 19]]
 
     from qibo.transpiler import NativeGates, Passes, Unroller

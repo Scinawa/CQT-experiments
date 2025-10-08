@@ -312,6 +312,25 @@ def prepare_template_context(cfg):
         context["experiment_date_left"] = commit_info.get(
             "experiment_date", "Unknown Date"
         )
+
+        # Add right column data for Report of Changes section
+        try:
+            commit_info_right = fl.process_commit_info(
+                base_path / cfg.experiment_right / "commit_info.json"
+            )
+            context["note_right"] = commit_info_right.get("commit_message", [])
+            context["calibration_date_right"] = commit_info_right.get(
+                "calibration_date", "Unknown Date"
+            )
+            context["experiment_date_right"] = commit_info_right.get(
+                "experiment_date", "Unknown Date"
+            )
+        except Exception as e:
+            logging.warning(f"Error reading right experiment commit info: {e}")
+            context["note_right"] = "N/A"
+            context["calibration_date_right"] = "Unknown Date"
+            context["experiment_date_right"] = "Unknown Date"
+
         import pdb
 
         # pdb.set_trace()
@@ -353,11 +372,32 @@ def prepare_template_context(cfg):
             config.connectivity,
             config.pos,
         )
+
+        # Extract best qubits data
+        context["best_qubits_left"] = fl.extract_best_qubits(
+            os.path.join("data", "bell_tomography", cfg.experiment_left, "results.json")
+        )
+        context["best_qubits_right"] = fl.extract_best_qubits(
+            os.path.join(
+                "data", "bell_tomography", cfg.experiment_right, "results.json"
+            )
+        )
+        # import pdb
+
+        # pdb.set_trace()
+
     except Exception as e:
         print(e)
         logging.error(f"Error preparing fidelity plots: {e}")
         context["plot_exp"] = "placeholder.png"
         context["plot_right"] = "placeholder.png"
+        # Set default best qubits data on error
+        context["best_qubits_left"] = {
+            k: {"qubits": "N/A", "fidelity": "N/A"} for k in ["2", "3", "4", "5"]
+        }
+        context["best_qubits_right"] = {
+            k: {"qubits": "N/A", "fidelity": "N/A"} for k in ["2", "3", "4", "5"]
+        }
 
     # logging.info("Basic context dictionary prepared")
 
