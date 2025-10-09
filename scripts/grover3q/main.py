@@ -142,14 +142,14 @@ if __name__ == "__main__":
         help="Number of shots for each circuit",
     )
     args = parser.parse_args()
-
+    
     # Parse the qubit list string into actual list of integers
     try:
-        qubit_groups = ast.literal_eval(args.qubits_list)
+        qubits_list = ast.literal_eval(args.qubits_list)
         # Ensure all elements are integers
-        qubit_groups = [int(q) for q in qubit_groups]
+        qubits_list = [int(q) for q in qubits_list]
     except (ValueError, SyntaxError, TypeError):
         print(f"Error: Invalid qubit list format: {args.qubits_list}")
         sys.exit(1)
-
-    main([qubit_groups], args.device, args.nshots)
+    
+    main([qubits_list], args.device, args.nshots)
