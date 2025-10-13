@@ -31,7 +31,10 @@ from qiboml.interfaces.pytorch import QuantumModel
 from qiboml.operations.differentiation import PSR
 from qiboml import ndarray
 
-# from plots import plot_reuploading_classifier
+'''
+from plots import plot_reuploading_classifier
+from datetime import date
+'''
 
 os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path(
     "/mnt/scratch/qibolab_platforms_nqch"
@@ -39,10 +42,8 @@ os.environ["QIBOLAB_PLATFORMS"] = pathlib.Path(
 
 import sys
 from pathlib import Path as _P
-
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
-
 
 # Prepare the training dataset
 def _circle(points):
@@ -95,8 +96,6 @@ def trainable_circuit(nqubits, entanglement=True, density_matrix=False):
 def predict(model, data):
     test_pred = torch.as_tensor([torch.sigmoid(model(x)) for x in data])
     test_pred = test_pred.to("cpu")
-    return test_pred.tolist()
-
     test_pred_int = torch.round(test_pred)
 
     return test_pred_int.tolist()
@@ -112,13 +111,17 @@ def compute_accuracy(labels, predictions, tolerance=1e-2):
         float with the proportion of states classified successfully.
     """
     accur = 0
-    for l, p in zip(labels, predictions):
+    error_list = []
+    #for l, p in zip(labels, predictions):
+    for ind, (l, p) in enumerate(zip(labels, predictions)):
         if np.allclose(l, p, rtol=0.0, atol=tolerance):
             accur += 1
+        else:
+            error_list.append(ind)
 
     accur = accur / len(labels)
 
-    return accur
+    return accur, error_list
 
 
 # RxRy Encoding
@@ -259,7 +262,7 @@ def main(
     num_test_samples,
     seed,
     gpu,
-    load_and_test,
+    training,
 ):
     nqubits = 1
     torch_device = torch.device("cpu")
@@ -310,7 +313,7 @@ def main(
     np.random.seed(seed)
 
     # Set up classical preprocessing
-    if load_and_test:
+    if not training:
         file_path = f"{script_directory}/input_parameters.pkl"
         linear_encoder = TrainedLinearEncoder(file_path).double()
         nlayers = 10
@@ -355,7 +358,7 @@ def main(
     loss_history = []
     final_loss = None
 
-    if not load_and_test:
+    if training:
         # Optimizer & loss
         optimizer = optim.Adam(model.parameters(), lr=lr)
         criterion = F.binary_cross_entropy_with_logits
@@ -396,19 +399,20 @@ def main(
     predict_test_end = time.time()
     predict_test_duration = predict_test_end - predict_test_start
 
-    runtime = predict_train_duration + predict_test_duration
-
-    train_acc = compute_accuracy(y_train, train_preds)
-    test_acc = compute_accuracy(y_test, test_preds)
+    train_acc, train_pred_errors = compute_accuracy(y_train, train_preds)
+    test_acc, test_pred_errors = compute_accuracy(y_test, test_preds)
 
     # Generate results dictionary and save results and metadata to json files
     report_data = {
-        "number_of_gates": nlayers * 2 * nqubits,
-        "depth": nlayers * 2,
+        "number_of_gates": nlayers*2*nqubits,
+        "depth": nlayers*2,
         "nshots": nshots,
         "final_loss": final_loss,
         "train_accuracy": train_acc,
         "test_accuracy": test_acc,
+        "train_pred_errors": train_pred_errors,
+        "test_pred_errors": test_pred_errors,
+        "runtime": duration,
         "x_train": x_train.detach().numpy().tolist(),
         "train_predictions": train_preds,
         "x_test": x_test.detach().numpy().tolist(),
@@ -419,9 +423,7 @@ def main(
         "final_RZ_angle_check": model[-1].circuit_parameters.detach().numpy().tolist(),
         "predict_train_duration": predict_train_duration,
         "predict_test_duration": predict_test_duration,
-        "runtime": f"{runtime:.2f} seconds.",
-        "qubits_used": [qubit_id],
-        "description": f"Reuploading classifier with {nqubits} qubits, {nlayers} layers, depth of {nlayers*2}, {nshots} shots.",
+        "description": f"Reuploading classifier with {nqubits} qubits, {nlayers} layers, depth of {nlayers*2}, {nshots} shots."
     }
 
     static_meta_data = {
@@ -436,7 +438,7 @@ def main(
         "num_test_samples": num_test_samples,
         "seed": seed,
         "gpu": gpu,
-        "load_and_test": load_and_test,
+        "training": training,
     }
 
     with open(os.path.join(output_dir, f"results.json"), "w") as file:
@@ -444,11 +446,12 @@ def main(
     with open(os.path.join(output_dir, f"settings.json"), "w") as file:
         json.dump(static_meta_data, file, indent=4)
 
-    """
+
+    '''
     # Load from results.json and generate plots
     raw_data = os.path.join(output_dir, f"results.json")
-    plot_reuploading_classifier(raw_data, exp_name='15092025', output_path=output_dir)
-    """
+    plot_reuploading_classifier(raw_data, exp_name=date.today(), output_path=output_dir)
+    '''
 
 
 if __name__ == "__main__":
@@ -482,10 +485,10 @@ if __name__ == "__main__":
         "--nshots", type=int, default=500, help="Number of shots (default: 500)"
     )
     ##parser.add_argument(
-    ##   "--grid",
-    ##   type=int,
-    ##   default=11,
-    ##   help="Number of grid points along both paramter directions for generating training dataset (default: 11)",
+     ##   "--grid",
+     ##   type=int,
+     ##   default=11,
+     ##   help="Number of grid points along both paramter directions for generating training dataset (default: 11)",
     ##)
     parser.add_argument(
         "--num_train_samples",
@@ -496,8 +499,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--num_test_samples",
         type=int,
-        default=150,
-        help="Number of test samples (default: 150)",
+        default=100,
+        help="Number of test samples (default: 100)",
     )
     parser.add_argument(
         "--seed",
@@ -512,10 +515,10 @@ if __name__ == "__main__":
         help="Option to run job on GPU when backend is qiboml. Enter GPU cuda ID (default: None)",
     )
     parser.add_argument(
-        "--load_and_test",
-        type=bool,
-        default=True,
-        help="Option to load specific trained model (nlayers=10, seed=48) instead of training (default: True)",  # False = training mode, warning long duration on QPU
+        "--training", 
+        action="store_true", 
+        help="Trigger training=True to perform training on model, otherwise load trained weights into model",
     )
     args = vars(parser.parse_args())
+    #print(args)
     main(**args)
