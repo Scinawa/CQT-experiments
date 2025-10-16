@@ -7,6 +7,7 @@ from timeit import time
 import tqdm
 from dataclasses import dataclass
 from functools import cached_property
+from datetime import date
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -447,7 +448,7 @@ def main(
     '''
     # Load from results.json and generate plots
     raw_data = os.path.join(output_dir, f"results.json")
-    plot_reuploading_classifier(raw_data, exp_name='08102025', output_path=output_dir)
+    plot_reuploading_classifier(raw_data, exp_name=str(date.today()), output_path=output_dir)
     '''
 
 
