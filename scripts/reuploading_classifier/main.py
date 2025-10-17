@@ -354,7 +354,7 @@ def main(
     # Full Model
     model = nn.Sequential(linear_encoder, q_model)
 
-    duration = None
+    duration = 0
     loss_history = []
     final_loss = None
 
@@ -402,8 +402,11 @@ def main(
     train_acc, train_pred_errors = compute_accuracy(y_train, train_preds)
     test_acc, test_pred_errors = compute_accuracy(y_test, test_preds)
 
+    duration += predict_train_duration + predict_test_duration
+
     # Generate results dictionary and save results and metadata to json files
     report_data = {
+        "qubits_used": [qubit_id],
         "number_of_gates": nlayers*2*nqubits,
         "depth": nlayers*2,
         "nshots": nshots,
