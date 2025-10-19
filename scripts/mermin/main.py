@@ -71,6 +71,32 @@ def create_mermin_circuit(qubits, nqubits=20):
     c.add(gates.RZ(qubits[0], 0))
     return c
 
+def create_mermin_circuit_edges(qubit_edge_list, nqubits=20):
+    edges_left = qubit_edge_list.copy()
+
+    c = Circuit(20)
+
+    qubits_done = set()
+    edge = qubit_edge_list[0]
+    edges_left.remove(edge)
+    qubits_done |= set(edge)
+
+    c.add(gates.H(edge[0]))
+    c.add(gates.CNOT(edge[0], edge[1]))
+
+    while len(edges_left) > 0:
+        for edge in edges_left:
+            if len(set(edge)&qubits_done)==2:
+                edges_left.remove(edge) 
+                continue
+            elif len(set(edge)&qubits_done)==1:
+                q1 = list(set(edge)&qubits_done)[0]
+                q2 = list(set(edge)-qubits_done)[0]
+                c.add(gates.CNOT(q1, q2))
+                edges_left.remove(edge)
+                qubits_done |= set(edge)
+    return c
+
 
 def create_mermin_circuits(qubits: list[int], readout_basis: list[str]):
     c = create_mermin_circuit(qubits)
@@ -86,13 +112,37 @@ def create_mermin_circuits(qubits: list[int], readout_basis: list[str]):
     return circuits
 
 
-def main(nqubits, qubit_list, device, nshots):
+def create_mermin_circuits_edges(qubit_edge_list: list[list[int]], readout_basis: list[str]):
+    c = create_mermin_circuit_edges(qubit_edge_list)
+    circuits = [c.copy(deep=True) for _ in readout_basis]
+
+    qubits = set()
+    for edge in qubit_edge_list:
+        qubits |= set(edge)
+    qubits = list(qubits)
+
+    for circuit, basis in zip(circuits, readout_basis):
+        for q, base in zip(qubits, basis):
+            if base == "Y":
+                circuit.add(gates.SDG(q))
+            circuit.add(gates.H(q))
+            circuit.add(gates.M(q))
+
+    return circuits
+
+
+def main(nqubits, qubit_edge_list, device, nshots):
     results = dict()
     data = dict()
 
+    qubits = set()
+    for edge in qubit_edge_list:
+        qubits |= set(edge)
+    qubits = list(qubits)
+
     results["x"] = {}
     results["y"] = {}
-    data["qubit_list"] = qubit_list
+    data["qubit_edge_list"] = qubit_edge_list
     data["nqubits"] = nqubits
     data["nshots"] = nshots
     data["device"] = device
@@ -113,39 +163,38 @@ def main(nqubits, qubit_list, device, nshots):
     coeff = get_mermin_coefficients(poly)
     basis = get_readout_basis(poly)
 
-    for qubits in qubit_list:
-        circuits = create_mermin_circuits(qubits, basis)
-        theta_array = np.linspace(0, 2 * np.pi, 50)
-        result = np.zeros(len(theta_array))
-        for idx, theta in enumerate(theta_array):
-            frequencies = []
-            for circ in circuits:
-                circ.set_parameters([theta])
-                start_time = time.time()
-                freq = circ(nshots=nshots).frequencies()
-                end_time = time.time()
-                _tmp_runtimes.append(end_time - start_time)
+    circuits = create_mermin_circuits_edges(qubit_edge_list, basis)
+    theta_array = np.linspace(0, 2 * np.pi, 50)
+    result = np.zeros(len(theta_array))
+    for idx, theta in enumerate(theta_array):
+        frequencies = []
+        for circ in circuits:
+            circ.set_parameters([theta])
+            start_time = time.time()
+            freq = circ(nshots=nshots).frequencies()
+            end_time = time.time()
+            _tmp_runtimes.append(end_time - start_time)
 
-                frequencies.append(freq)
-            result[idx] = compute_mermin(frequencies, coeff)
+            frequencies.append(freq)
+        result[idx] = compute_mermin(frequencies, coeff)
 
-        results["x"][f"{qubits}"] = theta_array.tolist()
-        results["y"][f"{qubits}"] = result.tolist()
+    results["x"][f"{qubits}"] = theta_array.tolist()
+    results["y"][f"{qubits}"] = result.tolist()
 
-        runtime_seconds = (
-            sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
-        )
-        results["runtime"] = f"{runtime_seconds:.2f} seconds."
-        results["description"] = f"Mermin's algorithm for {nqubits} qubits."
-        results["qubits_used"] = qubit_list
+    runtime_seconds = (
+        sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
+    )
+    results["runtime"] = f"{runtime_seconds:.2f} seconds."
+    results["description"] = f"Mermin's algorithm for {nqubits} qubits."
+    results["qubits_used"] = qubits
 
-        # Write to data/<scriptname>/<device>/results.json
-        out_dir = config.output_dir_for(__file__, device)
-        out_dir.mkdir(parents=True, exist_ok=True)
-        with open(out_dir / "results.json", "w", encoding="utf-8") as f:
-            json.dump(results, f, ensure_ascii=False, indent=4)
-        with open(out_dir / f"data_mermin_{nqubits}q.json", "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=4)
+    # Write to data/<scriptname>/<device>/results.json
+    out_dir = config.output_dir_for(__file__, device)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    with open(out_dir / "results.json", "w", encoding="utf-8") as f:
+        json.dump(results, f, ensure_ascii=False, indent=4)
+    with open(out_dir / f"data_mermin_{nqubits}q.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
@@ -157,8 +206,8 @@ if __name__ == "__main__":
         help="Total number of qubits",
     )
     parser.add_argument(
-        "--qubits_list",
-        default="[13, 17, 18]",
+        "--qubit_edge_list",
+        default="[[18, 14], [18, 19]]",
         type=str,
         help="Target qubits list as string representation",
     )

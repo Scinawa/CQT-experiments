@@ -30,7 +30,7 @@ def grover_2q(qubits, target):
     return c
 
 
-def main(qubits_list, device, nshots):
+def main(qubit_edge_list, device, nshots):
     if device == "numpy":
         set_backend("numpy")
     else:
@@ -41,10 +41,12 @@ def main(qubits_list, device, nshots):
 
     target = "11"
 
+    qubits_list = qubit_edge_list[0]
+
     results["success_rate"] = {}
     results["plotparameters"] = {}
     results["plotparameters"]["frequencies"] = {}
-    data["qubit_pairs"] = qubits_list
+    data["qubit_edge_list"] = qubit_edge_list
     data["nshots"] = nshots
     data["device"] = device
     data["target"] = target
@@ -91,8 +93,8 @@ def main(qubits_list, device, nshots):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--qubits_list",
-        default="[13, 14]",
+        "--qubit_edge_list",
+        default="[[13, 14]]",
         type=str,
         help="Target qubit list as string representation",
     )
