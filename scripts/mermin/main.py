@@ -131,18 +131,18 @@ def create_mermin_circuits_edges(qubit_edge_list: list[list[int]], readout_basis
     return circuits
 
 
-def main(nqubits, qubit_edge_list, device, nshots):
+def main(nqubits, qubits_list, device, nshots):
     results = dict()
     data = dict()
 
     qubits = set()
-    for edge in qubit_edge_list:
+    for edge in qubits_list:
         qubits |= set(edge)
     qubits = list(qubits)
 
     results["x"] = {}
     results["y"] = {}
-    data["qubit_edge_list"] = qubit_edge_list
+    data["qubits_list"] = qubits_list
     data["nqubits"] = nqubits
     data["nshots"] = nshots
     data["device"] = device
@@ -163,7 +163,7 @@ def main(nqubits, qubit_edge_list, device, nshots):
     coeff = get_mermin_coefficients(poly)
     basis = get_readout_basis(poly)
 
-    circuits = create_mermin_circuits_edges(qubit_edge_list, basis)
+    circuits = create_mermin_circuits_edges(qubits_list, basis)
     theta_array = np.linspace(0, 2 * np.pi, 50)
     result = np.zeros(len(theta_array))
     for idx, theta in enumerate(theta_array):
@@ -206,7 +206,7 @@ if __name__ == "__main__":
         help="Total number of qubits",
     )
     parser.add_argument(
-        "--qubit_edge_list",
+        "--qubits_list",
         default="[[18, 14], [18, 19]]",
         type=str,
         help="Target qubits list as string representation",
@@ -230,9 +230,9 @@ if __name__ == "__main__":
     try:
         qubits_list = ast.literal_eval(args.qubits_list)
         # Ensure all elements are integers
-        qubits_list = [int(q) for q in qubits_list]
+        qubits_list = [[int(q) for q in qubits_list[i]] for i in range(len(qubits_list))]
     except (ValueError, SyntaxError, TypeError):
         print(f"Error: Invalid qubit list format: {args.qubits_list}")
         sys.exit(1)
 
-    main(args.nqubits, [qubits_list], args.device, args.nshots)
+    main(args.nqubits, qubits_list, args.device, args.nshots)

@@ -79,7 +79,7 @@ def build_qubits_from_edges(qubit_edge_list):
     return qubits
 
 
-def main(qubit_edge_list, device, nshots):
+def main(qubits_list, device, nshots):
     if device == "numpy":
         set_backend("numpy")
     else:
@@ -93,14 +93,14 @@ def main(qubit_edge_list, device, nshots):
     results["success_rate"] = {}
     results["plotparameters"] = {}
     results["plotparameters"]["frequencies"] = {}
-    data["qubit_pairs"] = qubit_edge_list
+    data["qubits_list"] = qubits_list
     data["nshots"] = nshots
     data["device"] = device
     data["target"] = target
 
     _tmp_runtimes = []
 
-    qubits = build_qubits_from_edges(qubit_edge_list)
+    qubits = build_qubits_from_edges(qubits_list)
 
     c = grover_3q(qubits, target)
 
@@ -125,7 +125,7 @@ def main(qubit_edge_list, device, nshots):
     results["description"] = (
         f"Grover's algorithm for 3 qubits executed on {device} backend with {nshots} shots per circuit. \n We measure the success rate of finding the target state '{target}' for each pair of qubits in {qubit_groups}."
     )
-    results["qubits_used"] = qubit_groups
+    results["qubits_used"] = qubits
 
     # Write to data/<scriptname>/<device>/results.json
     out_dir = config.output_dir_for(__file__, device)
@@ -142,7 +142,7 @@ def main(qubit_edge_list, device, nshots):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--qubit_edge_list",
+        "--qubits_list",
         default="[[18, 14], [18, 19]]",
         type=str,
         help="Target qubits as string representation, last qubit used as ancilla",
@@ -166,9 +166,9 @@ if __name__ == "__main__":
     try:
         qubits_list = ast.literal_eval(args.qubits_list)
         # Ensure all elements are integers
-        qubits_list = [int(q) for q in qubits_list]
+        qubits_list = [[int(q) for q in qubits_list[i]] for i in range(len(qubits_list))]
     except (ValueError, SyntaxError, TypeError):
         print(f"Error: Invalid qubit list format: {args.qubits_list}")
         sys.exit(1)
     
-    main([qubits_list], args.device, args.nshots)
+    main(qubits_list, args.device, args.nshots)
