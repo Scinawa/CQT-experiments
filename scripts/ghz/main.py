@@ -81,8 +81,7 @@ def prepare_ghz_results(frequencies, nshots, nqubits):
     return {"success_rate": success_rate, "plotparameters": {"frequencies": freq_dict}}
 
 
-# def run_ghz_experiment(qubits_list, device, nshots, root_path):
-def run_ghz_experiment(qubits_list, device, nshots):
+def run_ghz_experiment(qubits_list, device, nshots, root_path):
     nqubits = len(qubits_list)
 
     if device == "numpy":
