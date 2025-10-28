@@ -102,7 +102,7 @@ def run_ghz_experiment(qubits_list, device, nshots, root_path):
     if platform:
         with Executor.open(
             "myexec",
-            # path=root_path,
+            path=root_path,
             platform=platform,
             targets=qubits_list,
             update=True,
