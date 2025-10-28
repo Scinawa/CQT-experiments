@@ -184,7 +184,7 @@ if __name__ == "__main__":
     try:
         qubits_list = args.qubits_list
     except (ValueError, SyntaxError, TypeError):
-        print(f"Error: Invalid qubit list format: {args.chain_of_qubits}")
+        print(f"Error: Invalid qubit list format: {args.qubits_list}")
         sys.exit(1)
 
     main(args.device, args.nshots, qubits_list)
