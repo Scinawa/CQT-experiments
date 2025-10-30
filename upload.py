@@ -1,67 +1,32 @@
+"""
+Clean, structured script for uploading calibration and experiment data.
+"""
+
 import os
+import json
+import toml
 import tarfile
-import argparse
-import logging
 import tempfile
 import shutil
+import logging
+import argparse
 import atexit
-import toml  # Added for reading .secrets.toml
-from git import Repo  # Add this import
+from pathlib import Path
+from git import Repo
 
-from clientdb.client import (
-    set_server,
-    calibrations_upload, calibrations_list, calibrations_download, calibrations_get_latest,
-    results_upload, results_download,unpack,test,results_list
-)
-
-# from scripts.scripts_executor import experiment_list
+from scripts.config import RUN_ID_FILE, load_experiment_list
+from utils import upload_calibration, upload_experiment
 
 
-
-def load_experiment_list(config_file="scripts/experiment_list.txt"):
-    """
-    Load experiment list from a configuration file.
-
-    Args:
-        config_file (str): Path to the experiment list configuration file
-
-    Returns:
-        list: List of experiment names (uncommented lines)
-    """
-    experiments = []
-    try:
-        with open(config_file, "r") as f:
-            for line in f:
-                # Strip whitespace and skip empty lines
-                line = line.strip()
-                if not line:
-                    continue
-                # Skip comment lines (starting with #)
-                if line.startswith("#"):
-                    continue
-                # Add the experiment name
-                experiments.append(line)
-    except FileNotFoundError:
-        logging.warning(
-            f"Experiment list file '{config_file}' not found. Using fallback list."
-        )
-        # Fallback to original hardcoded list if file not found
-        experiments = ["mermin"]
-    except Exception as e:
-        logging.error(f"Error reading experiment list from '{config_file}': {e}")
-        experiments = ["mermin"]
-
-    return experiments
+logger = logging.getLogger(__name__)
 
 
-
-def setup_logging(log_level):
-    """Setup logging configuration"""
-    # Ensure logs directory exists
+def setup_logging(log_level: str):
+    """Setup logging configuration."""
     os.makedirs('logs', exist_ok=True)
     
     logging.basicConfig(
-        level=log_level,
+        level=getattr(logging, log_level),
         format='%(asctime)s - %(levelname)s - %(message)s',
         handlers=[
             logging.StreamHandler(),
@@ -70,167 +35,302 @@ def setup_logging(log_level):
     )
 
 
-def upload_calibration_compressed(src_dir, hash_id, notes=""):
+def get_server_credentials(secrets_path: str = ".secrets.toml") -> tuple[str, str]:
     """
-    Compress a directory and upload it as calibration data.
+    Load server URL and API token from secrets file.
     
     Args:
-        src_dir (str): Path to the source directory to compress
-        hash_id (str): Hash ID for the calibration
-        notes (str): Optional notes for the upload
-        
+        secrets_path: Path to the secrets TOML file.
+    
     Returns:
-        str: The archive filename that was created
+        (server_url, api_token): Server credentials.
+    
+    Raises:
+        ValueError: If credentials are missing.
+        Exception: If file cannot be read.
     """
-    logger = logging.getLogger(__name__)
+    secrets = toml.load(secrets_path)
+    server_url = secrets.get("qibodbhost")
+    api_token = secrets.get("qibodbkey")
+    
+    if not server_url or not api_token:
+        raise ValueError("qibodbhost or qibodbkey missing in secrets file")
+    
+    return server_url, api_token
+
+
+def get_run_id(path: str = RUN_ID_FILE) -> str:
+    """
+    Load run ID from JSON file.
+    
+    Args:
+        path: Path to the run ID file.
+    
+    Returns:
+        Run ID as a string.
+    
+    Raises:
+        ValueError: If run_id is missing from the file.
+        Exception: If file cannot be read.
+    """
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    
+    run_id = data.get("run_id") or data.get("experiment_id")
+    if not run_id:
+        raise ValueError("run_id missing from file")
+    
+    return str(run_id)
+
+
+def prepare_calibration_directory(hash_id: str, calibration_source: str) -> str:
+    """
+    Prepare calibration directory. If hash_id is "latest", copy from source.
+    
+    Args:
+        hash_id: Hash ID for the calibration (or "latest").
+        calibration_source: Source directory to copy calibration from.
+    
+    Returns:
+        (actual_hash_id, calibration_dir): Updated hash ID and directory path.
+    """
+    if hash_id == "latest":
+        repo = Repo(calibration_source)
+        actual_hash_id = repo.commit().hexsha
+        calibration_dir = os.path.join("data", actual_hash_id)
+        
+        if not os.path.exists(calibration_dir):
+            logger.info(f"Copying {calibration_source} to {calibration_dir}")
+            shutil.copytree(calibration_source, calibration_dir)
+        
+        return actual_hash_id, calibration_dir
+    else:
+        return hash_id, f"./data/{hash_id}"
+
+
+def compress_directory(src_dir: str, output_path: str) -> str:
+    """
+    Compress a directory into a tar.gz archive.
+    
+    Args:
+        src_dir: Source directory to compress.
+        output_path: Path for the output archive.
+    
+    Returns:
+        Path to the created archive.
+    
+    Raises:
+        FileNotFoundError: If source directory doesn't exist.
+    """
+    if not os.path.isdir(src_dir):
+        raise FileNotFoundError(f"Source directory not found: {src_dir}")
+    
+    logger.debug(f"Creating archive from {src_dir}")
+    with tarfile.open(output_path, "w:gz") as tar:
+        tar.add(src_dir, arcname=os.path.basename(src_dir))
+    
+    logger.debug(f"Created archive: {output_path}")
+    return output_path
+
+
+def upload_calibration_data(
+    calibration_dir: str,
+    hash_id: str,
+    notes: str,
+    server_url: str,
+    api_token: str
+):
+    """
+    Compress and upload calibration directory.
+    
+    Args:
+        calibration_dir: Directory containing calibration data.
+        hash_id: Hash ID for the calibration.
+        notes: Notes for the upload.
+        server_url: Server URL.
+        api_token: API token.
+    
+    Raises:
+        Exception: If compression or upload fails.
+    """
     archive_name = f"{hash_id}.tar.gz"
     
-    if not os.path.isdir(src_dir):
-        error_msg = f"Source directory not found: {src_dir}"
-        logger.error(error_msg)
-        raise FileNotFoundError(error_msg)
-
-    logger.info(f"Creating archive from {src_dir}")
-    with tarfile.open(archive_name, "w:gz") as tar:
-        tar.add(src_dir, arcname=os.path.basename(src_dir))
-
-    logger.debug(f"Created archive: {archive_name}")
-
     try:
-        calibrations_upload(hashID=hash_id, notes=notes, files=[archive_name])
-        logger.info(f"Successfully uploaded calibration data with hash ID: {hash_id}")
-    except Exception as e:
-        logger.error(f"Failed to upload calibration data: {e}")
-        raise
+        # Compress calibration directory
+        compress_directory(calibration_dir, archive_name)
+        
+        # Upload to server
+        logger.info(f"Uploading calibration with hash ID: {hash_id}")
+        upload_calibration(
+            hash_id=hash_id,
+            archive_path=archive_name,
+            notes=notes,
+            server_url=server_url,
+            api_token=api_token
+        )
+        logger.info("Calibration upload completed successfully")
     finally:
-        # Clean up the archive file
-        try:
-            os.remove(archive_name)
-            logger.debug(f"Cleaned up archive: {archive_name}")
-        except OSError as e:
-            logger.warning(f"Failed to cleanup archive {archive_name}: {e}")
+        # Clean up archive file
+        if os.path.exists(archive_name):
+            try:
+                os.remove(archive_name)
+                logger.debug(f"Cleaned up archive: {archive_name}")
+            except OSError as e:
+                logger.warning(f"Failed to cleanup archive {archive_name}: {e}")
+
+
+def upload_experiment_data(
+    experiment_name: str,
+    experiment_dir: str,
+    hash_id: str,
+    run_id: str,
+    server_url: str,
+    api_token: str
+) -> bool:
+    """
+    Compress and upload a single experiment.
     
-    return archive_name
-
-
-def get_server_params_from_secrets(secrets_path=".secrets.toml"):
+    Args:
+        experiment_name: Name of the experiment.
+        experiment_dir: Directory containing experiment data.
+        hash_id: Hash ID for the experiment.
+        run_id: Run ID for the experiment.
+        server_url: Server URL.
+        api_token: API token.
+    
+    Returns:
+        True if successful, False otherwise.
     """
-    Load qibodbhost and qibodbkey from a TOML secrets file.
-    """
+    if not os.path.exists(experiment_dir):
+        logger.warning(f"Experiment directory not found: {experiment_dir}")
+        return False
+    
+    logger.debug(f"Found experiment directory: {experiment_dir}")
+    
+    # Create archive in temporary directory
+    with tempfile.TemporaryDirectory() as tmpdir:
+        archive_name = f"{experiment_name}_{hash_id}_{run_id}.tar.gz"
+        temp_archive_path = os.path.join(tmpdir, archive_name)
+        
+        logger.debug(f"Creating archive: {archive_name}")
+        compress_directory(experiment_dir, temp_archive_path)
+        
+        # Move archive to current directory for upload
+        final_archive_path = os.path.abspath(archive_name)
+        shutil.move(temp_archive_path, final_archive_path)
+    
+    # Register cleanup after program exit
+    def cleanup():
+        if os.path.exists(final_archive_path):
+            try:
+                os.remove(final_archive_path)
+                logger.debug(f"Cleaned up archive: {final_archive_path}")
+            except OSError as e:
+                logger.warning(f"Failed to cleanup archive {final_archive_path}: {e}")
+    
+    atexit.register(cleanup)
+    
+    # Upload to server
     try:
-        secrets = toml.load(secrets_path)
-        qibodbhost = secrets.get("qibodbhost")
-        qibodbkey = secrets.get("qibodbkey")
-        if not qibodbhost or not qibodbkey:
-            raise ValueError("qibodbhost or qibodbkey missing in secrets file")
-        return qibodbhost, qibodbkey
+        logger.info(f"Uploading {experiment_name} results")
+        upload_experiment(
+            hash_id=hash_id,
+            name=experiment_name,
+            archive_path=final_archive_path,
+            experiment_id=run_id,
+            notes=f"Results for {experiment_name}",
+            server_url=server_url,
+            api_token=api_token
+        )
+        logger.info(f"Successfully uploaded {experiment_name}")
+        return True
     except Exception as e:
-        logging.error(f"Failed to read server parameters from {secrets_path}: {e}")
-        raise
+        logger.error(f"Failed to upload {experiment_name}: {e}")
+        return False
 
 
 def main():
+    """Main upload workflow."""
     parser = argparse.ArgumentParser(description="Upload calibration data and experiment results")
     parser.add_argument("--hash-id", help="Hash ID for the calibration", default="latest")
     parser.add_argument("--notes", default="", help="Optional notes for the calibration upload")
-    parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], 
+    parser.add_argument("--log-level", default="INFO", 
+                       choices=["DEBUG", "INFO", "WARNING", "ERROR"],
                        help="Set the logging level")
     args = parser.parse_args()
-
-    # Setup logging
-    setup_logging(getattr(logging, args.log_level))
-    logger = logging.getLogger(__name__)
     
+    # Setup logging
+    setup_logging(args.log_level)
     logger.info("Starting upload process")
-
-    # Set up the server connection
+    
+    # Get server credentials
     try:
-        qibodbhost, qibodbkey = get_server_params_from_secrets()
-        set_server(qibodbhost, qibodbkey)
-        logger.info("Connected to server")
+        server_url, api_token = get_server_credentials()
+        logger.info("Loaded server credentials")
     except Exception as e:
-        logger.error(f"Failed to set up server connection: {e}")
+        logger.error(f"Failed to load server credentials: {e}")
         return 1
-
-    # Determine hash_id and prepare calibration directory if needed
-    if args.hash_id == "latest":
-        repo = Repo("/mnt/scratch/qibolab_platforms_nqch")
-        hash_id = repo.commit().hexsha
-        calibration_dir = os.path.join("data", hash_id)
-        if not os.path.exists(calibration_dir):
-            logger.info(f"Copying /mnt/scratch/qibolab_platforms_nqch to {calibration_dir}")
-            shutil.copytree("/mnt/scratch/qibolab_platforms_nqch", calibration_dir)
-        args.hash_id = hash_id  # Update args.hash_id for downstream use
-    else:
-        calibration_dir = f"./data/{args.hash_id}"
-
-    # Upload calibration data
-    src_dir = calibration_dir
-    logger.info(f"Uploading calibration data from {src_dir}")
+    
+    # Get experiment groups and run ID
     try:
-        archive_name = upload_calibration_compressed(
-            src_dir=src_dir,
-            hash_id=args.hash_id,
-            notes=args.notes
+        experiment_groups = load_experiment_list()
+        run_id = get_run_id()
+        logger.info(f"Loaded run ID: {run_id}")
+    except Exception as e:
+        logger.error(f"Failed to load experiment configuration: {e}")
+        return 1
+    
+    # Prepare calibration directory
+    try:
+        hash_id, calibration_dir = prepare_calibration_directory(
+            args.hash_id,
+            "/mnt/scratch/qibolab_platforms_nqch"
         )
-        logger.info(f"Calibration upload completed successfully")
+        logger.info(f"Using hash ID: {hash_id}")
+    except Exception as e:
+        logger.error(f"Failed to prepare calibration directory: {e}")
+        return 1
+    
+    # Upload calibration data
+    try:
+        upload_calibration_data(
+            calibration_dir=calibration_dir,
+            hash_id=hash_id,
+            notes=args.notes,
+            server_url=server_url,
+            api_token=api_token
+        )
     except Exception as e:
         logger.error(f"Calibration upload failed: {e}")
         return 1
     
-
-    experiment_list = load_experiment_list()
-
-    # Upload results for each experiment
+    # Flatten experiment list (exclude 'calibration' section)
+    experiment_list = []
+    for section_name, experiments in experiment_groups.items():
+        if section_name.lower() != "calibration":
+            experiment_list.extend(experiments)
+    
+    # Upload each experiment
     logger.info(f"Starting experiment results upload for {len(experiment_list)} experiments")
     successful_uploads = 0
     failed_uploads = 0
     
     for experiment_name in experiment_list:
         logger.debug(f"Processing experiment: {experiment_name}")
-        experiment_dir = f"./data/{experiment_name}/{args.hash_id}"
+        experiment_dir = f"./data/{experiment_name}/{hash_id}/{run_id}"
         
-        if os.path.exists(experiment_dir):
-            logger.debug(f"Found experiment directory: {experiment_dir}")
-            
-            # Create a tar.gz archive of the entire experiment directory using a TemporaryDirectory
-            with tempfile.TemporaryDirectory() as tmpdir:
-                archive_name = f"{experiment_name}_{args.hash_id}.tar.gz"
-                temp_archive_path = os.path.join(tmpdir, archive_name)
-                
-                logger.debug(f"Creating archive: {archive_name}")
-                with tarfile.open(temp_archive_path, "w:gz") as tar:
-                    tar.add(experiment_dir, arcname=os.path.basename(experiment_dir))
-                
-                # Move archive to current working directory so it persists after temp dir cleanup
-                final_archive_path = os.path.abspath(archive_name)
-                shutil.move(temp_archive_path, final_archive_path)
-                logger.debug(f"Archive created at: {final_archive_path}")
-
-            # Register cleanup of the archive after program exit
-            def _cleanup(path):
-                try:
-                    os.remove(path)
-                    logger.debug(f"Cleaned up archive: {path}")
-                except OSError as e:
-                    logger.warning(f"Failed to cleanup archive {path}: {e}")
-            atexit.register(_cleanup, final_archive_path)
-
-            try:
-                logger.info(f"Uploading {experiment_name} results")
-                resp = results_upload(
-                    hashID=args.hash_id,
-                    name=experiment_name,
-                    notes=f"Results for {experiment_name}",
-                    files=[final_archive_path]
-                )
-                logger.info(f"Successfully uploaded {experiment_name}: {resp}")
-                successful_uploads += 1
-            except Exception as e:
-                logger.error(f"Failed to upload {experiment_name}: {e}")
-                failed_uploads += 1
+        success = upload_experiment_data(
+            experiment_name=experiment_name,
+            experiment_dir=experiment_dir,
+            hash_id=hash_id,
+            run_id=run_id,
+            server_url=server_url,
+            api_token=api_token
+        )
+        
+        if success:
+            successful_uploads += 1
         else:
-            logger.warning(f"Experiment directory not found: {experiment_dir}")
             failed_uploads += 1
     
     logger.info(f"Upload process completed! Successful: {successful_uploads}, Failed: {failed_uploads}")
@@ -238,4 +338,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    exit(main())

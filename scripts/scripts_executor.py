@@ -16,56 +16,90 @@ import configparser
 base_path = "scripts/"
 
 
+# Prepare JSON content with custom format
+time_format = "%d-%m-%Y %H:%M"
+
+
+
 if __package__ is None or __package__ == "":
     # invoked directly: add repo root to sys.path so 'scripts.*' resolves
     repo_root = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(repo_root))
 
 from scripts.config import CURRENT_CALIBRATION_DIRECTORY  # now this works in both cases
+from scripts.config import load_experiment_list
+from scripts.config import RUN_ID_FILE
 
 
-def load_experiment_list(config_file="scripts/experiment_list.ini"):
+def get_best_qubits(hash_id):
     """
-    Load experiment list from an INI configuration file.
+    Extract available qubits from calibration results.
 
     Args:
-        config_file (str): Path to the experiment list INI configuration file
+        hash_id (str): Git commit hash
 
     Returns:
-        dict: Dictionary with sections as keys and lists of experiments as values
+        list[int]: List of qubit indices sorted by descending RB fidelity.
     """
-    experiments = {}
+    calib_path = os.path.join("data", hash_id, "sinq20", "calibration.json")
+    if not os.path.exists(calib_path):
+        logging.warning(f"Calibration file not found: {calib_path}")
+        return []
+
     try:
-        config = configparser.ConfigParser()
-        config.read(config_file)
-
-        for section in config.sections():
-            experiments[section] = []
-            for key, value in config[section].items():
-                # Only include experiments that are enabled (not commented out)
-                if not key.startswith("#") and value.lower() in [
-                    "enabled",
-                    "true",
-                    "1",
-                ]:
-                    experiments[section].append(key)
-
-    except FileNotFoundError:
-        logging.warning(f"Experiment list file '{config_file}' not found.")
-        sys.exit(1)
+        with open(calib_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
     except Exception as e:
-        logging.error(f"Error reading experiment list from '{config_file}': {e}")
-        return {}
-    return experiments
+        logging.error(f"Could not read calibration file {calib_path}: {e}")
+        return []
+
+    qubits_dict = data["single_qubits"]
+
+    qubit_fidelities = []
+    for k, v in qubits_dict.items():
+        try:
+            qidx = int(k)
+        except Exception:
+            # if keys aren't the indices, try to get index from nested structure if present
+            try:
+                qidx = int(v.get("index"))
+            except Exception:
+                continue
+
+        fid = None
+        # Prefer 'rb_fidelity'[0] if present
+        if isinstance(v, dict):
+            rb = v.get("rb_fidelity")
+            if isinstance(rb, (list, tuple)) and len(rb) > 0:
+                try:
+                    fid = float(rb[0])
+                except Exception:
+                    fid = None
+            # fallback to readout fidelity
+            if fid is None:
+                rd = v.get("readout", {})
+                if isinstance(rd, dict) and "fidelity" in rd:
+                    try:
+                        fid = float(rd.get("fidelity"))
+                    except Exception:
+                        fid = None
+        # If no fidelity found, skip
+        if fid is None:
+            logging.debug(f"No fidelity for qubit {qidx} in {calib_path}; skipping")
+            continue
+
+        qubit_fidelities.append((qidx, fid))
+
+    # Sort by fidelity descending, tie-break by qubit index ascending
+    qubit_fidelities.sort(key=lambda x: (-x[1], x[0]))
+
+    sorted_qubits = [q for q, _ in qubit_fidelities]
+    return sorted_qubits
 
 
-# Load experiment list from configuration file
-experiment_groups = load_experiment_list()
-
-
-def get_available_qubits(hash_id):
+def get_best_edges(hash_id, run_id):
     """
-    Extract available qubits from bell_tomography results.
+    Extract available edges from bell_tomography results.
 
     Args:
         hash_id (str): Git commit hash
@@ -73,13 +107,13 @@ def get_available_qubits(hash_id):
     Returns:
         dict: Dictionary with qubit counts as keys and [qubit_list, fidelity] as values
     """
-    results_file = f"data/bell_tomography/{hash_id}/results.json"
+    results_file = f"data/bell_tomography/{hash_id}/{run_id}/results.json"
     try:
         with open(results_file, "r") as f:
             results = json.load(f)
-        # Extract best_qubits information from results
-        best_qubits = results.get("best_qubits", {})
-        return best_qubits
+        # Extract best_edges_k_qubits information from results
+        best_edges_k_qubits = results.get("best_qubits", {})
+        return best_edges_k_qubits
     except Exception as e:
         logging.error(f"Could not read bell_tomography results: {e}")
         # fallback with dummy data
@@ -217,7 +251,9 @@ def run_script_with_args(
         return 1
 
     logger.info(f"Running {script_path} with args={cmd_args}")
-    cmd = [sys.executable, "-u", script_path] + cmd_args
+    # ensure all cmd args are strings to avoid subprocess TypeError
+    safe_args = [str(a) for a in cmd_args]
+    cmd = [sys.executable, "-u", script_path] + safe_args
     try:
         proc = subprocess.Popen(
             cmd,
@@ -239,48 +275,10 @@ def run_script_with_args(
         logger.exception(f"Error occurred while running {script_path}")
         return 1
 
-def main():
-    args = parse_args()
-    logger = setup_logger(args.log_file, args.log_level)
 
-    # COPY RUNCARD INTO DATA SECTION
-    repo = Repo(CURRENT_CALIBRATION_DIRECTORY)
-    commit = repo.commit()
-    hash_id = commit.hexsha
-
-    # Copy /mnt/scratch/qibolab_platforms_nqch into data/<hash_id>/
-    calibration_dir = os.path.join("data", hash_id)
-
-    try:
-        # Copy, skipping .git and continuing on any copy errors
-        copytree_safe(
-            Path(CURRENT_CALIBRATION_DIRECTORY),
-            calibration_dir,
-            ignore_dirs={".git", "__pycache__"},
-        )
-
-        # Prepare JSON content with custom format
-        time_format = "%d-%m-%Y %H:%M"
-
-        commit_info = {
-            "commit_hash": hash_id,
-            "commit_message": commit.message.strip(),
-            "experiment_date": datetime.now().strftime(time_format),
-            "calibration_date": datetime.fromtimestamp(commit.committed_date).strftime(
-                time_format
-            ),
-        }
-
-        # Write commit info to JSON file
-        msg_file = os.path.join(calibration_dir, "commit_info.json")
-        with open(msg_file, "w") as f:
-            json.dump(commit_info, f, indent=4)
-
-    except Exception as e:
-        logger.error(f"Failed to copy calibration directory: {e}")
-
+def clean_copied_git_directories(root_dir: str):
     # Remove the .git directory inside the copied calibration directory via shell
-    git_dir = os.path.join(calibration_dir, ".git")
+    git_dir = os.path.join(root_dir, ".git")
     if os.path.isdir(git_dir):
         logger.info(f"Removing git directory {git_dir}")
         try:
@@ -292,45 +290,168 @@ def main():
             except Exception:
                 logger.exception(f"Fallback removal failed for {git_dir}")
 
+
+def create_experiment_id(logger: logging.Logger) -> str:
+    # If file already exists, read and return the existing RunID
+    try:
+        if RUN_ID_FILE.exists():
+            with open(RUN_ID_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            existing = data.get("run_id")
+            if existing:
+                logger.info(f"Using existing experiment RunID: {existing}")
+                return str(existing)
+    except Exception as e:
+        logger.warning(f"Could not read existing experiment ID file {RUN_ID_FILE}: {e}")
+
+    # Otherwise, create a new RunID and persist it
+    run_id = datetime.now().strftime("%Y%m%d%H%M%S")
+    logger.info(f"Starting experiment-run with RunID: {run_id}")
+    try:
+        RUN_ID_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(RUN_ID_FILE, "w", encoding="utf-8") as f:
+            json.dump({"run_id": run_id}, f)
+    except Exception as e:
+        logger.error(f"Failed to write experiment ID to {RUN_ID_FILE}: {e}")
+    return run_id
+
+def remove_experiment_id_file(logger: logging.Logger):
+    logger.info(f"Removing experiment ID file {RUN_ID_FILE}")
+    try:
+        if os.path.exists(RUN_ID_FILE):
+            os.remove(RUN_ID_FILE)
+    except Exception as e:
+        logger.error(f"Failed to remove experiment ID file {RUN_ID_FILE}: {e}")
+
+
+def main():
+    args = parse_args()
+    logger = setup_logger(args.log_file, args.log_level)
+
+    # Generate RunID for these experiments and write it to /mnt/home/Scinawa/CQT-reporting/scripts/current_experiment_id.json
+    run_id = create_experiment_id(logger)
+
+
+    # COPY RUNCARD INTO DATA SECTION
+    repo = Repo(CURRENT_CALIBRATION_DIRECTORY)
+    commit = repo.commit()
+    hash_id = commit.hexsha
+    calibration_dir = os.path.join("data", hash_id)
+ 
+    # Load experiment list from configuration file
+    experiment_groups = load_experiment_list()
+
+    # Copy /mnt/scratch/qibolab_platforms_nqch into data/<hash_id>/
+    try:
+        # Copy, skipping .git and continuing on any copy errors
+        copytree_safe(
+            Path(CURRENT_CALIBRATION_DIRECTORY),
+            calibration_dir,
+            ignore_dirs={".git", "__pycache__"},
+        )
+
+        commit_info = {
+            "commit_hash": hash_id,
+            "commit_message": commit.message.strip(),
+            "experiment_date": datetime.now().strftime(time_format),
+            "calibration_date": datetime.fromtimestamp(commit.committed_date).strftime(
+                time_format
+            ),
+        }
+
+        msg_file = os.path.join(calibration_dir, "commit_info.json")
+        with open(msg_file, "w") as f:
+            json.dump(commit_info, f, indent=4)
+
+    except Exception as e:
+        logger.error(f"Failed to copy calibration directory: {e}")
+
+    clean_copied_git_directories(calibration_dir)
+
     overall_rc = 0
 
-    # Phase 1: Run calibration experiments
-    logger.info("Phase 1: Running calibration experiments")
-    for experiment in experiment_groups.get("calibration", []):
-        script_path = os.path.join(base_path, experiment, "main.py")
+    # Phase 1: Run initial experiments
+    logger.info("Phase 1: Running initial experiments")
+    for experiment in experiment_groups.get("initial", []):
         print("\n\n\n")
-        logger.info(f"Starting calibration experiment: {experiment}")
+        script_path = os.path.join(base_path, experiment, "main.py")
+        logger.info(f"Starting initial experiment: {experiment}")
         rc = run_script(logger, script_path, args.device, experiment)
         overall_rc = overall_rc or rc
 
-    # Get available qubits from bell_tomography results
-    best_qubits = get_available_qubits(hash_id)
+    # Get best edges from bell_tomography results
+    best_edges_k_qubits = get_best_edges(hash_id, run_id)
+    logger.info(f"Best edges found: {best_edges_k_qubits}")
+
+    # Get best qubits from "initial experiments" results
+    best_qubits = get_best_qubits(hash_id)
     logger.info(f"Best qubits found: {best_qubits}")
 
-    # Phase 2: Run qubit-specific experiments based on available qubits
-    logger.info("Phase 2: Running qubit-specific experiments")
+    # Phase 2: Run single qubit experiments based on available qubits
+    logger.info("Phase 2: Running single-qubit experiments")
+    for experiment in experiment_groups.get("1", []):
+        print("\n\n\n")
+        script_path = os.path.join(base_path, experiment, "main.py")
+        # pass qubit id as string
+        cmd_args = ["--device", args.device, "--qubit_id", str(best_qubits.pop())]
+        rc = run_script_with_args(logger, script_path, cmd_args, experiment)
+        overall_rc = overall_rc or rc
+    
 
-    # Run experiments for each available qubit count
-    for qubit_count_str, qubit_data in best_qubits.items():
-        section_name = qubit_count_str
+    # Phase 3: Run qubit-specific experiments based on available edges
+    logger.info("Phase 3: Running qubit-specific experiments")
+    for qubit_count_key, qubit_data in best_edges_k_qubits.items():
+        section_name = str(qubit_count_key)
+        
         if section_name in experiment_groups:
-            qubit_list = qubit_data[
-                0
-            ]  # Extract the qubit list from [qubit_list, fidelity]
-            fidelity = qubit_data[1]
+            nodes: list[int] = []
+            avg_fidelity = None
+            edge_pairs: list[list[int]] = []
+
+            if isinstance(qubit_data, dict):
+                nodes = [int(n) for n in (qubit_data.get("nodes") or [])]
+                avg_fidelity = qubit_data.get("avg_fidelity")
+                for edge in qubit_data.get("edges", []):
+                    if isinstance(edge, (list, tuple)) and len(edge) >= 2:
+                        try:
+                            u, v = int(edge[0]), int(edge[1])
+                        except (TypeError, ValueError):
+                            continue
+                        edge_pairs.append([u, v])
+                if not edge_pairs and len(nodes) >= 2:
+                    edge_pairs.append(nodes[:2])
+            else:
+                try:
+                    nodes = [int(q) for q in qubit_data[0]]
+                    avg_fidelity = qubit_data[1]
+                    if len(nodes) >= 2:
+                        edge_pairs.append(nodes[:2])
+                except (Exception,):
+                    pass
+
+            if not edge_pairs:
+                logger.warning(
+                    f"No valid edges for section {section_name}; skipping experiments."
+                )
+                continue
+
             logger.info(
-                f"Running {qubit_count_str}-qubit experiments with qubits {qubit_list} (fidelity: {fidelity:.4f})"
+                f"Running {section_name}-qubit experiments with nodes {nodes or sorted({q for edge in edge_pairs for q in edge})} "
+                f"(avg fidelity: {avg_fidelity})"
             )
+            #import pdb; pdb.set_trace()
 
             for experiment in experiment_groups[section_name]:
                 script_path = os.path.join(base_path, experiment, "main.py")
                 print("\n\n\n")
-                # Pass qubit list to the experiment as a single bracketed string
-                qubit_list_str = f"[{', '.join(map(str, qubit_list))}]"
+                qubit_list_str = json.dumps(edge_pairs)
+                
                 cmd_args = ["--device", args.device, "--qubits_list", qubit_list_str]
                 rc = run_script_with_args(logger, script_path, cmd_args, experiment)
                 overall_rc = overall_rc or rc
 
+    # Cleanup: remove experiment ID file
+    remove_experiment_id_file(logger)
     sys.exit(overall_rc)
 
 
