@@ -78,6 +78,8 @@ def amplitude_enc(vector, qubits_list, nshosts):
     Return: circuit.result. Amplitude must be the normalized elements in
             input vector
     """
+    
+    qubits_list = sorted(set(sum(qubits_list, [])))
 
     n = len(qubits_list)  # num qubits used
 
@@ -156,6 +158,8 @@ def main(vector, qubits_list, device, nshots):
 
     result, depth, num_gates, duration = amplitude_enc(vector, qubits_list, nshots)
 
+    qubits_list = sorted(set(sum(qubits_list, [])))
+
     n_qubits = len(qubits_list)
     success_keys = ["0" * n_qubits, "1" * n_qubits]
     total_success = sum(result.frequencies().get(k, 0) for k in success_keys)
@@ -187,6 +191,7 @@ def main(vector, qubits_list, device, nshots):
 
 
 import argparse
+import ast
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -199,10 +204,9 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--qubits_list",
-        default=[0, 1, 4],
-        type=int,
-        nargs="+",
-        help="List of qubits exploited in the device",
+        default="[[9,8],[8,13]]",
+        type=list,
+        help="Target edges list as string representation",
     )
     parser.add_argument(
         "--device",
@@ -216,5 +220,13 @@ if __name__ == "__main__":
         type=int,
         help="Number of shots for each circuit",
     )
-    args = vars(parser.parse_args())
-    main(args["input_vector"], args["qubits_list"], args["device"], args["nshots"])
+    args = parser.parse_args()
+    # Parse the qubit list string into actual list of integers
+    try:
+        qubits_list = ast.literal_eval(args.qubits_list)
+        # Ensure all elements are integers
+        qubits_list = [[int(q) for q in edge] for edge in qubits_list]
+    except (ValueError, SyntaxError, TypeError):
+        print(f"Error: Invalid qubit list format: {args.qubits_list}")
+        sys.exit(1)
+    main(args.input_vector, args.qubits_list, args.device, args.nshots)
