@@ -7,6 +7,7 @@ import sys
 from pathlib import Path as _P
 import time
 import ast
+import networkx as nx
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
@@ -14,15 +15,57 @@ import config  # scripts/config.py
 from qibocal.auto.execute import Executor
 from qibocal.cli.report import report
 
+def find_all_chains(pairs):
+    """Given the list of coupled qubits, output all possible chains of coupled qubits (excluding coupled qubits).
+        
+        Args:
+            pairs (list[list[int]]): List of coupled qubits, e.g. [[0, 1], [1, 2], [1, 3]]
+        Returns:
+            chains (list[list[int]]): List of all possible chains of coupled qubits, e.g. [[0, 1, 2], [0, 1, 3]]
+    """
+    G = nx.Graph()
+    G.add_edges_from(pairs)
+    chains = []
+    for component in nx.connected_components(G):
+        subgraph = G.subgraph(component)
+        nodes = list(subgraph.nodes())
+        for i in range(len(nodes)):
+            for j in range(i + 1, len(nodes)):
+                for path in nx.all_simple_paths(subgraph, nodes[i], nodes[j]):
+                    if len(path) > 2:
+                        chains.append(path)
+    return chains
 
-def create_ghz_circuit(qubits_list):
-    nqubits = len(qubits_list)
-    c = Circuit(nqubits)
-    c.add(gates.H(qubits_list[0]))
+
+def find_longest_chain(pairs):
+    """Given the list of coupled qubits, first find all possible chains of coupled qubits using `find_all_chains`.
+        Then, output the longest chain.
+
+        Args:
+            pairs (list[list[int]]): List of coupled qubits, e.g. [[0, 1], [1, 2], [1, 3]]
+        Returns:
+            chain_of_qubits list[int]: List containing the longest chain.
+    """
+    chains = find_all_chains(pairs)
+    
+    max_length = 0 # placeholder
+    for ii in range(len(chains)):
+        chain = chains[ii]
+        if len(chain) > max_length:
+            max_length = len(chain)
+            idx = ii
+
+    chain_of_qubits = find_all_chains(pairs)[idx]
+    return chain_of_qubits
+
+
+def create_ghz_circuit(chain_of_qubits):
+    nqubits = len(chain_of_qubits)
+    c = Circuit(nqubits, wire_names=chain_of_qubits)
+    c.add(gates.H(0))
     for i in range(nqubits - 1):
-        c.add(gates.CNOT(qubits_list[i], qubits_list[i + 1]))
-    for qubit in qubits_list:
-        c.add(gates.M(qubit))
+        c.add(gates.CNOT(i, i + 1))
+    c.add(gates.M(_i) for _i in range(nqubits))
     return c
 
 
@@ -38,8 +81,8 @@ def prepare_ghz_results(frequencies, nshots, nqubits):
     return {"success_rate": success_rate, "plotparameters": {"frequencies": freq_dict}}
 
 
-def run_ghz_experiment(qubits_list, device, nshots, root_path):
-    nqubits = len(qubits_list)
+def run_ghz_experiment(chain_of_qubits, device, nshots, root_path):
+    nqubits = len(chain_of_qubits)
 
     if device == "numpy":
         set_backend("numpy")
@@ -50,7 +93,7 @@ def run_ghz_experiment(qubits_list, device, nshots, root_path):
 
     results = {}
     data = {
-        "qubits_list": qubits_list,
+        "chain_of_qubits": chain_of_qubits,
         "nshots": nshots,
         "device": device,
     }
@@ -61,11 +104,11 @@ def run_ghz_experiment(qubits_list, device, nshots, root_path):
             "myexec",
             path=root_path,
             platform=platform,
-            targets=qubits_list,
+            targets=chain_of_qubits,
             update=True,
             force=True,
         ) as e:
-            circuit = create_ghz_circuit(qubits_list)
+            circuit = create_ghz_circuit(chain_of_qubits)
             start_time = time.time()
             # For GHZ, we'll run the circuit directly since qibocal doesn't have a specific GHZ method
             # You might need to adapt this based on available qibocal methods
@@ -79,14 +122,14 @@ def run_ghz_experiment(qubits_list, device, nshots, root_path):
 
             results.update(ghz_results)
             results["runtime"] = f"{runtime_seconds:.2f} seconds."
-            results["qubits_used"] = qubits_list
+            results["qubits_used"] = chain_of_qubits
             results["description"] = (
                 f"GHZ circuit with {nqubits} qubits executed on {device} backend with {nshots} shots."
             )
     else:
         # Simulate with numpy backend
         start_time = time.time()
-        circuit = create_ghz_circuit(qubits_list)
+        circuit = create_ghz_circuit(chain_of_qubits)
         result = circuit(nshots=nshots)
         end_time = time.time()
         runtime_seconds = end_time - start_time
@@ -99,7 +142,7 @@ def run_ghz_experiment(qubits_list, device, nshots, root_path):
             f"GHZ circuit with {nqubits} qubits executed on numpy backend with {nshots} shots."
         )
         results["runtime"] = f"{runtime_seconds:.2f} seconds."
-        results["qubits_used"] = qubits_list
+        results["qubits_used"] = chain_of_qubits
 
     return data, results
 
@@ -110,10 +153,13 @@ def main(device, nshots, qubits_list):
     out_dir_tmp = out_dir / "tmp"
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    chain_of_qubits = find_longest_chain(qubits_list)
+    print(f"{len(chain_of_qubits)}-qubit GHZ on qubits {chain_of_qubits}.")
+
     try:
-        data, results = run_ghz_experiment(qubits_list, device, nshots, out_dir_tmp)
+        data, results = run_ghz_experiment(chain_of_qubits, device, nshots, out_dir_tmp)
     except Exception as e:
-        print(f"Failed to run GHZ experiment on qubits {qubits_list}: {e}")
+        print(f"Failed to run GHZ experiment on qubits {chain_of_qubits}: {e}")
         return
 
     try:
@@ -125,11 +171,10 @@ def main(device, nshots, qubits_list):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--qubits_list",
-        type=str,
-        default="[0, 1, 2]",
-        help="List of qubits to use for GHZ circuit as string representation",
+    parser.add_argument("--qubits_list", 
+        type=ast.literal_eval, 
+        default=[[0, 1]],
+        help="List of coupled qubit pairs, e.g. '[[0,1],[0,2],[1,4],[1,5]]', from which we find the longest chain of qubits for GHZ circuit.",
     )
     parser.add_argument("--nshots", type=int, default=1000)
     parser.add_argument("--device", choices=["numpy", "sinq20"], default="numpy")
@@ -137,9 +182,7 @@ if __name__ == "__main__":
 
     # Parse the qubit list string into actual list of integers
     try:
-        qubits_list = ast.literal_eval(args.qubits_list)
-        # Ensure all elements are integers
-        qubits_list = [int(q) for q in qubits_list]
+        qubits_list = args.qubits_list
     except (ValueError, SyntaxError, TypeError):
         print(f"Error: Invalid qubit list format: {args.qubits_list}")
         sys.exit(1)
