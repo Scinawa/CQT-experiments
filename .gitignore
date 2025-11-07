@@ -1,5 +1,7 @@
 tmp/*
 data/*
+crappy_data/*
+.secrets.toml
 __pycache__/
 *.pyc
 *.pyo
