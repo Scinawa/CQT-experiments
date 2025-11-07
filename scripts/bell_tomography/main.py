@@ -20,6 +20,7 @@ import config  # scripts/config.py
 from qibocal.auto.execute import Executor
 from qibocal.cli.report import report
 
+from config import CURRENT_CALIBRATION_DIRECTORY
 
 def bell_circuit():
     circuit = Circuit(2)
@@ -145,7 +146,7 @@ def get_list_of_pairs():
     # gets the connectivity 
 
     # Path to your file
-    file_path = Path("/mnt/home/Scinawa/CQT-reporting/data/fdb93a3978fe6356741e31b98c93c68837767080/sinq20/platform.py")
+    file_path = Path(CURRENT_CALIBRATION_DIRECTORY) / Path("sinq20") / Path("platform.py")    
 
     # Load module dynamically
     spec = importlib.util.spec_from_file_location("platform_module", file_path)
@@ -156,7 +157,7 @@ def get_list_of_pairs():
     # Now you can access connectivity
     connectivity = getattr(platform_module, "connectivity", None)
 
-    return connectivity
+    return connectivity[:8]
 
 
 
@@ -169,6 +170,7 @@ def get_best_qubits_tuples(two_qubits_fidelity_graph, sizes=(2, 3, 4, 5), weight
         best_avg = float("-inf")
         best_total = float("-inf")
         best_nodes = None
+        best_edges = None
 
         for nodes in combinations(G.nodes(), k):
             sub = G.subgraph(nodes)  # induced subgraph (view is fine; no need to copy)
@@ -190,8 +192,14 @@ def get_best_qubits_tuples(two_qubits_fidelity_graph, sizes=(2, 3, 4, 5), weight
                 best_avg = avg
                 best_total = total
                 best_nodes = list(nodes)
+                # Store edges as list of [node1, node2] pairs
+                best_edges = [[u, v] for u, v in sub.edges()]
 
-        best_qubits[k] = (best_nodes,best_avg)  # None if no connected subgraph exists of size k
+        # Store as list containing one tuple: (edges, avg_fidelity)
+        if best_edges is not None:
+            best_qubits[k] = [([[u, v] for u, v in best_edges], best_avg)]
+        else:
+            best_qubits[k] = []  # No connected subgraph exists of size k
 
     # import pdb
     # pdb.set_trace()

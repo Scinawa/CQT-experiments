@@ -2,6 +2,7 @@ from pathlib import Path
 from git.repo.base import Repo
 import logging
 import configparser
+import json
 
 # Repository root (two levels above any script in scripts/<name>/main.py)
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -16,15 +17,25 @@ def output_dir_for(script_file: str, device: str | Path) -> Path:
     """Return data/<script-dir-name>/ for the given script file."""
     script_path = Path(script_file).resolve()
 
+    # Load run_id from file
+    with open(RUN_ID_FILE, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    run_id = data.get("run_id")
+    if not run_id:
+        raise ValueError("run_id missing from RUN_ID_FILE")
+    run_id = str(run_id)
+
     if device == "numpy":
-        return DATA_DIR / script_path.parent.name / device
+        output_dir = DATA_DIR / script_path.parent.name / device / run_id
     else:
 
         repo = Repo(CURRENT_CALIBRATION_DIRECTORY)
         hash_id = repo.commit().hexsha
 
-        return DATA_DIR / script_path.parent.name / hash_id
+        output_dir = DATA_DIR / script_path.parent.name / hash_id / run_id
 
+    output_dir.mkdir(parents=True, exist_ok=True)
+    return output_dir
 
 
 def load_experiment_list(config_file="experiment_list.ini", logger=None):

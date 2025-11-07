@@ -1,14 +1,13 @@
 [project]
-name = "cqt-benchmarking-report-generator"
+name = "cqt-experiment"
 version = "0.1.0"
-description = "A project to generate PDF reports from benchmarking experiments on quantum computers."
+description = "A project to run experiments on the NQCH quantum computer"
 authors = [
     {name = "CQT", email = "your.email@example.com"}
 ]
 license = {text = "MIT"}
 requires-python = ">=3.12"
 dependencies = [
-    "pylatex>=1.4.0",
     "jsonschema>=4.0.0",
     "numpy>=1.20.0",
     "jinja2>=3.0.0",

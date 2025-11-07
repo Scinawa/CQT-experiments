@@ -370,76 +370,48 @@ def main():
 
     overall_rc = 0
 
-    # Phase 1: Run initial experiments
-    logger.info("Phase 1: Running initial experiments")
-    for experiment in experiment_groups.get("initial", []):
-        print("\n\n\n")
-        script_path = os.path.join(base_path, experiment, "main.py")
-        logger.info(f"Starting initial experiment: {experiment}")
-        rc = run_script(logger, script_path, args.device, experiment)
-        overall_rc = overall_rc or rc
+    # # Phase 1: Run initial experiments
+    # logger.info("Phase 1: Running initial experiments")
+    # for experiment in experiment_groups.get("calibration", []):
+    #     print("\n\n\n")
+    #     script_path = os.path.join(base_path, experiment, "main.py")
+    #     logger.info(f"Starting initial experiment: {experiment}")
+    #     rc = run_script(logger, script_path, args.device, experiment)
+    #     overall_rc = overall_rc or rc
 
     # Get best edges from bell_tomography results
     best_edges_k_qubits = get_best_edges(hash_id, run_id)
     logger.info(f"Best edges found: {best_edges_k_qubits}")
 
+
+
     # Get best qubits from "initial experiments" results
     best_qubits = get_best_qubits(hash_id)
     logger.info(f"Best qubits found: {best_qubits}")
 
-    # Phase 2: Run single qubit experiments based on available qubits
-    logger.info("Phase 2: Running single-qubit experiments")
-    for experiment in experiment_groups.get("1", []):
-        print("\n\n\n")
-        script_path = os.path.join(base_path, experiment, "main.py")
-        # pass qubit id as string
-        cmd_args = ["--device", args.device, "--qubit_id", str(best_qubits.pop())]
-        rc = run_script_with_args(logger, script_path, cmd_args, experiment)
-        overall_rc = overall_rc or rc
+    # # Phase 2: Run single qubit experiments based on available qubits
+    # logger.info("Phase 2: Running single-qubit experiments")
+    # for experiment in experiment_groups.get("1", []):
+    #     print("\n\n\n")
+    #     script_path = os.path.join(base_path, experiment, "main.py")
+    #     # pass qubit id as string
+    #     cmd_args = ["--device", args.device, "--qubit_id", str(best_qubits.pop())]
+    #     rc = run_script_with_args(logger, script_path, cmd_args, experiment)
+    #     overall_rc = overall_rc or rc
     
 
     # Phase 3: Run qubit-specific experiments based on available edges
     logger.info("Phase 3: Running qubit-specific experiments")
+
+
+
     for qubit_count_key, qubit_data in best_edges_k_qubits.items():
         section_name = str(qubit_count_key)
         
         if section_name in experiment_groups:
             nodes: list[int] = []
             avg_fidelity = None
-            edge_pairs: list[list[int]] = []
-
-            if isinstance(qubit_data, dict):
-                nodes = [int(n) for n in (qubit_data.get("nodes") or [])]
-                avg_fidelity = qubit_data.get("avg_fidelity")
-                for edge in qubit_data.get("edges", []):
-                    if isinstance(edge, (list, tuple)) and len(edge) >= 2:
-                        try:
-                            u, v = int(edge[0]), int(edge[1])
-                        except (TypeError, ValueError):
-                            continue
-                        edge_pairs.append([u, v])
-                if not edge_pairs and len(nodes) >= 2:
-                    edge_pairs.append(nodes[:2])
-            else:
-                try:
-                    nodes = [int(q) for q in qubit_data[0]]
-                    avg_fidelity = qubit_data[1]
-                    if len(nodes) >= 2:
-                        edge_pairs.append(nodes[:2])
-                except (Exception,):
-                    pass
-
-            if not edge_pairs:
-                logger.warning(
-                    f"No valid edges for section {section_name}; skipping experiments."
-                )
-                continue
-
-            logger.info(
-                f"Running {section_name}-qubit experiments with nodes {nodes or sorted({q for edge in edge_pairs for q in edge})} "
-                f"(avg fidelity: {avg_fidelity})"
-            )
-            #import pdb; pdb.set_trace()
+            edge_pairs =   best_edges_k_qubits[section_name][0][0]
 
             for experiment in experiment_groups[section_name]:
                 script_path = os.path.join(base_path, experiment, "main.py")
@@ -447,6 +419,8 @@ def main():
                 qubit_list_str = json.dumps(edge_pairs)
                 
                 cmd_args = ["--device", args.device, "--qubits_list", qubit_list_str]
+                import pdb
+                pdb.set_trace()
                 rc = run_script_with_args(logger, script_path, cmd_args, experiment)
                 overall_rc = overall_rc or rc
 
