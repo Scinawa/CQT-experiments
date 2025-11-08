@@ -17,6 +17,7 @@ import shutil
 import atexit
 import time
 import ast
+from pathlib import Path
 
 
 from qibocal.auto.execute import Executor
@@ -303,8 +304,20 @@ def main(qubits_list, device, nshots, debug=False, args=None, input_filename="in
 
     num_qubits = data['args']['num_qubits']
     output_qubit = data['args']['output_qubit']
-    out_dir = config.output_dir_for(base_dir.name, device)
+    # out_dir = config.output_dir_for(sys.argv[0], device)
+    # out_dir.mkdir(parents=True, exist_ok=True)
+
+    # import pdb
+    # pdb.set_trace()
+
+    folder_name = Path(sys.argv[0]).parts[-2]  
+
+    out_dir = Path(config.output_dir_for(sys.argv[0], device))
+    # replace the last folder name with folder_name:
+    out_dir = out_dir.with_name(folder_name)
+
     out_dir.mkdir(parents=True, exist_ok=True)
+
     
     # TODO understand which is the right output qubit....
     physical_output_qubit = qubits_list[min(output_qubit, len(qubits_list) - 1)]

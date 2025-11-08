@@ -15,7 +15,7 @@ sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
 
-def main(nqubits, device, nshots):
+def main(nqubits, device, nshots, **kwargs):
 
     results = dict()
     data = dict()
@@ -88,6 +88,11 @@ if __name__ == "__main__":
         default=1000,
         type=int,
         help="Number of shots for each circuit",
+    )
+    parser.add_argument(
+        "--qubits_id",
+        type=str,
+        help="Dummy parameter for compliance",
     )
 
     args = vars(parser.parse_args())

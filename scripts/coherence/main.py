@@ -109,6 +109,11 @@ if __name__ == "__main__":
         type=str,
         help="Device to use",
     )
+    parser.add_argument(
+        "--qubit_id",
+        type=str,
+        help="Dummy parameter for compliance",
+    )
 
     args = vars(parser.parse_args())
     main(**args)
