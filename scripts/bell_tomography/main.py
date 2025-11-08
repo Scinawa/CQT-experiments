@@ -157,7 +157,7 @@ def get_list_of_pairs():
     # Now you can access connectivity
     connectivity = getattr(platform_module, "connectivity", None)
 
-    return connectivity[:8]
+    return connectivity
 
 
 

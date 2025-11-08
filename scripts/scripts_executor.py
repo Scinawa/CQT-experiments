@@ -41,7 +41,7 @@ def get_best_qubits(hash_id):
     Returns:
         list[int]: List of qubit indices sorted by descending RB fidelity.
     """
-    calib_path = os.path.join("data", hash_id, "sinq20", "calibration.json")
+    calib_path = os.path.join("data", "calibrations", hash_id, "sinq20", "calibration.json")
     if not os.path.exists(calib_path):
         logging.warning(f"Calibration file not found: {calib_path}")
         return []
@@ -107,7 +107,7 @@ def get_best_edges(hash_id, run_id):
     Returns:
         dict: Dictionary with qubit counts as keys and [qubit_list, fidelity] as values
     """
-    results_file = f"data/bell_tomography/{hash_id}/{run_id}/results.json"
+    results_file = f"data/{hash_id}/{run_id}/bell_tomography/results.json"
     try:
         with open(results_file, "r") as f:
             results = json.load(f)
@@ -246,14 +246,18 @@ def copytree_safe(src: Path, dst: Path, ignore_dirs=None):
 def run_script_with_args(
     logger: logging.Logger, script_path: str, cmd_args: list, tag: str
 ) -> int:
-    if not os.path.exists(script_path):
-        logger.warning(f"main.py not found in {tag}")
+    # Convert to absolute path and resolve symlinks for existence check
+    abs_script_path = os.path.realpath(script_path)
+    if not os.path.exists(abs_script_path):
+        logger.warning(f"main.py not found in {tag} (tried: {abs_script_path})")
         return 1
 
-    logger.info(f"Running {script_path} with args={cmd_args}")
+    logger.info(f"Running {abs_script_path} with args={cmd_args}")
     # ensure all cmd args are strings to avoid subprocess TypeError
     safe_args = [str(a) for a in cmd_args]
-    cmd = [sys.executable, "-u", script_path] + safe_args
+    # Use the original script_path (not resolved) so that sys.argv[0] points to the symlink location
+    original_abs_path = os.path.abspath(script_path)
+    cmd = [sys.executable, "-u", original_abs_path] + safe_args
     try:
         proc = subprocess.Popen(
             cmd,
@@ -267,12 +271,12 @@ def run_script_with_args(
             logger.info(f"[{tag}] {line.rstrip()}")
         proc.wait()
         if proc.returncode != 0:
-            logger.error(f"{script_path} exited with code {proc.returncode}")
+            logger.error(f"{abs_script_path} exited with code {proc.returncode}")
         else:
-            logger.info(f"Finished {script_path}")
+            logger.info(f"Finished {abs_script_path}")
         return proc.returncode or 0
     except Exception:
-        logger.exception(f"Error occurred while running {script_path}")
+        logger.exception(f"Error occurred while running {abs_script_path}")
         return 1
 
 
@@ -336,7 +340,7 @@ def main():
     repo = Repo(CURRENT_CALIBRATION_DIRECTORY)
     commit = repo.commit()
     hash_id = commit.hexsha
-    calibration_dir = os.path.join("data", hash_id)
+    calibration_dir = os.path.join("data", "calibrations", hash_id)
  
     # Load experiment list from configuration file
     experiment_groups = load_experiment_list()
@@ -370,14 +374,14 @@ def main():
 
     overall_rc = 0
 
-    # # Phase 1: Run initial experiments
-    # logger.info("Phase 1: Running initial experiments")
-    # for experiment in experiment_groups.get("calibration", []):
-    #     print("\n\n\n")
-    #     script_path = os.path.join(base_path, experiment, "main.py")
-    #     logger.info(f"Starting initial experiment: {experiment}")
-    #     rc = run_script(logger, script_path, args.device, experiment)
-    #     overall_rc = overall_rc or rc
+    # Phase 1: Run initial experiments
+    logger.info("Phase 1: Running initial experiments")
+    for experiment in experiment_groups.get("calibration", []):
+        print("\n\n\n")
+        script_path = os.path.join(base_path, experiment, "main.py")
+        logger.info(f"Starting initial experiment: {experiment}")
+        rc = run_script(logger, script_path, args.device, experiment)
+        overall_rc = overall_rc or rc
 
     # Get best edges from bell_tomography results
     best_edges_k_qubits = get_best_edges(hash_id, run_id)
@@ -389,15 +393,15 @@ def main():
     best_qubits = get_best_qubits(hash_id)
     logger.info(f"Best qubits found: {best_qubits}")
 
-    # # Phase 2: Run single qubit experiments based on available qubits
-    # logger.info("Phase 2: Running single-qubit experiments")
-    # for experiment in experiment_groups.get("1", []):
-    #     print("\n\n\n")
-    #     script_path = os.path.join(base_path, experiment, "main.py")
-    #     # pass qubit id as string
-    #     cmd_args = ["--device", args.device, "--qubit_id", str(best_qubits.pop())]
-    #     rc = run_script_with_args(logger, script_path, cmd_args, experiment)
-    #     overall_rc = overall_rc or rc
+    # Phase 2: Run single qubit experiments based on available qubits
+    logger.info("Phase 2: Running single-qubit experiments")
+    for experiment in experiment_groups.get("1", []):
+        print("\n\n\n")
+        script_path = os.path.join(base_path, experiment, "main.py")
+        # pass qubit id as string
+        cmd_args = ["--device", args.device, "--qubit_id", str(best_qubits.pop())]
+        rc = run_script_with_args(logger, script_path, cmd_args, experiment)
+        overall_rc = overall_rc or rc
     
 
     # Phase 3: Run qubit-specific experiments based on available edges
@@ -419,13 +423,14 @@ def main():
                 qubit_list_str = json.dumps(edge_pairs)
                 
                 cmd_args = ["--device", args.device, "--qubits_list", qubit_list_str]
-                import pdb
-                pdb.set_trace()
+                # import pdb
+                # pdb.set_trace()
                 rc = run_script_with_args(logger, script_path, cmd_args, experiment)
                 overall_rc = overall_rc or rc
 
     # Cleanup: remove experiment ID file
-    remove_experiment_id_file(logger)
+    if overall_rc == 0:
+        remove_experiment_id_file(logger)
     sys.exit(overall_rc)
 
 

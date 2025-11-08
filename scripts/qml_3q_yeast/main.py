@@ -1,1 +1,1 @@
-../qml_3Q_statlog/main.py
+../qml_3q_statlog/main.py

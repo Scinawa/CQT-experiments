@@ -2,7 +2,7 @@
 
 This project provides a benchmarking suite for quantum experiments. The system uses a batch runner (`scripts_executor`) that executes experiments defined in an ini configuration file, organizing results in a standardized directory structure.
 
-+To test your software, you have to call:
+To test your software, you have to call:
  
 `sbatch run_sinq20.sh`
 

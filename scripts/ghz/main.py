@@ -15,48 +15,7 @@ import config  # scripts/config.py
 from qibocal.auto.execute import Executor
 from qibocal.cli.report import report
 
-def find_all_chains(pairs):
-    """Given the list of coupled qubits, output all possible chains of coupled qubits (excluding coupled qubits).
-        
-        Args:
-            pairs (list[list[int]]): List of coupled qubits, e.g. [[0, 1], [1, 2], [1, 3]]
-        Returns:
-            chains (list[list[int]]): List of all possible chains of coupled qubits, e.g. [[0, 1, 2], [0, 1, 3]]
-    """
-    G = nx.Graph()
-    G.add_edges_from(pairs)
-    chains = []
-    for component in nx.connected_components(G):
-        subgraph = G.subgraph(component)
-        nodes = list(subgraph.nodes())
-        for i in range(len(nodes)):
-            for j in range(i + 1, len(nodes)):
-                for path in nx.all_simple_paths(subgraph, nodes[i], nodes[j]):
-                    if len(path) > 2:
-                        chains.append(path)
-    return chains
-
-
-def find_longest_chain(pairs):
-    """Given the list of coupled qubits, first find all possible chains of coupled qubits using `find_all_chains`.
-        Then, output the longest chain.
-
-        Args:
-            pairs (list[list[int]]): List of coupled qubits, e.g. [[0, 1], [1, 2], [1, 3]]
-        Returns:
-            chain_of_qubits list[int]: List containing the longest chain.
-    """
-    chains = find_all_chains(pairs)
-    
-    max_length = 0 # placeholder
-    for ii in range(len(chains)):
-        chain = chains[ii]
-        if len(chain) > max_length:
-            max_length = len(chain)
-            idx = ii
-
-    chain_of_qubits = find_all_chains(pairs)[idx]
-    return chain_of_qubits
+from config import find_longest_chain, find_all_chains
 
 
 def create_ghz_circuit(chain_of_qubits):

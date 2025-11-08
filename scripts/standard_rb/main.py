@@ -16,7 +16,7 @@ sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
 
-def main(nqubits, nshots, niter, depths, device):
+def main(nqubits, nshots, niter, depths, device, **kwargs):
 
     results = dict()
     data = dict()
@@ -115,6 +115,12 @@ if __name__ == "__main__":
         default="sinq20",
         type=str,
         help="Device to use",
+    )
+    parser.add_argument(
+        "--qubit_id",
+        default="-",
+        type=str,
+        help="Dummy parameter for compliance",
     )
 
     args = vars(parser.parse_args())
