@@ -90,7 +90,7 @@ if __name__ == "__main__":
         help="Number of shots for each circuit",
     )
     parser.add_argument(
-        "--qubits_id",
+        "--qubit_id",
         type=str,
         help="Dummy parameter for compliance",
     )

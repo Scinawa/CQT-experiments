@@ -16,7 +16,7 @@ sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
 
-def main(device):
+def main(device, **kwargs):
 
     results = dict()
     data = dict()
