@@ -84,7 +84,7 @@ def run_tomography(targets, device, nshots, root_path):
         runtime_seconds = end_time - start_time
         results["frequencies"] = freq
         results["description"] = f"State tomography on numpy backend."
-        results["runtime"] = f"{runtime_seconds:.2f} seconds."
+        results["runtime"] = runtime_seconds
         results["qubits_used"] = targets
 
     return data, results
