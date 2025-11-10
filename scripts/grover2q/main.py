@@ -70,7 +70,7 @@ def main(qubits_list, device, nshots):
     results["plotparameters"]["frequencies"][f"{qubits_list}"] = prob_dict
 
     runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
-    results["runtime"] = f"{runtime_seconds:.2f} seconds."
+    results["runtime"] = runtime_seconds
     results["description"] = (
         f"Grover's algorithm for 2 qubits executed on {device} backend with {nshots} shots per circuit. \n We measure the success rate of finding the target state '{target}' for each pair of qubits in {qubits_list}."
     )
