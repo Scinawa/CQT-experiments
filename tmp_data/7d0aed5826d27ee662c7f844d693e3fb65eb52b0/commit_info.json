@@ -1,6 +1,0 @@
-{
-    "commit_hash": "7d0aed5826d27ee662c7f844d693e3fb65eb52b0",
-    "commit_message": "chore(sinq20): Partial 1q recalibration of qubits 8, 11-14, 17-18\n\nQ4 may be affected by TLS\nQ14 readout needs to be studied further",
-    "experiment_date": "05-11-2025 12:58",
-    "calibration_date": "05-11-2025 12:33"
-}
