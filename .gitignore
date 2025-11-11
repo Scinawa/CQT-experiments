@@ -7,3 +7,4 @@ __pycache__/
 *.pyo
 *.pyd
 current_run_id.json
+.tmp_data/*
