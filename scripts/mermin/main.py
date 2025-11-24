@@ -95,6 +95,7 @@ def create_mermin_circuit_edges(qubit_edge_list, nqubits=20):
                 c.add(gates.CNOT(q1, q2))
                 edges_left.remove(edge)
                 qubits_done |= set(edge)
+    c.add(gates.RZ(qubit_edge_list[0][0], 0))
     return c
 
 

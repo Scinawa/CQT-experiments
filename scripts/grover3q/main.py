@@ -115,7 +115,7 @@ def main(qubits_list, device, nshots):
     results["success_rate"][f"{qubits}"] = target_freq / nshots
 
     # Make probabilities a dict keyed by all possible bitstrings
-    num_bits = len(qubits) - 1  # Only measure main qubits, not ancilla
+    num_bits = len(qubits)  # Only measure main qubits, not ancilla
     all_bitstrings = [format(i, f"0{num_bits}b") for i in range(2**num_bits)]
     prob_dict = {bs: (freq.get(bs, 0) / nshots) for bs in all_bitstrings}
     results["plotparameters"]["frequencies"][f"{qubits}"] = prob_dict
