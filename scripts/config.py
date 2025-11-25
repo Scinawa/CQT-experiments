@@ -57,6 +57,80 @@ def find_longest_chain(pairs):
     return chain_of_qubits
 
 
+def build_chain_from_edges(edge_list):
+    """
+    Build a chain of qubits from edge pairs, preserving connectivity order.
+    
+    Examples:
+        [[b, a], [b, c]] -> [a, b, c]
+        [[a, c], [b, c]] -> [a, c, b]
+        [[x, y], [y, z]] -> [x, y, z]
+    
+    Args:
+        edge_list (list[list[int]]): List of edge pairs, e.g. [[a, b], [b, c]]
+    
+    Returns:
+        list[int]: Chain of qubits preserving connectivity order
+    """
+    if len(edge_list) == 0:
+        return []
+    elif len(edge_list) == 1:
+        return list(edge_list[0])
+    
+    # Check if input is already a flat list of qubits (not edges)
+    # If all elements are integers, return as-is
+    if all(isinstance(item, int) for item in edge_list):
+        return list(edge_list)
+    
+    # Count occurrences of each qubit to find endpoints
+    qubit_count = {}
+    for edge in edge_list:
+        for q in edge:
+            qubit_count[q] = qubit_count.get(q, 0) + 1
+    
+    # Find an endpoint (qubit that appears in only one edge)
+    endpoint = None
+    for q, count in qubit_count.items():
+        if count == 1:
+            endpoint = q
+            break
+    
+    # Build chain
+    if endpoint:
+        # Start from endpoint
+        for edge in edge_list:
+            if endpoint in edge:
+                if edge[0] == endpoint:
+                    chain = list(edge)
+                else:
+                    chain = list(reversed(edge))
+                break
+        remaining_edges = [e for e in edge_list if endpoint not in e]
+    else:
+        # No endpoint, start with first edge
+        chain = list(edge_list[0])
+        remaining_edges = edge_list[1:]
+    
+    # Connect remaining edges
+    while remaining_edges:
+        last_qubit = chain[-1]
+        found = False
+        for i, edge in enumerate(remaining_edges):
+            if edge[0] == last_qubit:
+                chain.append(edge[1])
+                remaining_edges.pop(i)
+                found = True
+                break
+            elif edge[1] == last_qubit:
+                chain.append(edge[0])
+                remaining_edges.pop(i)
+                found = True
+                break
+        if not found:
+            break
+    
+    return chain
+
 
 def output_dir_for(script_file: str, device: str | Path) -> Path:
     """Return data/<script-dir-name>/ for the given script file."""

@@ -6,3 +6,5 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+current_run_id.json
+.tmp_data/*

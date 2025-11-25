@@ -67,9 +67,9 @@ def run_tomography(targets, device, nshots, root_path):
             # Save frequencies if available
             
             results["fidelity"] = output.results.fidelity
-            results["runtime"] = f"{runtime_seconds:.2f} seconds."
+            results["runtime"] = runtime_seconds
             results["qubits_used"] = targets
-            results["description"] = f"State tomography on qubits {[targets]}."
+            results["description"] = f"Bell state tomography."
     else:
         # Simulate with numpy backend
         start_time = time.time()
@@ -83,8 +83,8 @@ def run_tomography(targets, device, nshots, root_path):
         end_time = time.time()
         runtime_seconds = end_time - start_time
         results["frequencies"] = freq
-        results["description"] = f"State tomography on numpy backend."
-        results["runtime"] = f"{runtime_seconds:.2f} seconds."
+        results["description"] = f"State tomography on bell states."
+        results["runtime"] = runtime_seconds
         results["qubits_used"] = targets
 
     return data, results
@@ -221,7 +221,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--nshots",
-        default=1000,
+        default=2000,
         type=int,
         help="Number of shots for each circuit",
     )

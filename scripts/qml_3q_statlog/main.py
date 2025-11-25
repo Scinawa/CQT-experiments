@@ -25,7 +25,7 @@ from qibocal.cli.report import report
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
-from config import find_longest_chain, find_all_chains
+from config import build_chain_from_edges, find_all_chains
 
 
 
@@ -203,31 +203,6 @@ def compute_statistics_and_dump_results(data, out_dir, logger):
         json.dump(data, f, indent=2)
     logger.info("Full results (with accuracies) written to %s", results_path)
 
-# def compute_statistics_and_dump_results(evaluated, data, out_dir, logger):
-#     qibo_accuracy = sum(c["qibo_predicted_label"] == c["label"] for c in evaluated) / len(evaluated)
-#     pennylane_vs_qibo_accuracy = sum(c["qibo_predicted_label"] == c["noiseless_label"] for c in evaluated) / len(evaluated)
-#     original_sim_accuracy = sum(c["label"] == c["noiseless_label"] for c in evaluated) / len(evaluated)
-
-#     logger.info("Qibo accuracy (qibo vs true label): %.4f", qibo_accuracy)
-#     logger.info("PennyLane vs Qibo accuracy (qibo vs noiseless): %.4f", pennylane_vs_qibo_accuracy)
-#     logger.info(
-#         "Original noiseless simulation agreement (true vs noiseless): %.4f (expected: %.4f)",
-#         original_sim_accuracy,
-#         data.get("accuracy", float("nan")),
-#     )
-
-#     # Store new stats at top-level of JSON structure
-#     data["NQCH"]["qibo_accuracy"] = qibo_accuracy
-#     data["NQCH"]["verification_vs_NQHC_accuracy"] = pennylane_vs_qibo_accuracy
-#     data["NQCH"]["original_sim_accuracy_over_processed_subset"] = original_sim_accuracy
-#     data["NQCH"]["processed_count"] = len(evaluated)
-
-#     # Write full updated data (including qc_configurations) to results.json in out_dir
-#     results_path = out_dir / "results.json"
-#     with open(results_path, "w") as f:
-#         json.dump(data, f, indent=2)
-#     logger.info("Full results (with accuracies) written to %s", results_path)
-
 
 def run_quantum_experiment(data, idx, qubits_list, num_qubits, physical_output_qubit, nshots):
 
@@ -265,22 +240,6 @@ def run_quantum_experiment(data, idx, qubits_list, num_qubits, physical_output_q
     }
 
 
-# def preprocess_results_for_statistics(data):
-#     evaluated = []
-#     for idx_str, nqch_result in data.get('NQCH', {}).items():
-#     if 'sigmoid_expval' in nqch_result and 'predicted_label' in nqch_result:
-#         # Get corresponding original data
-#         original_data = data['noiseless_experiment_ios'].get(idx_str, {})
-#         if original_data:
-#             evaluated_item = {
-#                 'qibo_predicted_label': nqch_result['predicted_label'],
-#                 'label': original_data.get('label'),
-#                 'predicted_label': original_data.get('predicted_label'),
-#                 'sigmoid_expval': nqch_result['sigmoid_expval']
-#             }
-#             evaluated.append(evaluated_item)
-#     return evaluated
-
 
 def main(qubits_list, device, nshots, debug=False, args=None, input_filename="input.json", number_of_datapoints_output=100000):
     # configure logging
@@ -304,18 +263,11 @@ def main(qubits_list, device, nshots, debug=False, args=None, input_filename="in
 
     num_qubits = data['args']['num_qubits']
     output_qubit = data['args']['output_qubit']
-    # out_dir = config.output_dir_for(sys.argv[0], device)
-    # out_dir.mkdir(parents=True, exist_ok=True)
-
-    # import pdb
-    # pdb.set_trace()
 
     folder_name = Path(sys.argv[0]).parts[-2]  
-
     out_dir = Path(config.output_dir_for(sys.argv[0], device))
     # replace the last folder name with folder_name:
     out_dir = out_dir.with_name(folder_name)
-
     out_dir.mkdir(parents=True, exist_ok=True)
 
     
@@ -400,7 +352,7 @@ def main(qubits_list, device, nshots, debug=False, args=None, input_filename="in
 
     # Compute statistics and write final results
 
-    data["description"] = f"State tomography on numpy backend."
+    data["description"] = f"Classification of benchmarking ML dataset using a pretrained variational circuit."
     data["runtime"] = duration
     data["qubits_used"] = qubits_list
     compute_statistics_and_dump_results(data, out_dir, logger)
@@ -417,7 +369,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--qubits_list",
         type=ast.literal_eval, 
-        default=[[0, 1], [1, 2], [2, 3]],
+        default=[[1, 1], [1, 1], [1, 1]],
         help="List of coupled qubit pairs, e.g. '[[0,1],[0,2],[1,4],[1,5]]' ",
     )
     parser.add_argument(
@@ -428,7 +380,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--nshots",
-        default=5000,
+        default=500,
         type=int,
         help="Number of shots for each circuit execution",
     )
@@ -451,8 +403,9 @@ if __name__ == "__main__":
     )
     cnf = vars(parser.parse_args())
 
-
-    qubits_to_use = find_longest_chain(cnf["qubits_list"])
+    print(f"DEBUG: Received qubits_list: {cnf['qubits_list']}")
+    print(f"DEBUG: Type: {type(cnf['qubits_list'])}, Length: {len(cnf['qubits_list'])}")
+    qubits_to_use = build_chain_from_edges(cnf["qubits_list"])
     print(f"Using qubits: {qubits_to_use}")
 
 
