@@ -6,6 +6,10 @@ import sys
 from pathlib import Path as _P
 import time
 
+''' Amplitude Encoding of a numerical vector into a quantum state
+    using qibo framework with !AUTOMATIC TRANSPILATION!
+'''
+
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
@@ -205,7 +209,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--qubits_list",
         default="[[9,8],[8,13]]",
-        type=list,
+        type=str,
         help="Target edges list as string representation",
     )
     parser.add_argument(

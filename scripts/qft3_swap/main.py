@@ -6,6 +6,9 @@ import sys
 import time
 from pathlib import Path as _P
 
+''' Quantum Fourier Transform circuit from scratch (ONLY THREE QUBITS)
+    using qibo framework with !MANUAL TRANSPILATION!
+'''
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
@@ -16,8 +19,6 @@ def QFT(qubits_list):
     Quantum Fourier Transform circuit from scratch (ONLY THREE QUBITS)
     
     Args:   - list of edges (connections)
-            - device (str): device where to execute the circuit (local numpy,
-              qibo_client sinq20)
             
     Returns: qibo circuit
     '''
@@ -93,7 +94,7 @@ def main(qubits_list, device, nshots):
     data["device"] = device
 
     results = {
-        "description": f"Implementation of the Quantum Fourier Transform on three qubits. The number of gates is {num_gates}, the depth of the circuit is {depth}",
+        "description": f"Implementation of the Quantum Fourier Transform on three qubits with manual transpilation. The number of gates is {num_gates}, the depth of the circuit is {depth}",
         "circuit_depths": depth,
         "gates_counts": num_gates,
         "duration": f"{(end-start):.3f} seconds.",
@@ -129,7 +130,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--qubits_list",
         default="[[9,8],[8,13]]",
-        type=list,
+        type=str,
         help="Target edges list as string representation",
     )
     args = parser.parse_args()
@@ -141,4 +142,4 @@ if __name__ == "__main__":
     except (ValueError, SyntaxError, TypeError):
         print(f"Error: Invalid qubit list format: {args.qubits_list}")
         sys.exit(1)
-    main(args.qubits_list, args.device, args.nshots)
+    main(qubits_list, args.device, args.nshots)

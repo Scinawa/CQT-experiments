@@ -6,14 +6,28 @@ import sys
 import time
 from pathlib import Path as _P
 
+''' Quantum Fourier Transform (QFT) implementation 
+    using qibo framework with !AUTOMATIC TRANSPILATION!
+'''
+
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
 
-def QFT(qubits_list, nshots):
+def QFT(qubits_list):
+    '''
+    Quantum Fourier Transform circuit with AUTO TRANSPILATION (ONLY THREE QUBITS)
+    
+    Args:   - list of edges (connections)
+            
+    Returns: qibo circuit
+    '''
+    
+    qubits_list = sorted(set(sum(qubits_list, [])))
+    total_qubits = int(max(qubits_list) + 1)     # number of total qubits of the circuit
+
     n_qubits = len(qubits_list)
-    total_qubits = int(np.max(qubits_list) + 1)
 
     circuit = qibo.Circuit(total_qubits)
 
@@ -30,8 +44,7 @@ def QFT(qubits_list, nshots):
 
     return circuit
 
-
-def main(device, nshots):
+def main(qubits_list, device, nshots):
     # Remove all qibo_client usage and via_client logic
     # Set backend as in template/main.py, GHZ/main.py, mermin/main.py
     if device == "numpy":
@@ -39,38 +52,24 @@ def main(device, nshots):
     else:
         qibo.set_backend("qibolab", platform=device)
 
-    qubits_lists = [
-        [13, 17, 18],
-        [17, 18, 19],
-        [13, 14, 18],
-        [9, 14, 15],
-    ]
-
-    num_qubits = len(qubits_lists[0])
+    # Here the list of the best three qubits
+    
+    qubits_set = set(sum(qubits_list, []))
+    num_qubits = len(qubits_set)                         # number of qubits 
 
     frequencies = dict()
-    fidelities = []
-    times = []
     all_bitstrings = [format(i, f"0{num_qubits}b") for i in range(2**num_qubits)]
 
-    for qubits_list in qubits_lists:
-        print(f"Trying qubits: {qubits_list}")
+    print(f"Trying edges: {qubits_list}")
 
-        circuit = QFT(qubits_list, nshots)
+    circuit = QFT(qubits_list)
 
-        start = time.perf_counter()
-        result = circuit(nshots=nshots)
-        end = time.perf_counter()
+    start = time.perf_counter()
+    result = circuit(nshots=nshots)
+    end = time.perf_counter()
 
-        circuit_state = (
-            np.array([result.frequencies().get(bitstr, 0) for bitstr in all_bitstrings])
-            / nshots
-        )
-
-        key = format(qubits_list)
-        frequencies[key] = circuit_state
-        fidelities.append(circuit_state[0])
-        times.append(end - start)
+    # Circuit output frequencies and store them
+    frequencies = {bitstr: result.frequencies().get(bitstr, 0) for bitstr in all_bitstrings}
 
     num_gates = len(circuit.queue)
     depth = circuit.depth
@@ -78,32 +77,24 @@ def main(device, nshots):
     results = dict()
     data = dict()
 
-    frequencies = {
-        k: v.tolist() if isinstance(v, np.ndarray) else v
-        for k, v in frequencies.items()
-    }
-
     results["description"] = {}
     results["circuit_depth"] = {}
     results["gates_count"] = {}
     results["duration"] = {}
     results["frequencies"] = {}
-    results["plotparameters"] = {}
-    results["plotparameters"]["qubits_lists"] = {}
-    results["plotparameters"]["fidelities"] = {}
+    results["edges"] = {}
     data["nshots"] = nshots
     data["device"] = device
 
     results = {
-        "description": f"Implementation of the Quantum Fourier Transform on different subsets of three qubits. The number of gates is {num_gates}, the depth of the circuit is {depth}",
+        "description": f"Implementation of the Quantum Fourier Transform on three qubits with automatic transpilation. The number of gates is {num_gates}, the depth of the circuit is {depth}",
         "circuit_depths": depth,
         "gates_counts": num_gates,
-        "runtime": f"{np.average(times):.2f} seconds.",
+        "duration": f"{(end-start):.3f} seconds.",
         "frequencies": frequencies,
-        "qubits_used": qubits_lists,
-        "plotparameters": {"qubits_lists": qubits_lists, "fidelities": fidelities},
+        "edges": qubits_list,
     }
-
+    
     out_dir = config.output_dir_for(__file__, device)
     out_dir.mkdir(parents=True, exist_ok=True)
     output_path = os.path.join(out_dir, f"results.json")
@@ -112,8 +103,8 @@ def main(device, nshots):
         json.dump(results, f)
         print(f"File saved on {output_path}")
 
-
 import argparse
+import ast
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -129,5 +120,19 @@ if __name__ == "__main__":
         type=int,
         help="Number of shots for each circuit",
     )
-    args = vars(parser.parse_args())
-    main(args["device"], args["nshots"])
+    parser.add_argument(
+        "--qubits_list",
+        default="[[9,8],[8,13]]",
+        type=str,
+        help="Target edges list as string representation",
+    )
+    args = parser.parse_args()
+    # Parse the qubit list string into actual list of integers
+    try:
+        qubits_list = ast.literal_eval(args.qubits_list)
+        # Ensure all elements are integers
+        qubits_list = [[int(q) for q in edge] for edge in qubits_list]
+    except (ValueError, SyntaxError, TypeError):
+        print(f"Error: Invalid qubit list format: {args.qubits_list}")
+        sys.exit(1)
+    main(qubits_list, args.device, args.nshots)
