@@ -41,17 +41,19 @@ def main(qubits_list, device, nshots):
 
     target = "11"
 
+    qubits = qubits_list[0]
+
     results["success_rate"] = {}
     results["plotparameters"] = {}
     results["plotparameters"]["frequencies"] = {}
-    data["qubit_pairs"] = qubits_list
+    data["qubits_list"] = qubits_list
     data["nshots"] = nshots
     data["device"] = device
     data["target"] = target
 
     _tmp_runtimes = []
 
-    c = grover_2q(qubits_list, target)
+    c = grover_2q(qubits, target)
 
     start_time = time.time()
     r = c(nshots=nshots)
@@ -64,7 +66,7 @@ def main(qubits_list, device, nshots):
     results["success_rate"][f"{qubits_list}"] = target_freq / nshots
 
     # Make probabilities a dict keyed by all possible bitstrings
-    num_bits = len(qubits_list)
+    num_bits = len(qubits)
     all_bitstrings = [format(i, f"0{num_bits}b") for i in range(2**num_bits)]
     prob_dict = {bs: (freq.get(bs, 0) / nshots) for bs in all_bitstrings}
     results["plotparameters"]["frequencies"][f"{qubits_list}"] = prob_dict
@@ -92,7 +94,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--qubits_list",
-        default="[13, 14]",
+        default="[[13, 14]]",
         type=str,
         help="Target qubit list as string representation",
     )
@@ -115,7 +117,7 @@ if __name__ == "__main__":
     try:
         qubits_list = ast.literal_eval(args.qubits_list)
         # Ensure all elements are integers
-        qubits_list = [int(q) for q in qubits_list]
+        qubits_list = [[int(q) for q in qubits_list[i]] for i in range(len(qubits_list))]
     except (ValueError, SyntaxError, TypeError):
         print(f"Error: Invalid qubit list format: {args.qubits_list}")
         sys.exit(1)

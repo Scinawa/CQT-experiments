@@ -12,56 +12,74 @@ import config  # scripts/config.py
 
 
 def ccz_gate_auxilliary():
-    ccz = Circuit(4)
-    ccz.add(gates.CNOT(1, 3))
-    ccz.add(gates.CNOT(3, 1))
-    ccz.add(gates.CNOT(1, 3))
-    ccz.add(gates.CNOT(3, 2))
+    """ Connectivity is the following [[0, 2], [2, 1]]
+    """
+    ccz = Circuit(3)
+
+    ccz.add(gates.CNOT(1, 2))
     ccz.add(gates.TDG(2))
     ccz.add(gates.CNOT(0, 2))
     ccz.add(gates.T(2))
-    ccz.add(gates.CNOT(3, 2))
+    ccz.add(gates.CNOT(1, 2))
     ccz.add(gates.TDG(2))
     ccz.add(gates.CNOT(0, 2))
     ccz.add(gates.T(2))
-    ccz.add(gates.CNOT(1, 3))
-    ccz.add(gates.CNOT(3, 1))
-    ccz.add(gates.CNOT(1, 3))
+
+    ccz.add(gates.CNOT(0, 2))
+    ccz.add(gates.CNOT(2, 0))
+    ccz.add(gates.CNOT(0, 2))
+
     ccz.add(gates.T(1))
-    ccz.add(gates.CNOT(0, 1))
+    ccz.add(gates.CNOT(2, 1))
     ccz.add(gates.TDG(1))
-    ccz.add(gates.T(0))
-    ccz.add(gates.CNOT(0, 1))
+    ccz.add(gates.T(2))
+    ccz.add(gates.CNOT(2, 1))
+
+    ccz.add(gates.CNOT(0, 2))
+    ccz.add(gates.CNOT(2, 0))
+    ccz.add(gates.CNOT(0, 2))
+
     return ccz
 
 
 def grover_3q(qubits, target):
     ccz = ccz_gate_auxilliary()
 
-    a = qubits[-1:]
-    qubits = qubits[:-1]
+    qubits = qubits
 
     c = Circuit(20)
     c.add([gates.H(i) for i in qubits])
     for i, bit in enumerate(target):
         if int(bit) == 0:
             c.add(gates.X(qubits[i]))
-    c.add(ccz.on_qubits(*(qubits + a)))
+    c.add(ccz.on_qubits(*qubits))
     for i, bit in enumerate(target):
         if int(bit) == 0:
             c.add(gates.X(qubits[i]))
     c.add([gates.H(i) for i in qubits])
     c.add([gates.X(i) for i in qubits])
-    c.add(ccz.on_qubits(*(qubits + a)))
+    c.add(ccz.on_qubits(*qubits))
     c.add([gates.X(i) for i in qubits])
     c.add([gates.H(i) for i in qubits])
 
-    c.add(gates.M(*qubits, register_name=f"m{qubits+a}"))
+    c.add(gates.M(*qubits, register_name=f"m{qubits}"))
     # print(c.draw())  # Optional: comment out or remove for production
     return c
 
 
-def main(qubit_groups, device, nshots):
+def build_qubits_from_edges(qubit_edge_list):
+    """ Given 3 qubits in this connection a-b-c, generate qubit list in the order 0-2-1.
+    """
+    assert len(list(set(qubit_edge_list[0])&set(qubit_edge_list[1])))==1
+    assert len(list(set(qubit_edge_list[0])^set(qubit_edge_list[1])))==2
+    assert len(qubit_edge_list)==2
+    
+    qubits = list(set(qubit_edge_list[0])^set(qubit_edge_list[1]))
+    qubits += list(set(qubit_edge_list[0])&set(qubit_edge_list[1]))
+    return qubits
+
+
+def main(qubits_list, device, nshots):
     if device == "numpy":
         set_backend("numpy")
     else:
@@ -75,38 +93,39 @@ def main(qubit_groups, device, nshots):
     results["success_rate"] = {}
     results["plotparameters"] = {}
     results["plotparameters"]["frequencies"] = {}
-    data["qubit_pairs"] = qubit_groups
+    data["qubits_list"] = qubits_list
     data["nshots"] = nshots
     data["device"] = device
     data["target"] = target
 
     _tmp_runtimes = []
 
-    for qubits in qubit_groups:
-        c = grover_3q(qubits, target)
+    qubits = build_qubits_from_edges(qubits_list)
 
-        start_time = time.time()
-        r = c(nshots=nshots)
-        end_time = time.time()
-        _tmp_runtimes.append(end_time - start_time)
+    c = grover_3q(qubits, target)
 
-        freq = r.frequencies()
+    start_time = time.time()
+    r = c(nshots=nshots)
+    end_time = time.time()
+    _tmp_runtimes.append(end_time - start_time)
 
-        target_freq = freq.get(target, 0)
-        results["success_rate"][f"{qubits}"] = target_freq / nshots
+    freq = r.frequencies()
 
-        # Make probabilities a dict keyed by all possible bitstrings
-        num_bits = len(qubits) - 1  # Only measure main qubits, not ancilla
-        all_bitstrings = [format(i, f"0{num_bits}b") for i in range(2**num_bits)]
-        prob_dict = {bs: (freq.get(bs, 0) / nshots) for bs in all_bitstrings}
-        results["plotparameters"]["frequencies"][f"{qubits}"] = prob_dict
+    target_freq = freq.get(target, 0)
+    results["success_rate"][f"{qubits}"] = target_freq / nshots
+
+    # Make probabilities a dict keyed by all possible bitstrings
+    num_bits = len(qubits)  # Only measure main qubits, not ancilla
+    all_bitstrings = [format(i, f"0{num_bits}b") for i in range(2**num_bits)]
+    prob_dict = {bs: (freq.get(bs, 0) / nshots) for bs in all_bitstrings}
+    results["plotparameters"]["frequencies"][f"{qubits}"] = prob_dict
 
     runtime_seconds = sum(_tmp_runtimes) / len(_tmp_runtimes) if _tmp_runtimes else 0.0
     results["runtime"] = runtime_seconds
     results["description"] = (
-        f"Grover's algorithm for 3 qubits executed on {device} backend with {nshots} shots per circuit. \n We measure the success rate of finding the target state '{target}' for each pair of qubits in {qubit_groups}."
+        f"Grover's algorithm for 3 qubits executed on {device} backend with {nshots} shots per circuit. \n We measure the success rate of finding the target state '{target}' for each pair of qubits in {qubits_list}."
     )
-    results["qubits_used"] = qubit_groups
+    results["qubits_used"] = qubits
 
     # Write to data/<scriptname>/<device>/results.json
     out_dir = config.output_dir_for(__file__, device)
@@ -124,7 +143,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--qubits_list",
-        default="[17, 13, 18, 14]",
+        default="[[18, 14], [18, 19]]",
         type=str,
         help="Target qubits as string representation, last qubit used as ancilla",
     )
@@ -147,9 +166,9 @@ if __name__ == "__main__":
     try:
         qubits_list = ast.literal_eval(args.qubits_list)
         # Ensure all elements are integers
-        qubits_list = [int(q) for q in qubits_list]
+        qubits_list = [[int(q) for q in qubits_list[i]] for i in range(len(qubits_list))]
     except (ValueError, SyntaxError, TypeError):
         print(f"Error: Invalid qubit list format: {args.qubits_list}")
         sys.exit(1)
     
-    main([qubits_list], args.device, args.nshots)
+    main(qubits_list, args.device, args.nshots)
