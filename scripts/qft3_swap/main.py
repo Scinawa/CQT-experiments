@@ -10,9 +10,33 @@ from pathlib import Path as _P
     using qibo framework with !MANUAL TRANSPILATION!
 '''
 
+from qibo import Circuit, gates
+from qibo.transpiler import (
+    NativeGates,
+    Passes,
+    Unroller
+)
+
+glist = [gates.GPI2, gates.RZ, gates.Z, gates.CZ]
+natives = NativeGates(0).from_gatelist(glist)
+custom_passes = [Unroller(native_gates=natives)]
+custom_pipeline = Passes(custom_passes)
+
+
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
 
+def order_chain_edges(edges):
+    """Ensure edges form a -> b -> c ordering."""
+    (a, b), (c, d) = edges
+    # Find shared qubit
+    shared = list(set([a, b]) & set([c, d]))
+    assert len(shared) == 1, "Edges do not share exactly one qubit."
+    shared = shared[0]
+    # Determine left and right
+    left  = a if a != shared else b
+    right = c if c != shared else d
+    return [[left, shared], [shared, right]]
 
 def QFT(qubits_list):
     '''
@@ -31,6 +55,8 @@ def QFT(qubits_list):
     # Add Hadamard at the beginning
     for q in qubits_set:
         circuit.add(qibo.gates.H(q))
+
+    qubits_list = order_chain_edges(qubits_list)
     
     # QFT from scratch for three qubits with swap for 
     # connection q0--q1--q2
@@ -70,6 +96,7 @@ def main(qubits_list, device, nshots):
     print(f"Trying edges: {qubits_list}")
 
     circuit = QFT(qubits_list)
+    circuit, _ = custom_pipeline(circuit)
 
     start = time.perf_counter()
     result = circuit(nshots=nshots)
