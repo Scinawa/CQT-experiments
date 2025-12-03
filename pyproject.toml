@@ -27,6 +27,7 @@ dependencies = [
     "torch",
     "torchvision",
     "qiboml",
+    "tabulate",
 ]
 
 [build-system]
