@@ -66,9 +66,7 @@ def main(device):
     # Load run_id from file if it exists
     run_id = None
     try:
-        id_file_path = Path(
-            "/mnt/home/Scinawa/CQT-reporting/scripts/current_experiment_id.json"
-        )
+        id_file_path = config.RUN_ID_FILE
         if id_file_path.exists():
             with open(id_file_path, "r") as f:
                 id_data = json.load(f)

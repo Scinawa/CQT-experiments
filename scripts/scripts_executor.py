@@ -312,7 +312,7 @@ def create_experiment_id(logger: logging.Logger) -> str:
     run_id = datetime.now().strftime("%Y%m%d%H%M%S")
     logger.info(f"Starting experiment-run with RunID: {run_id}")
     try:
-        RUN_ID_FILE.parent.mkdir(parents=True, exist_ok=True)
+        # File is in current directory, no need to create parent
         with open(RUN_ID_FILE, "w", encoding="utf-8") as f:
             json.dump({"run_id": run_id}, f)
     except Exception as e:
@@ -322,8 +322,8 @@ def create_experiment_id(logger: logging.Logger) -> str:
 def remove_experiment_id_file(logger: logging.Logger):
     logger.info(f"Removing experiment ID file {RUN_ID_FILE}")
     try:
-        if os.path.exists(RUN_ID_FILE):
-            os.remove(RUN_ID_FILE)
+        if RUN_ID_FILE.exists():
+            RUN_ID_FILE.unlink()
     except Exception as e:
         logger.error(f"Failed to remove experiment ID file {RUN_ID_FILE}: {e}")
 
