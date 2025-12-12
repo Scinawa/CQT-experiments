@@ -9,7 +9,17 @@ from pathlib import Path as _P
 ''' Quantum Fourier Transform (QFT) implementation 
     using qibo framework with !AUTOMATIC TRANSPILATION!
 '''
+from qibo import Circuit, gates
+from qibo.transpiler import (
+    NativeGates,
+    Passes,
+    Unroller
+)
 
+glist = [gates.GPI2, gates.RZ, gates.Z, gates.CZ]
+natives = NativeGates(0).from_gatelist(glist)
+custom_passes = [Unroller(native_gates=natives)]
+custom_pipeline = Passes(custom_passes)
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
@@ -63,6 +73,7 @@ def main(qubits_list, device, nshots):
     print(f"Trying edges: {qubits_list}")
 
     circuit = QFT(qubits_list)
+    circuit, _ = custom_pipeline(circuit)
 
     start = time.perf_counter()
     result = circuit(nshots=nshots)

@@ -21,6 +21,17 @@ from qibocal.auto.execute import Executor
 from qibocal.cli.report import report
 
 from config import CURRENT_CALIBRATION_DIRECTORY
+from qibo import Circuit, gates
+from qibo.transpiler import (
+    NativeGates,
+    Passes,
+    Unroller
+)
+
+glist = [gates.GPI2, gates.RZ, gates.Z, gates.CZ]
+natives = NativeGates(0).from_gatelist(glist)
+custom_passes = [Unroller(native_gates=natives)]
+custom_pipeline = Passes(custom_passes)
 
 def bell_circuit():
     circuit = Circuit(2)
@@ -55,6 +66,7 @@ def run_tomography(targets, device, nshots, root_path):
             force=True,
         ) as e:
             circuit = bell_circuit()
+            circuit, _ = custom_pipeline(circuit)
             start_time = time.time()
             output = e.two_qubit_state_tomography(
                 circuit=circuit, targets=[(targets[0], targets[1])]

@@ -13,7 +13,17 @@ import time
 
 sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
 import config  # scripts/config.py
+from qibo import Circuit, gates
+from qibo.transpiler import (
+    NativeGates,
+    Passes,
+    Unroller
+)
 
+glist = [gates.GPI2, gates.RZ, gates.Z, gates.CZ]
+natives = NativeGates(0).from_gatelist(glist)
+custom_passes = [Unroller(native_gates=natives)]
+custom_pipeline = Passes(custom_passes)
 
 def main(nqubits, device, nshots, **kwargs):
 
@@ -43,6 +53,8 @@ def main(nqubits, device, nshots, **kwargs):
     for qb in range(20):
         c1._wire_names = [qb]
         c2._wire_names = [qb]
+        c1, _ = custom_pipeline(c1)
+        c2, _ = custom_pipeline(c2)
 
         e1[qb] = float(c1(nshots=nshots).probabilities()[1])
         e2[qb] = float(c2(nshots=nshots).probabilities()[0])

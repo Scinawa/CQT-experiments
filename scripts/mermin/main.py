@@ -20,7 +20,17 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 import config  # scripts/config.py
+from qibo import Circuit, gates
+from qibo.transpiler import (
+    NativeGates,
+    Passes,
+    Unroller
+)
 
+glist = [gates.GPI2, gates.RZ, gates.Z, gates.CZ]
+natives = NativeGates(0).from_gatelist(glist)
+custom_passes = [Unroller(native_gates=natives)]
+custom_pipeline = Passes(custom_passes)
 
 def compute_mermin(frequencies, mermin_coefficients):
     """Computes the chsh inequality out of the frequencies of the 4 circuits executed."""
@@ -171,6 +181,7 @@ def main(nqubits, qubits_list, device, nshots):
         frequencies = []
         for circ in circuits:
             circ.set_parameters([theta])
+            circ, _ = custom_pipeline(circ)
             start_time = time.time()
             freq = circ(nshots=nshots).frequencies()
             end_time = time.time()
