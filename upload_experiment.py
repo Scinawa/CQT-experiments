@@ -1,3 +1,6 @@
+import argparse
+import tomllib
+from pathlib import Path
 from clientdb.client import (
     set_server,
     calibrations_upload, calibrations_list, calibrations_download, calibrations_get_latest,
@@ -5,58 +8,35 @@ from clientdb.client import (
     get_best_n_runs,upload_all_calibrations,upload_all_experiment_runs
 )
 
-set_server(server_url='http://54.169.91.191',api_token='EtadObqx4MRwCTLsTa_YWmTfUl24Jg57tngu_feXna4')
+
+def load_secrets():
+    """Load credentials from .secrets.toml"""
+    secrets_path = Path(__file__).parent / ".secrets.toml"
+    with open(secrets_path, "rb") as f:
+        secrets = tomllib.load(f)
+    return secrets
 
 
-
-# use the api token in place of "very-secret-token"
-# set_server(server_url="http://127.0.0.1:5050",api_token="secret-token")
-
-
-
-# upload_all_calibrations("../CQT-reporting/data/calibrations")
-
-# upload_all_experiment_runs("../CQT-reporting/data")
-
-# print_table(calibrations_list())
-
-# print(calibrations_list())
-
-# rsp = calibrations_upload(hashID="1e1f7e1d1af58009eda1986bb3689e6b9b2356b6", calibrations_folder="./data/calibrations")
-# print(rsp)
-
-# rsp = calibrations_upload(hashID="3826882f81128980b5e49b0e1bec76e24e40e158", calibrations_folder="./data/calibrations")
-# print(rsp)
-
-rsp = results_upload(hashID="3826882f81128980b5e49b0e1bec76e24e40e158", runID="20251201162853", data_folder="./data")
-print(rsp)
-rsp = results_upload(hashID="3826882f81128980b5e49b0e1bec76e24e40e158", runID="20251201134523", data_folder="./data")
-print(rsp)
+def main():
+    parser = argparse.ArgumentParser(description="Upload experiment results")
+    parser.add_argument("--hashid", required=True, help="Hash ID for the calibration")
+    parser.add_argument("--runid", required=True, help="Run ID for the experiment")
+    args = parser.parse_args()
+    
+    # Load credentials from .secrets.toml
+    secrets = load_secrets()
+    server_url = secrets["server_url"]
+    api_token = secrets["api_token"]
+    
+    # Set server with credentials from secrets
+    set_server(server_url=server_url, api_token=api_token)
+    
+    # Upload results
+    rsp = results_upload(hashID=args.hashid, runID=args.runid, data_folder="./data")
+    print(rsp)
 
 
-# calibrations_download(hashID="2447f0fad33dfea493b4e7bc4143c8bd2e28d979",output_folder="./download_data_test/calibrations")
-
-# calibrations_download(hashID="1e1f7e1d1af58009eda1986bb3689e6b9b2356b6",output_folder="./download_data_test/calibrations")
-
-# print_table(results_list(hashID="2447f0fad33dfea493b4e7bc4143c8bd2e28d979"))
-
-# results_download(hashID="2447f0fad33dfea493b4e7bc4143c8bd2e28d979",runID="20251111023316",output_folder="./download_data_test")
-
-# set_best_run(calibrationHashID=latest["hashID"],runID='testrun4') 
-
-# Mark a few best runs over time
-# set_best_run("cal_hash_A", "run_001")
-# set_best_run("cal_hash_B", "run_002")
-# set_best_run("cal_hash_A", "run_003")
+if __name__ == "__main__":
+    main()
 
 
-# Get the most recent best run
-# cal_hash, run_id, ts = get_best_run()
-# print("Current best:", cal_hash, run_id, ts)
-
-# Get the last 5 best runs
-# history = get_best_n_runs(5)
-# for cal_hash, run_id, ts in history:
-#     print("Best at:", ts, "->", cal_hash, run_id)
-
-# print(get_best_run())

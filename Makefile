@@ -33,10 +33,10 @@ RUNID_RIGHT ?= 1235
 
 upload-data:
 	@echo "Uploading data for experiment $(calibration_left)"
-	@python upload.py --hash-id $(calibration_left)
+	@python upload_experiment.py --hashid $(calibration_left) --runid $(RUNID_LEFT)
 
 	@echo "Uploading data for experiment $(calibration_right)"
-	@python upload.py --hash-id $(calibration_right)
+	@python upload_experiment.py --hashid $(calibration_right) --runid $(RUNID_RIGHT)
 
 # build: clean
 # 	@mkdir -p build

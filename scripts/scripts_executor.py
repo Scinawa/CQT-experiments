@@ -123,6 +123,26 @@ def get_best_edges(hash_id, run_id):
         raise e
 
 
+def has_results(hash_id, run_id, experiment_name, logger=None):
+    """
+    Check if results.json already exists for an experiment.
+
+    Args:
+        hash_id (str): Git commit hash
+        run_id (str): Experiment run ID
+        experiment_name (str): Name of the experiment
+        logger: Optional logger instance
+
+    Returns:
+        bool: True if results.json exists, False otherwise
+    """
+    results_file = repo_root / "data" / hash_id / run_id / experiment_name / "results.json"
+    exists = results_file.exists()
+    if logger and exists:
+        logger.info(f"Skipping {experiment_name}: results.json already exists at {results_file}")
+    return exists
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Run all experiment scripts.")
     parser.add_argument(
@@ -381,6 +401,11 @@ def main():
     logger.info("Phase 1: Running initial experiments")
     for experiment in experiment_groups.get("calibration", []):
         print("\n\n\n")
+        # Check if results already exist
+        if has_results(hash_id, run_id, experiment, logger):
+            logger.info(f"Skipping {experiment}: results already exist")
+            continue
+        
         script_path = os.path.join(base_path, experiment, "main.py")
         logger.info(f"Starting initial experiment: {experiment}")
         rc = run_script(logger, script_path, args.device, experiment)
@@ -400,6 +425,11 @@ def main():
     logger.info("Phase 2: Running single-qubit experiments")
     for experiment in experiment_groups.get("1", []):
         print("\n\n\n")
+        # Check if results already exist
+        if has_results(hash_id, run_id, experiment, logger):
+            logger.info(f"Skipping {experiment}: results already exist")
+            continue
+        
         script_path = os.path.join(base_path, experiment, "main.py")
         # pass qubit id as string
         cmd_args = ["--device", args.device, "--qubit_id", str(best_qubits.pop())]
@@ -421,6 +451,11 @@ def main():
             edge_pairs =   best_edges_k_qubits[section_name][0][0]
 
             for experiment in experiment_groups[section_name]:
+                # Check if results already exist
+                if has_results(hash_id, run_id, experiment, logger):
+                    logger.info(f"Skipping {experiment}: results already exist")
+                    continue
+                
                 script_path = os.path.join(base_path, experiment, "main.py")
                 print("\n\n\n")
                 qubit_list_str = json.dumps(edge_pairs)
