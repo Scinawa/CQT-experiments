@@ -4,7 +4,7 @@ Clean, structured script for uploading calibration and experiment data.
 
 import os
 import json
-import toml
+import tomllib
 import tarfile
 import tempfile
 import shutil
@@ -49,7 +49,8 @@ def get_server_credentials(secrets_path: str = ".secrets.toml") -> tuple[str, st
         ValueError: If credentials are missing.
         Exception: If file cannot be read.
     """
-    secrets = toml.load(secrets_path)
+    with open(secrets_path, "rb") as f:
+        secrets = tomllib.load(f)
     server_url = secrets.get("qibodbhost")
     api_token = secrets.get("qibodbkey")
     
