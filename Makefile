@@ -12,23 +12,23 @@ RUNID_RIGHT ?= 1235
 #calibration_right ?= 41f4570fce52da0c4bbb483f6fb7d870a551df65
 
 
-download-latest-two:
-	@mkdir -p data
-	#@[ -d data ] && rm -rf data/* || true
+# download-latest-two:
+# 	@mkdir -p data
+# 	#@[ -d data ] && rm -rf data/* || true
 
-	@echo "Downloading latest two experiments"
-	@python download.py --latest-two
+# 	@echo "Downloading latest two experiments"
+# 	@python download.py --latest-two
 
 
-download-data:
-	@mkdir -p data
-	#@[ -d data ] && rm -rf data/* || true
+# download-data:
+# 	@mkdir -p data
+# 	#@[ -d data ] && rm -rf data/* || true
 
-	@echo "Downloading data for experiment $(calibration_left)"
-	@python download.py --hash-id $(calibration_left)
+# 	@echo "Downloading data for experiment $(calibration_left)"
+# 	@python download.py --hash-id $(calibration_left)
 
-	@echo "Downloading data for experiment $(calibration_right)"
-	@python download.py --hash-id $(calibration_right)
+# 	@echo "Downloading data for experiment $(calibration_right)"
+# 	@python download.py --hash-id $(calibration_right)
 
 
 upload-data:
@@ -38,23 +38,26 @@ upload-data:
 	@echo "Uploading data for experiment $(calibration_right)"
 	@python upload.py --hash-id $(calibration_right)
 
-build: clean
-	@mkdir -p build
-	@cp src/templates/placeholder.png build/placeholder.png
-	@echo "Building latex report..."
-	python src/main.py \
-		--calibration-left $(calibration_left) \
-		--calibration-right $(calibration_right) \
-		--run-left $(RUNID_LEFT) \
-		--run-right $(RUNID_RIGHT) \
-		--no-tomography-plot \
+# build: clean
+# 	@mkdir -p build
+# 	@cp src/templates/placeholder.png build/placeholder.png
+# 	@echo "Building latex report..."
+# 	python src/main.py \
+# 		--calibration-left $(calibration_left) \
+# 		--calibration-right $(calibration_right) \
+# 		--run-left $(RUNID_LEFT) \
+# 		--run-right $(RUNID_RIGHT) \
+# 		--no-tomography-plot \
 
-pdf-only: 
-	@echo "Compiling LaTeX report in pdf..."
-	pdflatex -output-directory=build report.tex > logs/pdflatex.log
-	@cp build/report.pdf .
-	@cp build/report.pdf reports/report_$(shell echo $(calibration_left) | cut -c1-10)_vs_$(shell echo $(calibration_right) | cut -c1-10)_$$(date +%d%m%Y_%H).pdf
-	@cp build/report.pdf reports/latest_report.pdf	
+# pdf-only: 
+# 	@echo "Compiling LaTeX report in pdf..."
+# 	pdflatex -output-directory=build report.tex > logs/pdflatex.log
+# 	@cp build/report.pdf .
+# 	@cp build/report.pdf reports/report_$(shell echo $(calibration_left) | cut -c1-10)_vs_$(shell echo $(calibration_right) | cut -c1-10)_$$(date +%d%m%Y_%H).pdf
+# 	@cp build/report.pdf reports/latest_report.pdf	
+
+install-uv:
+	@which uv >/dev/null 2>&1 || (echo "Installing uv..." && curl -LsSf https://astral.sh/uv/install.sh | sh)
 
 
 

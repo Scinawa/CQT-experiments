@@ -91,7 +91,7 @@ def run_tomography(targets, device, nshots, root_path):
 
 
 def main(device, nshots):
-    scriptname = Path(__file__).stem
+    scriptname = Path(__file__)
     out_dir = config.output_dir_for(__file__, device)
     out_dir_tmp = out_dir / "tmp"
     out_dir.mkdir(parents=True, exist_ok=True)

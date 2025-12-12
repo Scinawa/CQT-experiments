@@ -25,6 +25,9 @@ if __package__ is None or __package__ == "":
     # invoked directly: add repo root to sys.path so 'scripts.*' resolves
     repo_root = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(repo_root))
+else:
+    # If imported as a package, determine repo root differently
+    repo_root = Path(__file__).resolve().parents[1]
 
 from scripts.config import CURRENT_CALIBRATION_DIRECTORY  # now this works in both cases
 from scripts.config import load_experiment_list
@@ -41,7 +44,7 @@ def get_best_qubits(hash_id):
     Returns:
         list[int]: List of qubit indices sorted by descending RB fidelity.
     """
-    calib_path = os.path.join("data", "calibrations", hash_id, "sinq20", "calibration.json")
+    calib_path = repo_root / "data" / "calibrations" / hash_id / "sinq20" / "calibration.json"
     if not os.path.exists(calib_path):
         logging.warning(f"Calibration file not found: {calib_path}")
         return []
@@ -107,7 +110,7 @@ def get_best_edges(hash_id, run_id):
     Returns:
         dict: Dictionary with qubit counts as keys and [qubit_list, fidelity] as values
     """
-    results_file = f"data/{hash_id}/{run_id}/bell_tomography/results.json"
+    results_file = repo_root / "data" / hash_id / run_id / "bell_tomography" / "results.json"
     try:
         with open(results_file, "r") as f:
             results = json.load(f)
@@ -340,7 +343,7 @@ def main():
     repo = Repo(CURRENT_CALIBRATION_DIRECTORY)
     commit = repo.commit()
     hash_id = commit.hexsha
-    calibration_dir = os.path.join("data", "calibrations", hash_id)
+    calibration_dir = repo_root / "data" / "calibrations" / hash_id
  
     # Load experiment list from configuration file
     experiment_groups = load_experiment_list()
@@ -363,7 +366,7 @@ def main():
             ),
         }
 
-        msg_file = os.path.join(calibration_dir, "commit_info.json")
+        msg_file = calibration_dir / "commit_info.json"
         with open(msg_file, "w") as f:
             json.dump(commit_info, f, indent=4)
 
