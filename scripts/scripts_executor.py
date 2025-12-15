@@ -11,6 +11,15 @@ import sys
 from pathlib import Path
 import json
 import configparser
+import tomllib
+
+
+from client import (
+    set_server,
+    calibrations_upload, calibrations_list, calibrations_download, calibrations_get_latest,
+    results_upload, results_download,unzip_bytes_to_folder,test,results_list,set_best_run, get_best_run,
+    get_best_n_runs,upload_all_calibrations,upload_all_experiment_runs
+)
 
 # Base path to the scripts directory (run from project root)
 base_path = "scripts/"
@@ -32,6 +41,14 @@ else:
 from scripts.config import CURRENT_CALIBRATION_DIRECTORY  # now this works in both cases
 from scripts.config import load_experiment_list
 from scripts.config import RUN_ID_FILE
+
+
+def load_secrets():
+    """Load credentials from .secrets.toml"""
+    secrets_path = repo_root / ".secrets.toml"
+    with open(secrets_path, "rb") as f:
+        secrets = tomllib.load(f)
+    return secrets
 
 
 def get_best_qubits(hash_id):
@@ -439,9 +456,6 @@ def main():
 
     # Phase 3: Run qubit-specific experiments based on available edges
     logger.info("Phase 3: Running qubit-specific experiments")
-
-
-
     for qubit_count_key, qubit_data in best_edges_k_qubits.items():
         section_name = str(qubit_count_key)
         
@@ -465,6 +479,21 @@ def main():
                 # pdb.set_trace()
                 rc = run_script_with_args(logger, script_path, cmd_args, experiment)
                 overall_rc = overall_rc or rc
+
+
+    if overall_rc == 0:
+    # Load credentials from .secrets.toml
+        secrets = load_secrets()
+        server_url = secrets["server_url"]
+        api_token = secrets["api_token"]
+        
+        # Set server with credentials from secrets
+        set_server(server_url=server_url, api_token=api_token)
+        
+        # Upload results
+        rsp = results_upload(hashID=hash_id, runID=run_id, data_folder="./data")
+        logging.info(rsp)
+
 
     # Cleanup: remove experiment ID file
     if overall_rc == 0:

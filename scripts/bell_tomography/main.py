@@ -109,6 +109,7 @@ def main(device, nshots):
     out_dir.mkdir(parents=True, exist_ok=True)
 
 
+
     targets = get_list_of_pairs()
 
     print(f"Using qubit pairs: {targets}")
