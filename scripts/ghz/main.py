@@ -16,7 +16,17 @@ from qibocal.auto.execute import Executor
 from qibocal.cli.report import report
 
 from config import find_longest_chain, find_all_chains
+from qibo import Circuit, gates
+from qibo.transpiler import (
+    NativeGates,
+    Passes,
+    Unroller
+)
 
+glist = [gates.GPI2, gates.RZ, gates.Z, gates.CZ]
+natives = NativeGates(0).from_gatelist(glist)
+custom_passes = [Unroller(native_gates=natives)]
+custom_pipeline = Passes(custom_passes)
 
 def create_ghz_circuit(chain_of_qubits):
     nqubits = len(chain_of_qubits)
@@ -68,6 +78,7 @@ def run_ghz_experiment(chain_of_qubits, device, nshots, root_path):
             force=True,
         ) as e:
             circuit = create_ghz_circuit(chain_of_qubits)
+            circuit, _ = custom_pipeline(circuit)
             start_time = time.time()
             # For GHZ, we'll run the circuit directly since qibocal doesn't have a specific GHZ method
             # You might need to adapt this based on available qibocal methods

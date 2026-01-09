@@ -8,6 +8,7 @@ authors = [
 license = {text = "MIT"}
 requires-python = ">=3.12"
 dependencies = [
+    "networkx",
     "jsonschema>=4.0.0",
     "numpy>=1.20.0",
     "jinja2>=3.0.0",
@@ -27,6 +28,7 @@ dependencies = [
     "torch",
     "torchvision",
     "qiboml",
+    "tabulate",
 ]
 
 [build-system]

@@ -11,6 +11,15 @@ import sys
 from pathlib import Path
 import json
 import configparser
+import tomllib
+
+
+from client import (
+    set_server,
+    calibrations_upload, calibrations_list, calibrations_download, calibrations_get_latest,
+    results_upload, results_download,unzip_bytes_to_folder,test,results_list,set_best_run, get_best_run,
+    get_best_n_runs,upload_all_calibrations,upload_all_experiment_runs
+)
 
 # Base path to the scripts directory (run from project root)
 base_path = "scripts/"
@@ -25,10 +34,21 @@ if __package__ is None or __package__ == "":
     # invoked directly: add repo root to sys.path so 'scripts.*' resolves
     repo_root = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(repo_root))
+else:
+    # If imported as a package, determine repo root differently
+    repo_root = Path(__file__).resolve().parents[1]
 
 from scripts.config import CURRENT_CALIBRATION_DIRECTORY  # now this works in both cases
 from scripts.config import load_experiment_list
 from scripts.config import RUN_ID_FILE
+
+
+def load_secrets():
+    """Load credentials from .secrets.toml"""
+    secrets_path = repo_root / ".secrets.toml"
+    with open(secrets_path, "rb") as f:
+        secrets = tomllib.load(f)
+    return secrets
 
 
 def get_best_qubits(hash_id):
@@ -41,7 +61,7 @@ def get_best_qubits(hash_id):
     Returns:
         list[int]: List of qubit indices sorted by descending RB fidelity.
     """
-    calib_path = os.path.join("data", "calibrations", hash_id, "sinq20", "calibration.json")
+    calib_path = repo_root / "data" / "calibrations" / hash_id / "sinq20" / "calibration.json"
     if not os.path.exists(calib_path):
         logging.warning(f"Calibration file not found: {calib_path}")
         return []
@@ -107,7 +127,7 @@ def get_best_edges(hash_id, run_id):
     Returns:
         dict: Dictionary with qubit counts as keys and [qubit_list, fidelity] as values
     """
-    results_file = f"data/{hash_id}/{run_id}/bell_tomography/results.json"
+    results_file = repo_root / "data" / hash_id / run_id / "bell_tomography" / "results.json"
     try:
         with open(results_file, "r") as f:
             results = json.load(f)
@@ -118,6 +138,26 @@ def get_best_edges(hash_id, run_id):
         logging.error(f"Could not read bell_tomography results: {e}")
         # fallback with dummy data
         raise e
+
+
+def has_results(hash_id, run_id, experiment_name, logger=None):
+    """
+    Check if results.json already exists for an experiment.
+
+    Args:
+        hash_id (str): Git commit hash
+        run_id (str): Experiment run ID
+        experiment_name (str): Name of the experiment
+        logger: Optional logger instance
+
+    Returns:
+        bool: True if results.json exists, False otherwise
+    """
+    results_file = repo_root / "data" / hash_id / run_id / experiment_name / "results.json"
+    exists = results_file.exists()
+    if logger and exists:
+        logger.info(f"Skipping {experiment_name}: results.json already exists at {results_file}")
+    return exists
 
 
 def parse_args():
@@ -312,7 +352,7 @@ def create_experiment_id(logger: logging.Logger) -> str:
     run_id = datetime.now().strftime("%Y%m%d%H%M%S")
     logger.info(f"Starting experiment-run with RunID: {run_id}")
     try:
-        RUN_ID_FILE.parent.mkdir(parents=True, exist_ok=True)
+        # File is in current directory, no need to create parent
         with open(RUN_ID_FILE, "w", encoding="utf-8") as f:
             json.dump({"run_id": run_id}, f)
     except Exception as e:
@@ -322,8 +362,8 @@ def create_experiment_id(logger: logging.Logger) -> str:
 def remove_experiment_id_file(logger: logging.Logger):
     logger.info(f"Removing experiment ID file {RUN_ID_FILE}")
     try:
-        if os.path.exists(RUN_ID_FILE):
-            os.remove(RUN_ID_FILE)
+        if RUN_ID_FILE.exists():
+            RUN_ID_FILE.unlink()
     except Exception as e:
         logger.error(f"Failed to remove experiment ID file {RUN_ID_FILE}: {e}")
 
@@ -340,7 +380,7 @@ def main():
     repo = Repo(CURRENT_CALIBRATION_DIRECTORY)
     commit = repo.commit()
     hash_id = commit.hexsha
-    calibration_dir = os.path.join("data", "calibrations", hash_id)
+    calibration_dir = repo_root / "data" / "calibrations" / hash_id
  
     # Load experiment list from configuration file
     experiment_groups = load_experiment_list()
@@ -363,7 +403,7 @@ def main():
             ),
         }
 
-        msg_file = os.path.join(calibration_dir, "commit_info.json")
+        msg_file = calibration_dir / "commit_info.json"
         with open(msg_file, "w") as f:
             json.dump(commit_info, f, indent=4)
 
@@ -378,6 +418,11 @@ def main():
     logger.info("Phase 1: Running initial experiments")
     for experiment in experiment_groups.get("calibration", []):
         print("\n\n\n")
+        # Check if results already exist
+        if has_results(hash_id, run_id, experiment, logger):
+            logger.info(f"Skipping {experiment}: results already exist")
+            continue
+        
         script_path = os.path.join(base_path, experiment, "main.py")
         logger.info(f"Starting initial experiment: {experiment}")
         rc = run_script(logger, script_path, args.device, experiment)
@@ -397,6 +442,11 @@ def main():
     logger.info("Phase 2: Running single-qubit experiments")
     for experiment in experiment_groups.get("1", []):
         print("\n\n\n")
+        # Check if results already exist
+        if has_results(hash_id, run_id, experiment, logger):
+            logger.info(f"Skipping {experiment}: results already exist")
+            continue
+        
         script_path = os.path.join(base_path, experiment, "main.py")
         # pass qubit id as string
         cmd_args = ["--device", args.device, "--qubit_id", str(best_qubits.pop())]
@@ -406,9 +456,6 @@ def main():
 
     # Phase 3: Run qubit-specific experiments based on available edges
     logger.info("Phase 3: Running qubit-specific experiments")
-
-
-
     for qubit_count_key, qubit_data in best_edges_k_qubits.items():
         section_name = str(qubit_count_key)
         
@@ -418,6 +465,11 @@ def main():
             edge_pairs =   best_edges_k_qubits[section_name][0][0]
 
             for experiment in experiment_groups[section_name]:
+                # Check if results already exist
+                if has_results(hash_id, run_id, experiment, logger):
+                    logger.info(f"Skipping {experiment}: results already exist")
+                    continue
+                
                 script_path = os.path.join(base_path, experiment, "main.py")
                 print("\n\n\n")
                 qubit_list_str = json.dumps(edge_pairs)
@@ -427,6 +479,21 @@ def main():
                 # pdb.set_trace()
                 rc = run_script_with_args(logger, script_path, cmd_args, experiment)
                 overall_rc = overall_rc or rc
+
+
+    if overall_rc == 0:
+    # Load credentials from .secrets.toml
+        secrets = load_secrets()
+        server_url = secrets["server_url"]
+        api_token = secrets["api_token"]
+        
+        # Set server with credentials from secrets
+        set_server(server_url=server_url, api_token=api_token)
+        
+        # Upload results
+        rsp = results_upload(hashID=hash_id, runID=run_id, data_folder="./data")
+        logging.info(rsp)
+
 
     # Cleanup: remove experiment ID file
     if overall_rc == 0:

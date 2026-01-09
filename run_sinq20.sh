@@ -14,5 +14,8 @@ source ~/envs/qibo_env/bin/activate
 
 export CUDA_VISIBLE_DEVICES=0
 
+# Change to project directory to ensure relative paths work correctly
+cd ~/CQT-experiments
+
 python3 scripts/scripts_executor.py --device sinq20
 
