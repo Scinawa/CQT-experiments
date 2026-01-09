@@ -233,4 +233,4 @@ if __name__ == "__main__":
     except (ValueError, SyntaxError, TypeError):
         print(f"Error: Invalid qubit list format: {args.qubits_list}")
         sys.exit(1)
-    main(args.input_vector, args.qubits_list, args.device, args.nshots)
+    main(args.input_vector, qubits_list, args.device, args.nshots)
